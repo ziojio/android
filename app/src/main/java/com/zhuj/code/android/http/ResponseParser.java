@@ -1,3 +1,4 @@
+package com.jbzh.jbim.http;
 
 
 import okhttp3.Response;
@@ -14,6 +15,6 @@ public interface ResponseParser<T> {
      * @param response 请求的响应
      * @return T 解析的结果对象，交给Callback处理
      */
-    T parse(Response response);
+    T  parse(Response response);
 }
 

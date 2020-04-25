@@ -1,3 +1,4 @@
+package com.jbzh.android.util;
 
 import android.graphics.Rect;
 import android.view.View;

@@ -1,3 +1,4 @@
+package com.jbzh.android.util;
 
 import android.util.Base64;
 

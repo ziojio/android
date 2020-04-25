@@ -1,11 +1,14 @@
+package com.jbzh.android.logger;
 
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.security.auth.login.LoginException;
 
 public class DebugTree extends Tree {
     private static final int MAX_LOG_LENGTH = 3096;
@@ -33,6 +36,7 @@ public class DebugTree extends Tree {
      * By default, this will use the class name without any anonymous class suffixes
      * (e.g., {@code Foo$1} becomes {@code Foo}).
      */
+    @Nullable
     private String createStackElementTag(@NonNull StackTraceElement element) {
         String tag = element.getClassName();
         Matcher m = ANONYMOUS_CLASS.matcher(tag);
@@ -61,6 +65,7 @@ public class DebugTree extends Tree {
      */
     @Override
     protected void log(int priority, String tag, @NonNull String message, Throwable t) {
+        Log.w(tag, "--------------------------------------------------------------------------------------------------------------");
         if (message.length() < MAX_LOG_LENGTH) {
             if (priority == Log.ASSERT) {
                 Log.wtf(tag, message);
@@ -85,5 +90,6 @@ public class DebugTree extends Tree {
                 i = end;
             } while (i < newline);
         }
+        Log.e(tag, "--------------------------------------------------------------------------------------------------------------");
     }
 }

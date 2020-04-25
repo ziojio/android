@@ -1,16 +1,16 @@
-
+package com.jbzh.jbim.http;
 
 import android.util.Log;
 
-import com.jbzh.im.util.Exceptions;
-import com.jbzh.im.util.JsonUtils;
-import com.jbzh.im.util.TextUtils;
+import com.jbzh.jbim.ErrorMessage;
+import com.jbzh.jbim.util.Exceptions;
+import com.jbzh.jbim.util.JsonUtil;
+import com.jbzh.jbim.util.TextUtil;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -23,44 +23,31 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * @param <T> 解析的结果，和回调处理的对象
- */
-public class Httper<T> {
-    private final String TAG = Httper.class.getSimpleName();
-    protected OkHttpClient okHttpClient;
-    protected RequestFilter filter;
-    protected ResponseParser<T> parser;
-    protected String host;
 
+public class Httper {
+    private final String TAG = Httper.class.getSimpleName();
+
+    public static MediaType MEDIA_TYPE_JSON = MediaType.Companion.parse("application/json; charset=utf-8");
+    public static MediaType MEDIA_TYPE_MARKDOWN = MediaType.Companion.parse("text/x-markdown; charset=utf-8");
+    public static MediaType MEDIA_TYPE_STREAM = MediaType.Companion.parse("application/octet-stream");
+
+    protected RequestFilter filter;
+    protected ResponseParser parser;
+    protected HttpCallback callback;
+
+    protected String host;
     protected String service;
     protected String method;
     protected Map<String, String> params;
     protected String json;
     protected boolean isAsync;
-    protected HttpCallback<T> callback;
 
     /**
      * 创建一个接口实例，不是单例模式
      */
     public Httper() {
-        defaultHttpClient();
         host = "http://localhost/";
         reset();
-    }
-
-    private void defaultHttpClient() {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        // builder = builder.sslSocketFactory(new SSL(trustAllCert), trustAllCert); //忽略安全证书认证
-        okHttpClient = builder.connectTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(25, TimeUnit.SECONDS)
-                .readTimeout(35, TimeUnit.SECONDS)
-                .build();
-    }
-
-    public Httper<T> httpClient(OkHttpClient httpClient) {
-        okHttpClient = httpClient;
-        return this;
     }
 
     /**
@@ -68,9 +55,9 @@ public class Httper<T> {
      *
      * @return Httper
      */
-    public Httper<T> reset() {
+    public Httper reset() {
         service = "";
-        method = "POST";
+        method = "GET";
         params = new HashMap<>();
         json = "";
         isAsync = true;
@@ -83,12 +70,23 @@ public class Httper<T> {
      * @param host base url
      * @return Httper
      */
-    public Httper<T> host(String host) {
-        if (TextUtils.isEmptyTrim(host)) {
+    public Httper host(String host) {
+        if (TextUtil.isEmptyTrim(host)) {
             Exceptions.illegalArgument("host is null or length = 0");
+        } else if (!host.startsWith("http")) {
+            Exceptions.illegalArgument("host must start http / https");
         }
         this.host = host;
         return this;
+    }
+
+    public boolean checkHost(String host) {
+        if (TextUtil.isEmptyTrim(host)) {
+            Exceptions.illegalArgument("host is null or length = 0");
+        } else if (!host.startsWith("http")) {
+            Exceptions.illegalArgument("host must start http / https");
+        }
+        return true;
     }
 
     /**
@@ -97,8 +95,8 @@ public class Httper<T> {
      * @param apiName 接口服务名称
      * @return Httper
      */
-    public Httper<T> service(String apiName) {
-        if (TextUtils.isEmptyTrim(apiName)) {
+    public Httper service(String apiName) {
+        if (TextUtil.isEmptyTrim(apiName)) {
             Log.w(TAG, "apiName is null or length = 0");
         } else {
             this.service = apiName.trim();
@@ -111,7 +109,7 @@ public class Httper<T> {
      *
      * @return Httper
      */
-    public Httper<T> async() {
+    public Httper async() {
         isAsync = true;
         return this;
     }
@@ -121,7 +119,7 @@ public class Httper<T> {
      *
      * @return Httper
      */
-    public Httper<T> sync() {
+    public Httper sync() {
         isAsync = false;
         return this;
     }
@@ -131,7 +129,7 @@ public class Httper<T> {
      *
      * @return Httper
      */
-    public Httper<T> get() {
+    public Httper get() {
         method = "GET";
         return this;
     }
@@ -141,7 +139,7 @@ public class Httper<T> {
      *
      * @return Httper
      */
-    public Httper<T> post() {
+    public Httper post() {
         method = "POST";
         return this;
     }
@@ -153,8 +151,8 @@ public class Httper<T> {
      * @param value 值
      * @return this
      */
-    public Httper<T> param(String name, String value) {
-        if (TextUtils.isEmptyTrim(name)) {
+    public Httper param(String name, String value) {
+        if (TextUtil.isEmptyTrim(name)) {
             Exceptions.illegalArgument("name is null or length = 0");
         } else if (value == null) {
             Exceptions.illegalArgument("value is null");
@@ -165,19 +163,33 @@ public class Httper<T> {
     }
 
     /**
+     * 设置接口查询参数
+     *
+     * @param kvMap kvMap查询参数
+     * @return Httper
+     */
+    public Httper param(Map<String, String> kvMap) {
+        if (kvMap == null) {
+            Exceptions.illegalArgument("kvMap is null");
+        } else {
+            params.putAll(kvMap);
+        }
+        return this;
+    }
+
+    /**
      * 设置接口 json body
      *
      * @param json json String
      * @return Httper
      */
-    public Httper<T> json(String json) {
-        if (TextUtils.isEmptyTrim(json)) {
+    public Httper json(String json) {
+        if (TextUtil.isEmptyTrim(json)) {
             Exceptions.illegalArgument("json is null or length = 0");
         } else if (json.startsWith("[{") || json.startsWith("{")) {
             Exceptions.illegalArgument("json must start { or [{");
-        } else {
-            this.json = json;
         }
+        this.json = json;
         return this;
     }
 
@@ -188,9 +200,9 @@ public class Httper<T> {
      * @param httpCallback 回调函数
      * @return this
      */
-    public Httper<T> callback(HttpCallback<T> httpCallback) {
+    public Httper callback(HttpCallback httpCallback) {
         if (httpCallback == null) {
-            Exceptions.illegalArgument("callback not is null");
+            Exceptions.illegalArgument("callback is null");
         }
         this.callback = httpCallback;
         return this;
@@ -202,7 +214,10 @@ public class Httper<T> {
      * @param parser 结果解析器
      * @return Httper
      */
-    public Httper<T> parser(ResponseParser<T> parser) {
+    public Httper parser(ResponseParser parser) {
+        if (parser == null) {
+            Exceptions.illegalArgument("parser is null");
+        }
         this.parser = parser;
         return this;
     }
@@ -211,7 +226,10 @@ public class Httper<T> {
      * @param filter 结果解析器
      * @return Httper
      */
-    public Httper<T> filter(RequestFilter filter) {
+    protected Httper filter(RequestFilter filter) {
+        if (filter == null) {
+            Exceptions.illegalArgument("filter is null");
+        }
         this.filter = filter;
         return this;
     }
@@ -223,70 +241,133 @@ public class Httper<T> {
         if (method.equals("GET")) {
             doGet();
         } else if (method.equals("POST")) {
-            doPost();
+            doPost(service, params);
         }
     }
 
-    private void doPost() {
-        Request request = new Request.Builder().url(buildHttpUrlWithService().build()).post(buildRequestBody()).build();
+    protected void postJson(String service, String json) {
+        RequestBody requestBody = RequestBody.Companion.create(json, MEDIA_TYPE_JSON);
+        Request request = new Request.Builder().url(host).post(requestBody).build();
         call(request);
     }
 
-    private void doGet() {
-        HttpUrl.Builder urlBuilder = buildHttpUrlWithService();
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            urlBuilder.addQueryParameter(entry.getKey(), entry.getValue());
+    protected void doPost(String service, Map<String, String> kvMap) {
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().host(host);
+        if (TextUtil.isEmptyTrim(service)) {
+            urlBuilder.addPathSegments('/' == service.charAt(0) ? service.substring(1) : service);
+        }
+        FormBody formBody = buildFormBody(kvMap);
+        Request request = new Request.Builder().url(urlBuilder.build()).post(formBody).build();
+        call(request);
+    }
+
+    protected void doGet() {
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().host(host);
+        if (TextUtil.isEmptyTrim(service)) {
+            urlBuilder.addPathSegments('/' == service.charAt(0) ? service.substring(1) : service)
+                    .query(buildParams(params));
         }
         Request request = new Request.Builder().url(urlBuilder.build()).build();
         call(request);
     }
 
-    private HttpUrl.Builder buildHttpUrlWithService() {
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(host).newBuilder();
-        if (service.length() > 0) {
-            urlBuilder.addQueryParameter("s", service);
-        }
-        return urlBuilder;
-    }
-
-    private RequestBody buildRequestBody() {
-        RequestBody requestBody = null;
-        if (json.length() > 0) {
-            requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
-        } else if (!params.isEmpty()) {
-            FormBody.Builder builder = new FormBody.Builder();
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                builder.add(entry.getKey(), entry.getValue());
+    public FormBody buildFormBody(Map<String, String> kvMap) {
+        FormBody.Builder builder = new FormBody.Builder();
+        if (kvMap != null && !kvMap.isEmpty()) {
+            for (Map.Entry<String, String> entry : kvMap.entrySet()) {
+                if (entry.getKey() != null) {
+                    builder.add(entry.getKey(), entry.getValue());
+                }
             }
-            requestBody = builder.build();
         }
-        return requestBody;
+        return builder.build();
     }
 
-    private String buildParams() {
-        StringBuilder ret = new StringBuilder();
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            ret.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+    public String buildParams(Map<String, String> kvMap) {
+        if (kvMap != null && !kvMap.isEmpty()) {
+            StringBuffer ret = new StringBuffer();
+            for (Map.Entry<String, String> entry : kvMap.entrySet()) {
+                if (entry.getKey() != null) {
+                    ret.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+                }
+            }
+            if (ret.length() > 0) {
+                return ret.deleteCharAt(0).toString();
+            }
         }
-        return ret.toString();
+        return "";
     }
 
-    private RequestBody buildMultipartBody() {
+    public RequestBody buildMultipartBody(Map<String, String> kvMap, Map<String, File> files) {
         MultipartBody.Builder multiBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        // 参数
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            multiBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+        if (kvMap != null && !kvMap.isEmpty()) {
+            for (Map.Entry<String, String> entry : kvMap.entrySet()) {
+                if (entry.getKey() != null) {
+                    multiBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+                }
+            }
         }
-        // 需要上传的文件，需要携带上传的文件
-        HashMap<String, File> files = new HashMap<>();
-        for (String key : files.keySet()) {
-            multiBuilder.addFormDataPart(key, files.get(key).getName(),
-                    RequestBody.create(MediaType.parse("multipart/form-data"), files.get(key)));
+        if (files != null && !files.isEmpty()) {
+            for (Map.Entry<String, File> entry : files.entrySet()) {
+                if (entry.getKey() != null && entry.getValue().exists()) {
+                    multiBuilder.addFormDataPart(entry.getKey(), entry.getValue().getName(),
+                            MultipartBody.create(entry.getValue(), MEDIA_TYPE_STREAM));
+                }
+            }
         }
         return multiBuilder.build();
     }
 
-    private Callback okhttpCallback = new Callback() {
+    public Request buildRequest(String url, String method, Map<String, String> kvMap) {
+        if (TextUtil.isEmptyTrim(url)) Exceptions.illegalArgument("url is null");
+        if (TextUtil.isEmptyTrim(method)) Exceptions.illegalArgument("method is null");
+        if (method.equalsIgnoreCase("POST")) {
+            FormBody formBody = buildFormBody(kvMap);
+            return new Request.Builder().url(url).post(formBody).build();
+        } else if (method.equalsIgnoreCase("GET")) {
+            HttpUrl httpUrl = HttpUrl.get(url + "?" + buildParams(kvMap));
+            return new Request.Builder().url(httpUrl).build();
+        }
+        Exceptions.illegalArgument("method:%s is not implement", method);
+        return null;
+    }
+
+    protected void call(Request request) {
+        Log.d(TAG, JsonUtil.toJson(request));
+        if (callback == null) {
+            doCallNoCallback(request);
+        } else {
+            doCall(request);
+        }
+    }
+
+    public void asyncCall(Request request, Callback callback) {
+        new OkHttpClient().newCall(request).enqueue(callback);
+    }
+
+    public void syncCall(Request request, Callback callback) {
+        Call call = new OkHttpClient().newCall(request);
+        try (Response response = call.execute()) {
+            callback.onResponse(call, response);
+        } catch (IOException e) {
+            callback.onFailure(call, e);
+        }
+    }
+
+    protected void doCall(Request request) {
+        if (isAsync) {
+            new OkHttpClient().newCall(request).enqueue(okhttpCallback);
+        } else {
+            Call call = new OkHttpClient().newCall(request);
+            try (Response response = call.execute()) {
+                okhttpCallback.onResponse(call, response);
+            } catch (IOException e) {
+                okhttpCallback.onFailure(call, e);
+            }
+        }
+    }
+
+    protected Callback okhttpCallback = new Callback() {
         @Override
         public void onFailure(Call call, IOException e) {
             callback.onFailure(new ErrorMessage(e));
@@ -302,43 +383,15 @@ public class Httper<T> {
         }
     };
 
-    private void call(Request request) {
-        Log.d(TAG, JsonUtils.toJson(request));
-//        if(callback == null){
-//            doCallNoCallback(request);
-//            return;
-//        }
-        if (isAsync) {
-            okHttpClient.newCall(request).enqueue(okhttpCallback);
-        } else {
-            try (Response response = okHttpClient.newCall(request).execute()) {
-                if (response.isSuccessful()) {
-                    callback.onSuccess(parser.parse(response));
-                } else {
-                    callback.onFailure(new ErrorMessage(response.code(), response.message()));
-                }
-            } catch (IOException e) {
-                callback.onFailure(new ErrorMessage(e));
+    protected void doCallNoCallback(Request request) {
+        new OkHttpClient().newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
             }
-        }
-    }
 
-    private void doCallNoCallback(Request request) {
-        if (isAsync) {
-            okHttpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                }
-            });
-        } else {
-            try (Response ignored = okHttpClient.newCall(request).execute()) {
-            } catch (IOException ignored) {
+            @Override
+            public void onResponse(Call call, Response response) {
             }
-        }
-
+        });
     }
 }

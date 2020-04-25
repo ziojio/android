@@ -1,3 +1,4 @@
+package com.jbzh.android.util;
 
 public class ByteUtils {
 

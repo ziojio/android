@@ -1,5 +1,6 @@
+package com.jbzh.android.util;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

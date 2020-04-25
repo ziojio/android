@@ -1,10 +1,11 @@
+package com.jbzh.android.util;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DimenRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.StringRes;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 
 public final class ResUtil {
     private ResUtil() {

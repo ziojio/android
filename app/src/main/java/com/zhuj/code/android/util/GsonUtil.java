@@ -1,3 +1,4 @@
+package com.jbzh.android.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

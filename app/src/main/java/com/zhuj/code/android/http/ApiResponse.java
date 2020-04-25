@@ -1,3 +1,4 @@
+package com.jbzh.jbim.http;
 
 /**
  * 接口返回结果

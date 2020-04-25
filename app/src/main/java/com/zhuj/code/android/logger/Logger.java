@@ -1,6 +1,7 @@
+package com.jbzh.android.logger;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +32,7 @@ import static java.util.Collections.unmodifiableList;
 
 public final class Logger {
     private Logger() {
-        throw new IllegalStateException("no instance");
+        throw new AssertionError("no instance");
     }
 
     private static final Tree[] TREE_ARRAY_EMPTY = new Tree[0];

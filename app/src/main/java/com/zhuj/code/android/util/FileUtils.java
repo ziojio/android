@@ -1,19 +1,27 @@
+package com.jbzh.android.util;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.jbzh.jbpaintviewcore.jbpaintcore.utils.ZipUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public final class FileUtils {
@@ -108,8 +116,56 @@ public final class FileUtils {
         return file;
     }
 
-    public static String readTextFile(InputStream inputStream) {
+    /**
+     * 保存svg图形的thumbnail的png图片，和 svg 文件的文件名
+     *
+     * @param zipDir
+     * @param bmpList
+     * @param svgStrList
+     * @param column
+     */
+    public static void initBmpListAndStrList2(String zipDir, List<Bitmap> bmpList, List<String> svgStrList, int column) {
+        File file = new File(zipDir);
+        if (!file.isDirectory()) return; // 不是压缩包目录，什么也不做
+        File[] fileList = file.listFiles((dir, name) -> name.endsWith(".zip"));
+        for (File zipFile : fileList) {
+            HashMap<String, InputStream> thumbMap = ZipUtils.upZipThumbnailFileAllStream(zipFile);
+            String[] filename2 = thumbMap.keySet().toArray(new String[0]);
+            Arrays.sort(filename2);
+            for (String str : filename2) {
+                InputStream inputStream = thumbMap.get(str);
+                bmpList.add(BitmapFactory.decodeStream(inputStream));  // 缩略图 svg源文件分开保存
+                svgStrList.add(str);  // svg filename
+            }
+
+            for (int j = bmpList.size() % column; j != 0 && j < column; j++) {
+                bmpList.add(null);
+                svgStrList.add("");
+            }
+        }
+    }
+
+    public static String inputStreamToString(InputStream inputStream) {
         InputStreamReader reader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        StringBuilder buffer = new StringBuilder();
+        String str;
+        try {
+            while ((str = bufferedReader.readLine()) != null) {
+                buffer.append(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer.toString();
+    }
+    public static String readFileAsString(String pathName) {
+        InputStreamReader reader = null;
+        try {
+            reader = new InputStreamReader(new FileInputStream(pathName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         BufferedReader bufferedReader = new BufferedReader(reader);
         StringBuilder buffer = new StringBuilder();
         String str;
@@ -255,7 +311,7 @@ public final class FileUtils {
     //=======================创建文件=======================//
 
     /**
-     * 文件不存在就创建，存在则返回文件，不存在则创建并返回文件
+     * 存在则返回文件，不存在则创建并返回文件
      *
      * @param filePath
      * @return 文件
@@ -265,7 +321,7 @@ public final class FileUtils {
         if (file == null) return null;
         // 如果存在，是文件则返回
         if (file.exists()) return file;
-        //目录没有创建成功，直接返回null
+        // 目录没有创建成功，直接返回null
         if (!createOrExistsDir(file.getParentFile())) return null;
         try {
             file.createNewFile();

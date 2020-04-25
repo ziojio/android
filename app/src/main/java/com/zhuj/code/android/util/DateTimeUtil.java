@@ -1,4 +1,6 @@
+package com.jbzh.android.util;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class DateTimeUtil {
@@ -6,12 +8,22 @@ public class DateTimeUtil {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
+    public static final String STYLE_yyyyMMddHHmmss = "yyyyMMddHHmmss";
+    public static final String STYLE_yyyyMMdd_HHmmss = "yyyyMMdd_HHmmss";
+    public static final String STYLE_yyyyMMdd_HH_mm_ss = "yyyyMMdd HH:mm:ss";
+
+    public static final String STYLE_yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
+    public static final String STYLE_yyyy_MM_dd_HH_mm_ss_1 = "yyyy/MM/dd HH:mm:ss";
+    public static final String STYLE_yyyy_MM_dd_HH_mm_ss_2 = "yyyy_MM_dd HH:mm:ss";
+
     public static long getNow(){
         return System.currentTimeMillis();
     }
-    public static String getNowDateTime(String pattern){
-//        DateFormat.getDateTimeInstance().format(System.currentTimeMillis());
+    public static String getNowString(String pattern){
        return new SimpleDateFormat(pattern).format(System.currentTimeMillis());
+    }
+    public static String getNowString(){
+       return  DateFormat.getDateTimeInstance().format(System.currentTimeMillis());
     }
 
     /**
