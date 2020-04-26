@@ -18,13 +18,12 @@ package com.zhuj.code.android.http;
 
 import android.text.TextUtils;
 
-import com.zhuj.code.android.util.IOUtils;
+import com.zhuj.code.android.common.IOUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
-
-import okhttp3.RequestBody;
+import java.nio.charset.StandardCharsets;
 
 import static com.zhuj.code.android.http.Headers.VALUE_APPLICATION_STREAM;
 
@@ -38,7 +37,7 @@ public class StringBody implements RequestBody {
     private final String mContentType;
 
     public StringBody(String body) {
-        this(body, Kalle.getConfig().getCharset());
+        this(body, StandardCharsets.UTF_8);
     }
 
     public StringBody(String body, Charset charset) {
@@ -46,7 +45,7 @@ public class StringBody implements RequestBody {
     }
 
     public StringBody(String body, String contentType) {
-        this(body, Kalle.getConfig().getCharset(), contentType);
+        this(body, StandardCharsets.UTF_8, contentType);
     }
 
     public StringBody(String body, Charset charset, String contentType) {
@@ -67,7 +66,7 @@ public class StringBody implements RequestBody {
     }
 
     @Override
-    protected void onWrite(OutputStream writer) throws IOException {
+    public void onWrite(OutputStream writer) throws IOException {
         IOUtils.write(writer, mBody, mCharset);
     }
 

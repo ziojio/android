@@ -3,8 +3,8 @@
 // import android.util.Log;
 //
 // import com.zhuj.code.android.http.ErrorMessage;
-// import com.zhuj.code.android.util.Exceptions;
-// import com.zhuj.code.android.util.TextUtil;
+// import com.zhuj.code.android.common.Exceptions;
+// import com.zhuj.code.android.common.TextUtil;
 //
 // import java.io.File;
 // import java.io.IOException;

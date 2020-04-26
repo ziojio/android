@@ -108,32 +108,6 @@ public class Params {
         return mMap.containsKey(key);
     }
 
-    /**
-     * Does it contain {@link Binary}.
-     */
-    public boolean hasBinary() {
-        for (Map.Entry<String, List<Object>> entry : entrySet()) {
-            List<Object> values = entry.getValue();
-            if (values.size() > 0) {
-                for (Object value : values) if (value instanceof Binary) return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Convert to {@link UrlBody}
-     */
-    public UrlBody toUrlBody() {
-        return UrlBody.newBuilder().params(this).build();
-    }
-
-    /**
-     * Convert to {@link FormBody}
-     */
-    public FormBody toFormBody() {
-        return FormBody.newBuilder().params(this).build();
-    }
 
     /**
      * ReBuilder.
@@ -232,7 +206,7 @@ public class Params {
          * Add parameter.
          */
         public Builder add(String key, CharSequence value) {
-            return add(key, (Object)value);
+            return add(key, value);
         }
 
         /**
@@ -243,20 +217,6 @@ public class Params {
             return this;
         }
 
-        /**
-         * Add parameter.
-         */
-        private Builder add(String key, Object value) {
-            if (!TextUtils.isEmpty(key)) {
-                if (!mMap.containsKey(key)) {
-                    mMap.put(key, new ArrayList<>(1));
-                }
-                if (value == null) value = "";
-                if (value instanceof File) value = new FileBinary((File)value);
-                mMap.get(key).add(value);
-            }
-            return this;
-        }
 
         /**
          * Add parameters.
@@ -265,7 +225,7 @@ public class Params {
             for (Map.Entry<String, List<Object>> entry : params.entrySet()) {
                 String key = entry.getKey();
                 List<Object> valueList = entry.getValue();
-                for (Object value : valueList) add(key, value);
+                for (Object value : valueList) add(key, (Boolean) value);
             }
             return this;
         }
@@ -281,31 +241,17 @@ public class Params {
          * Add a file parameter.
          */
         public Builder file(String key, File file) {
-            return add(key, file);
+            return add(key, (CharSequence) file);
         }
 
         /**
          * Add several file parameters.
          */
         public Builder files(String key, List<File> files) {
-            for (File file : files) add(key, file);
+            for (File file : files) add(key, (CharSequence) file);
             return this;
         }
 
-        /**
-         * Add binary parameter.
-         */
-        public Builder binary(String key, Binary binary) {
-            return add(key, binary);
-        }
-
-        /**
-         * Add several binary parameters.
-         */
-        public Builder binaries(String key, List<Binary> binaries) {
-            for (Binary binary : binaries) binary(key, binary);
-            return this;
-        }
 
         /**
          * Remove parameters by key.

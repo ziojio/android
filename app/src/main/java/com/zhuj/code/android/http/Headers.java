@@ -19,7 +19,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 
-import com.zhuj.code.android.util.ListMap;
+import com.zhuj.code.android.common.ListMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;

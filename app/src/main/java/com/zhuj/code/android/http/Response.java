@@ -16,7 +16,7 @@
 package com.zhuj.code.android.http;
 
 
-import com.zhuj.code.android.util.IOUtils;
+import com.zhuj.code.android.common.IOUtils;
 
 import java.io.Closeable;
 import java.io.IOException;

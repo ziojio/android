@@ -1,6 +1,6 @@
 package com.zhuj.code.android.http;
 
-import com.zhuj.code.android.util.JsonUtils;
+import com.zhuj.code.android.common.JsonUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

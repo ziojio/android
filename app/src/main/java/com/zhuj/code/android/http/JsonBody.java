@@ -16,8 +16,9 @@
 package com.zhuj.code.android.http;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
-import static com.yanzhenjie.kalle.Headers.VALUE_APPLICATION_JSON;
+import static com.zhuj.code.android.http.Headers.VALUE_APPLICATION_JSON;
 
 /**
  * Created by Zhenjie Yan on 2018/2/11.
@@ -25,7 +26,7 @@ import static com.yanzhenjie.kalle.Headers.VALUE_APPLICATION_JSON;
 public class JsonBody extends StringBody {
     
     public JsonBody(String body) {
-        this(body, Kalle.getConfig().getCharset());
+        this(body, StandardCharsets.UTF_8);
     }
 
     public JsonBody(String body, Charset charset) {
