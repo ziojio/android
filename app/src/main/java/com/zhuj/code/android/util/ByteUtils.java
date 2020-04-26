@@ -1,4 +1,4 @@
-package com.jbzh.android.util;
+package com.zhuj.code.android.util;
 
 public class ByteUtils {
 

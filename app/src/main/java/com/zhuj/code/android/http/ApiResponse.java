@@ -1,4 +1,4 @@
-package com.jbzh.jbim.http;
+package com.zhuj.code.android.http;
 
 /**
  * 接口返回结果

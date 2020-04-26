@@ -1,10 +1,9 @@
-package com.jbzh.android.util;
+package com.zhuj.code.android.util;
 
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.util.Log;
 
-import com.jbzh.android.logger.Logger;
+import com.zhuj.code.android.logger.Logger;
 
 import java.io.IOException;
 

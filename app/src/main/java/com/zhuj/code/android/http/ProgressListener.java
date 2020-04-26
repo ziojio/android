@@ -1,7 +1,6 @@
-package com.jbzh.jbim.http;
+package com.zhuj.code.android.http;
 
-
-import com.jbzh.jbim.ErrorMessage;
+import com.zhuj.code.android.http.ErrorMessage;
 
 public interface ProgressListener<T> {
     int onProgress(int progress);

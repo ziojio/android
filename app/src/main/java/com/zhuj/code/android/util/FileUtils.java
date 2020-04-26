@@ -1,13 +1,13 @@
-package com.jbzh.android.util;
+package com.zhuj.code.android.util;
+
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.jbzh.jbpaintviewcore.jbpaintcore.utils.ZipUtils;
+import androidx.annotation.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -116,34 +116,6 @@ public final class FileUtils {
         return file;
     }
 
-    /**
-     * 保存svg图形的thumbnail的png图片，和 svg 文件的文件名
-     *
-     * @param zipDir
-     * @param bmpList
-     * @param svgStrList
-     * @param column
-     */
-    public static void initBmpListAndStrList2(String zipDir, List<Bitmap> bmpList, List<String> svgStrList, int column) {
-        File file = new File(zipDir);
-        if (!file.isDirectory()) return; // 不是压缩包目录，什么也不做
-        File[] fileList = file.listFiles((dir, name) -> name.endsWith(".zip"));
-        for (File zipFile : fileList) {
-            HashMap<String, InputStream> thumbMap = ZipUtils.upZipThumbnailFileAllStream(zipFile);
-            String[] filename2 = thumbMap.keySet().toArray(new String[0]);
-            Arrays.sort(filename2);
-            for (String str : filename2) {
-                InputStream inputStream = thumbMap.get(str);
-                bmpList.add(BitmapFactory.decodeStream(inputStream));  // 缩略图 svg源文件分开保存
-                svgStrList.add(str);  // svg filename
-            }
-
-            for (int j = bmpList.size() % column; j != 0 && j < column; j++) {
-                bmpList.add(null);
-                svgStrList.add("");
-            }
-        }
-    }
 
     public static String inputStreamToString(InputStream inputStream) {
         InputStreamReader reader = new InputStreamReader(inputStream);

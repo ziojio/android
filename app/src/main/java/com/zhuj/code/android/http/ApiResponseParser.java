@@ -1,11 +1,11 @@
-package com.jbzh.jbim.http;
+package com.zhuj.code.android.http;
 
 import org.json.JSONObject;
 
 import okhttp3.Response;
 
 
-public class ApiResponseParser implements ResponseParser<ApiResponse> {
+public class ApiResponseParser implements  ResponseParser<ApiResponse> {
 
     public ApiResponse parse(Response response) {
         try {

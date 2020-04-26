@@ -1,7 +1,7 @@
 package com.jbzh.jbim.http;
 
 
-import com.jbzh.jbim.ErrorMessage;
+import com.zhuj.code.android.http.ErrorMessage;
 
 public interface HttpCallback<T> {
 

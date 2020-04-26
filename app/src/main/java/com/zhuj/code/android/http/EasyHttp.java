@@ -1,5 +1,6 @@
+package com.zhuj.code.android.http;
 
-import com.jbzh.im.util.JsonUtils;
+import com.zhuj.code.android.util.JsonUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,7 +24,6 @@ import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 import okio.Source;
-
 
 public class EasyHttp {
     private static OkHttpClient okHttpClient = null;

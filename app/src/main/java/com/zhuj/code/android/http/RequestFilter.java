@@ -1,4 +1,4 @@
-package com.jbzh.jbim.http;
+package com.zhuj.code.android.http;
 
 import java.util.Map;
 

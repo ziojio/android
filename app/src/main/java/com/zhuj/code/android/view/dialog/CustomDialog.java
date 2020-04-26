@@ -1,5 +1,4 @@
-package com.jbzh.android.dialog;
-
+package com.zhuj.code.android.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,8 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.jbzh.android.util.ResUtil;
-import com.jbzh.android.view.R;
 
 public class CustomDialog extends Dialog {
     private View view;
@@ -26,12 +23,18 @@ public class CustomDialog extends Dialog {
         this.initViewCallback = initViewCallback;
     }
 
-    public void initClickListener(int viewId, View.OnClickListener listener) {
-        view.findViewById(viewId).setOnClickListener(v -> {
-            listener.onClick(v);
-            cancel();
-        });
+    public void addOnClickListener(int[] viewIds, View.OnClickListener clickListener) {
+        for (int id : viewIds) {
+            findViewById(id).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    cancel();
+                    clickListener.onClick(view);
+                }
+            });
+        }
     }
+
 
     public CustomDialog(Context context, int layoutRes) {
         super(context);
@@ -52,7 +55,7 @@ public class CustomDialog extends Dialog {
             Window window = getWindow();
             if (window != null) {
                 WindowManager.LayoutParams params = window.getAttributes();
-                window.setBackgroundDrawable(ResUtil.getDrawable(R.drawable.style_layout_rect_radius_8dp)); // 设置window的背景色
+                // window.setBackgroundDrawable(ResUtil.getDrawable(R.drawable.style_layout_rect_radius_8dp)); // 设置window的背景色
                 window.getDecorView().setPadding(0, 0, 0, 0);
                 params.gravity = Gravity.START | Gravity.TOP;
 //                params.x = x;
@@ -69,7 +72,7 @@ public class CustomDialog extends Dialog {
         if (!isShowing()) {
             Window window = getWindow();
             if (window != null) {
-                window.setBackgroundDrawable(ResUtil.getDrawable(R.drawable.style_layout_rect_radius_8dp)); // 设置window的背景色
+                // window.setBackgroundDrawable(ResUtil.getDrawable(R.drawable.style_layout_rect_radius_8dp)); // 设置window的背景色
                 window.getDecorView().setPadding(0, 0, 0, 0);
                 window.setGravity(Gravity.CENTER);
                 WindowManager.LayoutParams params = window.getAttributes();
