@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 
-import com.zhuj.android.MainActivity;
+import com.zhuj.android.ui.activity.MainActivity;
 
 import java.lang.ref.WeakReference;
 
