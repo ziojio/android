@@ -7,7 +7,7 @@ public class SPHelper {
     private static SharedPreferences sp;
 
     public static void init(Context context) {
-        sp = context.getSharedPreferences("jb_sp", Context.MODE_PRIVATE);
+        sp = context.getSharedPreferences("preference", Context.MODE_PRIVATE);
     }
 
     private static final String ID = "id";

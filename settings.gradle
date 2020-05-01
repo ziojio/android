@@ -1,2 +1,4 @@
-rootProject.name='Android'
-include ':app', "SwipeRecyclerView", "xSample"
+rootProject.name = 'Android'
+include ':app',
+        'SwipeRecyclerView',
+        'xSample'

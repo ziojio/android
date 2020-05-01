@@ -1,8 +1,5 @@
 package com.zhuj.android.ui.dialog;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -16,46 +13,83 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
 
-import com.zhuj.android.R;
 
-
-public abstract class BaseDialog extends DialogFragment {
+public abstract class BaseDialogFragment extends DialogFragment implements View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
-    private View mRootView;
 
-    public BaseDialog() {
-        setStyle(STYLE_NO_TITLE, R.style.Theme_MaterialComponents_Dialog);
-    }
-
+    /**
+     * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
+     * @return 布局id
+     */
     protected abstract int layoutId();
+
+    protected abstract void initView();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(layoutId(), container, false);
-        return mRootView;
-    }
-
-    public void addOnClickListener(int[] viewIds, final View.OnClickListener clickListener) {
-        for (int id : viewIds) {
-            findViewById(id).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickListener.onClick(view);
-                }
-            });
+        if (layoutId() != 0) {
+            return inflater.inflate(layoutId(), container, false);
         }
+        return null;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated: ");
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated: initView");
+        initView();
     }
 
-    protected <T extends View> T findViewById(@IdRes int id){
-        return mRootView.findViewById(id);
+    /**
+     * 在 DialogFragment onActivityCreated() 中，如果创建了 view -> onCreateView
+     * dialog 的内容设置为 -> mDialog.setContentView(view)
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: init window behavior");
+        Window w = requireDialog().getWindow();
+        if (w != null) {
+            setWindowBehavior(w);
+        } else {
+            Log.e(TAG, "onStart: init window behavior, window is null");
+        }
     }
 
+    /**
+     * 设置默认的 window 行为
+     * @param window
+     */
+    protected void setWindowBehavior(Window window) {
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT; // 高度自适应，宽度全屏
+        lp.gravity = Gravity.CENTER;
+        window.setAttributes(lp);
+    }
+
+    protected <T extends View> T findViewById(int id) {
+        return requireView().findViewById(id);
+    }
+
+    public <T extends FragmentActivity> void show(T activity) {
+        show(activity.getSupportFragmentManager(), TAG);
+    }
+
+    public void addViewsClickListener(int[] viewIds, View.OnClickListener listener) {
+        for (int id : viewIds) {
+            findViewById(id).setOnClickListener(listener);
+        }
+    }
+
+    public void addClick(View v) {
+        v.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+    }
 }

@@ -1,7 +1,5 @@
 package com.zhuj.android.ui.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,12 +15,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
     }
 
-    protected void addClick(View view) {
-        view.setOnClickListener(this);
-    }
-
     @Override
     public void onClick(View v) {
 
     }
+
+    protected void addClick(View ...views) {
+        for (View view : views) {
+            view.setOnClickListener(this);
+        }
+    }
+
 }

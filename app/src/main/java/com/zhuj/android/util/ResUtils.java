@@ -8,33 +8,11 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 
-public final class ResUtils {
+public class ResUtils {
     private ResUtils() {
     }
 
     private static Context mContext;
-    private static boolean isInit = false;
-
-    private static void confirmInit() {
-        if (!isInit) {
-            throw new IllegalStateException("ResUtil还未初始化");
-        }
-    }
-
-    public static void init(Context context) {
-        mContext = context;
-        isInit = true;
-    }
-
-    public static void release() {
-        mContext = null;
-        isInit = false;
-    }
-
-    public static Context getContext() {
-        confirmInit();
-        return mContext;
-    }
 
     /**
      * 获取Color值
@@ -43,7 +21,6 @@ public final class ResUtils {
      * @return
      */
     public static int getColor(@ColorRes int resId) {
-        confirmInit();
         return mContext.getColor(resId);
     }
 
@@ -54,7 +31,6 @@ public final class ResUtils {
      * @return
      */
     public static String getString(@StringRes int resId) {
-        confirmInit();
         return mContext.getString(resId);
     }
 
@@ -65,7 +41,6 @@ public final class ResUtils {
      * @return
      */
     public static Drawable getDrawable(@DrawableRes int resId) {
-        confirmInit();
         return mContext.getDrawable(resId);
     }
 
@@ -97,7 +72,6 @@ public final class ResUtils {
      * @return
      */
     public static float getDimens(@DimenRes int resId) {
-        confirmInit();
         return mContext.getResources().getDimension(resId);
     }
 
@@ -108,7 +82,6 @@ public final class ResUtils {
      * @return
      */
     public static int getDimensionPixelOffset(@DimenRes int resId) {
-        confirmInit();
         return mContext.getResources().getDimensionPixelOffset(resId);
     }
 

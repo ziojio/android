@@ -1,37 +1,35 @@
-package com.zhuj.android.view.popupwindow;
+package com.zhuj.android.ui.view.popupwindow;
 
-import android.view.Gravity;
+
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
 
-public abstract class BasePopupWindow extends PopupWindow {
-    private Button confirm;
-    private Button cancel;
-    private TextView title;
-    private ImageView iconContent;
-    private ImageView iconCancel;
-    private TextView content;
+public class BasePopupWindow extends PopupWindow {
 
-    public void show(View parent, int x, int y) {
-        if (!isShowing())
-            showAtLocation(parent, Gravity.NO_GRAVITY, x, y);
-        else
-            dismiss();
+    public BasePopupWindow(Context context, @LayoutRes int layoutId ) {
+        View contentView = LayoutInflater.from(context).inflate(layoutId,null);
+        setContentView(contentView);
+        setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        setOutsideTouchable(true);
+        setBackgroundDrawable(new ColorDrawable());
     }
 
-    public interface ICallBack {
-        void onConfirm();
+    public interface ConfirmListener {
+        void onConfirm(View view);
 
+    }
+
+    public interface CancelListener {
         void onCancel();
     }
 
-    private ICallBack callBack;
-
-    public void setCallBack(ICallBack callBack) {
-        this.callBack = callBack;
-    }
 }
