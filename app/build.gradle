@@ -18,6 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility = java.javaVersion
+        sourceCompatibility = java.javaVersion
+    }
 }
 
 dependencies {
@@ -38,6 +42,8 @@ dependencies {
     implementation dependence.eventbus
 
     implementation dependence.room_runtime
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     annotationProcessor dependence.room_compiler
 
     implementation dependence.multidex

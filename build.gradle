@@ -32,6 +32,7 @@ subprojects {
                 viewmodel       : "androidx.lifecycle:lifecycle-viewmodel:2.2.0",
                 livedata        : "androidx.lifecycle:lifecycle-livedata:2.2.0",
                 lifecycle_java8 : "androidx.lifecycle:lifecycle-common-java8:2.2.0",
+
                 okhttp          : 'com.squareup.okhttp3:okhttp:3.14.0',
                 gson            : 'com.google.code.gson:gson:2.8.6',
                 eventbus        : 'org.greenrobot:eventbus:3.2.0',
