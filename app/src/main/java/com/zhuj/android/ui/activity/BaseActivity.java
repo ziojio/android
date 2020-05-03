@@ -28,9 +28,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    protected void addClick(View ...views) {
+    protected void addClick(View... views) {
         for (View view : views) {
             view.setOnClickListener(this);
+        }
+    }
+
+    protected void addClick(int... viewIds) {
+        for (int id : viewIds) {
+            findViewById(id).setOnClickListener(this);
         }
     }
 

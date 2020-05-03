@@ -1,4 +1,4 @@
-package com.zhuj.android.common;
+package com.zhuj.android.util;
 
 import android.os.Build;
 import android.util.Log;

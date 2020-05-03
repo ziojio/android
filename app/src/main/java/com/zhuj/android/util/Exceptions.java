@@ -1,4 +1,4 @@
-package com.zhuj.android.common;
+package com.zhuj.android.util;
 
 public class Exceptions {
     public static void illegalArgument(String msg, Object... params) {

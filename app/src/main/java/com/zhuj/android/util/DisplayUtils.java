@@ -3,8 +3,9 @@ package com.zhuj.android.util;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
-public class DisplayUtil {
-    private DisplayUtil() { }
+public class DisplayUtils {
+    private DisplayUtils() {
+    }
 
     private static float density;
     private static float scaledDensity;

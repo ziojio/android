@@ -27,13 +27,14 @@ public class MainActivity extends BaseActivity {
     private MainActivity mainActivity;
 
     private WorkExecutor workExecutor;
+
     private TextView showText;
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            // showText.setText(showText.getText() + "\n" + msg.obj.toString());
+            showText.setText(showText.getText() + "\n" + msg.obj.toString());
             Logger.d("收到了消息");
         }
     };
@@ -41,35 +42,40 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActivity = this;
-        mHandler.removeCallbacksAndMessages(null);
         setContentView(R.layout.activity_main);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        mainActivity = this;
+        setSupportActionBar(findViewById(R.id.toolbar));
         showText = findViewById(R.id.text_show);
+        workExecutor = new WorkExecutor();
 
-        final CenterDialog centerDialog = new CenterDialog();
-        findViewById(R.id.button_a).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        final CenterDialog centerDialog = new CenterDialog();
+
+        addClick(R.id.button_a, R.id.button_start, R.id.button_query);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.button_a:
                 Logger.d("insert ");
                 User user = new User();
-                user.setPhone(String.valueOf((Math.random() * 1000000000) / 1));
+                user.setPhone(String.valueOf((Math.random() * 1000000) / 1));
                 user.setPassword("123456");
                 workExecutor.execute(() -> App.db().userDao().insert(user));
-            }
-        });
-        findViewById(R.id.button_start).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.button_start:
                 Logger.d("start ");
                 mHandler.sendMessageDelayed(new Message(), 10 * 1000);
                 startActivity(new Intent(mainActivity, TestActivity.class));
                 finish();
-            }
-        });
-        findViewById(R.id.button_query).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.button_query:
                 Logger.d("query ");
                 workExecutor.execute(() -> {
                     List<User> users = App.db().userDao().getAllUser();
@@ -79,12 +85,7 @@ public class MainActivity extends BaseActivity {
                         mHandler.sendMessage(msg);
                     }
                 });
-            }
-        });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+                break;
+        }
     }
 }

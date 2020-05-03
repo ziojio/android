@@ -2,7 +2,10 @@ package com.zhuj.code.thread;
 
 import androidx.annotation.NonNull;
 
+import java.util.List;
+import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -30,7 +33,7 @@ public class WorkExecutor implements Executor {
                 CPU_COUNT * 2 + 1,
                 60L,
                 TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>(128),
+                new LinkedBlockingQueue<>(128),
                 THREAD_FACTORY);
         mPoolExecutor.allowCoreThreadTimeOut(true);
     }

@@ -99,7 +99,6 @@ public class NetworkChecker {
 
     private static boolean isConnected(NetType netType, NetworkInfo networkInfo) {
         if (networkInfo == null) return false;
-
         switch (netType) {
             case Wifi: {
                 if (!isConnected(networkInfo)) return false;
