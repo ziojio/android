@@ -27,7 +27,6 @@ import android.widget.FrameLayout;
 import android.widget.OverScroller;
 import android.widget.TextView;
 
-import com.yanzhenjie.recyclerview.x.R;
 
 import androidx.core.view.ViewCompat;
 

@@ -115,22 +115,16 @@ public class DefineActivity extends BaseActivity {
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.left_view: {
-                    Toast.makeText(v.getContext(), "我是第" + getAdapterPosition() + "个Item的左边的Button", Toast.LENGTH_SHORT)
+            int id = v.getId();
+            if (id == R.id.left_view) {
+                Toast.makeText(v.getContext(), "我是第" + getAdapterPosition() + "个Item的左边的Button", Toast.LENGTH_SHORT)
                         .show();
-                    break;
-                }
-                case R.id.btn_start: {
-                    Toast.makeText(v.getContext(), "我是第" + getAdapterPosition() + "个Item的中间的Button", Toast.LENGTH_SHORT)
+            } else if (id == R.id.btn_start) {
+                Toast.makeText(v.getContext(), "我是第" + getAdapterPosition() + "个Item的中间的Button", Toast.LENGTH_SHORT)
                         .show();
-                    break;
-                }
-                case R.id.right_view: {
-                    Toast.makeText(v.getContext(), "我是第" + getAdapterPosition() + "个Item的右边的Button", Toast.LENGTH_SHORT)
+            } else if (id == R.id.right_view) {
+                Toast.makeText(v.getContext(), "我是第" + getAdapterPosition() + "个Item的右边的Button", Toast.LENGTH_SHORT)
                         .show();
-                    break;
-                }
             }
         }
     }

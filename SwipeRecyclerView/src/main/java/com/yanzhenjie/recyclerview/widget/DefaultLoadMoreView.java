@@ -26,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.yanzhenjie.recyclerview.x.R;
+import com.yanzhenjie.recyclerview.R;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 
 import androidx.annotation.Nullable;

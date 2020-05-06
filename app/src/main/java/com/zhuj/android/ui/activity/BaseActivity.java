@@ -1,17 +1,17 @@
 package com.zhuj.android.ui.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
+    protected BaseActivity mActivity = this;
+    protected ActionBar mActionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

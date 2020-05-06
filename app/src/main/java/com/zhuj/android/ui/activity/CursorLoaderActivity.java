@@ -10,7 +10,6 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
-import com.zhuj.android.App;
 
 public class CursorLoaderActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -27,7 +26,7 @@ public class CursorLoaderActivity extends BaseActivity implements LoaderManager.
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         return new CursorLoader(
                 this,   // Parent activity context
-                new Uri(),        // Table to query
+                Uri.EMPTY,        // Table to query
                 new String[]{"mProjection"},     // Projection to return
                 null,            // No selection clause
                 null,            // No selection arguments

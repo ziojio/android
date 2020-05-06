@@ -4,38 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        android:background="@color/secondaryColor"
-        app:titleTextColor="@color/primaryColor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryColor"
+        app:titleTextColor="@color/primaryColor" />
 
     <Button
-        android:id="@+id/button_a"
+        android:id="@+id/button_sql_insert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="sql_insert" />
 
     <Button
-        android:id="@+id/button_query"
+        android:id="@+id/button_sql_query"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="查询"/>
+        android:text="sql_query" />
+
+
+    <Button
+        android:id="@+id/button_room_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="room_insert" />
+
+    <Button
+        android:id="@+id/button_room_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="room_query" />
+
     <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="跳转"/>
+        android:text="跳转" />
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clear" />
 
     <TextView
         android:id="@+id/text_show"
-        android:paddingVertical="10dp"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        />
+        android:gravity="center_horizontal"
+        android:paddingVertical="10dp"
+        android:textSize="16sp" />
 </LinearLayout>

@@ -18,6 +18,7 @@ package com.yanzhenjie.recyclerview.sample.activity.load;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -188,8 +189,8 @@ public class DefineActivity extends AppCompatActivity {
         /**
          * 马上开始回调加载更多了，这里应该显示进度条。
          */
-        @Override
-        public void onLoading() {
+            @Override
+            public void onLoading() {
             setVisibility(VISIBLE);
             mProgressBar.setVisibility(VISIBLE);
             mTvMessage.setVisibility(VISIBLE);

@@ -20,8 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yanzhenjie.recyclerview.x.R;
-
 import java.lang.reflect.Field;
 import java.util.List;
 
