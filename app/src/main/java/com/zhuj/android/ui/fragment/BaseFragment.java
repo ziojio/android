@@ -19,20 +19,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected abstract int layoutId();
 
-    protected abstract void initView();
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(layoutId(), container, false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated: initView");
-        initView();
-    }
 
     protected <T extends View> T findViewById(@IdRes int id) {
         return requireView().findViewById(id);
@@ -42,8 +34,4 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         view.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }

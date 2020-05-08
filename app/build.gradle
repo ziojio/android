@@ -51,5 +51,7 @@ dependencies {
     implementation project(path: ':javalib')
     implementation project(path: ':jsbridge')
     implementation project(path: ':agentweb-core')
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.liulishuo.filedownloader:library:1.7.4'
 
 }
