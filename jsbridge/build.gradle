@@ -1,0 +1,16 @@
+apply plugin: "com.android.library"
+
+android {
+    compileSdkVersion android.compileSdkVersion
+    buildToolsVersion android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion android.minSdkVersion
+        targetSdkVersion android.targetSdkVersion
+    }
+}
+
+dependencies {
+    implementation dependence.appcompat
+    implementation dependence.gson
+}

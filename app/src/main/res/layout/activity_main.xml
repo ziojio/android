@@ -40,15 +40,24 @@
         android:text="room_query" />
 
     <Button
-        android:id="@+id/button_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="跳转" />
-    <Button
         android:id="@+id/button_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="clear" />
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转" />
+
+    <Button
+        android:id="@+id/button_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button_webview" />
+
+
 
     <TextView
         android:id="@+id/text_show"

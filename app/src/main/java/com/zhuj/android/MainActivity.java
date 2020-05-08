@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,12 +18,11 @@ import com.orhanobut.logger.Logger;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;
 import com.zhuj.android.database.entity.User;
 import com.zhuj.android.ui.activity.BaseActivity;
-import com.zhuj.android.ui.activity.TestActivity;
-import com.zhuj.code.thread.WorkExecutor;
+import com.zhuj.android.ui.activity.WebViewActivity;
+import com.zhuj.android.thread.WorkExecutor;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.Consumer;
 
 
 public class MainActivity extends BaseActivity {
@@ -56,7 +54,7 @@ public class MainActivity extends BaseActivity {
 
         addClick(R.id.button_sql_insert, R.id.button_sql_query,
                 R.id.button_room_insert, R.id.button_room_query,
-                R.id.button_start, R.id.button_clear);
+                R.id.button_start, R.id.button_clear,R.id.button_webview);
     }
 
     @Override
@@ -117,6 +115,9 @@ public class MainActivity extends BaseActivity {
                 Logger.d("start ");
                 startActivity(new Intent(mActivity, com.yanzhenjie.recyclerview.sample.activity.MainActivity.class));
                 finish();
+                break;
+            case R.id.button_webview:
+                startActivity(new Intent(mActivity, WebViewActivity.class));
                 break;
         }
     }

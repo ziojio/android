@@ -1,7 +1,12 @@
 rootProject.name = 'Android'
-include ':app',
-        'SwipeRecyclerView',
+include ':app'
+include ':javalib'
+
+include 'SwipeRecyclerView',
         'xSample',
         'agentweb-core',
         'agentweb-filechooser',
-        'sample'
+        'sample' ,
+        'jsbridge'
+
+

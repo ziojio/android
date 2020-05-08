@@ -1,9 +1,7 @@
 package com.just.agentweb.sample.fragment;
 
+
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.PopupMenu;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +9,10 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.just.agentweb.sample.R;
 import com.just.agentweb.sample.base.BaseAgentWebFragment;
@@ -80,19 +82,13 @@ public class EasyWebFragment extends BaseAgentWebFragment {
         public void onClick(View v) {
 
 
-            switch (v.getId()) {
-                case R.id.iv_back:
-                    if (!mAgentWeb.back()) {
-                        EasyWebFragment.this.getActivity().finish();
-                    }
-                    break;
-                case R.id.iv_finish:
+            int id = v.getId();
+            if (id == R.id.iv_back) {
+                if (!mAgentWeb.back()) {
                     EasyWebFragment.this.getActivity().finish();
-                    break;
-                default:
-                    break;
-
-
+                }
+            } else if (id == R.id.iv_finish) {
+                EasyWebFragment.this.getActivity().finish();
             }
         }
 

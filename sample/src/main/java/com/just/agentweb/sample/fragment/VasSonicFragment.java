@@ -1,9 +1,11 @@
 package com.just.agentweb.sample.fragment;
 
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.just.agentweb.MiddlewareWebClientBase;
 import com.just.agentweb.sample.sonic.SonicImpl;

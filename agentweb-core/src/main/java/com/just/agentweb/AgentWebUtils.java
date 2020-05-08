@@ -82,6 +82,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.just.agentweb.AgentWebConfig.AGENTWEB_FILE_PATH;
+import static com.just.agentweb.AgentWebConfig.FILE_CACHE_PATH;
+
 /**
  * @author cenxiaozhong
  * @since 1.0.0

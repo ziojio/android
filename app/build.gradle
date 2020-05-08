@@ -41,12 +41,15 @@ dependencies {
     implementation dependence.gson
     implementation dependence.eventbus
 
-    implementation 'androidx.room:room-runtime:2.2.5'
-    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+    implementation dependence.room_runtime
+    annotationProcessor dependence.room_compiler
 
     implementation dependence.multidex
     implementation dependence.logger
 
     implementation project(path: ':xSample')
+    implementation project(path: ':javalib')
+    implementation project(path: ':jsbridge')
+    implementation project(path: ':agentweb-core')
 
 }

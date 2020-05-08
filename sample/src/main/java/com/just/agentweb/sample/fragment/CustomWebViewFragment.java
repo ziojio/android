@@ -1,7 +1,7 @@
 package com.just.agentweb.sample.fragment;
 
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.sample.R;

@@ -1,10 +1,11 @@
 package com.just.agentweb.sample.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebSettingsImpl;

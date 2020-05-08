@@ -1,11 +1,13 @@
 package com.just.agentweb.sample.fragment;
 
+
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+
+import androidx.annotation.Nullable;
 
 import com.just.agentweb.IWebLayout;
 import com.just.agentweb.sample.widget.SmartRefreshWebLayout;

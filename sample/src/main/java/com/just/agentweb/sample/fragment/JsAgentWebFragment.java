@@ -1,9 +1,8 @@
 package com.just.agentweb.sample.fragment;
 
+
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,11 @@ import android.view.ViewGroup;
 import android.webkit.ValueCallback;
 import android.widget.LinearLayout;
 
-import com.just.agentweb.sample.common.AndroidInterface;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import com.just.agentweb.sample.R;
+import com.just.agentweb.sample.common.AndroidInterface;
 
 import org.json.JSONObject;
 
@@ -67,28 +69,20 @@ public class JsAgentWebFragment extends AgentWebFragment {
         public void onClick(View v) {
 
 
-            switch (v.getId()){
-
-                case R.id.callJsNoParamsButton:
-                    mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroid");
-                    break;
-
-                case R.id.callJsOneParamsButton:
-                    mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroidParam","Hello ! Agentweb");
-                    break;
-
-                case R.id.callJsMoreParamsButton:
-                    mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroidMoreParams", new ValueCallback<String>() {
-                        @Override
-                        public void onReceiveValue(String value) {
-                            Log.i("Info","value:"+value);
-                        }
-                    },getJson(),"say:", " Hello! Agentweb");
-
-                    break;
-                case R.id.jsJavaCommunicationButton:
-                    mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroidInteraction","你好Js");
-                    break;
+            int id = v.getId();
+            if (id == R.id.callJsNoParamsButton) {
+                mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroid");
+            } else if (id == R.id.callJsOneParamsButton) {
+                mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroidParam", "Hello ! Agentweb");
+            } else if (id == R.id.callJsMoreParamsButton) {
+                mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroidMoreParams", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+                        Log.i("Info", "value:" + value);
+                    }
+                }, getJson(), "say:", " Hello! Agentweb");
+            } else if (id == R.id.jsJavaCommunicationButton) {
+                mAgentWeb.getJsAccessEntrace().quickCallJs("callByAndroidInteraction", "你好Js");
             }
 
         }

@@ -17,13 +17,15 @@
 
 package com.just.agentweb.sample.widget;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import androidx.annotation.Nullable;
 
 import com.coolindicator.sdk.CoolIndicator;
 import com.just.agentweb.AgentWebUtils;
