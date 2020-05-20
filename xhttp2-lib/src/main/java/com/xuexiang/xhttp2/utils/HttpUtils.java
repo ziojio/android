@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -54,7 +55,7 @@ import okio.BufferedSource;
  */
 public final class HttpUtils {
 
-    public static final Charset UTF8 = Charset.forName("UTF-8");
+    public static final Charset UTF8 = StandardCharsets.UTF_8;
 
     private HttpUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");

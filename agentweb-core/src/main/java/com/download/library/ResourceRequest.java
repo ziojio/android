@@ -17,9 +17,11 @@
 package com.download.library;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
 
 import java.io.File;
 
@@ -121,7 +123,7 @@ public class ResourceRequest<T extends DownloadTask> {
 
     public ResourceRequest addHeader(String key, String value) {
         if (mDownloadTask.mHeaders == null) {
-            mDownloadTask.mHeaders = new android.support.v4.util.ArrayMap<>();
+            mDownloadTask.mHeaders = new ArrayMap<>();
         }
         mDownloadTask.mHeaders.put(key, value);
         return this;

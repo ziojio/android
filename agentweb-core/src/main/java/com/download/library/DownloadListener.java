@@ -16,8 +16,9 @@
 
 package com.download.library;
 
+
 import android.net.Uri;
-import android.support.annotation.MainThread;
+
 
 /**
  * @author cenxiaozhong
@@ -37,7 +38,7 @@ public interface DownloadListener {
 	 * @param extra              下载配置
 	 * @return true              处理了该下载事件 ， false 交给 Downloader 下载
 	 */
-	@MainThread
+	@DownloadingListener.MainThread
 	void onStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength, Extra extra);
 
 	/**
@@ -46,7 +47,7 @@ public interface DownloadListener {
 	 * @param url       下载的地址
 	 * @return true     处理了下载完成后续的事件 ，false 默认交给Downloader 处理
 	 */
-	@MainThread
+	@DownloadingListener.MainThread
 	boolean onResult(Throwable throwable, Uri path, String url, Extra extra);
 
 

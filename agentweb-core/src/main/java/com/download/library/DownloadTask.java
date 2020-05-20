@@ -19,10 +19,12 @@ package com.download.library;
 import android.content.Context;
 import android.net.Uri;
 import android.os.SystemClock;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.collection.ArrayMap;
 
 import java.io.File;
 import java.io.Serializable;
@@ -289,7 +291,7 @@ public class DownloadTask extends Extra implements Serializable, Cloneable {
 
 	protected DownloadTask addHeader(String key, String value) {
 		if (this.mHeaders == null) {
-			this.mHeaders = new android.support.v4.util.ArrayMap<>();
+			this.mHeaders = new ArrayMap<>();
 		}
 		this.mHeaders.put(key, value);
 		return this;

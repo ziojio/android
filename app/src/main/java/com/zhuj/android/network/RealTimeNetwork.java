@@ -22,11 +22,10 @@ import android.content.Context;
  */
 public class RealTimeNetwork implements Network {
 
-    private final Context mContext;
     private final NetworkChecker mChecker;
 
     public RealTimeNetwork(Context context) {
-        this.mContext = context.getApplicationContext();
+        Context mContext = context.getApplicationContext();
         this.mChecker = new NetworkChecker(mContext);
     }
 

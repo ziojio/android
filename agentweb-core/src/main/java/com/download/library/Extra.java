@@ -16,7 +16,8 @@
 
 package com.download.library;
 
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 import java.io.Serializable;
 import java.util.Map;

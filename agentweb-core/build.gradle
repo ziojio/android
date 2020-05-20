@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    def android = android_config
+
     compileSdkVersion android.compileSdkVersion
     buildToolsVersion android.buildToolsVersion
 
@@ -16,7 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
     repositories {
@@ -29,7 +31,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation fileTree(include: ['*.jar'], dir: 'providedLibs')
 
-    implementation dependence.appcompat
+    implementation dependence.androidx.appcompat
     implementation dependence.design
     implementation dependence.downloader
 }

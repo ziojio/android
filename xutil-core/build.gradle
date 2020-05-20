@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion build_versions.target_sdk
-    buildToolsVersion build_versions.build_tools
+    def android = android_config
+    compileSdkVersion android.compileSdkVersion
+    buildToolsVersion android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion build_versions.target_sdk
+        minSdkVersion android.minSdkVersion
+        targetSdkVersion android.targetSdkVersion
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     lintOptions {
@@ -19,18 +19,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly deps.support.app_compat
-    testImplementation deps.junit
-    androidTestImplementation deps.runner
-    androidTestImplementation deps.espresso.core
+    compileOnly dependence.androidx.appcompat
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //Gson序列化反序列化的依赖包
-    implementation deps.gson
+    compileOnly dependence.gson
 }
-
-apply from: "../JitPackUpload.gradle"
-
-//apply from: "../bintrayUpload.gradle"
-
-//    ./gradlew install
-//    ./gradlew bintrayUpload

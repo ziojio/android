@@ -1,6 +1,8 @@
 apply plugin: "com.android.library"
 
 android {
+    def android = android_config
+
     compileSdkVersion android.compileSdkVersion
     buildToolsVersion android.buildToolsVersion
 

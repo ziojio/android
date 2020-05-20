@@ -17,8 +17,9 @@
 package com.download.library;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.util.ArrayList;

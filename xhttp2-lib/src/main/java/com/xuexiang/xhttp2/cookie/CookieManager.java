@@ -45,7 +45,7 @@ public class CookieManager implements CookieJar {
         if (sInstance == null) {
             synchronized (CookieManager.class) {
                 if (sInstance == null) {
-                    sInstance = new CookieManager(context.getApplicationContext());
+                     sInstance = new CookieManager(context.getApplicationContext());
                 }
             }
         }

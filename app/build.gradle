@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+    def android = android_config
+
     compileSdkVersion android.compileSdkVersion
     buildToolsVersion android.buildToolsVersion
 
@@ -19,32 +21,33 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility = java.javaVersion
-        sourceCompatibility = java.javaVersion
+        targetCompatibility = javaVersion
+        sourceCompatibility = javaVersion
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation dependence.appcompat
-    implementation dependence.constraintlayout
-    implementation dependence.material
-    implementation dependence.recyclerview
-    implementation dependence.viewpager
+    implementation dependence.androidx.appcompat
+    implementation dependence.androidx.constraintlayout
+    implementation dependence.androidx.recyclerview
+    implementation dependence.androidx.viewpager
+    implementation dependence.androidx.multidex
 
-    implementation dependence.lifecycle
-    implementation dependence.lifecycle_java8
-    implementation dependence.viewmodel
-    implementation dependence.livedata
+    implementation dependence.lifecycle.runtime
+    implementation dependence.lifecycle.lifecycle_java8
+    implementation dependence.lifecycle.viewmodel
+    implementation dependence.lifecycle.livedata
+
+    implementation dependence.material
 
     implementation dependence.okhttp
     implementation dependence.gson
     implementation dependence.eventbus
 
-    implementation dependence.room_runtime
-    annotationProcessor dependence.room_compiler
+    implementation dependence.room.runtime
+    annotationProcessor dependence.room.compiler
 
-    implementation dependence.multidex
     implementation dependence.logger
 
     implementation project(path: ':xSample')

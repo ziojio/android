@@ -18,17 +18,25 @@ import com.orhanobut.logger.Logger;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;
 import com.zhuj.android.database.entity.User;
 import com.zhuj.android.ui.activity.BaseActivity;
+import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.ui.activity.WebViewActivity;
 import com.zhuj.android.thread.WorkExecutor;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MainActivity extends BaseActivity {
 
     private WorkExecutor workExecutor;
-    AppDatabase database;
+    private AppDatabase database;
 
     private TextView showText;
 
@@ -54,7 +62,7 @@ public class MainActivity extends BaseActivity {
 
         addClick(R.id.button_sql_insert, R.id.button_sql_query,
                 R.id.button_room_insert, R.id.button_room_query,
-                R.id.button_start, R.id.button_clear,R.id.button_webview);
+                R.id.button_start, R.id.button_start_test, R.id.button_clear, R.id.button_webview);
     }
 
     @Override
@@ -114,11 +122,16 @@ public class MainActivity extends BaseActivity {
             case R.id.button_start:
                 Logger.d("start ");
                 startActivity(new Intent(mActivity, com.yanzhenjie.recyclerview.sample.activity.MainActivity.class));
-                finish();
+                break;
+            case R.id.button_start_test:
+                Logger.d("start test");
+                startActivity(new Intent(mActivity, TestActivity.class));
                 break;
             case R.id.button_webview:
+
                 startActivity(new Intent(mActivity, WebViewActivity.class));
                 break;
         }
     }
+
 }

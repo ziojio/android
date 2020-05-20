@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    def android = android_config
+
     compileSdkVersion android.compileSdkVersion
     buildToolsVersion android.buildToolsVersion
 
@@ -33,7 +35,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation dependence.appcompat
+    implementation dependence.androidx.appcompat
     implementation dependence.design
     implementation dependence.gson
     implementation project(':agentweb-core')
