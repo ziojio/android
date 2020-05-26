@@ -15,6 +15,12 @@ import androidx.fragment.app.FragmentActivity;
 public abstract class BaseDialogFragment extends DialogFragment implements View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
 
+    protected View.OnClickListener callbackListener;
+
+    protected void setCallbackListener(View.OnClickListener callbackListener) {
+        this.callbackListener = callbackListener;
+    }
+
     /**
      * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
      *
@@ -25,7 +31,7 @@ public abstract class BaseDialogFragment extends DialogFragment implements View.
     /**
      * 设置 window
      */
-    protected abstract void initWindow();
+    protected abstract void setWindow();
 
     @Nullable
     @Override
@@ -37,22 +43,21 @@ public abstract class BaseDialogFragment extends DialogFragment implements View.
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated: init window behavior");
-        initWindow();
+    public void onStart() {
+        Log.d(TAG, "onStart: init window behavior");
+        setWindow();
+        super.onStart();
     }
-
 
     protected <T extends View> T findViewById(int id) {
         return requireView().findViewById(id);
     }
 
-    public <T extends FragmentActivity> void show(T fragmentActivity) {
+    protected void show(FragmentActivity fragmentActivity) {
         show(fragmentActivity.getSupportFragmentManager(), TAG);
     }
 
-    public void addClick(View v) {
+    protected void addClick(View v) {
         v.setOnClickListener(this);
     }
 }

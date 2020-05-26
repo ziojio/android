@@ -50,9 +50,13 @@ public class MainActivity extends BaseActivity {
     };
 
     @Override
+    protected int layoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.toolbar));
         showText = findViewById(R.id.text_show);
         workExecutor = new WorkExecutor();
@@ -72,7 +76,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
             case R.id.button_sql_insert:
                 Logger.d("insert ");

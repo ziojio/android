@@ -16,7 +16,7 @@ public class CenterDialog extends BaseDialogFragment {
 
 
     @Override
-    protected void initWindow() {
+    protected void setWindow() {
         Window window = requireDialog().getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;

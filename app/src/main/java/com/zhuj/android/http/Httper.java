@@ -10,7 +10,7 @@ import com.zhuj.android.http.request.HttpParams;
 import com.zhuj.android.http.request.RequestFilter;
 import com.zhuj.android.http.request.method.DeleteRequest;
 import com.zhuj.code.common.TextUtils;
-import com.zhuj.android.util.Exceptions;
+import com.zhuj.android.android.Exceptions;
 import com.zhuj.code.http.request.GetRequest;
 
 import java.io.File;

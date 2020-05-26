@@ -1,10 +1,18 @@
-package com.zhuj.android.util;
+package com.zhuj.android.android;
 
 import android.graphics.Rect;
 import android.view.View;
 import android.widget.ImageView;
 
-public class ViewUtils {
+public class Views {
+    private Views(){
+    }
+
+    public static ImageView caseToImageView(View view) {
+        if (view instanceof ImageView)
+            return (ImageView) view;
+        throw new ClassCastException("view 不是 ImageView 的实例");
+    }
 
     //(x,y)是否在view的区域内
     public static boolean isTouchPointInView(View view, int x, int y) {

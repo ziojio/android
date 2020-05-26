@@ -3,6 +3,7 @@ package com.zhuj.android.ui.activity;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,11 @@ import androidx.loader.content.Loader;
 
 
 public class CursorLoaderActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    @Override
+    protected int layoutId() {
+        return 0;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +46,11 @@ public class CursorLoaderActivity extends BaseActivity implements LoaderManager.
 
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

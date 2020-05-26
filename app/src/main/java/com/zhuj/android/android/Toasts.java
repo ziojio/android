@@ -1,10 +1,10 @@
-package com.zhuj.android.util;
+package com.zhuj.android.android;
 
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
-public class ToastUtil {
+public class Toasts {
     private static boolean isInit = false;
     private static Context mContext;
 

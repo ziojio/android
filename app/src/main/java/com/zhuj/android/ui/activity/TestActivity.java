@@ -3,6 +3,7 @@ package com.zhuj.android.ui.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import com.zhuj.android.R;
 import com.zhuj.android.model.UpdateAppInfo;
@@ -16,9 +17,13 @@ public class TestActivity extends BaseActivity {
     UpdateAppInfo curUpdateAppInfo;
 
     @Override
+    protected int layoutId() {
+        return R.layout.activity_test;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
         downloadApkList.add(new UpdateAppInfo("http://jbpp.vanpin.com/apk/jbim/v1.0.1/jbim.apk"));
         downloadApkList.add(new UpdateAppInfo("http://jbpp.vanpin.com/apk/jbim/v1.0.1/jbim2.apk"));
         downloadApkList.add(new UpdateAppInfo("http://jbpp.vanpin.com/apk/jbim/v1.0.1/jbim3.apk"));
@@ -45,5 +50,10 @@ public class TestActivity extends BaseActivity {
             if (curUpdateAppInfo == appInfo1){
             }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

@@ -13,19 +13,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected BaseActivity mActivity = this;
     protected ActionBar mActionBar;
 
+    /**
+     * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
+     *
+     * @return 布局id
+     */
+    protected abstract int layoutId();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onClick(View v) {
-
+        setContentView(layoutId());
     }
 
     protected void addClick(View... views) {

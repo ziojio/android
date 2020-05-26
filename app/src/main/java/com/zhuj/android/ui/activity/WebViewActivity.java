@@ -1,6 +1,7 @@
 package com.zhuj.android.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -16,10 +17,15 @@ public class WebViewActivity extends BaseActivity {
     BridgeWebView mWebView;
     AgentWeb mAgentWeb;
     BridgeWebViewClient mBridgeWebViewClient;
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_webvew;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webvew);
         String url = "http://www.baidu.com";
         mWebView = new BridgeWebView(this);
         mWebView.getSettings().setJavaScriptEnabled(true);
@@ -47,5 +53,10 @@ public class WebViewActivity extends BaseActivity {
                 // .go("file://"+this.getFilesDir().getPath()+"/d2/dist/index.html");
                 .go(url);
         AgentWebConfig.debug();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
