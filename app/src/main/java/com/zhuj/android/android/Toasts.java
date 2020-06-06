@@ -1,52 +1,38 @@
 package com.zhuj.android.android;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 public class Toasts {
-    private static boolean isInit = false;
-    private static Context mContext;
 
-    public static void showToast(final Activity activity, final String message) {
-        if (activity.getMainLooper().isCurrentThread()) {
-            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+    public static void show(Activity activity, String msg) {
+        activity.runOnUiThread(() -> Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show());
+    }
+
+    public static void showLong(Activity activity, String msg) {
+        activity.runOnUiThread(() -> Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show());
+    }
+
+    @SuppressLint("ShowToast")
+    public static void show(Context context, String msg) {
+        runOnMain(Toast.makeText(context, msg, Toast.LENGTH_SHORT));
+    }
+
+    @SuppressLint("ShowToast")
+    public static void showLong(Context context, String msg) {
+        runOnMain(Toast.makeText(context, msg, Toast.LENGTH_LONG));
+    }
+
+    private static void runOnMain(Toast toast) {
+        if ("main".equals(Thread.currentThread().getName())) {
+            toast.show();
         } else {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-                }
-            });
+            new Handler(Looper.getMainLooper()).post(toast::show);
         }
-    }
-    public static void init(Context context) {
-        if (isInit) {
-            return;
-        }
-        mContext = context;
-        isInit = true;
-    }
-
-    private static void confirmInit() {
-        if (!isInit) {
-            throw new IllegalStateException("ToastUtil 还未初始化!");
-        }
-    }
-
-    public static void show(String msg) {
-        confirmInit();
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void show(int rid) {
-        confirmInit();
-        Toast.makeText(mContext, rid, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void showLong(int rid) {
-        confirmInit();
-        Toast.makeText(mContext, rid, Toast.LENGTH_LONG).show();
     }
 
 }

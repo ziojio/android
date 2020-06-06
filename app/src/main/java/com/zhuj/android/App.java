@@ -10,9 +10,8 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.zhuj.android.database.AndroidDatabase;
+import com.zhuj.android.database.room.AndroidDatabase;
 
-import java.io.IOException;
 import java.util.List;
 
 public class App extends Application {

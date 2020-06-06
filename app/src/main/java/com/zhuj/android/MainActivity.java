@@ -16,21 +16,14 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;
-import com.zhuj.android.database.entity.User;
+import com.zhuj.android.database.room.entity.User;
 import com.zhuj.android.ui.activity.BaseActivity;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.ui.activity.WebViewActivity;
 import com.zhuj.android.thread.WorkExecutor;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 
 public class MainActivity extends BaseActivity {

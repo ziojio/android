@@ -6,6 +6,8 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 /**
  * 添加一些方便的log方法
  */
@@ -13,32 +15,85 @@ public class Logs {
     private Logs() {
     }
 
-    public static void d(Class<?> clazz, String msg, Object... objects) {
-        String msgf = String.format(msg, objects);
-        Log.d(clazz.getSimpleName(), msgf);
+    private static final int VERBOSE = 2;
+    private static final int DEBUG = 3;
+    private static final int INFO = 4;
+    private static final int WARN = 5;
+    private static final int ERROR = 6;
+    private static final int ASSERT = 7;
+
+    private static void log(int priority, Object tag, String msg, Object... objects) {
+        String msgf;
+        if (objects.length == 0) {
+            msgf = msg;
+        } else {
+            msgf = String.format(msg, objects);
+        }
+        String tagf;
+        if (tag instanceof String) {
+            tagf = (String) tag;
+        } else {
+            tagf = tag.getClass().getSimpleName();
+        }
+        log(priority, tagf, msgf);
     }
 
-    public static void d(Class<?> clazz, String json) {
-        try {
-            String str = "no json";
-            if(json != null){
-                 str = new JSONObject(json).toString(4);
-            }
-            Log.d(clazz.getSimpleName(), str);
-        } catch (JSONException e) {
-            e.printStackTrace();
+    private static void log(int priority, String tag, String msg) {
+        switch (priority) {
+            case VERBOSE:
+                Log.v(tag, msg);
+                break;
+            case DEBUG:
+                Log.d(tag, msg);
+                break;
+            case INFO:
+                Log.i(tag, msg);
+                break;
+            case WARN:
+                Log.w(tag, msg);
+                break;
+            case ERROR:
+                Log.e(tag, msg);
+                break;
+            case ASSERT:
+                Log.wtf(tag, msg);
+                break;
         }
     }
 
-    public static void w(Class<?> clazz, String msg, Object... objects) {
-        String msgf = String.format(msg, objects);
-        Log.w(clazz.getSimpleName(), msgf);
+    public static void json(Object tag, String json) {
+        String msg = "json is NULL";
+        if (json != null) {
+            try {
+                msg = new JSONObject(json).toString(4);
+            } catch (JSONException e) {
+                msg = "json parse ERROR";
+            }
+        }
+        log(DEBUG, tag, msg);
     }
 
-    public static void e(Class<?> clazz, String msg, Object... objects) {
-        String msgf = String.format(msg, objects);
-        Log.e(clazz.getSimpleName(), msgf);
+    public static void array(Object tag, Object[] objects) {
+        String msg = Arrays.toString(objects);
+        log(DEBUG, tag, msg);
     }
+
+    public static void d(Object tag, String msg, Object... objects) {
+        log(DEBUG, tag, msg, objects);
+    }
+
+    public static void i(Object tag, String msg, Object... objects) {
+        log(INFO, tag, msg, objects);
+    }
+
+    public static void w(Object tag, String msg, Object... objects) {
+        log(WARN, tag, msg, objects);
+    }
+
+    public static void e(Object tag, String msg, Object... objects) {
+        log(ERROR, tag, msg, objects);
+    }
+
 
     public static void logDisplayMetrics(DisplayMetrics metrics) {
         // 可用显示大小的绝对宽度（以像素为单位）。
