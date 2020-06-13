@@ -61,6 +61,7 @@ import androidx.core.os.EnvironmentCompat;
 import androidx.loader.content.CursorLoader;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.just.agentweb.sample.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

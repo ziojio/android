@@ -2,9 +2,10 @@ rootProject.name = 'Android'
 include ':app'
 include ':javalib'
 
-include 'SwipeRecyclerView', 'xSample',
-        'agentweb-core', 'sample',
-        'jsbridge',
-        'xutil-core', 'xhttp2-lib'
+include 'SwipeRecyclerView', 'xui_lib'
+
+include 'agentweb-core', 'jsbridge'
+
+include 'xhttp2-lib'
 
 

@@ -1,5 +1,6 @@
 package com.zhuj.android.http;
 
+import com.google.gson.Gson;
 import com.zhuj.android.http.ssl.SSL;
 import com.zhuj.code.common.JsonUtils;
 
@@ -267,7 +268,7 @@ public class EasyHttp {
 
                 RequestBody rb_param;
                 if (reqbejson) {
-                    String json = JsonUtils.getGson().toJson(params);   // 把对象转为JSON
+                    String json = new Gson().toJson(params);   // 把对象转为JSON
                     rb_param = FormBody.create(MediaType.parse("application/json; charset=utf-8"), json);
                 } else {
                     FormBody.Builder builder = new FormBody.Builder();

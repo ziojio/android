@@ -5,7 +5,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.LayoutRes;
+
+import com.zhuj.android.R;
 
 public class Toasts {
 
@@ -33,6 +40,21 @@ public class Toasts {
         } else {
             new Handler(Looper.getMainLooper()).post(toast::show);
         }
+    }
+
+    public static Toast makeText(Context context, @LayoutRes int layoutId, int duration) {
+        View view = LayoutInflater.from(context).inflate(layoutId, null);
+        Toast toast = new Toast(context);
+        toast.setView(view);
+        // TextView tv = view.findViewById(R.id.tv_info);
+        // if (tv != null) {
+        //     tv.setText(msg);
+        //     if (tv.getBackground() != null) {
+        //         tv.getBackground().setAlpha(100);
+        //     }
+        // }
+        toast.setDuration(duration);
+        return toast;
     }
 
 }

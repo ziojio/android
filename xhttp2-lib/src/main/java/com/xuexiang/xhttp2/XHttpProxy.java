@@ -16,8 +16,9 @@
 
 package com.xuexiang.xhttp2;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.xuexiang.xhttp2.annotation.NetMethod;

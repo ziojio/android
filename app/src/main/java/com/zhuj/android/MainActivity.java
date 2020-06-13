@@ -117,14 +117,13 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.button_start:
                 Logger.d("start ");
-                startActivity(new Intent(mActivity, com.yanzhenjie.recyclerview.sample.activity.MainActivity.class));
+                startActivity(new Intent(mActivity, com.just.agentweb.sample.activity.MainActivity.class));
                 break;
             case R.id.button_start_test:
                 Logger.d("start test");
                 startActivity(new Intent(mActivity, TestActivity.class));
                 break;
             case R.id.button_webview:
-
                 startActivity(new Intent(mActivity, WebViewActivity.class));
                 break;
         }

@@ -54,14 +54,13 @@
         android:id="@+id/button_start_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="跳转toTest" />
+        android:text="跳转 to Test" />
 
     <Button
         android:id="@+id/button_webview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button_webview" />
-
 
 
     <TextView

@@ -33,6 +33,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.just.agentweb.sample.R;
+
 /**
  * @author cenxiaozhong
  * @date 2017/12/8

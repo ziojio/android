@@ -15,21 +15,21 @@ public final class JsonUtils {
     private JsonUtils() {
     }
 
-    private static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().disableHtmlEscaping().create();
+    private static Gson mGson = new GsonBuilder().setPrettyPrinting().serializeNulls().disableHtmlEscaping().create();
 
-    public static Gson getGson() {
-        if (gson == null) {
+    public static Gson gson() {
+        if (mGson == null) {
             synchronized (JsonUtils.class) {
-                if (gson == null) {
-                    gson = new GsonBuilder().setPrettyPrinting().serializeNulls().disableHtmlEscaping().create();
+                if (mGson == null) {
+                    mGson = new GsonBuilder().setPrettyPrinting().serializeNulls().disableHtmlEscaping().create();
                 }
             }
         }
-        return gson;
+        return mGson;
     }
 
-    public static void setGson(Gson mGson) {
-        gson = mGson;
+    public static void setGson(Gson gson) {
+        JsonUtils.mGson = gson;
     }
 
 
@@ -39,7 +39,7 @@ public final class JsonUtils {
     //  使用一个 Class 包含 泛型List<T> 可以直接传递 Class<T>.class
     public static <T> T fromJson(String json, Type typeOfT) {
         try {
-            return gson.fromJson(json, typeOfT);
+            return mGson.fromJson(json, typeOfT);
         } catch (JsonParseException e) {
             e.printStackTrace();
         }

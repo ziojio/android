@@ -34,6 +34,7 @@ import com.download.library.DownloadImpl;
 import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
 import com.download.library.ResourceRequest;
+import com.just.agentweb.sample.R;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

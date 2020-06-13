@@ -29,6 +29,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.just.agentweb.sample.R;
+
 import static com.just.agentweb.AgentWebConfig.WEBVIEW_DEFAULT_TYPE;
 
 /**

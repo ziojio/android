@@ -26,6 +26,20 @@ android {
             dirs 'libs', 'providedLibs'
         }
     }
+
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets/']
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -34,5 +48,19 @@ dependencies {
     implementation dependence.androidx.appcompat
     implementation dependence.design
     implementation dependence.downloader
+
+    implementation dependence.gson
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+//    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+//    implementation files('libs/alipaysdk-20170922.jar')
+    implementation 'us.feras.mdv:markdownview:1.1.0'
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    implementation 'com.tencent.sonic:sdk:2.0.0'
+    implementation 'com.coolindicator.sdk:coolindicator:1.0.0-beta'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 

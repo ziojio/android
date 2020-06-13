@@ -38,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
+import com.just.agentweb.sample.R;
 
 /**
  * @author cenxiaozhong
@@ -72,7 +73,7 @@ public class DefaultDesignUIController extends DefaultUIController {
                     message,
                     Snackbar.LENGTH_SHORT,
                     Color.WHITE,
-                    mActivity.getResources().getColor(R.color.black),
+                    mActivity.getResources().getColor( R.color.black),
                     null,
                     -1,
                     null);

@@ -16,9 +16,10 @@
 
 package com.xuexiang.xhttp2.logs;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 /**
  * 框架日志记录

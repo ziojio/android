@@ -34,17 +34,21 @@ public class IOUtils {
         }
     }
 
-    public static void close(Closeable closeable) {
+    public static void close(Closeable... closeables) {
         try {
-            closeable.close();
+            for (Closeable close : closeables) {
+                close.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void flush(Flushable flushable) {
+    public static void flush(Flushable... flushables) {
         try {
-            flushable.flush();
+            for (Flushable flush : flushables) {
+                flush.flush();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

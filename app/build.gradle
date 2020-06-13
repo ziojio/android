@@ -46,11 +46,10 @@ dependencies {
     implementation dependence.eventbus
 
     implementation dependence.room.runtime
-    annotationProcessor dependence.room.compiler
+    annotationProcessor dependence.room.processor
 
     implementation dependence.logger
 
-    implementation project(path: ':xSample')
     implementation project(path: ':javalib')
     implementation project(path: ':jsbridge')
     implementation project(path: ':agentweb-core')

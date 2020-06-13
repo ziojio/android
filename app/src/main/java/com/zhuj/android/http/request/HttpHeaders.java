@@ -1,27 +1,10 @@
-/*
- * Copyright (C) 2018 xuexiangjys(xuexiangjys@163.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.zhuj.android.http.request;
 
+
+import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-
-import com.xuexiang.xhttp2.XHttp;
-import com.xuexiang.xhttp2.logs.HttpLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -210,14 +193,14 @@ public class HttpHeaders implements Serializable {
     /**
      * User-Agent: Mozilla/5.0 (Linux; U; Android 5.0.2; zh-cn; Redmi Note 3 Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36
      */
-    public static String getUserAgent() {
+    public static String getUserAgent(Context context) {
         if (TextUtils.isEmpty(userAgent)) {
             String webUserAgent = null;
             try {
                 Class<?> sysResCls = Class.forName("com.android.internal.R$string");
                 Field webUserAgentField = sysResCls.getDeclaredField("web_user_agent");
                 Integer resId = (Integer) webUserAgentField.get(null);
-                webUserAgent = getContext().getString(resId);
+                webUserAgent = context.getString(resId);
             } catch (Exception e) {
                 // We have nothing to do
             }

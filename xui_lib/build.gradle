@@ -2,12 +2,14 @@ apply plugin: 'com.android.library'
 //apply plugin: 'img-optimizer'
 
 android {
-    compileSdkVersion build_versions.target_sdk
-    buildToolsVersion build_versions.build_tools
+    def android = android_config
+
+    compileSdkVersion android.compileSdkVersion
+    buildToolsVersion android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion build_versions.target_sdk
+        minSdkVersion android.minSdkVersion
+        targetSdkVersion android.targetSdkVersion
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -18,13 +20,14 @@ android {
 }
 
 dependencies {
-    compileOnly deps.androidx.appcompat
-    compileOnly deps.androidx.recyclerview
-    compileOnly deps.androidx.design
+    implementation dependence.androidx.appcompat
+    implementation dependence.androidx.recyclerview
+    implementation dependence.material
 
-    compileOnly deps.glide
+    implementation dependence.glide
+    annotationProcessor dependence.glideProcessor
 
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
 }
 
-apply from: '../JitPackUpload.gradle'
+

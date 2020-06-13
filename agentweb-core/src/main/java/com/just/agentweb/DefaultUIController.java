@@ -32,6 +32,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.just.agentweb.sample.R;
+
 /**
  * @author cenxiaozhong
  * @date 2017/12/8

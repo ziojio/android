@@ -1,6 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.just.agentweb"
-    >
+    package="com.just.agentweb.sample">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application>
         <provider
@@ -10,8 +20,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/web_files_public"/>
+                android:resource="@xml/web_files_public" />
         </provider>
+
         <activity
             android:name="com.just.agentweb.ActionActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -21,7 +32,45 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden">
 
         </activity>
+        <activity android:name="com.just.agentweb.sample.activity.MainActivity">
 
+        </activity>
+        <activity
+            android:name="com.just.agentweb.sample.activity.WebActivity"
+            android:launchMode="singleTop"
+
+            />
+        <!--android:process=":web"-->
+        <activity
+            android:name="com.just.agentweb.sample.activity.CommonActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.just.agentweb.sample.activity.EasyWebActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name="com.just.agentweb.sample.activity.ContainerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.AutoHidenToolbarActivity" />
+        <activity
+            android:name=".activity.NativeDownloadActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ExternalActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <!--BROWSABLE指定该Activity能被浏览器安全调用-->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="sample.just.com"
+                    android:scheme="agentweb" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>
