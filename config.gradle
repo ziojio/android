@@ -2,6 +2,27 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 ext {
+    android_config = [
+            compileSdkVersion   : 29,
+            buildToolsVersion   : '29.0.3',
+            applicationId       : 'com.zhuj.android',
+            minSdkVersion       : 26,
+            targetSdkVersion    : 29,
+            versionCode         : 1,
+            versionName         : '1.0.0',
+            multiDexEnabled     : true,
+            manifestPlaceholders: [UMENG_CHANNEL_VALUE: '']
+    ]
+
+//        signConfigs = [
+//        "storeFile"    : "abc",
+//        "storePassword": "123456",
+//        "keyAlias"     : "abc",
+//        "keyPassword"  : "123456"
+//        ]
+
+    javaVersion = JavaVersion.VERSION_1_8
+
     version = [
             support                    : "28.0.0",
             lifecycle                  : "2.2.0",
@@ -48,32 +69,13 @@ ext {
             calligraphy                : "2.3.0",
             godeye                     : "1.7.4",
     ]
-    android_config = [
-            compileSdkVersion   : 29,
-            buildToolsVersion   : '29.0.3',
-            applicationId       : 'com.zhuj.android',
-            minSdkVersion       : 26,
-            targetSdkVersion    : 29,
-            versionCode         : 1,
-            versionName         : '1.0.0',
-            multiDexEnabled     : true,
-            manifestPlaceholders: [UMENG_CHANNEL_VALUE: '']
-    ]
+
     gradle_plugin = [
             android_gradle_plugin = "com.android.tools.build:gradle:$version.android_gradle_plugin",
             android_maven_gradle_plugin = "com.github.dcendents:android-maven-gradle-plugin:$version.android_maven_gradle_plugin",
             gradle_bintray_plugin = "com.jfrog.bintray.gradle:gradle-bintray-plugin:$version.gradle_bintray_plugin",
             freeline_gradle_plugin = "com.antfortune.freeline:gradle:0.8.8"
     ]
-//        signConfigs = [
-//        "storeFile"    : "abc",
-//        "storePassword": "123456",
-//        "keyAlias"     : "abc",
-//        "keyPassword"  : "123456"
-//        ]
-
-    javaVersion = JavaVersion.VERSION_1_8
-
 
     dependence = [
             material          : "com.google.android.material:material:1.1.0",
@@ -216,55 +218,55 @@ dependence.mockito = mockito
 /**
  * @return 是否为release
  */
-def isRelease() {
-    Gradle gradle = getGradle()
-    String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+//def isRelease() {
+//    Gradle gradle = getGradle()
+//    String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+//
+//    Pattern pattern
+//    if (tskReqStr.contains("assemble")) {
+//        println tskReqStr
+//        pattern = Pattern.compile("assemble(\\w*)(Release|Debug)")
+//    } else {
+//        pattern = Pattern.compile("generate(\\w*)(Release|Debug)")
+//    }
+//    Matcher matcher = pattern.matcher(tskReqStr)
+//
+//    if (matcher.find()) {
+//        String task = matcher.group(0).toLowerCase()
+//        println("[BuildType] Current task: " + task)
+//        return task.contains("release")
+//    } else {
+//        println "[BuildType] NO MATCH FOUND"
+//        return true
+//    }
+//}
+//
+//ext.isRelease = this.&isRelease
 
-    Pattern pattern
-    if (tskReqStr.contains("assemble")) {
-        println tskReqStr
-        pattern = Pattern.compile("assemble(\\w*)(Release|Debug)")
-    } else {
-        pattern = Pattern.compile("generate(\\w*)(Release|Debug)")
-    }
-    Matcher matcher = pattern.matcher(tskReqStr)
-
-    if (matcher.find()) {
-        String task = matcher.group(0).toLowerCase()
-        println("[BuildType] Current task: " + task)
-        return task.contains("release")
-    } else {
-        println "[BuildType] NO MATCH FOUND"
-        return true
-    }
-}
-
-ext.isRelease = this.&isRelease
-
-// 默认添加代码仓库路径
-static def addRepos(RepositoryHandler handler) {
-    handler.google()
-    handler.jcenter()
-    handler.mavenCentral()
-    //Add the JitPack repository
-    handler.maven { url "https://jitpack.io" }
-    handler.maven { url "https://dl.bintray.com/umsdk/release" }
-    //Add the aliyun repository
-    handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
-    //Add the Local repository
-    handler.maven { url "LocalRepository" }
-}
-
-ext.addRepos = this.&addRepos
+//// 默认添加代码仓库路径
+//static def addRepos(RepositoryHandler handler) {
+//    handler.google()
+//    handler.jcenter()
+//    handler.mavenCentral()
+//    //Add the JitPack repository
+//    handler.maven { url "https://jitpack.io" }
+//    handler.maven { url "https://dl.bintray.com/umsdk/release" }
+//    //Add the aliyun repository
+//    handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+//    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
+//    //Add the Local repository
+//    handler.maven { url "LocalRepository" }
+//}
+//
+//ext.addRepos = this.&addRepos
 
 //
-////自动添加XAOP和XRouter插件
+//// 自动添加XAOP和XRouter插件
 //project.buildscript.configurations.each { configuration ->
 //    if (configuration.name == "classpath") {
-//        //XAOP插件
+//        // XAOP插件
 //        configuration.dependencies.add(getProject().dependencies.create("com.github.xuexiangjys.XAOP:xaop-plugin:1.0.5x"))
-//        //XRouter插件
+//        // XRouter插件
 //        configuration.dependencies.add(getProject().dependencies.create("com.github.xuexiangjys.XRouter:xrouter-plugin:1.0.1"))
 //    }
 //}

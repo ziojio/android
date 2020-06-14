@@ -6,10 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.zhuj.android.database.DBConfig;
+
 public class AppDatabase extends SQLiteOpenHelper {
 
     public AppDatabase(@Nullable Context context) {
-        super(context, DBConfig.DB_NAME, null, DBConfig.DB_VERSION);
+        super(context, DBConfig.SQLITE_DB_NAME, null, DBConfig.SQLITE_DB_VERSION);
     }
 
     @Override

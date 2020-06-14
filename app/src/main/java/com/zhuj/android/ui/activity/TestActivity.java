@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.zhuj.android.R;
+import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.model.UpdateAppInfo;
 
 import java.util.ArrayList;

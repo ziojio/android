@@ -10,6 +10,7 @@ import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebConfig;
 import com.just.agentweb.WebViewClient;
 import com.zhuj.android.R;
+import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.jsbridge.webview.BridgeWebView;
 import com.zhuj.android.jsbridge.webview.BridgeWebViewClient;
 

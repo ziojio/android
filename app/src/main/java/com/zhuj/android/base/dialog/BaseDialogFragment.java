@@ -43,10 +43,10 @@ public abstract class BaseDialogFragment extends DialogFragment implements View.
     }
 
     @Override
-    public void onStart() {
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         Log.d(TAG, "onStart: init window behavior");
         windowBehavior();
-        super.onStart();
     }
 
     protected <T extends View> T findViewById(int id) {

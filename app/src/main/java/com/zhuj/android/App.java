@@ -10,6 +10,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.zhuj.android.database.DBConfig;
 import com.zhuj.android.database.room.AndroidDatabase;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class App extends Application {
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
-        database = Room.databaseBuilder(this, AndroidDatabase.class, AppConfig.DB_NAME).build();
+        database = Room.databaseBuilder(this, AndroidDatabase.class, DBConfig.ROOM_DB_NAME).build();
     }
 
     public static App getInstance() {

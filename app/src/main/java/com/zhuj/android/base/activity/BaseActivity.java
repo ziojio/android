@@ -10,12 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
-    protected BaseActivity mActivity = this;
-    protected ActionBar mActionBar;
+    protected BaseActivity mActivity;
 
     /**
-     * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
-     *
      * @return 布局id
      */
     protected abstract int layoutId();
@@ -23,6 +20,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = this;
         setContentView(layoutId());
     }
 

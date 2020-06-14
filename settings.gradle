@@ -4,7 +4,7 @@ include ':javalib'
 
 include 'SwipeRecyclerView', 'xui_lib'
 
-include 'agentweb-core', 'jsbridge'
+include 'jsbridge'
 
 include 'xhttp2-lib'
 

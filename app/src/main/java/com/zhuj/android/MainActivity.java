@@ -15,9 +15,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
+import com.zhuj.android.base.activity.BaseActionBarActivity;
+import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;
 import com.zhuj.android.database.room.entity.User;
-import com.zhuj.android.ui.activity.BaseActivity;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.ui.activity.WebViewActivity;
 import com.zhuj.android.thread.WorkExecutor;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActionBarActivity {
 
     private WorkExecutor workExecutor;
     private AppDatabase database;
@@ -48,9 +49,18 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected int toolbarLayoutId() {
+        return R.id.toolbar;
+    }
+
+    private void initActionBar() {
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSupportActionBar(findViewById(R.id.toolbar));
+        initActionBar();
         showText = findViewById(R.id.text_show);
         workExecutor = new WorkExecutor();
         database = new AppDatabase(this);
@@ -117,7 +127,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.button_start:
                 Logger.d("start ");
-                startActivity(new Intent(mActivity, com.just.agentweb.sample.activity.MainActivity.class));
+                startActivity(new Intent(mActivity, MainActivity.class));
                 break;
             case R.id.button_start_test:
                 Logger.d("start test");
