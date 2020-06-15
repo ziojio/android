@@ -22,7 +22,9 @@ public class AppDatabase extends SQLiteOpenHelper {
                 " name      varchar(16)  ," +
                 " email     varchar(64)  ," +
                 " phone     varchar(16)  )";
+        db.beginTransaction();
         db.execSQL(tbl_user);
+        db.endTransaction();
     }
 
     @Override

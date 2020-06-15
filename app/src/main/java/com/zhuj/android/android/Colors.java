@@ -23,7 +23,7 @@ public final class Colors {
      * @return
      */
     @ColorInt
-    public static int adjustAlpha(@ColorInt int color, @SuppressWarnings("SameParameterValue") float factor) {
+    public static int adjustAlpha(@ColorInt int color, float factor) {
         int alpha = Math.round(Color.alpha(color) * factor);
         int red = Color.red(color);
         int green = Color.green(color);

@@ -18,7 +18,7 @@ import java.util.List;
 public class App extends Application {
     private static App instance;
 
-    private AndroidDatabase database;
+    private AndroidDatabase roomDB;
 
     @Override
     public void onCreate() {
@@ -32,7 +32,7 @@ public class App extends Application {
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
-        database = Room.databaseBuilder(this, AndroidDatabase.class, DBConfig.ROOM_DB_NAME).build();
+        roomDB = Room.databaseBuilder(this, AndroidDatabase.class, DBConfig.ROOM_DB_NAME).build();
     }
 
     public static App getInstance() {
@@ -40,7 +40,7 @@ public class App extends Application {
     }
 
     public AndroidDatabase db() {
-        return database;
+        return roomDB;
     }
 
 

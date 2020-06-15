@@ -28,7 +28,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class H5App {
+public class H5AppUtils {
     private static final String TAG = "H5App";
     private static String appName = "h5app";
     private static String appHost = "http://h5app.jbzh.com";
