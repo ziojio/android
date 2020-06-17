@@ -108,7 +108,8 @@ ext {
                     runtime        : "androidx.lifecycle:lifecycle-runtime:$version.lifecycle",
                     viewmodel      : "androidx.lifecycle:lifecycle-viewmodel:$version.lifecycle",
                     livedata       : "androidx.lifecycle:lifecycle-livedata:$version.lifecycle",
-                    lifecycle_java8: "androidx.lifecycle:lifecycle-common-java8:$version.lifecycle"
+                    lifecycle_java8: "androidx.lifecycle:lifecycle-common-java8:$version.lifecycle",
+                    extensions     : "androidx.lifecycle:lifecycle-extensions:$version.lifecycle"
             ],
             kotlin            : [
                     stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$version.kotlin",

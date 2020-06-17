@@ -38,6 +38,7 @@ dependencies {
     implementation dependence.lifecycle.lifecycle_java8
     implementation dependence.lifecycle.viewmodel
     implementation dependence.lifecycle.livedata
+//    implementation dependence.lifecycle.extensions
 
     implementation dependence.material
 
