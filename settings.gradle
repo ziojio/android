@@ -1,7 +1,7 @@
-include ':study'
 rootProject.name = 'Android'
 include ':app'
 include ':javalib'
+include ':study'
 
 include 'SwipeRecyclerView', 'xui_lib'
 

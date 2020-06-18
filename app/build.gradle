@@ -42,7 +42,12 @@ dependencies {
 
     implementation dependence.material
 
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    api 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+    api 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
     implementation dependence.okhttp
+    implementation dependence.glide
     implementation dependence.gson
     implementation dependence.eventbus
 

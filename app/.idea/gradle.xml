@@ -8,15 +8,7 @@
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/.." />
-            <option value="$PROJECT_DIR$/../SwipeRecyclerView" />
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/../javalib" />
-            <option value="$PROJECT_DIR$/../jsbridge" />
-            <option value="$PROJECT_DIR$/../xhttp2-lib" />
-            <option value="$PROJECT_DIR$/../xui_lib" />
-          </set>
+
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>

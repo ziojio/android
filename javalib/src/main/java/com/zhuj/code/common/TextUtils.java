@@ -11,15 +11,6 @@ public class TextUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    public static boolean isEmptyTrim(CharSequence str) {
-        if (str == null || str.length() == 0) return true;
-        int len = str.length();
-        int start = 0;
-        while ((start < len) && (str.charAt(start) <= ' ')) start++;
-        while ((start < len) && (str.charAt(len - 1) <= ' ')) len--;
-        return start == len;
-    }
-
     public static String decodeUnicodeRegex(String str) {
         final Pattern reUnicode = Pattern.compile("\\\\u([0-9a-zA-Z]{4})");
         Matcher m = reUnicode.matcher(str);
@@ -76,9 +67,6 @@ public class TextUtils {
         return stringBuffer.toString();
     }
 
-    public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
-    }
 
     public static String join(CharSequence delimiter, Object[] tokens) {
         final int length = tokens.length;
@@ -125,5 +113,9 @@ public class TextUtils {
         } else {
             return pattern.split(text, -1);
         }
+    }
+
+    public static boolean isEmpty(String str) {
+        return str == null || str.length() == 0;
     }
 }
