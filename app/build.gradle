@@ -60,5 +60,6 @@ dependencies {
 
     implementation project(path: ':javalib')
     implementation project(path: ':jsbridge')
+    implementation project(path: ':study')
 
 }

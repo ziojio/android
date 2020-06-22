@@ -1,15 +1,11 @@
 package com.zhuj.android.ui.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
 import com.zhuj.android.R;
 import com.zhuj.android.base.activity.BaseActivity;
-import com.zhuj.android.model.UpdateAppInfo;
-
-import java.util.ArrayList;
 
 public class TestActivity extends BaseActivity {
 

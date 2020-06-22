@@ -16,11 +16,9 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 import com.zhuj.android.base.activity.BaseActionBarActivity;
-import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;
 import com.zhuj.android.database.room.entity.User;
 import com.zhuj.android.ui.activity.TestActivity;
-import com.zhuj.android.ui.activity.WebViewActivity;
 import com.zhuj.android.thread.WorkExecutor;
 
 import java.util.List;
@@ -134,9 +132,15 @@ public class MainActivity extends BaseActionBarActivity {
                 startActivity(new Intent(mActivity, TestActivity.class));
                 break;
             case R.id.button_webview:
-                startActivity(new Intent(mActivity, WebViewActivity.class));
+                // startActivity(new Intent(mActivity, WebViewActivity.class));
+                doSomething();
                 break;
         }
     }
+
+    private void doSomething() {
+
+    }
+
 
 }

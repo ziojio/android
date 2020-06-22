@@ -1,7 +1,6 @@
-package com.zhuj.android.ui.fragment;
+package com.zhuj.android.base.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseFragment extends Fragment implements View.OnClickListener {
+public abstract class IFragment extends Fragment {
     protected final String TAG = this.getClass().getSimpleName();
 
-    public BaseFragment() {
+    public IFragment() {
     }
 
     protected abstract int layoutId();
@@ -25,13 +24,8 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         return inflater.inflate(layoutId(), container, false);
     }
 
-
     protected <T extends View> T findViewById(@IdRes int id) {
         return requireView().findViewById(id);
-    }
-
-    protected void addClick(View view) {
-        view.setOnClickListener(this);
     }
 
 }

@@ -8,7 +8,6 @@ public class TextUtils {
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     private TextUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
     public static String decodeUnicodeRegex(String str) {
