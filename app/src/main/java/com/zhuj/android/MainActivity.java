@@ -16,8 +16,8 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 import com.zhuj.android.base.activity.BaseActionBarActivity;
-import com.zhuj.android.database.sqlitehelper.AppDatabase;
-import com.zhuj.android.database.room.entity.User;
+import com.zhuj.android.data.database.sqlitehelper.AppDatabase;
+import com.zhuj.android.data.database.room.entity.User;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.thread.WorkExecutor;
 

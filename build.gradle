@@ -1,14 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: "config.gradle"
 
 buildscript {
-    repositories {
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        google()
-        jcenter()
-    }
+    apply from: "config.gradle"
+
+    addRepos(repositories)
+
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.0'
 

@@ -1,4 +1,4 @@
-package com.jbzh.jbim.http;
+package com.zhuj.jbim.http;
 
 
 import com.zhuj.code.http.ErrorMessage;

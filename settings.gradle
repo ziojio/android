@@ -1,12 +1,15 @@
+include ':http'
+include ':data'
 rootProject.name = 'Android'
 include ':app'
+include ':base'
+include ':sample'
+include ':mqtt'
 include ':javalib'
-include ':study'
-
-include 'SwipeRecyclerView', 'xui_lib'
-
 include 'jsbridge'
 
-include 'xhttp2-lib'
+
+
+
 
 

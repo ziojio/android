@@ -2,14 +2,12 @@ package com.zhuj.android;
 
 import android.app.Application;
 
-import androidx.room.Room;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.zhuj.android.database.DBConfig;
-import com.zhuj.android.database.room.AndroidDatabase;
+import com.zhuj.android.data.database.room.AndroidDatabase;
 
 public class App extends Application {
     private static App instance;
@@ -28,7 +26,7 @@ public class App extends Application {
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
-        roomDB = Room.databaseBuilder(this, AndroidDatabase.class, DBConfig.ROOM_DB_NAME).build();
+        roomDB = AndroidDatabase.getInstance(this);
     }
 
     public static App getInstance() {

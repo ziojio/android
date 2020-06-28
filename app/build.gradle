@@ -1,17 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    def android = android_config
 
-    compileSdkVersion android.compileSdkVersion
-    buildToolsVersion android.buildToolsVersion
+    compileSdkVersion android_config.compileSdkVersion
+    buildToolsVersion android_config.buildToolsVersion
 
     defaultConfig {
-        applicationId android.applicationId
-        minSdkVersion android.minSdkVersion
-        targetSdkVersion android.targetSdkVersion
-        versionCode android.versionCode
-        versionName android.versionName
+        applicationId android_config.applicationId
+        minSdkVersion android_config.minSdkVersion
+        targetSdkVersion android_config.targetSdkVersion
+        versionCode android_config.versionCode
+        versionName android_config.versionName
     }
 
     buildTypes {
@@ -20,6 +19,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "mode"
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            dimension "mode"
+            manifestPlaceholders = [PROJECT_NAME: "@string/app_name_dev", APP_ID: "21321843"]
+            buildConfigField 'String', 'API_URL', '"https://dev.idisfkj.android.com"'
+            buildConfigField 'String', 'APP_KEY', '"3824yk32"'
+        }
+        prod {
+            applicationIdSuffix ".prod"
+            dimension "mode"
+            manifestPlaceholders = [PROJECT_NAME: "@string/app_name", APP_ID: "12932843"]
+            buildConfigField 'String', 'API_URL', '"https://prod.idisfkj.android.com"'
+            buildConfigField 'String', 'APP_KEY', '"32143dsk2"'
+        }
+
+    }
+
     compileOptions {
         targetCompatibility = javaVersion
         sourceCompatibility = javaVersion
@@ -27,39 +45,27 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation dependence.androidx.appcompat
-    implementation dependence.androidx.constraintlayout
-    implementation dependence.androidx.recyclerview
-    implementation dependence.androidx.viewpager
-    implementation dependence.androidx.multidex
+    implementation deps.material
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.recyclerview
+//    implementation deps.androidx.viewpager
+//    implementation deps.androidx.multidex
 
-    implementation dependence.lifecycle.runtime
-    implementation dependence.lifecycle.lifecycle_java8
-    implementation dependence.lifecycle.viewmodel
-    implementation dependence.lifecycle.livedata
-//    implementation dependence.lifecycle.extensions
+    implementation deps.okhttp
+//    implementation deps.glide
+    implementation deps.gson
 
-    implementation dependence.material
 
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    api 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
-    api 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    implementation deps.logger
 
-    implementation dependence.okhttp
-    implementation dependence.glide
-    implementation dependence.gson
-    implementation dependence.eventbus
+    implementation deps.agentweb
 
-    implementation dependence.room.runtime
-    annotationProcessor dependence.room.processor
-
-    implementation dependence.logger
-
-    implementation dependence.agentweb
-
+    implementation project(path: ':base')
+    implementation project(path: ':data')
+    implementation project(path: ':http')
+    implementation project(path: ':mqtt')
     implementation project(path: ':javalib')
     implementation project(path: ':jsbridge')
-    implementation project(path: ':study')
 
 }

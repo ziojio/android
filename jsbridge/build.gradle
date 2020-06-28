@@ -1,18 +1,17 @@
 apply plugin: "com.android.library"
 
 android {
-    def android = android_config
 
-    compileSdkVersion android.compileSdkVersion
-    buildToolsVersion android.buildToolsVersion
+    compileSdkVersion android_config.compileSdkVersion
+    buildToolsVersion android_config.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion android.minSdkVersion
-        targetSdkVersion android.targetSdkVersion
+        minSdkVersion android_config.minSdkVersion
+        targetSdkVersion android_config.targetSdkVersion
     }
 }
 
 dependencies {
-    implementation dependence.androidx.appcompat
-    implementation dependence.gson
+    implementation deps.androidx.appcompat
+    implementation deps.gson
 }

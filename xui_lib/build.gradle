@@ -2,14 +2,13 @@ apply plugin: 'com.android.library'
 //apply plugin: 'img-optimizer'
 
 android {
-    def android = android_config
 
-    compileSdkVersion android.compileSdkVersion
-    buildToolsVersion android.buildToolsVersion
+    compileSdkVersion android_config.compileSdkVersion
+    buildToolsVersion android_config.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion android.minSdkVersion
-        targetSdkVersion android.targetSdkVersion
+        minSdkVersion android_config.minSdkVersion
+        targetSdkVersion android_config.targetSdkVersion
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -20,12 +19,12 @@ android {
 }
 
 dependencies {
-    implementation dependence.androidx.appcompat
-    implementation dependence.androidx.recyclerview
-    implementation dependence.material
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.recyclerview
+    implementation deps.material
 
-    implementation dependence.glide
-    annotationProcessor dependence.glideProcessor
+    implementation deps.glide
+    annotationProcessor deps.glideProcessor
 
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
 }

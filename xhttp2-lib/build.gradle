@@ -18,9 +18,9 @@ android {
 }
 
 dependencies {
-    implementation dependence.androidx.appcompat
-    implementation dependence.okhttp
-    implementation dependence.gson
+    implementation deps.androidx.appcompat
+    implementation deps.okhttp
+    implementation deps.gson
 
     //使用retrofit的依赖包
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
