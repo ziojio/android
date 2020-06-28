@@ -52,14 +52,10 @@ dependencies {
 //    implementation deps.androidx.viewpager
 //    implementation deps.androidx.multidex
 
-    implementation deps.okhttp
 //    implementation deps.glide
     implementation deps.gson
 
-
     implementation deps.logger
-
-    implementation deps.agentweb
 
     implementation project(path: ':base')
     implementation project(path: ':data')
@@ -67,5 +63,7 @@ dependencies {
     implementation project(path: ':mqtt')
     implementation project(path: ':javalib')
     implementation project(path: ':jsbridge')
+    implementation project(path: ':web')
+    implementation project(path: ':view')
 
 }

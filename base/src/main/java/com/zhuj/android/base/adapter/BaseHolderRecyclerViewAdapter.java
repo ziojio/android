@@ -10,46 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public abstract class BaseHolderRecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder> extends BaseRecyclerViewAdapter<T,VH> {
+public abstract class BaseHolderRecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder> extends BaseRecyclerViewAdapter<T, VH> {
 
     public BaseHolderRecyclerViewAdapter(Context context) {
         super(context);
-    }
-
-    public static class TextImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvText;
-        public ImageView ivImage;
-
-        /**
-         * no use view, set viewId = View.NO_ID == -1
-         *
-         * @param itemView custom view layout inflate view
-         * @param textId
-         * @param imageId
-         */
-        public TextImageViewHolder(@NonNull View itemView, @IdRes int textId, @IdRes int imageId) {
-            super(itemView);
-            tvText = itemView.findViewById(textId);
-            ivImage = itemView.findViewById(imageId);
-        }
-    }
-
-    public static class TextTextViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTextMain;
-        public TextView tvTextSub;
-
-        /**
-         * no use view, set viewId = View.NO_ID == -1
-         *
-         * @param itemView   custom view layout inflate view
-         * @param textMainId
-         * @param textSubId
-         */
-        public TextTextViewHolder(@NonNull View itemView, @IdRes int textMainId, @IdRes int textSubId) {
-            super(itemView);
-            tvTextMain = itemView.findViewById(textMainId);
-            tvTextSub = itemView.findViewById(textSubId);
-        }
     }
 
     public static class ImageTextTextViewHolder extends RecyclerView.ViewHolder {
@@ -58,6 +22,8 @@ public abstract class BaseHolderRecyclerViewAdapter<T, VH extends RecyclerView.V
         public TextView tvTextSub;
 
         /**
+         * not use view, set viewId = View.NO_ID
+         *
          * @param itemView   custom view layout inflate view
          * @param imageId
          * @param textMainId

@@ -1,3 +1,5 @@
+include ':view'
+include ':web'
 include ':http'
 include ':data'
 rootProject.name = 'Android'
