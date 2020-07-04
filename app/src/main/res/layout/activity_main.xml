@@ -7,67 +7,70 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/secondaryColor"
-        app:titleTextColor="@color/primaryColor" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/button_sql_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sql_insert" />
-
-    <Button
-        android:id="@+id/button_sql_query"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sql_query" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/secondaryColor"
+            app:titleTextColor="@color/primaryColor" />
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-    <Button
-        android:id="@+id/button_room_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="room_insert" />
-
-    <Button
-        android:id="@+id/button_room_query"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="room_query" />
-
-    <Button
-        android:id="@+id/button_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="clear" />
-
-    <Button
-        android:id="@+id/button_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="跳转" />
-    <Button
-        android:id="@+id/button_start_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="跳转 to Test" />
-
-    <Button
-        android:id="@+id/button_webview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button_webview" />
-
-
-    <TextView
-        android:id="@+id/text_show"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingVertical="10dp"
-        android:textSize="16sp" />
+        android:layout_height="400dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_sql"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转 to Sql" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转 to test" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_webview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转 to webview" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_sample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转 to test" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转 to view" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_do"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="do something" />
+    </LinearLayout>
+
+
 </LinearLayout>

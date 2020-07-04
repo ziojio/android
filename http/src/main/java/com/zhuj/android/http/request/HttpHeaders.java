@@ -6,19 +6,30 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.zhuj.android.http.StringUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.net.HttpCookie;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.TimeZone;
+import java.util.TreeMap;
+
+import okhttp3.Headers;
 
 /**
  * <p>描述：头部参数</p>
@@ -26,108 +37,202 @@ import java.util.TimeZone;
  * @author xuexiang
  * @since 2018/6/20 上午1:14
  */
-public class HttpHeaders implements Serializable {
+public class HttpHeaders extends ListMap<String, String> implements Serializable {
     private static final String TAG = HttpHeaders.class.getSimpleName();
 
     public static final String FORMAT_HTTP_DATA = "EEE, dd MMM y HH:mm:ss 'GMT'";
     public static final TimeZone GMT_TIME_ZONE = TimeZone.getTimeZone("GMT");
 
-    public static final String HEAD_KEY_RESPONSE_CODE = "ResponseCode";
-    public static final String HEAD_KEY_RESPONSE_MESSAGE = "ResponseMessage";
-    public static final String HEAD_KEY_ACCEPT = "Accept";
-    public static final String HEAD_KEY_ACCEPT_ENCODING = "Accept-Encoding";
-    public static final String HEAD_VALUE_ACCEPT_ENCODING = "gzip, deflate";
-    public static final String HEAD_KEY_ACCEPT_LANGUAGE = "Accept-Language";
-    public static final String HEAD_KEY_CONTENT_TYPE = "Content-Type";
-    public static final String HEAD_KEY_CONTENT_LENGTH = "Content-Length";
-    public static final String HEAD_KEY_CONTENT_ENCODING = "Content-Encoding";
-    public static final String HEAD_KEY_CONTENT_DISPOSITION = "Content-Disposition";
-    public static final String HEAD_KEY_CONTENT_RANGE = "Content-Range";
-    public static final String HEAD_KEY_CACHE_CONTROL = "Cache-Control";
-    public static final String HEAD_KEY_CONNECTION = "Connection";
-    public static final String HEAD_VALUE_CONNECTION_KEEP_ALIVE = "keep-alive";
-    public static final String HEAD_VALUE_CONNECTION_CLOSE = "close";
-    public static final String HEAD_KEY_DATE = "Date";
-    public static final String HEAD_KEY_EXPIRES = "Expires";
-    public static final String HEAD_KEY_E_TAG = "ETag";
-    public static final String HEAD_KEY_PRAGMA = "Pragma";
-    public static final String HEAD_KEY_IF_MODIFIED_SINCE = "If-Modified-Since";
-    public static final String HEAD_KEY_IF_NONE_MATCH = "If-None-Match";
-    public static final String HEAD_KEY_LAST_MODIFIED = "Last-Modified";
-    public static final String HEAD_KEY_LOCATION = "Location";
-    public static final String HEAD_KEY_USER_AGENT = "User-Agent";
-    public static final String HEAD_KEY_COOKIE = "Cookie";
-    public static final String HEAD_KEY_COOKIE2 = "Cookie2";
-    public static final String HEAD_KEY_SET_COOKIE = "Set-Cookie";
-    public static final String HEAD_KEY_SET_COOKIE2 = "Set-Cookie2";
+    public static final String VALUE_ACCEPT_ALL = "*/*";
+    public static final String KEY_RESPONSE_CODE = "ResponseCode";
+    public static final String KEY_RESPONSE_MESSAGE = "ResponseMessage";
+    public static final String KEY_ACCEPT = "Accept";
+    public static final String KEY_ACCEPT_ENCODING = "Accept-Encoding";
+    public static final String VALUE_ACCEPT_ENCODING = "gzip, deflate";
+    public static final String KEY_ACCEPT_LANGUAGE = "Accept-Language";
+    public static final String KEY_CONTENT_TYPE = "Content-Type";
+    public static final String KEY_CONTENT_LENGTH = "Content-Length";
+    public static final String KEY_CONTENT_ENCODING = "Content-Encoding";
+    public static final String KEY_CONTENT_DISPOSITION = "Content-Disposition";
+    public static final String KEY_CONTENT_RANGE = "Content-Range";
+    public static final String KEY_CACHE_CONTROL = "Cache-Control";
+    public static final String KEY_CONNECTION = "Connection";
+    public static final String KEY_DATE = "Date";
+    public static final String KEY_EXPIRES = "Expires";
+    public static final String KEY_E_TAG = "ETag";
+    public static final String KEY_PRAGMA = "Pragma";
+    public static final String KEY_IF_MODIFIED_SINCE = "If-Modified-Since";
+    public static final String KEY_IF_NONE_MATCH = "If-None-Match";
+    public static final String KEY_LAST_MODIFIED = "Last-Modified";
+    public static final String KEY_LOCATION = "Location";
+    public static final String KEY_USER_AGENT = "User-Agent";
+    public static final String KEY_COOKIE = "Cookie";
+    public static final String KEY_COOKIE2 = "Cookie2";
+    public static final String KEY_SET_COOKIE = "Set-Cookie";
+    public static final String KEY_SET_COOKIE2 = "Set-Cookie2";
+    public static final String KEY_ACCEPT_RANGE = "Accept-Range";
+    public static final String VALUE_APPLICATION_URLENCODED = "application/x-www-form-urlencoded";
+    public static final String VALUE_APPLICATION_FORM = "multipart/form-data";
+    public static final String VALUE_APPLICATION_STREAM = "application/octet-stream";
+    public static final String VALUE_APPLICATION_JSON = "application/json";
+    public static final String VALUE_APPLICATION_XML = "application/xml";
+    public static final String VALUE_KEEP_ALIVE = "keep-alive";
+    public static final String VALUE_CLOSE = "close";
+    public static final String KEY_HOST = "Host";
+    public static final String KEY_RANGE = "Range";
 
-    public LinkedHashMap<String, String> headersMap;
     private static String acceptLanguage;
     private static String userAgent;
 
-    private void init() {
-        headersMap = new LinkedHashMap<>();
-    }
-
     public HttpHeaders() {
-        init();
+        super(new TreeMap<String, List<String>>(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        }));
     }
 
-    public HttpHeaders(String key, String value) {
-        init();
-        put(key, value);
+    @Override
+    public void add(String key, String value) {
+        if (!StringUtils.isEmpty(key) && !StringUtils.isEmpty(value))
+            super.add(formatKey(key), value);
     }
 
-    public void put(String key, String value) {
-        if (key != null && value != null) {
-            headersMap.remove(key);
-            headersMap.put(key, value);
+    @Override
+    public void set(String key, String value) {
+        if (!StringUtils.isEmpty(key) && !StringUtils.isEmpty(value))
+            super.set(formatKey(key), value);
+    }
+
+    @Override
+    public void add(String key, List<String> values) {
+        if (!StringUtils.isEmpty(key) && !values.isEmpty())
+            super.add(formatKey(key), values);
+    }
+
+    @Override
+    public void set(String key, List<String> values) {
+        if (!StringUtils.isEmpty(key) && !values.isEmpty())
+            super.set(formatKey(key), values);
+    }
+
+    public void add(HttpHeaders headers) {
+        for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
+            String key = entry.getKey();
+            List<String> values = entry.getValue();
+            for (String value : values) {
+                add(key, value);
+            }
         }
     }
 
-    public void put(HttpHeaders headers) {
-        if (headers != null) {
-            if (headers.headersMap != null && !headers.headersMap.isEmpty()) {
-                Set<Map.Entry<String, String>> set = headers.headersMap.entrySet();
-                for (Map.Entry<String, String> map : set) {
-                    headersMap.remove(map.getKey());
-                    headersMap.put(map.getKey(), map.getValue());
+    @Override
+    public List<String> remove(String key) {
+        return super.remove(formatKey(key));
+    }
+
+    @Override
+    public List<String> get(String key) {
+        return super.get(formatKey(key));
+    }
+
+    @Override
+    public String getFirst(String key) {
+        return super.getFirst(formatKey(key));
+    }
+
+    @Override
+    public boolean containsKey(String key) {
+        return super.containsKey(formatKey(key));
+    }
+
+    /**
+     * Replace all.
+     */
+    public void set(HttpHeaders headers) {
+        for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
+            set(entry.getKey(), entry.getValue());
+        }
+    }
+
+
+    /**
+     * A value of the header information.
+     *
+     * @param content      like {@code text/html;charset=utf-8}.
+     * @param key          like {@code charset}.
+     * @param defaultValue list {@code utf-8}.
+     * @return If you have a value key, you will return the parsed value if you don't return the default value.
+     */
+    public static String parseSubValue(String content, String key, String defaultValue) {
+        if (!StringUtils.isEmpty(content) && !StringUtils.isEmpty(key)) {
+            StringTokenizer stringTokenizer = new StringTokenizer(content, ";");
+            while (stringTokenizer.hasMoreElements()) {
+                String valuePair = stringTokenizer.nextToken();
+                int index = valuePair.indexOf('=');
+                if (index > 0) {
+                    String name = valuePair.substring(0, index).trim();
+                    if (key.equalsIgnoreCase(name)) {
+                        defaultValue = valuePair.substring(index + 1).trim();
+                        break;
+                    }
                 }
             }
-
         }
+        return defaultValue;
     }
 
-    public boolean isEmpty() {
-        return headersMap.isEmpty();
-    }
-
-    public String get(String key) {
-        return headersMap.get(key);
-    }
-
-    public String remove(String key) {
-        return headersMap.remove(key);
-    }
-
-    public void clear() {
-        headersMap.clear();
-    }
-
-    public Set<String> getNames() {
-        return headersMap.keySet();
-    }
-
-    public final String toJSONString() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            for (Map.Entry<String, String> entry : headersMap.entrySet()) {
-                jsonObject.put(entry.getKey(), entry.getValue());
+    /**
+     * All the cookies in header information.
+     */
+    public static List<HttpCookie> getHttpCookieList(HttpHeaders headers) {
+        List<HttpCookie> cookies = new ArrayList<>();
+        for (String key : headers.keySet()) {
+            if (key.equalsIgnoreCase(KEY_SET_COOKIE)) {
+                List<String> cookieValues = headers.get(key);
+                for (String cookieStr : cookieValues) {
+                    cookies.addAll(HttpCookie.parse(cookieStr));
+                }
             }
-        } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
         }
-        return jsonObject.toString();
+        return cookies;
+    }
+
+    /**
+     * Format to Hump-shaped words.
+     */
+    public static String formatKey(String key) {
+        if (StringUtils.isEmpty(key)) return null;
+
+        key = key.toLowerCase(Locale.ENGLISH);
+        String[] words = key.split("-");
+
+        StringBuilder builder = new StringBuilder();
+        for (String word : words) {
+            String first = word.substring(0, 1);
+            String end = word.substring(1);
+            builder.append(first.toUpperCase(Locale.ENGLISH)).append(end).append("-");
+        }
+        if (builder.length() > 0) {
+            builder.deleteCharAt(builder.lastIndexOf("-"));
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Into a single key-value map.
+     */
+    public static Map<String, String> getRequestHeaders(HttpHeaders headers) {
+        Map<String, String> headerMap = new LinkedHashMap<>();
+        for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
+            String key = entry.getKey();
+            List<String> value = entry.getValue();
+            String trueValue = StringUtils.join("; ", value);
+
+            headerMap.put(key, trueValue);
+        }
+        return headerMap;
     }
 
     public static long getDate(String gmtTime) {
@@ -149,6 +254,57 @@ public class HttpHeaders implements Serializable {
             return -1;
         }
     }
+    /**
+     * Analysis the headers of the cache is valid time.
+     *
+     * @param headers http headers header.
+     * @return Time corresponding milliseconds.
+     */
+    public static long analysisCacheExpires(HttpHeaders headers) {
+        final long now = System.currentTimeMillis();
+
+        long maxAge = 0;
+        long staleWhileRevalidate = 0;
+
+        String cacheControl = headers.getCacheControl( );
+        if (!StringUtils.isEmpty(cacheControl)) {
+            StringTokenizer tokens = new StringTokenizer(cacheControl, ",");
+            while (tokens.hasMoreTokens()) {
+                String token = tokens.nextToken().trim().toLowerCase(Locale.getDefault());
+                if ((token.equals("no-cache") || token.equals("no-store"))) {
+                    return 0;
+                } else if (token.startsWith("max-age=")) {
+                    maxAge = Long.parseLong(token.substring(8)) * 1000L;
+                } else if (token.startsWith("must-revalidate")) {
+                    // If must-revalidate, It must be from the server to validate expired.
+                    return 0;
+                } else if (token.startsWith("stale-while-revalidate=")) {
+                    staleWhileRevalidate = Long.parseLong(token.substring(23)) * 1000L;
+                }
+            }
+        }
+
+        long localExpire = now;// Local expires time of cache.
+
+        // Have CacheControl.
+        if (!StringUtils.isEmpty(cacheControl)) {
+            localExpire += maxAge;
+            if (staleWhileRevalidate > 0) {
+                localExpire += staleWhileRevalidate;
+            }
+
+            return localExpire;
+        }
+
+        final long expires = headers.getExpires();
+        final long date = headers.getDate();
+
+        // If the server through control the cache Expires.
+        if (expires > date) {
+            return now + expires - date;
+        }
+        return 0;
+    }
 
     public static long getLastModified(String lastModified) {
         try {
@@ -158,15 +314,128 @@ public class HttpHeaders implements Serializable {
         }
     }
 
-    public static String getCacheControl(String cacheControl, String pragma) {
-        // first http1.1, second http1.0
-        if (cacheControl != null) return cacheControl;
-        else if (pragma != null) return pragma;
-        else return null;
-    }
-
     public static void setAcceptLanguage(String language) {
         acceptLanguage = language;
+    }
+
+    /**
+     * {@value #KEY_CACHE_CONTROL}.
+     *
+     * @return CacheControl.
+     */
+    public String getCacheControl() {
+        List<String> cacheControls = get(KEY_CACHE_CONTROL);
+        if (cacheControls == null) cacheControls = Collections.emptyList();
+        return StringUtils.join(",", cacheControls);
+    }
+    /**
+     * {@value KEY_CONTENT_DISPOSITION}.
+     *
+     * @return {@value KEY_CONTENT_DISPOSITION}.
+     */
+    public String getContentDisposition() {
+        return getFirst(KEY_CONTENT_DISPOSITION);
+    }
+
+    /**
+     * {@value #KEY_CONTENT_ENCODING}.
+     *
+     * @return ContentEncoding.
+     */
+    public String getContentEncoding() {
+        return getFirst(KEY_CONTENT_ENCODING);
+    }
+
+    /**
+     * {@value #KEY_CONTENT_LENGTH}.
+     *
+     * @return ContentLength.
+     */
+    public long getContentLength() {
+        String contentLength = getFirst(KEY_CONTENT_LENGTH);
+        if (StringUtils.isEmpty(contentLength)) contentLength = "0";
+        return Long.parseLong(contentLength);
+    }
+
+    /**
+     * {@value #KEY_CONTENT_TYPE}.
+     *
+     * @return ContentType.
+     */
+    public String getContentType() {
+        return getFirst(KEY_CONTENT_TYPE);
+    }
+
+    /**
+     * {@value #KEY_CONTENT_RANGE}.
+     *
+     * @return ContentRange.
+     */
+    public String getContentRange() {
+        return getFirst(KEY_CONTENT_RANGE);
+    }
+
+    /**
+     * {@value #KEY_DATE}.
+     *
+     * @return Date.
+     */
+    public long getDate() {
+        return getDateField(KEY_DATE);
+    }
+    /**
+     * <p>
+     * Returns the date value in milliseconds since 1970.1.1, 00:00h corresponding to the header field field. The
+     * defaultValue will be returned if no such field can be found in the headers header.
+     * </p>
+     *
+     * @param key the header field name.
+     * @return the header field represented in milliseconds since January 1, 1970 GMT.
+     */
+    private long getDateField(String key) {
+        String value = getFirst(key);
+        if (!StringUtils.isEmpty(value))
+            try {
+                return parseGMTToMillis(value);
+            } catch (ParseException ignored) {
+            }
+        return 0;
+    }
+
+    /**
+     * {@value #KEY_E_TAG}.
+     *
+     * @return ETag.
+     */
+    public String getETag() {
+        return getFirst(KEY_E_TAG);
+    }
+
+    /**
+     * {@value #KEY_EXPIRES}.
+     *
+     * @return Expiration.
+     */
+    public long getExpires() {
+        return getDateField(KEY_EXPIRES);
+    }
+
+    /**
+     * {@value #KEY_LAST_MODIFIED}.
+     *
+     * @return LastModified.
+     */
+    public long getLastModified() {
+        return getDateField(KEY_LAST_MODIFIED);
+    }
+
+    /**
+     * {@value #KEY_LOCATION}.
+     *
+     * @return Location.
+     */
+    public String getLocation() {
+        return getFirst(KEY_LOCATION);
     }
 
     /**
@@ -267,6 +536,19 @@ public class HttpHeaders implements Serializable {
 
     @Override
     public String toString() {
-        return "HttpHeaders{" + "headersMap=" + headersMap + '}';
+        return toJSONString();
     }
+
+    public final String toJSONString() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            for (Map.Entry<String, List<String>> entry : toMap().entrySet()) {
+                jsonObject.put(entry.getKey(), entry.getValue().toString());
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, e.getMessage() + "");
+        }
+        return jsonObject.toString();
+    }
+
 }

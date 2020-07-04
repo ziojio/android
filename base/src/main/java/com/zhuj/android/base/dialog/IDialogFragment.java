@@ -15,7 +15,7 @@ import com.zhuj.android.base.BuildConfig;
 
 
 public abstract class IDialogFragment extends DialogFragment {
-    protected final String TAG = this.getClass().getSimpleName();
+    protected final String TAG = getClass().getSimpleName();
 
     /**
      * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
@@ -29,6 +29,10 @@ public abstract class IDialogFragment extends DialogFragment {
      */
     protected abstract void windowBehavior();
 
+    public IDialogFragment(){
+        setStyle(STYLE_NO_TITLE, 0);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,9 +45,6 @@ public abstract class IDialogFragment extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "onStart: init window behavior");
-        }
         windowBehavior();
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +22,13 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         this.dataList = dataList;
         super.notifyDataSetChanged();
     }
-
+    public void addItem(T t) {
+        if (dataList == null) {
+            dataList = new ArrayList<>();
+        }
+        dataList.add(t);
+        super.notifyItemInserted(getItemCount());
+    }
     public LayoutInflater getInflater() {
         return mInflater;
     }

@@ -21,10 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <service
-            android:name=".test.MyService"
-            android:enabled="true"
-            android:exported="false" />
+
 
         <activity android:name=".ui.activity.TestActivity" />
         <activity android:name=".MainActivity">
@@ -61,8 +58,7 @@
         <activity android:name=".ui.activity.CursorLoaderActivity" />
         <activity android:name=".ui.activity.WebViewActivity" />
 
-        <!-- Mqtt Service -->
-        <service android:name="org.eclipse.paho.android.service.MqttService" />
+
     </application>
 
 </manifest>

@@ -1,23 +1,24 @@
 package com.zhuj.android.ui.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
-
 import androidx.annotation.Nullable;
-
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebConfig;
+import com.just.agentweb.AgentWebView;
+import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import com.zhuj.android.R;
 import com.zhuj.android.base.activity.BaseActivity;
-import com.zhuj.android.jsbridge.webview.BridgeWebView;
-import com.zhuj.android.jsbridge.webview.BridgeWebViewClient;
 
 public class WebViewActivity extends BaseActivity {
-    BridgeWebView mWebView;
     AgentWeb mAgentWeb;
-    BridgeWebViewClient mBridgeWebViewClient;
+    AgentWebView.AgentWebClient mBridgeWebViewClient;
 
     @Override
     protected int layoutId() {
@@ -28,26 +29,12 @@ public class WebViewActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String url = "http://www.baidu.com";
-        mWebView = new BridgeWebView(this);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebContentsDebuggingEnabled(true);
-        BridgeWebViewClient mBridgeWebViewClient = new BridgeWebViewClient(new BridgeWebViewClient.OnLoadJSListener() {
-            @Override
-            public void onLoadStart() {
 
-            }
-
-            @Override
-            public void onLoadFinished() {
-
-            }
-        });
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(findViewById(R.id.mLinearLayout), new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
-                .setWebView(mWebView)
-                // .setWebChromeClient(mWebChromeClient)
-                .setWebViewClient(new WebViewClient())
+                .setWebChromeClient(mWebChromeClient)
+                .setWebViewClient(mWebViewClient)
                 // .setSecurityType(AgentWeb.SecurityType.strict)
                 .createAgentWeb()
                 .ready()
@@ -56,6 +43,25 @@ public class WebViewActivity extends BaseActivity {
         AgentWebConfig.debug();
     }
 
+    private com.just.agentweb.WebViewClient mWebViewClient = new WebViewClient() {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            return super.shouldOverrideUrlLoading(view, request);
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            //do you  work
+            Log.i("Info", "BaseWebActivity onPageStarted");
+        }
+    };
+    private com.just.agentweb.WebChromeClient mWebChromeClient = new WebChromeClient() {
+        @Override
+        public void onReceivedTitle(WebView view, String title) {
+            super.onReceivedTitle(view, title);
+
+        }
+    };
     @Override
     public void onClick(View v) {
 

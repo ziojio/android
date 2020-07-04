@@ -3,7 +3,7 @@ package com.zhuj.android.base.activity;
 import android.view.View;
 
 
-public abstract class BaseActivity extends IActivity implements View.OnClickListener {
+public abstract class BaseActivity extends BaseLogActivity implements View.OnClickListener {
 
     protected void addClick(View... views) {
         for (View view : views) {
@@ -16,6 +16,5 @@ public abstract class BaseActivity extends IActivity implements View.OnClickList
             findViewById(id).setOnClickListener(this);
         }
     }
-
 
 }

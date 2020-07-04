@@ -1,14 +1,7 @@
-include ':view'
-include ':web'
-include ':http'
-include ':data'
-rootProject.name = 'Android'
+include ':libjava'
 include ':app'
-include ':base'
-include ':sample'
-include ':mqtt'
-include ':javalib'
-include 'jsbridge'
+include ':http', ':database' , ':base'
+
 
 
 

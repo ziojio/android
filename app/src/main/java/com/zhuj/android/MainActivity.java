@@ -1,45 +1,26 @@
 package com.zhuj.android;
 
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.orhanobut.logger.Logger;
-import com.zhuj.android.base.activity.BaseActionBarActivity;
+import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.data.database.sqlitehelper.AppDatabase;
-import com.zhuj.android.data.database.room.entity.User;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.thread.WorkExecutor;
+import com.zhuj.android.ui.activity.WebViewActivity;
+import com.zhuj.android.ui.activity.ViewActivity;
 
-import java.util.List;
-import java.util.Random;
 
-
-public class MainActivity extends BaseActionBarActivity {
+public class MainActivity extends BaseActivity {
 
     private WorkExecutor workExecutor;
     private AppDatabase database;
 
     private TextView showText;
-
-    @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            showText.setText(showText.getText() + "\n" + msg.obj.toString());
-            Logger.d("收到了消息");
-        }
-    };
 
     @Override
     protected int layoutId() {
@@ -47,7 +28,7 @@ public class MainActivity extends BaseActionBarActivity {
     }
 
     @Override
-    protected int toolbarLayoutId() {
+    protected int toolbarId() {
         return R.id.toolbar;
     }
 
@@ -59,15 +40,8 @@ public class MainActivity extends BaseActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initActionBar();
-        showText = findViewById(R.id.text_show);
-        workExecutor = new WorkExecutor();
-        database = new AppDatabase(this);
 
-//        final CenterDialog centerDialog = new CenterDialog();
-
-        addClick(R.id.button_sql_insert, R.id.button_sql_query,
-                R.id.button_room_insert, R.id.button_room_query,
-                R.id.button_start, R.id.button_start_test, R.id.button_clear, R.id.button_webview);
+        addClick(R.id.button_sql, R.id.button_test, R.id.button_webview, R.id.button_view, R.id.button_do);
     }
 
     @Override
@@ -78,61 +52,21 @@ public class MainActivity extends BaseActionBarActivity {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button_sql_insert:
-                Logger.d("insert ");
-                SQLiteDatabase database1 = database.getReadableDatabase();
-                ContentValues values = new ContentValues();
-                values.put("id", new Random().nextInt(100));
-                database1.insert("User", null, values);
-                break;
-            case R.id.button_sql_query:
-                Logger.d("query ");
-                SQLiteDatabase database2 = database.getReadableDatabase();
-                Cursor cursor = database2.query("User", new String[]{"id"}, " id < ? ", new String[]{"100"}, null, null, null);
-                while (cursor.moveToNext()) {
-                    int a = cursor.getInt(0);
-                    showText.setText(showText.getText() + " \n column_id=" + a);
-                }
-                break;
-            case R.id.button_room_insert:
-                Logger.d("room insert ");
-                workExecutor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        User u = new User();
-                        u.setId(new Random().nextInt(100));
-                        App.getInstance().db().userDao().insert(u);
-                    }
-                });
-                break;
-            case R.id.button_room_query:
-                Logger.d("room query ");
-                workExecutor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<User> users = App.getInstance().db().userDao().getAllUser();
-                        for (User user : users) {
-                            Message message = Message.obtain();
-                            message.obj = user;
-                            mHandler.sendMessage(message);
-                        }
-                    }
-                });
-                break;
-            case R.id.button_clear:
-                Logger.d("clear text ");
-                showText.setText("");
-                break;
-            case R.id.button_start:
+            case R.id.button_sql:
                 Logger.d("start ");
                 startActivity(new Intent(mActivity, MainActivity.class));
                 break;
-            case R.id.button_start_test:
+            case R.id.button_test:
                 Logger.d("start test");
                 startActivity(new Intent(mActivity, TestActivity.class));
                 break;
             case R.id.button_webview:
-                // startActivity(new Intent(mActivity, WebViewActivity.class));
+                startActivity(new Intent(mActivity, WebViewActivity.class));
+                break;
+            case R.id.button_view:
+                startActivity(new Intent(mActivity, ViewActivity.class));
+                break;
+            case R.id.button_do:
                 doSomething();
                 break;
         }
@@ -141,6 +75,5 @@ public class MainActivity extends BaseActionBarActivity {
     private void doSomething() {
 
     }
-
 
 }

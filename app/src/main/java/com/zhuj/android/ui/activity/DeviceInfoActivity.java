@@ -12,7 +12,7 @@
 //
 // import com.zhuj.android.R;
 // import com.zhuj.android.model.DeviceInfo;
-// import com.zhuj.android.ui.adapter.DeviceInfoAdapter;
+// import com.zhuj.android.adapter.DeviceInfoAdapter;
 //
 // import java.util.ArrayList;
 // import java.util.HashMap;

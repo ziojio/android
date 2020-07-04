@@ -10,14 +10,14 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 import com.zhuj.android.data.database.room.AndroidDatabase;
 
 public class App extends Application {
-    private static App instance;
+    private static App INSTANCE;
 
     private volatile AndroidDatabase roomDB;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
+        INSTANCE = this;
 
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  //是否选择显示线程信息，默认为true
@@ -30,7 +30,7 @@ public class App extends Application {
     }
 
     public static App getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     public AndroidDatabase db() {

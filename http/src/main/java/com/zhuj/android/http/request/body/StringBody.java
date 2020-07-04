@@ -15,8 +15,8 @@
  */
 package com.zhuj.android.http.request.body;
 
-import com.zhuj.code.common.IOUtils;
-import com.zhuj.code.common.TextUtils;
+import com.zhuj.code.util.IOUtils;
+import com.zhuj.code.util.StringUtils;
 import com.zhuj.code.http.RequestBody;
 
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class StringBody implements RequestBody {
 
     @Override
     public long contentLength() {
-        if (TextUtils.isEmpty(mBody)) return 0;
+        if (StringUtils.isEmpty(mBody)) return 0;
         return IOUtils.toByteArray(mBody, mCharset).length;
     }
 

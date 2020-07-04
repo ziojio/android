@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public abstract class IFragment extends Fragment {
-    protected final String TAG = this.getClass().getSimpleName();
+    protected final String TAG = getClass().getSimpleName();
 
     public IFragment() {
     }

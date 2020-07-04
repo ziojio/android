@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
 
 //    resourcePrefix "sample_" // 在xml类型的资源文件命名不是以 moduleName_ 为前缀，会提示
 
@@ -22,12 +21,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
 }
 
 dependencies {
+
     implementation deps.material
     implementation deps.androidx.appcompat
-//    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.constraintlayout
     implementation deps.androidx.recyclerview
 //    implementation deps.androidx.viewpager
 //    implementation deps.androidx.multidex
@@ -41,7 +46,6 @@ dependencies {
 //    implementation deps.okhttp
 //    implementation deps.glide
 //    implementation deps.gson
-
+    implementation deps.agentweb
 
 }
-

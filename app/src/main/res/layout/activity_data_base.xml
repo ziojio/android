@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zhuj.android.ui.activity.DataBaseActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button_sql_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sql_insert" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_sql_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sql_query" />
+
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_room_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="room_insert" />
+
+        <View style="@style/divider_weight_1" />
+
+        <Button
+            android:id="@+id/button_room_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="room_query" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clear" />
+
+
+    <TextView
+        android:id="@+id/text_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingVertical="10dp"
+        android:textSize="16sp" />
+</LinearLayout>

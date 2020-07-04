@@ -24,15 +24,15 @@ android {
         dev {
             applicationIdSuffix ".dev"
             dimension "mode"
-            manifestPlaceholders = [PROJECT_NAME: "@string/app_name_dev", APP_ID: "21321843"]
-            buildConfigField 'String', 'API_URL', '"https://dev.idisfkj.android.com"'
+            manifestPlaceholders = [PROJECT_NAME: "@string/app_name_dev", ]
+            buildConfigField 'String', 'API_URL', '"https://dev.android.com"'
             buildConfigField 'String', 'APP_KEY', '"3824yk32"'
         }
         prod {
             applicationIdSuffix ".prod"
             dimension "mode"
-            manifestPlaceholders = [PROJECT_NAME: "@string/app_name", APP_ID: "12932843"]
-            buildConfigField 'String', 'API_URL', '"https://prod.idisfkj.android.com"'
+            manifestPlaceholders = [PROJECT_NAME: "@string/app_name", ]
+            buildConfigField 'String', 'API_URL', '"https://prod.android.com"'
             buildConfigField 'String', 'APP_KEY', '"32143dsk2"'
         }
 
@@ -56,14 +56,10 @@ dependencies {
     implementation deps.gson
 
     implementation deps.logger
+    implementation deps.agentweb
 
     implementation project(path: ':base')
-    implementation project(path: ':data')
+    implementation project(path: ':database')
     implementation project(path: ':http')
-    implementation project(path: ':mqtt')
-    implementation project(path: ':javalib')
-    implementation project(path: ':jsbridge')
-    implementation project(path: ':web')
-    implementation project(path: ':view')
 
 }

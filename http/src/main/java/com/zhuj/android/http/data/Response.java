@@ -1,8 +1,7 @@
 package com.zhuj.android.http.data;
 
 
-import com.zhuj.android.http.request.Headers;
-import com.zhuj.code.common.IOUtils;
+import com.zhuj.android.http.IOUtils;
 
 import java.io.Closeable;
 import java.io.IOException;

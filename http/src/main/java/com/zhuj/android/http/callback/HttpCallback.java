@@ -1,11 +1,11 @@
 package com.zhuj.android.http.callback;
 
 
-import com.zhuj.android.http.ErrorMessage;
+import com.zhuj.android.http.HttpException;
 
 public interface HttpCallback<T> {
 
-    void onFailure(ErrorMessage e);
+    void onFailure(HttpException e);
 
     void onSuccess(T body);
 
