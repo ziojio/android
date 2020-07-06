@@ -1,6 +1,5 @@
 package com.zhuj.android.web;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -18,9 +17,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.just.agentweb.JsCallJava;
+
 import com.just.agentweb.MiddlewareWebChromeBase;
 import com.just.agentweb.MiddlewareWebClientBase;
+import com.zhuj.android.web.base.BaseWebChromeClient;
+import com.zhuj.android.web.base.BaseWebViewClient;
+import com.zhuj.android.web.base.LollipopFixedWebView;
 
 import org.json.JSONObject;
 
@@ -32,12 +34,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * @author cenxiaozhong
- * @since 1.0.0
- */
 public class AgentWebView extends LollipopFixedWebView {
     private static final String TAG = AgentWebView.class.getSimpleName();
+
     private Map<String, JsCallJava> mJsCallJavas;
     private Map<String, String> mInjectJavaScripts;
     private FixedOnReceivedTitle mFixedOnReceivedTitle;
@@ -54,37 +53,6 @@ public class AgentWebView extends LollipopFixedWebView {
         mFixedOnReceivedTitle = new FixedOnReceivedTitle();
     }
 
-    /**
-     * 经过大量的测试，按照以下方式才能保证JS脚本100%注入成功：
-     * 1、在第一次loadUrl之前注入JS（在addJavascriptInterface里面注入即可，setWebViewClient和setWebChromeClient要在addJavascriptInterface之前执行）；
-     * 2、在webViewClient.onPageStarted中都注入JS；
-     * 3、在webChromeClient.onProgressChanged中都注入JS，并且不能通过自检查（onJsPrompt里面判断）JS是否注入成功来减少注入JS的次数，因为网页中的JS可以同时打开多个url导致无法控制检查的准确性；
-     *
-     * @deprecated Android 4.2.2及以上版本的 addJavascriptInterface 方法已经解决了安全问题，如果不使用“网页能将JS函数传到Java层”功能，不建议使用该类，毕竟系统的JS注入效率才是最高的；
-     */
-    @Override
-    @Deprecated
-    public final void addJavascriptInterface(Object interfaceObj, String interfaceName) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            super.addJavascriptInterface(interfaceObj, interfaceName);
-            Log.i(TAG, "注入");
-            return;
-        } else {
-            Log.i(TAG, "use mJsCallJavas:" + interfaceName);
-        }
-
-        Log.i(TAG, "addJavascriptInterface:" + interfaceObj + "   interfaceName:" + interfaceName);
-        if (mJsCallJavas == null) {
-            mJsCallJavas = new HashMap<String, JsCallJava>();
-        }
-        mJsCallJavas.put(interfaceName, new JsCallJava(interfaceObj, interfaceName));
-        injectJavaScript();
-
-        Log.d(TAG, "injectJavaScript, addJavascriptInterface.interfaceObj = " + interfaceObj + ", interfaceName = " + interfaceName);
-
-        addJavascriptInterfaceSupport(interfaceObj, interfaceName);
-    }
 
     protected void addJavascriptInterfaceSupport(Object interfaceObj, String interfaceName) {
     }
@@ -232,7 +200,7 @@ public class AgentWebView extends LollipopFixedWebView {
     }
 
 
-    public static class AgentWebClient extends MiddlewareWebClientBase {
+    public static class AgentWebClient extends BaseWebViewClient {
 
         private AgentWebView mAgentWebView;
 
@@ -240,6 +208,10 @@ public class AgentWebView extends LollipopFixedWebView {
             this.mAgentWebView = agentWebView;
         }
 
+        @Override
+        protected void setDelegate(WebViewClient delegate) {
+            super.setDelegate(delegate);
+        }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -264,12 +236,17 @@ public class AgentWebView extends LollipopFixedWebView {
 
     }
 
-    public static class AgentWebChrome extends MiddlewareWebChromeBase {
+    public static class AgentWebChrome extends BaseWebChromeClient {
 
         private AgentWebView mAgentWebView;
 
         private AgentWebChrome(AgentWebView agentWebView) {
             this.mAgentWebView = agentWebView;
+        }
+
+        @Override
+        protected void setDelegate(WebChromeClient delegate) {
+            super.setDelegate(delegate);
         }
 
         @Override

@@ -1,4 +1,4 @@
-package com.zhuj.android.http.request;
+package com.zhuj.android.http;
 
 
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.zhuj.android.http.StringUtils;
+import com.zhuj.android.http.util.StringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,12 +24,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.TreeMap;
-
-import okhttp3.Headers;
 
 /**
  * <p>描述：头部参数</p>

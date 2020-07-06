@@ -29,9 +29,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -45,7 +42,7 @@ import androidx.core.os.EnvironmentCompat;
 import androidx.loader.content.CursorLoader;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.zhuj.android.base.R;
+import com.zhuj.android.web.base.LollipopFixedWebView;
 
 import org.json.JSONArray;
 import org.json.JSONException;

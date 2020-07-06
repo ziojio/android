@@ -1,4 +1,4 @@
-package com.zhuj.android.http;
+package com.zhuj.android.http.util;
 
 import com.google.gson.Gson;
 import com.zhuj.android.http.ssl.SSL;

@@ -1,4 +1,4 @@
-package com.zhuj.android.http.request;
+package com.zhuj.android.http.data;
 
 import java.util.Map;
 
@@ -15,5 +15,5 @@ public interface RequestFilter {
      * @param   params 接口参数，注意是引用。可以直接修改
      * @return null
      */
-	  void filter(String url, Map<String, String> params);
+	 void filter(String url, Map<String, String> params);
 }

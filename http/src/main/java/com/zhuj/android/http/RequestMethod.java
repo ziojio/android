@@ -1,4 +1,4 @@
-package com.zhuj.android.http.request;
+package com.zhuj.android.http;
 
 public enum RequestMethod {
     GET,
@@ -15,21 +15,16 @@ public enum RequestMethod {
             case POST:
             case PUT:
             case PATCH:
-            case DELETE: {
+            case DELETE:
                 return true;
-            }
-            default: {
+            default:
                 return false;
-            }
         }
     }
 
     public static RequestMethod reverse(String method) {
         method = method.toUpperCase();
         switch (method) {
-            case "GET": {
-                return GET;
-            }
             case "POST": {
                 return POST;
             }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zhuj.android.http.request;
+package com.zhuj.android.http;
 
 
 import com.zhuj.android.http.callback.IProgressResponseCallBack;
@@ -32,12 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import okhttp3.MediaType;
 
-/**
- * <p>描述：普通参数</p>
- *
- * @author xuexiang
- * @since 2018/5/22 下午4:21
- */
+
 public class HttpParams implements Serializable {
     /**
      * 普通的键值对参数

@@ -1,7 +1,8 @@
 package com.zhuj.android.http.data;
 
 
-import com.zhuj.android.http.IOUtils;
+import com.zhuj.android.http.HttpHeaders;
+import com.zhuj.android.http.util.IOUtils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -18,12 +19,12 @@ public final class Response implements Closeable {
     }
 
     private final int mCode;
-    private final Headers mHeaders;
+    private final HttpHeaders mHttpHeaders;
     private final ResponseBody mBody;
 
     private Response(Builder builder) {
         this.mCode = builder.mCode;
-        this.mHeaders = builder.mHeaders;
+        this.mHttpHeaders = builder.mHttpHeaders;
         this.mBody = builder.mBody;
     }
 
@@ -35,10 +36,10 @@ public final class Response implements Closeable {
     }
 
     /**
-     * Get http headers.
+     * Get http HttpHeaders.
      */
-    public Headers headers() {
-        return mHeaders;
+    public HttpHeaders HttpHeaders() {
+        return mHttpHeaders;
     }
 
     /**
@@ -75,7 +76,7 @@ public final class Response implements Closeable {
 
     public static final class Builder {
         private int mCode;
-        private Headers mHeaders;
+        private HttpHeaders mHttpHeaders;
         private ResponseBody mBody;
 
         public Builder() {
@@ -86,8 +87,8 @@ public final class Response implements Closeable {
             return this;
         }
 
-        public Builder headers(Headers headers) {
-            this.mHeaders = headers;
+        public Builder HttpHeaders(HttpHeaders HttpHeaders) {
+            this.mHttpHeaders = HttpHeaders;
             return this;
         }
 

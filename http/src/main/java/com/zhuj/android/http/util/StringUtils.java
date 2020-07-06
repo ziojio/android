@@ -1,4 +1,4 @@
-package com.zhuj.android.http;
+package com.zhuj.android.http.util;
 
 import java.util.Iterator;
 import java.util.regex.Matcher;

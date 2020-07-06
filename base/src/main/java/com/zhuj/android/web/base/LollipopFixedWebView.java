@@ -1,4 +1,4 @@
-package com.zhuj.android.web;
+package com.zhuj.android.web.base;
 
 import android.content.Context;
 import android.content.res.Configuration;

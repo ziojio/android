@@ -1,4 +1,4 @@
-package com.zhuj.android.http.request;
+package com.zhuj.android.http;
 
 import java.util.ArrayList;
 import java.util.List;
