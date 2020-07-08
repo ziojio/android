@@ -24,20 +24,22 @@ import java.util.List;
 
 public class IOUtils {
 
-    public static void closeQuietly(Closeable closeable) {
-        if (closeable != null)
+    public static void closeQuietly(Closeable... closeables) {
+        for (Closeable closeable : closeables) {
             try {
-                 closeable.close();
-            } catch (Exception ignored) {
+                closeable.close();
+            } catch (IOException ignored) {
             }
+        }
     }
 
-    public static void flushQuietly(Flushable flushable) {
-        if (flushable != null)
+    public static void flushQuietly(Flushable... flushables) {
+        for (Flushable flushable : flushables) {
             try {
                 flushable.flush();
-            } catch (Exception ignored) {
+            } catch (IOException ignored) {
             }
+        }
     }
 
     public static BufferedInputStream toBufferedInputStream(InputStream inputStream) {
@@ -256,11 +258,13 @@ public class IOUtils {
         }
     }
 
-    public static void write(OutputStream output, char[] data, String charset) throws IOException {
+    public static void write(OutputStream output, char[] data, String charset) throws
+            IOException {
         write(output, data, Charset.forName(charset));
     }
 
-    public static void write(OutputStream output, char[] data, Charset charset) throws IOException {
+    public static void write(OutputStream output, char[] data, Charset charset) throws
+            IOException {
         if (data != null) {
             output.write(new String(data).getBytes(charset));
             output.flush();
@@ -281,11 +285,13 @@ public class IOUtils {
         }
     }
 
-    public static void write(OutputStream output, CharSequence data, String charset) throws IOException {
+    public static void write(OutputStream output, CharSequence data, String charset) throws
+            IOException {
         write(output, data, Charset.forName(charset));
     }
 
-    public static void write(OutputStream output, CharSequence data, Charset charset) throws IOException {
+    public static void write(OutputStream output, CharSequence data, Charset charset) throws
+            IOException {
         if (data != null) {
             output.write(data.toString().getBytes(charset));
             output.flush();
@@ -311,29 +317,35 @@ public class IOUtils {
         write(in, output);
     }
 
-    public static void write(Reader input, OutputStream output, String charset) throws IOException {
+    public static void write(Reader input, OutputStream output, String charset) throws
+            IOException {
         write(input, output, Charset.forName(charset));
     }
 
-    public static void write(Reader input, OutputStream output, Charset charset) throws IOException {
+    public static void write(Reader input, OutputStream output, Charset charset) throws
+            IOException {
         Writer out = new OutputStreamWriter(output, charset);
         write(input, out);
     }
 
-    public static void write(InputStream input, OutputStream output, String charset) throws IOException {
+    public static void write(InputStream input, OutputStream output, String charset) throws
+            IOException {
         write(input, output, Charset.forName(charset));
     }
 
-    public static void write(InputStream input, OutputStream output, Charset charset) throws IOException {
+    public static void write(InputStream input, OutputStream output, Charset charset) throws
+            IOException {
         Reader in = new InputStreamReader(input, charset);
         write(in, output);
     }
 
-    public static void write(InputStream input, Writer output, String charset) throws IOException {
+    public static void write(InputStream input, Writer output, String charset) throws
+            IOException {
         write(input, output, Charset.forName(charset));
     }
 
-    public static void write(InputStream input, Writer output, Charset charset) throws IOException {
+    public static void write(InputStream input, Writer output, Charset charset) throws
+            IOException {
         Reader in = new InputStreamReader(input, charset);
         write(in, output);
     }
@@ -347,7 +359,8 @@ public class IOUtils {
         }
     }
 
-    public static boolean contentEquals(InputStream input1, InputStream input2) throws IOException {
+    public static boolean contentEquals(InputStream input1, InputStream input2) throws
+            IOException {
         input1 = toBufferedInputStream(input1);
         input2 = toBufferedInputStream(input2);
 
@@ -377,7 +390,8 @@ public class IOUtils {
         return ch2 == -1;
     }
 
-    public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {
+    public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws
+            IOException {
         BufferedReader br1 = toBufferedReader(input1);
         BufferedReader br2 = toBufferedReader(input2);
 
