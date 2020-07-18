@@ -1,4 +1,4 @@
-package com.jbzh.easypermission;
+package com.zhuj.android.permission;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -8,6 +8,16 @@ import android.os.Build;
 import android.os.Process;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.zhuj.android.permission.GrantResult;
+import com.zhuj.android.permission.NextAction;
+import com.zhuj.android.permission.NextActionType;
+import com.zhuj.android.permission.Permission;
+import com.zhuj.android.permission.PermissionRequestFragment;
+import com.zhuj.android.permission.PermissionRequestListener;
+import com.zhuj.android.permission.PermissionSettingPage;
+import com.zhuj.android.permission.PermissionUtils;
+import com.zhuj.android.permission.RequestPermissionRationalListener;
 
 import java.util.Arrays;
 import java.util.HashMap;

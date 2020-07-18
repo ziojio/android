@@ -32,6 +32,21 @@ public class MainActivity extends BaseActivity {
         return R.id.toolbar;
     }
 
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initEvent() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
     private void initActionBar() {
         mActionBar.setDisplayHomeAsUpEnabled(true);
     }

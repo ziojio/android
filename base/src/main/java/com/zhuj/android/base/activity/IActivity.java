@@ -14,15 +14,30 @@ public abstract class IActivity extends AppCompatActivity {
     protected ActionBar mActionBar;
 
     /**
-     * @return 布局id
+     * @return 布局 id
      */
     protected abstract int layoutId();
 
     /**
-     * @return toolbar
+     * @return toolbar id
      */
     protected int toolbarId() {
         return 0;
+    }
+
+    protected abstract void initView();
+
+    protected abstract void initEvent();
+
+    protected abstract void initData();
+
+    /**
+     * 修改初始化的顺序，在其中添加其他操作
+     */
+    protected void initBehavior() {
+        initView();
+        initData();
+        initEvent();
     }
 
     @Override
@@ -37,6 +52,7 @@ public abstract class IActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             mActionBar = getSupportActionBar();
         }
+        initBehavior();
     }
 
 }

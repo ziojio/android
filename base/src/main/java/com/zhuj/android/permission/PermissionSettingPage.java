@@ -1,4 +1,4 @@
-package com.jbzh.easypermission;
+package com.zhuj.android.permission;
 
 import android.content.ComponentName;
 import android.content.Context;

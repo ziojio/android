@@ -1,4 +1,4 @@
-package com.jbzh.easypermission;
+package com.zhuj.android.permission;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+
+import com.zhuj.android.permission.GrantResult;
+import com.zhuj.android.permission.PermissionRequestListener;
+import com.zhuj.android.permission.PermissionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

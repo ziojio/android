@@ -11,6 +11,18 @@ public class Strings {
     private Strings() {
     }
 
+    public static String format(String str, Object... args) {
+        return String.format(str, args);
+    }
+
+    public static boolean isEmpty(String str) {
+        return str == null || str.length() == 0;
+    }
+
+    public static boolean isEmptyTrim(String s) {
+        return s == null || s.trim().length() == 0;
+    }
+
     public static String decodeUnicodeRegex(String str) {
         final Pattern reUnicode = Pattern.compile("\\\\u([0-9a-zA-Z]{4})");
         Matcher m = reUnicode.matcher(str);
@@ -24,7 +36,7 @@ public class Strings {
 
     public static String decodeUnicode1(String str) {
         if (str == null) return null;
-        StringBuffer retBuf = new StringBuffer();
+        StringBuilder retBuf = new StringBuilder();
         int maxLoop = str.length();
         for (int i = 0; i < maxLoop; i++) {
             if (str.charAt(i) == '\\') {
@@ -67,7 +79,6 @@ public class Strings {
         return sb.toString();
     }
 
-
     public static String join(CharSequence delimiter, Object[] tokens) {
         final int length = tokens.length;
         if (length == 0) {
@@ -81,7 +92,6 @@ public class Strings {
         }
         return sb.toString();
     }
-
 
     public static String join(CharSequence delimiter, Iterable tokens) {
         final Iterator<?> it = tokens.iterator();
@@ -97,7 +107,6 @@ public class Strings {
         return sb.toString();
     }
 
-
     public static String[] split(String text, String expression) {
         if (text.length() == 0) {
             return EMPTY_STRING_ARRAY;
@@ -105,7 +114,6 @@ public class Strings {
             return text.split(expression, -1);
         }
     }
-
 
     public static String[] split(String text, Pattern pattern) {
         if (text.length() == 0) {
@@ -115,7 +123,4 @@ public class Strings {
         }
     }
 
-    public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
-    }
 }

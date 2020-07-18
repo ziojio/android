@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.zhuj.android.base.BuildConfig;
 
-
 public abstract class IDialogFragment extends DialogFragment {
     protected final String TAG = getClass().getSimpleName();
 
@@ -24,12 +23,18 @@ public abstract class IDialogFragment extends DialogFragment {
      */
     protected abstract int layoutId();
 
+    protected abstract void initView();
+
     /**
      * 设置 window
+     * 1. 可以直接代码设置窗口样式
+     * WindowManager.LayoutParams lp = window.getAttributes();
+     * 2. 由于填充的根为null, 根布局的部分参数失效，在xml文件多嵌套一个布局
+     * 使用CardView作为dialog的容器
      */
     protected abstract void windowBehavior();
 
-    public IDialogFragment(){
+    public IDialogFragment() {
         setStyle(STYLE_NO_TITLE, 0);
     }
 
@@ -45,6 +50,7 @@ public abstract class IDialogFragment extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
         windowBehavior();
     }
 
@@ -52,7 +58,7 @@ public abstract class IDialogFragment extends DialogFragment {
         return requireView().findViewById(id);
     }
 
-    protected void show(FragmentActivity fragmentActivity) {
+    public void show(FragmentActivity fragmentActivity) {
         show(fragmentActivity.getSupportFragmentManager(), TAG);
     }
 

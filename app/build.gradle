@@ -60,6 +60,6 @@ dependencies {
 
     implementation project(path: ':base')
     implementation project(path: ':database')
-    implementation project(path: ':http')
+//    implementation project(path: ':http')
 
 }

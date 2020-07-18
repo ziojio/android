@@ -18,24 +18,28 @@ public class Androids {
     public static <T> T getSystemService(Context context, String serviceName) {
         return (T) context.getSystemService(serviceName);
     }
+
     /*
      * App默认开启一个进程，进程名就是AndroidManifest.xml文件中项目的包名
      * 多进程，Application的onCreate方法被多次执行
      */
     private String getProcessName(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        if (am != null) {
-            List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
-            if (runningApps != null) {
-                for (ActivityManager.RunningAppProcessInfo proInfo : runningApps) {
-                    if (proInfo.pid == android.os.Process.myPid()) {
-                        if (proInfo.processName != null) {
-                            return proInfo.processName;
-                        }
-                    }
+        if (am == null) {
+            return null;
+        }
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo proInfo : runningApps) {
+            if (proInfo.pid == android.os.Process.myPid()) {
+                if (proInfo.processName != null) {
+                    return proInfo.processName;
                 }
             }
         }
         return null;
+
     }
 }

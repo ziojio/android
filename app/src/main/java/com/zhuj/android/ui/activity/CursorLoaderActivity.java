@@ -22,6 +22,21 @@ public class CursorLoaderActivity extends BaseActivity implements LoaderManager.
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initEvent() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

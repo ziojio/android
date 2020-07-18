@@ -1,4 +1,6 @@
-package com.jbzh.easypermission;
+package com.zhuj.android.permission;
+
+import com.zhuj.android.permission.NextAction;
 
 /**
  * @className: RequestPermissionRationalListener

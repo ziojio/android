@@ -2,7 +2,9 @@ package com.zhuj.android.http.request.method;
 
 import com.zhuj.android.http.request.BaseRequest;
 
+import okhttp3.MediaType;
 import okhttp3.ResponseBody;
+import okio.BufferedSource;
 
 /**
  * <p>描述：get请求</p>
@@ -18,6 +20,21 @@ public class GetRequest extends BaseRequest<GetRequest> {
 
     @Override
     protected  ResponseBody  generateRequest() {
-        return
+        return new ResponseBody() {
+            @Override
+            public MediaType contentType() {
+                return null;
+            }
+
+            @Override
+            public long contentLength() {
+                return 0;
+            }
+
+            @Override
+            public BufferedSource source() {
+                return null;
+            }
+        };
     }
 }

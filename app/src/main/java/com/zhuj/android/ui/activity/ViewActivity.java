@@ -15,6 +15,21 @@ public class ViewActivity extends BaseActivity {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initEvent() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addClick(R.id.button_1);

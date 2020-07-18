@@ -7,8 +7,8 @@ import java.util.Set;
 
 /**
  * 一个 Map, 存储的是 List
- * @param <K> map 的 key
- * @param <V> map 的 value, List<V> 中的泛型
+ * @param <K>
+ * @param <V> List<V> 中的泛型
  */
 public class ListMap<K, V> {
 
@@ -26,7 +26,7 @@ public class ListMap<K, V> {
      */
     public void add(K key, V value) {
         if (!mSource.containsKey(key))
-            mSource.put(key, new ArrayList<V>(1));
+            mSource.put(key, new ArrayList<>(1));
         mSource.get(key).add(value);
     }
 

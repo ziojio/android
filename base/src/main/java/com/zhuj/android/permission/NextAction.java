@@ -1,4 +1,4 @@
-package com.jbzh.easypermission;
+package com.zhuj.android.permission;
 
 /**
  * @className: NextAction
