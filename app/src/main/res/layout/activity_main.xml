@@ -64,6 +64,13 @@
             android:text="跳转 to view" />
 
         <View style="@style/divider_weight_1" />
+        <Button
+            android:id="@+id/button_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" button " />
+
+        <View style="@style/divider_weight_1" />
 
         <Button
             android:id="@+id/button_do"

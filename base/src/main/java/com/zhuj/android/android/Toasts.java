@@ -1,6 +1,5 @@
 package com.zhuj.android.android;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
-
 
 public class Toasts {
 
@@ -22,21 +20,27 @@ public class Toasts {
         activity.runOnUiThread(() -> Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show());
     }
 
-    @SuppressLint("ShowToast")
     public static void show(Context context, String msg) {
-        runOnMain(Toast.makeText(context, msg, Toast.LENGTH_SHORT));
+        runOnMainThread(context, msg);
     }
 
-    @SuppressLint("ShowToast")
     public static void showLong(Context context, String msg) {
-        runOnMain(Toast.makeText(context, msg, Toast.LENGTH_LONG));
+        runOnMainThread(context, msg);
     }
 
-    private static void runOnMain(Toast toast) {
-        if ("main".equals(Thread.currentThread().getName())) {
-            toast.show();
+
+    private static void runOnMainThread(final Context context, final String msg) {
+        // Thread.currentThread() == Looper.getMainLooper().getThread()
+        // "main".equals(Thread.currentThread().getName()
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         } else {
-            new Handler(Looper.getMainLooper()).post(toast::show);
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

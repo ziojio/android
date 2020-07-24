@@ -33,6 +33,12 @@ public class BaseService extends Service {
     }
 
     @Override
+    public void onStart(Intent intent, int startId) {
+        Log.d(TAG, "onStart: ");
+        super.onStart(intent, startId);
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: intent Action=" + intent.getAction());
         return super.onStartCommand(intent, flags, startId);
@@ -51,21 +57,43 @@ public class BaseService extends Service {
         return isAllowBind() ? binder : null;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        boolean bool = super.onUnbind(intent);
+        Log.d(TAG, "onUnbind: return=" + bool);
+        return super.onUnbind(intent);
+    }
+
+    @Override
+    public void onRebind(Intent intent) {
+        Log.d(TAG, "onRebind: ");
+        super.onRebind(intent);
+    }
+
     // 拷贝到其他地方使用
-    // 1. Activity
+    boolean isBind;
+    Service myservice;
+
     private void bindService() {
-        Intent intent = new Intent(this,  getClass());
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        if (!isBind && myservice == null) {
+            Intent intent = new Intent(this, BaseService.class);
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        }
     }
 
     private void unbindService() {
-        unbindService(serviceConnection);
+        if (isBind) {
+            unbindService(serviceConnection);
+            myservice = null;
+            isBind = false;
+        }
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Service myservice = ((BaseService.ServiceBinder) service).getService();
+            myservice = ((BaseService.ServiceBinder) service).getService();
+            isBind = true;
         }
 
         /**
@@ -75,7 +103,7 @@ public class BaseService extends Service {
          */
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            myservice = null;
         }
     };
 }

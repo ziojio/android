@@ -21,11 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-
+        <activity android:name=".ui.activity.TestFragmentActivity"></activity>
         <activity android:name=".ui.activity.TestActivity" />
         <activity android:name=".MainActivity">
-            <!-- <intent-filter>设置
+
+            <!--
+            <intent-filter>设置
             (1) 如果<intent-filter>中没有包含任何Action类型，那么无论什么Intent请求都无法和这条<intent-filter>匹配。
             (2) 反之，如果Intent请求中没有设定Action类型，那么只要<intent-filter>中包含有Action类型，
             这个Intent请求就将顺利地通过<intent-filter>的行为测试。
@@ -58,7 +59,7 @@
         <activity android:name=".ui.activity.CursorLoaderActivity" />
         <activity android:name=".ui.activity.WebViewActivity" />
 
-
+        <service android:name=".base.service.BaseService"/>
     </application>
 
 </manifest>

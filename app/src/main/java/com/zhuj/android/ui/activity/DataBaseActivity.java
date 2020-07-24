@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.zhuj.android.R;
 import com.zhuj.android.base.activity.BaseActivity;
-import com.zhuj.android.android.Logs;
+import com.zhuj.android.logger.Logger;
 import com.zhuj.android.thread.WorkExecutor;
 
 import com.zhuj.android.data.database.room.AndroidDatabase;
@@ -77,13 +77,13 @@ public class DataBaseActivity extends BaseActivity {
 
         int id = v.getId();
         if (id == R.id.button_sql_insert) {
-            Logs.d(TAG, "insert ");
+            Logger.d(TAG, "insert ");
             SQLiteDatabase database1 = database.getReadableDatabase();
             ContentValues values = new ContentValues();
             values.put("id", new Random().nextInt(100));
             database1.insert("User", null, values);
         } else if (id == R.id.button_sql_query) {
-            Logs.d(TAG, "query ");
+            Logger.d(TAG, "query ");
             SQLiteDatabase database2 = database.getReadableDatabase();
             Cursor cursor = database2.query("User", new String[]{"id"}, " id < ? ", new String[]{"100"}, null, null, null);
             while (cursor.moveToNext()) {
@@ -91,7 +91,7 @@ public class DataBaseActivity extends BaseActivity {
                 showText.setText(showText.getText() + " \n column_id=" + a);
             }
         } else if (id == R.id.button_room_insert) {
-            Logs.d(TAG, "room insert ");
+            Logger.d(TAG, "room insert ");
             workExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -101,7 +101,7 @@ public class DataBaseActivity extends BaseActivity {
                 }
             });
         } else if (id == R.id.button_room_query) {
-            Logs.d(TAG, "room query ");
+            Logger.d(TAG, "room query ");
             workExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -114,7 +114,7 @@ public class DataBaseActivity extends BaseActivity {
                 }
             });
         } else if (id == R.id.button_clear) {
-            Logs.d(TAG, "clear text ");
+            Logger.d(TAG, "clear text ");
             showText.setText("");
         }
     }

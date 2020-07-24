@@ -9,8 +9,8 @@ public class ProcessUtils {
     private ProcessUtils(){
     }
 
-    public static boolean isServiceRunning(String serviceName) {
-        ActivityManager activityManager = (ActivityManager) AndApp.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+    public static boolean isServiceRunning(Context context, String serviceName) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> runningService = activityManager.getRunningServices(20);
         for (ActivityManager.RunningServiceInfo serviceInfo : runningService) {
             if (serviceInfo.service.getClassName().equals(serviceName)) {

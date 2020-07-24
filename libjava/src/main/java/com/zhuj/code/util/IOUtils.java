@@ -24,20 +24,50 @@ import java.util.List;
 
 public class IOUtils {
 
-    public static void closeQuietly(Closeable... closeables) {
+    public static void close(final Closeable... closeables) {
+        if (closeables == null) {
+            return;
+        }
         for (Closeable closeable : closeables) {
-            try {
-                closeable.close();
-            } catch (IOException ignored) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * 安静关闭 IO
+     *
+     * @param closeables closeables
+     */
+    public static void closeQuietly(final Closeable... closeables) {
+        if (closeables == null) {
+            return;
+        }
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (IOException ignored) {
+                }
             }
         }
     }
 
     public static void flushQuietly(Flushable... flushables) {
+        if (flushables == null) {
+            return;
+        }
         for (Flushable flushable : flushables) {
-            try {
-                flushable.flush();
-            } catch (IOException ignored) {
+            if (flushable != null) {
+                try {
+                    flushable.flush();
+                } catch (IOException ignored) {
+                }
             }
         }
     }

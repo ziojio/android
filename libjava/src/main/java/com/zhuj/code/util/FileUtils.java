@@ -1,16 +1,91 @@
 package com.zhuj.code.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
     private static final String TAG = "FileUtils";
 
+    private static final String LINE_SEP = System.getProperty("line.separator");
+
     private FileUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
+    }
+    /**
+     * 读取文件到字符串中
+     *
+     * @param file        文件
+     * @param charsetName 编码格式
+     * @return 字符串
+     */
+    public static String readFile2String(final File file, final String charsetName) {
+        if (!isFileExists(file)) {
+            return null;
+        }
+        BufferedReader reader = null;
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (isSpace(charsetName)) {
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            } else {
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
+            }
+            String line;
+            if ((line = reader.readLine()) != null) {
+                sb.append(line);
+                while ((line = reader.readLine()) != null) {
+                    sb.append(LINE_SEP).append(line);
+                }
+            }
+            return sb.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            IOUtils.close(reader);
+        }
+    }
+
+    /**
+     * 读取输入流到字符串中
+     *
+     * @param is 输入流
+     * @return 字符串
+     */
+    public static String readInputStream2String(InputStream is, final String charsetName) {
+        if (is == null) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = null;
+        try {
+            if (isSpace(charsetName)) {
+                reader = new BufferedReader(new InputStreamReader(is));
+            } else {
+                reader = new BufferedReader(new InputStreamReader(is, charsetName));
+            }
+            String line;
+            if ((line = reader.readLine()) != null) {
+                sb.append(line);
+                while ((line = reader.readLine()) != null) {
+                    sb.append(LINE_SEP).append(line);
+                }
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            IOUtils.close(reader);
+        }
     }
 
     /**
