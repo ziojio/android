@@ -82,12 +82,7 @@ public class HttpHeaders extends ListMap<String, String> implements Serializable
     private static String userAgent;
 
     public HttpHeaders() {
-        super(new TreeMap<String, List<String>>(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        }));
+        super(new TreeMap<>(String::compareTo));
     }
 
     @Override

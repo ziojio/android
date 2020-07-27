@@ -1,8 +1,8 @@
 package com.zhuj.android;
 
 // Declare any non-default types here with import statements
+import android.content.Intent;
 
 interface ICallBack {
-    void onProgress(int progress);
-    void onCompleted(String result);
+    void onResult(int flag, out Intent intent);
 }

@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.zhuj.android.logger.Logger;
 
 public class BaseService extends Service {
     private final String TAG = getClass().getSimpleName();
@@ -28,45 +29,45 @@ public class BaseService extends Service {
 
     @Override
     public void onCreate() {
-        Log.d(TAG, "onCreate: ");
+        Logger.d(TAG, "onCreate: ");
         super.onCreate();
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
-        Log.d(TAG, "onStart: ");
+        Logger.d(TAG, "onStart: ");
         super.onStart(intent, startId);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand: intent Action=" + intent.getAction());
+        Logger.d(TAG, "onStartCommand: intent Action=" + intent.getAction());
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy: ");
+        Logger.d(TAG, "onDestroy: ");
         super.onDestroy();
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "onBind: isAllowBind=" + isAllowBind());
+        Logger.d(TAG, "onBind: isAllowBind=" + isAllowBind());
         return isAllowBind() ? binder : null;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         boolean bool = super.onUnbind(intent);
-        Log.d(TAG, "onUnbind: return=" + bool);
+        Logger.d(TAG, "onUnbind: return=" + bool);
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent) {
-        Log.d(TAG, "onRebind: ");
+        Logger.d(TAG, "onRebind: ");
         super.onRebind(intent);
     }
 
@@ -74,14 +75,14 @@ public class BaseService extends Service {
     boolean isBind;
     Service myservice;
 
-    private void bindService() {
+    void bindService() {
         if (!isBind && myservice == null) {
             Intent intent = new Intent(this, BaseService.class);
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         }
     }
 
-    private void unbindService() {
+    void unbindService() {
         if (isBind) {
             unbindService(serviceConnection);
             myservice = null;
@@ -89,7 +90,7 @@ public class BaseService extends Service {
         }
     }
 
-    private ServiceConnection serviceConnection = new ServiceConnection() {
+    ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             myservice = ((BaseService.ServiceBinder) service).getService();

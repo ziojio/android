@@ -7,6 +7,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.zhuj.android.android.Androids;
 import com.zhuj.android.data.database.room.AndroidDatabase;
 
 public class App extends Application {
@@ -18,6 +19,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        Androids.initialize(this);
+        Androids.debug(true);
 
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  //是否选择显示线程信息，默认为true

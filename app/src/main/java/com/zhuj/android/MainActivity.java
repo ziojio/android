@@ -80,24 +80,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(mActivity, ViewActivity.class));
                 break;
             case R.id.button_button:
-                    ServiceConnection serviceConnection = new ServiceConnection() {
-                    @Override
-                    public void onServiceConnected(ComponentName name, IBinder service) {
-                        Service myservice = ((BaseService.ServiceBinder) service).getService();
-                    }
-
-                    /**
-                     * Android系统在与Service的连接意外丢失时调用这个
-                     * 当service崩溃了或被强杀了
-                     * 当客户端解除绑定时，这个方法不会被调用
-                     */
-                    @Override
-                    public void onServiceDisconnected(ComponentName name) {
-
-                    }
-                };
-                Intent intent = new Intent(this,  BaseService.class);
-                bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+                bindService();
                 // startActivity(new Intent(mActivity, TestFragmentActivity.class));
                 break;
             case R.id.button_do:
@@ -110,4 +93,45 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    // 拷贝到其他地方使用
+    boolean isBind;
+    Service myservice;
+    ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myservice = ((BaseService.ServiceBinder) service).getService();
+            isBind = true;
+        }
+
+        /**
+         * Android系统在与Service的连接意外丢失时调用这个
+         * 当service崩溃了或被强杀了
+         * 当客户端解除绑定时，这个方法不会被调用
+         */
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            myservice = null;
+        }
+    };
+
+    void bindService() {
+        if (!isBind && myservice == null) {
+            Intent intent = new Intent(this, BaseService.class);
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        }
+    }
+
+    void unbindService() {
+        if (isBind) {
+            unbindService(serviceConnection);
+            myservice = null;
+            isBind = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService();
+    }
 }

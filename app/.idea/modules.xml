@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1628506775/android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1628506775/android.iml" group="android" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/app.iml" filepath="$PROJECT_DIR$/.idea/app.iml" group="android/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1326668727/base.iml" filepath="$PROJECT_DIR$/.idea/modules/1326668727/base.iml" group="android/base" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1802339169/database.iml" filepath="$PROJECT_DIR$/.idea/modules/1802339169/database.iml" group="android/database" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1326865774/http.iml" filepath="$PROJECT_DIR$/.idea/modules/1326865774/http.iml" group="android/http" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/997669761/libjava.iml" filepath="$PROJECT_DIR$/.idea/modules/997669761/libjava.iml" group="android/libjava" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1628506775/Android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1628506775/Android.iml" group="Android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/app.iml" filepath="$PROJECT_DIR$/.idea/app.iml" group="Android/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1326668727/base.iml" filepath="$PROJECT_DIR$/.idea/modules/1326668727/base.iml" group="Android/base" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1802339169/database.iml" filepath="$PROJECT_DIR$/.idea/modules/1802339169/database.iml" group="Android/database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/997669761/libjava.iml" filepath="$PROJECT_DIR$/.idea/modules/997669761/libjava.iml" group="Android/libjava" />
     </modules>
   </component>
 </project>

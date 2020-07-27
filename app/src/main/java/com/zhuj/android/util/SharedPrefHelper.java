@@ -3,7 +3,7 @@ package com.zhuj.android.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SharePrefHelper {
+public class SharedPrefHelper {
     private static SharedPreferences sp;
 
     public static void init(Context context) {

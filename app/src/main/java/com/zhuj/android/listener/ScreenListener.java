@@ -53,8 +53,7 @@ public class ScreenListener {
      * 获取screen状态
      */
     private void getScreenState() {
-        PowerManager manager = (PowerManager) mContext
-                .getSystemService(Context.POWER_SERVICE);
+        PowerManager manager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         if (manager.isScreenOn()) {
             if (mScreenStateListener != null) {
                 mScreenStateListener.onScreenOn();
