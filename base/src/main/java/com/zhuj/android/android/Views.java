@@ -5,7 +5,53 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class Views {
-    private Views(){
+    private Views() {
+    }
+
+    /**
+     * 设置View及其子View是否响应点击事件
+     *
+     * @param view
+     * @param enable
+     */
+    public static void setViewClickable(View view, boolean enable) {
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = group.getChildAt(i);
+                if (v instanceof ViewGroup) {
+                    setViewClickable(v, enable);
+                } else {
+                    v.setClickable(enable);
+                }
+            }
+        } else {
+            view.setClickable(enable);
+        }
+    }
+
+    /**
+     * 设置View及其子View响应指定的监听器
+     *
+     * @param view
+     * @param clickListener
+     */
+    public static void setViewClickListener(View view, View.OnClickListener clickListener) {
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = group.getChildAt(i);
+                if (v instanceof ViewGroup) {
+                    setViewClickListener(v, clickListener);
+                } else {
+                    v.setOnClickListener(clickListener);
+                }
+            }
+        } else {
+            view.setOnClickListener(clickListener);
+        }
     }
 
     //(x,y)是否在view的区域内

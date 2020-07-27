@@ -8,9 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Strings {
-    public static final String[] EMPTY_STRING_ARRAY = new String[0];
     public static final String EMPTY_STRING = "";
-    public static final String LINE_SEPARATOR = File.pathSeparator;
+    public static final String[] EMPTY_STRING_ARRAY = new String[0];
+    public static final String FILE_SEPARATOR = File.separator;
+    public static final String LINE_SEPARATOR = System.lineSeparator();
 
     private Strings() {
     }
