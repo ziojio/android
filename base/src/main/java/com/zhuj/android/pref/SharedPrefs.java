@@ -1,4 +1,4 @@
-package com.zhuj.android.android;
+package com.zhuj.android.pref;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.zhuj.android.android;
+package com.zhuj.android.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

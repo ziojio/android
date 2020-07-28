@@ -1,4 +1,4 @@
-package com.zhuj.android.android;
+package com.zhuj.android.util;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,7 +22,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.zhuj.android.android.IntentUtils.DocumentType.ANY;
+import static com.zhuj.android.util.IntentUtils.DocumentType.ANY;
 
 /**
  * <pre>

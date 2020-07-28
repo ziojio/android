@@ -1,4 +1,4 @@
-package com.zhuj.android.android;
+package com.zhuj.android.util;
 
 import android.app.ActivityManager;
 import android.content.Context;

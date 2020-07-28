@@ -37,6 +37,8 @@ dependencies {
 //    implementation deps.androidx.viewpager
 //    implementation deps.androidx.multidex
 
+    implementation deps.eventbus
+
 //    implementation deps.lifecycle.runtime
 //    implementation deps.lifecycle.lifecycle_java8
     implementation deps.lifecycle.viewmodel
