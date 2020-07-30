@@ -1,4 +1,4 @@
-package com.zhuj.android.http.result;
+package com.zhuj.android.http.data.result;
 
 
 public class ObjectResult<T> extends Result {

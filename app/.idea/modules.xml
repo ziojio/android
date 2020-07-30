@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/app.iml" filepath="$PROJECT_DIR$/.idea/app.iml" group="Android/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1326668727/base.iml" filepath="$PROJECT_DIR$/.idea/modules/1326668727/base.iml" group="Android/base" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1802339169/database.iml" filepath="$PROJECT_DIR$/.idea/modules/1802339169/database.iml" group="Android/database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1326865774/http.iml" filepath="$PROJECT_DIR$/.idea/modules/1326865774/http.iml" group="Android/http" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/997669761/libjava.iml" filepath="$PROJECT_DIR$/.idea/modules/997669761/libjava.iml" group="Android/libjava" />
     </modules>
   </component>

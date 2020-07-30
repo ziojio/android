@@ -50,4 +50,7 @@ dependencies {
 //    implementation deps.gson
     implementation deps.agentweb
 
+    compileOnly deps.lombok
+    annotationProcessor deps.lombokProcessor
+
 }

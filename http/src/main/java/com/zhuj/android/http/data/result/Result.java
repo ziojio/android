@@ -1,10 +1,6 @@
-package com.zhuj.android.http.result;
+package com.zhuj.android.http.data.result;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.widget.Toast;
-
-import com.zhuj.android.http.R;
 
 public class Result {
     /**

@@ -4,17 +4,21 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.zhuj.android.http.result.Result;
+import com.zhuj.android.http.data.result.Result;
 
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
-import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+/**
+ * 默认是在主线程内处理回调
+ *
+ * @param <T>
+ */
 public abstract class AbstractCallback<T> implements Callback {
     protected String TAG = "HttpRequest";
     protected boolean isMainThread;
@@ -40,14 +44,17 @@ public abstract class AbstractCallback<T> implements Callback {
 
     public abstract void onError(Call call, Exception e);
 
+    abstract T parseResponse(Call call, String body);
+
+
     @Override
     public void onFailure(Call call, IOException e) {
-        Log.i( TAG, "服务器请求失败", e);
+        Log.i(TAG, "服务器请求失败", e);
         if (e instanceof ConnectException) {
-            Log.i( TAG, "ConnectException", e);
+            Log.i(TAG, "ConnectException", e);
         }
         if (e instanceof SocketTimeoutException) {
-            Log.i( TAG, "SocketTimeoutException", e);
+            Log.i(TAG, "SocketTimeoutException", e);
         }
         errorData(call, e);
     }
@@ -66,8 +73,6 @@ public abstract class AbstractCallback<T> implements Callback {
         }
     }
 
-    abstract T parseResponse(Call call, String body);
-
     protected void successData(final T t) {
         if (isMainThread) {
             mDelivery.post(() -> callOnResponse(t));
@@ -76,16 +81,6 @@ public abstract class AbstractCallback<T> implements Callback {
         }
     }
 
-    private void callOnResponse(T t) {
-        if (t instanceof Result) {
-            int resultCode = ((Result) t).getResultCode();
-            if (resultCode == Result.CODE_TOKEN_ERROR) {
-                MyApplication.getInstance().mUserStatus = LoginHelper.STATUS_USER_TOKEN_OVERDUE;
-                LoginHelper.broadcastLogout(MyApplication.getContext());
-            }
-        }
-        onResponse(t);
-    }
 
     protected void errorData(final Call call, final Exception e) {
         if (mainThreadCallback) {

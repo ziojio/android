@@ -34,6 +34,8 @@ ext.version = [
         okhttp3                    : "3.14.0",
         eventbus                   : "3.2.0",
         glide                      : "4.11.0",
+        lombok                     : "1.18.12",
+
         agentweb                   : "4.1.3",
         dagger                     : "2.16",
         qmui                       : "2.0.0-alpha10",
@@ -108,6 +110,11 @@ ext.deps = [
                 rxjava2  : "android.arch.persistence.room:rxjava2:$version.room",
                 testing  : "android.arch.persistence.room:testing:$version.room",
         ],
+
+
+        lombok            : "org.projectlombok:lombok:$version.lombok",
+        lombokProcessor   : "org.projectlombok:lombok:$version.lombok",
+
         okhttp            : "com.squareup.okhttp3:okhttp:$version.okhttp3",
         gson              : "com.google.code.gson:gson:$version.gson",
 

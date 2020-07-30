@@ -1,53 +1,38 @@
 package com.zhuj.android.http.data;
 
+import com.google.gson.annotations.SerializedName;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
- * 接口返回结果
- * 与接口返回的格式对应，即有：ret/data/msg
+ * {
+ * "ret": 200, // 状态码
+ * "data": {
+ * // 业务数据，推荐统一返回对象结构，保持类型一致性，且便于扩展和升级
+ * },
+ * "msg": ""   // 错误提示信息
+ * }
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
 public class ApiResponse {
+
+    //    @SerializedName(value = "ret", alternate = {"code", "retCode"})
     private int ret;
     private String data;
     private String msg;
 
-    /**
-     * @param ret  response code
-     * @param data json content
-     * @param msg  ...
-     */
-    public ApiResponse(int ret, String data, String msg) {
+    public ApiResponse(int ret, String data) {
         this.ret = ret;
         this.data = data;
-        this.msg = msg;
     }
-
-    public ApiResponse(int ret, String data) {
-        this(ret, data, "");
-    }
-
-    public ApiResponse(int ret) {
-        this(ret, "", "");
-    }
-
-    public int getRet() {
-        return this.ret;
-    }
-
-    public String getData() {
-        return this.data;
-    }
-
-    public String getMsg() {
-        return this.msg;
-    }
-
-    @Override
-    public String toString() {
-        return "ApiResponse {" +
-                "ret=" + ret +
-                ", data='" + data + '\'' +
-                ", msg='" + msg + '\'' +
-                '}';
-    }
-
 
 }

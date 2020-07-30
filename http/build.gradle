@@ -25,4 +25,7 @@ dependencies {
 
     implementation deps.okhttp
     implementation deps.gson
+
+    compileOnly deps.lombok
+    annotationProcessor deps.lombokProcessor
 }

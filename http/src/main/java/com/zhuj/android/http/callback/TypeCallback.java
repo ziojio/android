@@ -1,6 +1,7 @@
 package com.zhuj.android.http.callback;
 
 
+import com.zhuj.android.http.data.result.GsonUtils;
 
 import org.json.JSONObject;
 
@@ -23,6 +24,7 @@ public abstract class TypeCallback<T> extends AbstractCallback<T> {
 
     @Override
     T parseResponse(Call call, String body) {
-        return JSONObject.parseObject(body, type);
+
+         return GsonUtils.fromJson(body, type);
     }
 }
