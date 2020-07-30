@@ -2,124 +2,52 @@ package com.zhuj.android.logger;
 
 import android.util.Log;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-public class LogcatLogger implements ILogger {
 
-    /**
-     * logcat里日志的最大长度.
-     */
-    private static final int MAX_LOG_LENGTH = 4000;
+public class LogcatLogger extends ILogger {
+    private static final int MAX_LOG_LENGTH = 3096;
 
-    private static boolean isShowFileAndLineNumber = true;
-
-    private static int currentStackOffset = 3;
-
-    public static String getLogInMethodFileLine() {
-        StackTraceElement element = new Throwable().getStackTrace()[currentStackOffset];
-        // if (isShowFullClassMethod) {
-        //     msgm = element.getClassName() + "." + element.getMethodName();
-        // } else {
-        //     msgm = element.getMethodName();
-        // }
-        if (isShowFileAndLineNumber) {
-            return element.getMethodName() + "(" + element.getFileName() + ":" + element.getLineNumber() + "): ";
-        }
-        return "";
+    @Override
+    public boolean isLoggable(int priority, @Nullable String tag) {
+        return true;
     }
 
     /**
-     * 打印信息
-     *
-     * @param priority 优先级
-     * @param tag      标签
-     * @param message  信息
-     * @param t        出错信息
+     * Break up {@code message} into maximum-length chunks (if needed) and send to either
+     * {@link Log#println(int, String, String) Log.println()} or
+     * {@link Log#wtf(String, String) Log.wtf()} for logging.
+     * <p>
+     * {@inheritDoc}
      */
     @Override
-    public void log(int priority, String tag, String message, Throwable t) {
-        if (message != null && message.length() == 0) {
-            message = null;
-        }
-        if (message == null) {
-            if (t == null) {
-                return; // Swallow message if it's null and there's no throwable.
+    protected void log(int priority, String tag, @NonNull String message, Throwable t) {
+        Log.w(tag, "--------------------------------------------------------------------------------------------------------------");
+        if (message.length() < MAX_LOG_LENGTH) {
+            if (priority == Log.ASSERT) {
+                Log.wtf(tag, message);
+            } else {
+                Log.println(priority, tag, message);
             }
-            message = getStackTraceString(t);
-        } else {
-            if (t != null) {
-                message += "\n" + getStackTraceString(t);
-            }
+            return;
         }
 
-        log(priority, tag, getLogInMethodFileLine() + message);
-    }
-
-    private String getStackTraceString(Throwable tr) {
-        // Don't replace this with Log.getStackTraceString() - it hides
-        // UnknownHostException, which is not what we want.
-        StringWriter sw = new StringWriter(256);
-        PrintWriter pw = new PrintWriter(sw, false);
-        tr.printStackTrace(pw);
-        pw.flush();
-        return sw.toString();
-    }
-
-    /**
-     * 使用LogCat输出日志，字符长度超过4000则自动换行.
-     *
-     * @param priority 优先级
-     * @param tag      标签
-     * @param message  信息
-     */
-    public void log(int priority, String tag, String message) {
-        int subNum = message.length() / MAX_LOG_LENGTH;
-        if (subNum > 0) {
-            int index = 0;
-            for (int i = 0; i < subNum; i++) {
-                int lastIndex = index + MAX_LOG_LENGTH;
-                String sub = message.substring(index, lastIndex);
-                logSub(priority, tag, sub);
-                index = lastIndex;
-            }
-            logSub(priority, tag, message.substring(index));
-        } else {
-            logSub(priority, tag, message);
+        // Split by line, then ensure each line can fit into Log's maximum length.
+        for (int i = 0, length = message.length(); i < length; i++) {
+            int newline = message.indexOf('\n', i);
+            newline = newline != -1 ? newline : length;
+            do {
+                int end = Math.min(newline, i + MAX_LOG_LENGTH);
+                String part = message.substring(i, end);
+                if (priority == Log.ASSERT) {
+                    Log.wtf(tag, part);
+                } else {
+                    Log.println(priority, tag, part);
+                }
+                i = end;
+            } while (i < newline);
         }
+        Log.e(tag, "--------------------------------------------------------------------------------------------------------------");
     }
-
-    /**
-     * 使用LogCat输出日志.
-     *
-     * @param priority 优先级
-     * @param tag      标签
-     * @param sub      信息
-     */
-    private void logSub(int priority, String tag, String sub) {
-        switch (priority) {
-            case Log.VERBOSE:
-                Log.v(tag, sub);
-                break;
-            case Log.DEBUG:
-                Log.d(tag, sub);
-                break;
-            case Log.INFO:
-                Log.i(tag, sub);
-                break;
-            case Log.WARN:
-                Log.w(tag, sub);
-                break;
-            case Log.ERROR:
-                Log.e(tag, sub);
-                break;
-            case Log.ASSERT:
-                Log.wtf(tag, sub);
-                break;
-            default:
-                Log.v(tag, sub);
-                break;
-        }
-    }
-
 }

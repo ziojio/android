@@ -18,7 +18,7 @@ public class WorkExecutor implements Executor {
         private final AtomicInteger mCount = new AtomicInteger(1);
 
         public Thread newThread(@NonNull Runnable r) {
-            return new Thread(r, "Request #" + mCount.getAndIncrement());
+            return new Thread(r, "WorkExecutor Request Thread #" + mCount.getAndIncrement());
         }
     };
 
@@ -38,6 +38,9 @@ public class WorkExecutor implements Executor {
     @Override
     public void execute(@NonNull Runnable command) {
         mPoolExecutor.execute(command);
+        mPoolExecutor.submit(command);
     }
+
+
 
 }

@@ -1,8 +1,6 @@
 package com.zhuj.android.android;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,36 +9,22 @@ import android.widget.Toast;
 import androidx.annotation.LayoutRes;
 
 public class Toasts {
-
-    public static void show(Activity activity, String msg) {
-        activity.runOnUiThread(() -> Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show());
-    }
-
-    public static void showLong(Activity activity, String msg) {
-        activity.runOnUiThread(() -> Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show());
+    private Toasts() {
     }
 
     public static void show(Context context, String msg) {
-        runOnMainThread(context, msg);
+        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        } else {
+            Androids.runOnUiThread(() -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show());
+        }
     }
 
     public static void showLong(Context context, String msg) {
-        runOnMainThread(context, msg);
-    }
-
-
-    private static void runOnMainThread(final Context context, final String msg) {
-        // Thread.currentThread() == Looper.getMainLooper().getThread()
-        // "main".equals(Thread.currentThread().getName()
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
         } else {
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                }
-            });
+            Androids.runOnUiThread(() -> Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
         }
     }
 

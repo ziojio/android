@@ -34,12 +34,6 @@ public class BaseService extends Service {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
-        Logger.d(TAG, "onStart: ");
-        super.onStart(intent, startId);
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.d(TAG, "onStartCommand: intent Action=" + intent.getAction());
         return super.onStartCommand(intent, flags, startId);

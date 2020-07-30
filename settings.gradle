@@ -2,7 +2,7 @@ rootProject.name="Android"
 
 include ':app'
 
-include   ':database' , ':base'
+include   ':database' , ':base', 'http'
 
 include ':libjava'
 

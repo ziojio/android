@@ -72,6 +72,7 @@ public class IOUtils {
         }
     }
 
+
     public static BufferedInputStream toBufferedInputStream(InputStream inputStream) {
         return inputStream instanceof BufferedInputStream ? (BufferedInputStream) inputStream : new BufferedInputStream(inputStream);
     }

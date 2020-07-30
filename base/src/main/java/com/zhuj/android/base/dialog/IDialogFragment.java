@@ -1,5 +1,7 @@
 package com.zhuj.android.base.dialog;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,4 +64,46 @@ public abstract class IDialogFragment extends DialogFragment {
         show(fragmentActivity.getSupportFragmentManager(), TAG);
     }
 
+    /**
+     * This method will be called after {@link #onCreate(Bundle)} and before {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * DialogFragment own the {@link Dialog#setOnCancelListener } and {@link Dialog#setOnDismissListener} callbacks.
+     * You must not set them yourself. override {@link #onCancel(DialogInterface)} and {@link #onDismiss(DialogInterface)}.
+     */
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return super.onCreateDialog(savedInstanceState);
+    }
+    /**
+     * 设置外部回调方法，
+     * 覆写DialogFragment {@link DialogFragment#onCancel(DialogInterface)}
+     * and {@link DialogFragment#onDismiss(DialogInterface)}
+     */
+    protected DialogInterface.OnCancelListener onCancelListener;
+
+    protected DialogInterface.OnDismissListener onDismissListener;
+
+    public void setOnCancelListener(DialogInterface.OnCancelListener cancelListener) {
+        this.onCancelListener = cancelListener;
+    }
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener dismissListener) {
+        this.onDismissListener = dismissListener;
+    }
+
+    @Override
+    public void onCancel(@NonNull DialogInterface dialog) {
+        super.onCancel(dialog);
+        if (this.onCancelListener != null) {
+            onCancelListener.onCancel(dialog);
+        }
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (this.onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
+    }
 }

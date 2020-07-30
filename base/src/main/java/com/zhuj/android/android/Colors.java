@@ -1,10 +1,13 @@
 package com.zhuj.android.android;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+
+import com.zhuj.android.base.R;
 
 import java.util.Random;
 
@@ -15,12 +18,19 @@ public final class Colors {
     private static final int PRESSED_ATTR = android.R.attr.state_pressed;
     private static final int FOCUSED_ATTR = android.R.attr.state_focused;
 
+    public static int getColor(int colorId) {
+        return Androids.getContext().getColor(colorId);
+    }
+
+    public static int getColor(Context context, int colorId) {
+        return context.getColor(colorId);
+    }
+
     /**
      * 矫正颜色的透明度
      *
      * @param color
      * @param factor
-     * @return
      */
     @ColorInt
     public static int adjustAlpha(@ColorInt int color, float factor) {
@@ -36,7 +46,6 @@ public final class Colors {
      *
      * @param color
      * @param alpha 取值为[0,1]，0表示全透明，1表示不透明
-     * @return
      */
     public static int setColorAlpha(@ColorInt int color, float alpha) {
         return color & 0x00ffffff | (int) (alpha * 255) << 24;
@@ -93,7 +102,6 @@ public final class Colors {
      * 是否是深色的颜色
      *
      * @param color
-     * @return
      */
     public static boolean isColorDark(@ColorInt int color) {
         double darkness =
@@ -113,9 +121,16 @@ public final class Colors {
     public static ColorStateList getColorStateList(int pressedColor, int normalColor) {
         //其他状态默认为白色
         return new ColorStateList(
-                new int[][]{{android.R.attr.state_enabled,
-                        android.R.attr.state_pressed}, {android.R.attr.state_enabled}, {}},
-                new int[]{pressedColor, normalColor, Color.WHITE});
+                new int[][]{
+                        {android.R.attr.state_enabled, android.R.attr.state_pressed},
+                        {android.R.attr.state_enabled},
+                        {}
+                },
+                new int[]{
+                        pressedColor,
+                        normalColor,
+                        Color.WHITE
+                });
     }
 
     public static ColorStateList generateThumbColorWithTintColor(final int tintColor) {
@@ -173,7 +188,6 @@ public final class Colors {
      *
      * @param colorStateList
      * @param state          颜色状态
-     * @return
      */
     public static int getStateColor(@NonNull ColorStateList colorStateList, int state) {
         return colorStateList.getColorForState(new int[]{state}, -1);

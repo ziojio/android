@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.zhuj.android.logger.Logger;
+import com.zhuj.android.thread.WorkExecutor;
 
 import java.util.List;
 
@@ -71,8 +72,21 @@ public class Androids {
         return getMainHandler().post(runnable);
     }
 
-    public static boolean runOnManThread(Runnable run, long ms) {
+    public static boolean runOnUiThread(Runnable run, long ms) {
         return getMainHandler().postDelayed(run, ms);
+    }
+
+    private static WorkExecutor workExecutor;
+
+    public static WorkExecutor getWorkExecutor() {
+        if (workExecutor == null) {
+            workExecutor = new WorkExecutor();
+        }
+        return workExecutor;
+    }
+
+    public static void runOnWorkThread(Runnable runnable) {
+        getWorkExecutor().execute(runnable);
     }
 
     /**
@@ -117,7 +131,12 @@ public class Androids {
      * @param serviceName
      */
     public static <T> T getSystemService(String serviceName) {
-        return (T) getContext().getSystemService(serviceName);
+        Object obj = getContext().getSystemService(serviceName);
+        return (T) obj;
+    }
+
+    public static <T> T getSystemService(Class<T> clazz) {
+        return getContext().getSystemService(clazz);
     }
 
     public static <T> T getSystemService(String serviceName, Class<T> clazz) {

@@ -1,5 +1,7 @@
 package com.zhuj.android.util;
 
+import com.zhuj.code.util.IOUtils;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;

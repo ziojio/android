@@ -1,4 +1,4 @@
-package com.zhuj.code.util;
+package com.zhuj.android.http.result;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,7 +24,7 @@ public class GsonUtils {
                 .create();
     }
 
-    public static void setGson(Gson gson) {
+    public void setGson(Gson gson) {
         GsonUtils.gson = gson;
     }
 
@@ -44,7 +44,7 @@ public class GsonUtils {
      *
      * @param classOfT 泛型类
      */
-    public static <T> T fromJson(String json, Class<T> classOfT) {
+    public <T> T fromJson(String json, Class<T> classOfT) {
         try {
             return gson.fromJson(json, classOfT);
         } catch (JsonParseException e) {
@@ -53,7 +53,7 @@ public class GsonUtils {
         return null;
     }
 
-    public static JsonObject toJsonObject(String json) {
+    public JsonObject toJsonObject(String json) {
         try {
             JsonElement element = JsonParser.parseString(json);
             return element.getAsJsonObject();
@@ -63,7 +63,7 @@ public class GsonUtils {
         return null;
     }
 
-    public static JsonArray toJsonArray(String json) {
+    public JsonArray toJsonArray(String json) {
         try {
             JsonElement element = JsonParser.parseString(json);
             return element.getAsJsonArray();

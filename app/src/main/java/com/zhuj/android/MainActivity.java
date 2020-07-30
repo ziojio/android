@@ -10,15 +10,16 @@ import android.os.IBinder;
 import android.view.View;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.base.service.BaseService;
 import com.zhuj.android.data.database.sqlitehelper.AppDatabase;
+import com.zhuj.android.logger.Logger;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.thread.WorkExecutor;
-import com.zhuj.android.ui.activity.TestFragmentActivity;
 import com.zhuj.android.ui.activity.WebViewActivity;
 import com.zhuj.android.ui.activity.ViewActivity;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends BaseActivity {
 
@@ -80,7 +81,10 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(mActivity, ViewActivity.class));
                 break;
             case R.id.button_button:
-                bindService();
+                // bindService();
+                Logger.d("ssss");
+                Intent intent = new Intent(this, BaseService.class);
+                startService(intent);
                 // startActivity(new Intent(mActivity, TestFragmentActivity.class));
                 break;
             case R.id.button_do:
@@ -89,8 +93,42 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void doSomething() {
+    void doSomething() {
+        com.zhuj.android.logger.timber.Logger.plant(new com.zhuj.android.logger.timber.Logger.DebugTree());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                com.zhuj.android.logger.timber.Logger.tag("A TAG");
+                while (true) {
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    com.zhuj.android.logger.timber.Logger.d("------------ thread A -----------");
+                }
+            }
+        }).start();
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // com.zhuj.android.logger.timber.Logger.tag("B TAG");
+                int x = 3;
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(x <= 0){
+                        com.zhuj.android.logger.timber.Logger.tag("BBB");
+                    }
+                    x --;
+                    com.zhuj.android.logger.timber.Logger.d("------------ thread B -----------");
+                }
+            }
+        }).start();
     }
 
     // 拷贝到其他地方使用

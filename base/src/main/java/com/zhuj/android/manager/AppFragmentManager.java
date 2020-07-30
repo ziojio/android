@@ -1,4 +1,4 @@
-package com.zhuj.android.util;
+package com.zhuj.android.manager;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;

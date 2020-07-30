@@ -3,9 +3,30 @@ package com.zhuj.android.logger;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.Arrays;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+import static android.util.Log.ASSERT;
+import static android.util.Log.DEBUG;
+import static android.util.Log.ERROR;
+import static android.util.Log.INFO;
+import static android.util.Log.VERBOSE;
+import static android.util.Log.WARN;
 
 public final class Logger {
     /**
@@ -33,9 +54,23 @@ public final class Logger {
     /**
      * 默认的日志记录为Logcat
      */
-    private static ILogger sILogger = new LogcatLogger();
+    private static ILogger sILogger = new LogcatLogger() {
+        @Override
+        public boolean isLoggable(int priority, @Nullable String tag) {
+            if (!sIsDebug) {
+                Log.w(sTag, "Logger.isDebug is FALSE");
+                return false;
+            }
+            return priority >= sLogPriority;
+        }
+    };
 
-    private static String sTag = DEFAULT_LOG_TAG;
+    /**
+     * 全局标签，不指定TAG时使用
+     * 设置 NOT NULL, 显示设置的值
+     * 设置为 NULL, 显示所在的类名
+     */
+    private static String sTag = null;
     /**
      * 是否是调试模式
      */
@@ -61,8 +96,17 @@ public final class Logger {
      *
      * @param tag
      */
-    public static void setTag(String tag) {
+    public static void setGlobalTag(String tag) {
         sTag = tag;
+    }
+
+    /**
+     * 设置当前线程日志的tag, 只使用一次， 前提是全局标签为 NULL
+     *
+     * @param tag
+     */
+    public static void setLocalTag(String tag) {
+        sILogger.localTag.set(tag);
     }
 
     /**
@@ -102,32 +146,117 @@ public final class Logger {
 
     //=============打印方法===============//
 
-    public void json(String json) {
-        String msg = "json is NULL";
-        if (json != null) {
-            try {
-                msg = "\n" + new JSONObject(json).toString(4);
-            } catch (JSONException e) {
-                msg = "json parse ERROR msg=" + e.getMessage();
-            }
+    public static void json(String json) {
+        if (json == null || json.length() == 0) {
+            e("Empty/Null json content");
+            return;
         }
-        if (enableLog(Log.INFO)) {
-            sILogger.log(Log.INFO, sTag, msg, null);
+        try {
+            json = json.trim();
+            if (json.startsWith("{")) {
+                JSONObject jsonObject = new JSONObject(json);
+                String message = jsonObject.toString(2);
+                i(message);
+                return;
+            }
+            if (json.startsWith("[")) {
+                JSONArray jsonArray = new JSONArray(json);
+                String message = jsonArray.toString(2);
+                i(message);
+                return;
+            }
+            e("invalid json, must be start with { or [");
+        } catch (JSONException e) {
+            e("invalid json error: " + e.getMessage());
         }
     }
 
-    public void json(String tag, String json) {
-        String msg = "json is NULL";
-        if (json != null) {
-            try {
-                msg = "\n" + new JSONObject(json).toString(4);
-            } catch (JSONException e) {
-                msg = "json parse ERROR msg=" + e.getMessage();
-            }
+    public static void xml(String xml) {
+        if (xml == null || xml.length() == 0) {
+            e("Empty/Null xml content");
+            return;
         }
-        if (enableLog(Log.INFO)) {
-            sILogger.log(Log.INFO, tag, msg, null);
+        try {
+            Source xmlInput = new StreamSource(new StringReader(xml));
+            StreamResult xmlOutput = new StreamResult(new StringWriter());
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.transform(xmlInput, xmlOutput);
+            i(xmlOutput.getWriter().toString().replaceFirst(">", ">\n"));
+        } catch (TransformerException e) {
+            e("Invalid xml error: " + e.getMessage());
         }
+    }
+
+    public static String logLevel(int priority) {
+        switch (priority) {
+            case VERBOSE:
+                return "VERBOSE";
+            case DEBUG:
+                return "DEBUG";
+            case INFO:
+                return "INFO";
+            case WARN:
+                return "WARN";
+            case ERROR:
+                return "ERROR";
+            case ASSERT:
+                return "ASSERT";
+            default:
+                return "UNKNOWN";
+        }
+    }
+
+    public static void object(Object obj) {
+        if (obj == null) {
+            e("Object is NULL");
+            return;
+        }
+
+        String msg = toString(obj);
+        if (!msg.contains("Couldn't find")) {
+            i(msg);
+        } else {
+            e(msg);
+        }
+    }
+
+    public static String toString(Object object) {
+        if (object == null) {
+            return "null";
+        }
+        if (!object.getClass().isArray()) {
+            return object.toString();
+        }
+        if (object instanceof boolean[]) {
+            return Arrays.toString((boolean[]) object);
+        }
+        if (object instanceof byte[]) {
+            return Arrays.toString((byte[]) object);
+        }
+        if (object instanceof char[]) {
+            return Arrays.toString((char[]) object);
+        }
+        if (object instanceof short[]) {
+            return Arrays.toString((short[]) object);
+        }
+        if (object instanceof int[]) {
+            return Arrays.toString((int[]) object);
+        }
+        if (object instanceof long[]) {
+            return Arrays.toString((long[]) object);
+        }
+        if (object instanceof float[]) {
+            return Arrays.toString((float[]) object);
+        }
+        if (object instanceof double[]) {
+            return Arrays.toString((double[]) object);
+        }
+        if (object instanceof Object[]) {
+            return Arrays.deepToString((Object[]) object);
+        }
+        return "Couldn't find a correct type for the object";
     }
 
     /**
@@ -136,21 +265,11 @@ public final class Logger {
      * @param msg
      */
     public static void v(String msg) {
-        if (enableLog(Log.VERBOSE)) {
-            sILogger.log(Log.VERBOSE, sTag, msg, null);
-        }
+        sILogger.prepareLog(Log.VERBOSE, sTag, null, msg);
     }
 
-    /**
-     * 打印任何（所有）信息
-     *
-     * @param tag
-     * @param msg
-     */
     public static void v(String tag, String msg) {
-        if (enableLog(Log.VERBOSE)) {
-            sILogger.log(Log.VERBOSE, tag, msg, null);
-        }
+        sILogger.prepareLog(Log.VERBOSE, tag, null, msg);
     }
 
     /**
@@ -159,34 +278,19 @@ public final class Logger {
      * @param msg
      */
     public static void d(String msg) {
-        if (enableLog(Log.DEBUG)) {
-            sILogger.log(Log.DEBUG, sTag, msg, null);
-        }
+        sILogger.prepareLog(Log.DEBUG, sTag, null, msg);
     }
 
-    /**
-     * 打印调试信息
-     *
-     * @param tag
-     * @param msg
-     */
+    public static void d(String format, Object... args) {
+        sILogger.prepareLog(Log.DEBUG, sTag, null, format, args);
+    }
+
     public static void d(String tag, String msg) {
-        if (enableLog(Log.DEBUG)) {
-            sILogger.log(Log.DEBUG, tag, msg, null);
-        }
+        sILogger.prepareLog(Log.DEBUG, tag, null, msg);
     }
 
-    /**
-     * 打印调试信息
-     *
-     * @param tag
-     * @param format
-     * @param args
-     */
     public static void d(String tag, String format, Object... args) {
-        if (enableLog(Log.DEBUG)) {
-            sILogger.log(Log.DEBUG, tag, String.format(format, args), null);
-        }
+        sILogger.prepareLog(Log.DEBUG, tag, null, format, args);
     }
 
     /**
@@ -195,21 +299,11 @@ public final class Logger {
      * @param msg
      */
     public static void i(String msg) {
-        if (enableLog(Log.INFO)) {
-            sILogger.log(Log.INFO, sTag, msg, null);
-        }
+        sILogger.prepareLog(Log.INFO, sTag, null, msg);
     }
 
-    /**
-     * 打印提示性的信息
-     *
-     * @param tag
-     * @param msg
-     */
     public static void i(String tag, String msg) {
-        if (enableLog(Log.INFO)) {
-            sILogger.log(Log.INFO, tag, msg, null);
-        }
+        sILogger.prepareLog(Log.INFO, tag, null, msg);
     }
 
     /**
@@ -218,21 +312,11 @@ public final class Logger {
      * @param msg
      */
     public static void w(String msg) {
-        if (enableLog(Log.WARN)) {
-            sILogger.log(Log.WARN, sTag, msg, null);
-        }
+        sILogger.prepareLog(Log.WARN, sTag, null, msg);
     }
 
-    /**
-     * 打印warning警告信息
-     *
-     * @param tag
-     * @param msg
-     */
     public static void w(String tag, String msg) {
-        if (enableLog(Log.WARN)) {
-            sILogger.log(Log.WARN, tag, msg, null);
-        }
+        sILogger.prepareLog(Log.WARN, tag, null, msg);
     }
 
     /**
@@ -241,33 +325,19 @@ public final class Logger {
      * @param msg
      */
     public static void e(String msg) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, sTag, msg, null);
-        }
+        sILogger.prepareLog(Log.ERROR, sTag, null, msg);
     }
 
-    /**
-     * 打印出错信息
-     *
-     * @param tag
-     * @param msg
-     */
+    public static void e(String format, Object... args) {
+        sILogger.prepareLog(Log.ERROR, sTag, null, format, args);
+    }
+
     public static void e(String tag, String msg) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, tag, msg, null);
-        }
+        sILogger.prepareLog(Log.ERROR, tag, null, msg);
     }
 
-    /**
-     * 打印出错信息
-     *
-     * @param tag
-     * @param format
-     */
     public static void e(String tag, String format, Object... args) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, tag, String.format(format, args), null);
-        }
+        sILogger.prepareLog(Log.ERROR, tag, null, format, args);
     }
 
     /**
@@ -278,44 +348,19 @@ public final class Logger {
      * @param t
      */
     public static void e(String tag, String msg, Throwable t) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, tag, msg, t);
-        }
+        sILogger.prepareLog(Log.ERROR, tag, t, msg);
     }
 
-    /**
-     * 打印出错堆栈信息
-     *
-     * @param t
-     */
-    public static void error(Throwable t) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, sTag, null, t);
-        }
+    public static void e(Throwable t) {
+        sILogger.prepareLog(Log.ERROR, sTag, t, null);
     }
 
-    /**
-     * 打印出错堆栈信息
-     *
-     * @param tag
-     * @param t
-     */
-    public static void error(String tag, Throwable t) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, tag, null, t);
-        }
+    public static void e(String tag, Throwable t) {
+        sILogger.prepareLog(Log.ERROR, tag, t, null);
     }
 
-    /**
-     * 打印出错堆栈信息
-     *
-     * @param msg
-     * @param t
-     */
-    public static void error(Throwable t, String msg) {
-        if (enableLog(Log.ERROR)) {
-            sILogger.log(Log.ERROR, sTag, msg, t);
-        }
+    public static void e(Throwable t, String msg) {
+        sILogger.prepareLog(Log.ERROR, sTag, t, msg);
     }
 
     /**
@@ -324,36 +369,11 @@ public final class Logger {
      * @param msg
      */
     public static void wtf(String msg) {
-        if (enableLog(Log.ASSERT)) {
-            sILogger.log(Log.ASSERT, sTag, msg, null);
-        }
+        sILogger.prepareLog(Log.ASSERT, sTag, null, msg);
     }
 
-    /**
-     * 打印严重的错误信息
-     *
-     * @param tag
-     * @param msg
-     */
     public static void wtf(String tag, String msg) {
-        if (enableLog(Log.ASSERT)) {
-            sILogger.log(Log.ASSERT, tag, msg, null);
-        }
+        sILogger.prepareLog(Log.ASSERT, tag, null, msg);
     }
 
-    /**
-     * 能否打印
-     *
-     * @param logPriority
-     */
-    private static boolean enableLog(int logPriority) {
-        if (sILogger == null) {
-            Log.w(sTag, "Logger.ILogger is NULL");
-            return false;
-        } else if (!sIsDebug) {
-            Log.w(sTag, "Logger.isDebug is FALSE");
-            return false;
-        }
-        return logPriority >= sLogPriority;
-    }
 }

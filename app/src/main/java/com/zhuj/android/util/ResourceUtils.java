@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.Nullable;
 
 import com.zhuj.android.android.Resources;
+import com.zhuj.code.util.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
