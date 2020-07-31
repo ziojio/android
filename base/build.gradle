@@ -48,7 +48,7 @@ dependencies {
 //    implementation deps.okhttp
 //    implementation deps.glide
 //    implementation deps.gson
-    implementation deps.agentweb
+    implementation deps.webview.agentweb
 
     compileOnly deps.lombok
     annotationProcessor deps.lombokProcessor

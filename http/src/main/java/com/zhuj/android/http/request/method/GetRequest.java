@@ -1,5 +1,6 @@
 package com.zhuj.android.http.request.method;
 
+import com.zhuj.android.http.Httper;
 import com.zhuj.android.http.request.BaseRequest;
 
 import okhttp3.MediaType;
@@ -14,11 +15,10 @@ import okio.BufferedSource;
  */
 public class GetRequest extends BaseRequest<GetRequest> {
 
-    public GetRequest(String url) {
-        super(url);
+    public GetRequest(Httper httper) {
+        super(httper);
     }
 
-    @Override
     protected  ResponseBody  generateRequest() {
         return new ResponseBody() {
             @Override

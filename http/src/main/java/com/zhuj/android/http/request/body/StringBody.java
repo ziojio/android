@@ -1,8 +1,8 @@
 package com.zhuj.android.http.request.body;
 
 
-import com.zhuj.android.http.util.IOUtils;
 import com.zhuj.android.http.util.StringUtils;
+import com.zhuj.code.util.IOUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;

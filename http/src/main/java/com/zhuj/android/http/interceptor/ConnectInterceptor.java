@@ -1,8 +1,15 @@
 // package com.zhuj.android.http.interceptor;
 //
 //
+// import com.zhuj.android.http.RequestMethod;
+// import com.zhuj.android.http.request.Request;
+// import com.zhuj.android.http.request.body.RequestBody;
+// import com.zhuj.android.http.response.Response;
+// import com.zhuj.code.util.IOUtils;
+//
 // import java.io.IOException;
 // import java.io.OutputStream;
+// import java.net.ConnectException;
 // import java.net.MalformedURLException;
 // import java.net.SocketTimeoutException;
 // import java.net.URI;
@@ -11,6 +18,9 @@
 // import java.util.List;
 // import java.util.Map;
 // import java.util.concurrent.CancellationException;
+//
+// import okhttp3.Headers;
+// import okhttp3.ResponseBody;
 //
 // /**
 //  * Created by Zhenjie Yan on 2018/2/20.

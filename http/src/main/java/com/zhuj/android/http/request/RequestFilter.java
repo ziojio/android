@@ -1,4 +1,4 @@
-package com.zhuj.android.http.data;
+package com.zhuj.android.http.request;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.zhuj.android.http.data;
+package com.zhuj.android.http.response;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -26,9 +26,9 @@ import lombok.ToString;
 public class ApiResponse {
 
     //    @SerializedName(value = "ret", alternate = {"code", "retCode"})
-    private int ret;
-    private String data;
-    private String msg;
+    int ret;
+    String msg;
+    String data;
 
     public ApiResponse(int ret, String data) {
         this.ret = ret;

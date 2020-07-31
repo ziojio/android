@@ -1,11 +1,12 @@
 package com.zhuj.android.http.callback;
 
-import com.alibaba.fastjson.TypeReference;
-import com.xuan.xuanhttplibrary.okhttp.result.ArrayResult;
+import com.fasterxml.jackson.core.type.TypeReference;
 
-public abstract class ListCallback<T> extends TypeCallback<ArrayResult<T>> {
+import java.util.List;
 
-    public ListCallback(Class<T> mClazz) {
-        super(new TypeReference<ArrayResult<T>> (mClazz) {}.getType());
+public abstract class  TypeCallback<T> {
+
+    public TypeCallback() {
+
     }
 }

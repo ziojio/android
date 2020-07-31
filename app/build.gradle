@@ -52,9 +52,9 @@ dependencies {
 //    implementation deps.androidx.multidex
 
 //    implementation deps.glide
-    implementation deps.gson
+    implementation deps.google.gson
     implementation deps.logger
-    implementation deps.agentweb
+    implementation deps.webview.agentweb
 
     implementation project(path: ':base')
     implementation project(path: ':database')

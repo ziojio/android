@@ -10,6 +10,8 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import java.lang.reflect.Type;
+
 public class GsonUtils {
     private static Gson gson;
 
@@ -47,6 +49,15 @@ public class GsonUtils {
     public static <T> T fromJson(String json, Class<T> classOfT) {
         try {
             return gson.fromJson(json, classOfT);
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T fromJson(String json, Type type) {
+        try {
+            return gson.fromJson(json, type);
         } catch (JsonParseException e) {
             e.printStackTrace();
         }

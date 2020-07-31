@@ -5,8 +5,11 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.zhuj.android.http.response.ApiResponse;
+import com.zhuj.android.http.response.ApiResponseParser;
+import com.zhuj.android.http.response.ResponseParser;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
@@ -17,13 +20,15 @@ import okhttp3.Response;
 /**
  * 默认是在主线程内处理回调
  */
-public abstract class AbstractCallback<S, F> implements Callback {
-    protected String TAG = "HttpRequest";
+public abstract class AbstractApiCallback implements Callback {
+    procted String TAG = "AbstractApiCallback";
+
+    private ResponseParser apiResponseParser = new ApiResponseParser();
+
     protected boolean isMainThread;
     protected Handler mDelivery;
-    // private ResponseParser<F> apiResponseParser = new ApiResponseParser();
 
-    public AbstractCallback() {
+    public AbstractApiCallback() {
         this(true);
     }
 
@@ -34,15 +39,16 @@ public abstract class AbstractCallback<S, F> implements Callback {
     /**
      * @param isMainThread true表示切到主线程再回调子类方法，
      */
-    public AbstractCallback(boolean isMainThread) {
+    public AbstractApiCallback(boolean isMainThread) {
         this.isMainThread = isMainThread;
-        mDelivery = new Handler(Looper.getMainLooper());
+        if (isMainThread) {
+            mDelivery = new Handler(Looper.getMainLooper());
+        }
     }
 
-    public abstract void onSuccess(S result);
+    public abstract void onSuccess(ApiResponse result);
 
-    public abstract void onError(F error);
-
+    public abstract void onError(Call call, Exception e);
 
     protected void successData(final ApiResponse apiResponse) {
         if (isMainThread) {
@@ -64,7 +70,7 @@ public abstract class AbstractCallback<S, F> implements Callback {
     public void onResponse(Call call, Response response) throws IOException {
         if (response.code() == 200) {
             try {
-                successData(apiResponseParser.parse(response));
+                successData((ApiResponse) apiResponseParser.parse(response));
             } catch (Exception e) {
                 errorData(call, new Exception("数据解析异常"));
             }

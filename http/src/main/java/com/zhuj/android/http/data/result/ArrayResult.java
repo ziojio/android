@@ -1,18 +1,24 @@
 package com.zhuj.android.http.data.result;
 
+import com.zhuj.android.http.response.ApiResponse;
+
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 可以直接使用ObjectResult<List<T>>，
  */
-public class ArrayResult<T> extends Result {
-    private List<T> data;
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Setter
+@Getter
+public class ArrayResult<S, F> {
+    List<S> array;
 
-    public List<T> getData() {
-        return data;
-    }
-
-    public void setData(List<T> data) {
-        this.data = data;
-    }
 }

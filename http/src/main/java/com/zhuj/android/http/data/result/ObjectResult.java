@@ -1,14 +1,19 @@
 package com.zhuj.android.http.data.result;
 
+import com.zhuj.android.http.response.ApiResponse;
 
-public class ObjectResult<T> extends Result {
-    private T data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-    public T getData() {
-        return data;
-    }
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Setter
+@Getter
+public class ObjectResult<T> extends ApiResponse {
+    T obj;
 
-    public void setData(T data) {
-        this.data = data;
-    }
 }
