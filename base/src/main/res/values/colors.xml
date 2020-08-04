@@ -22,4 +22,12 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#fafafa</color>
 
+    <!--   颜色 -->
+    <color name="main_ff222222">#FF222222</color>
+
+    <color name="gray_dark_ff222222">#FF222222</color>
+    <color name="gray_dark_dd222222">#dd222222</color>
+    <color name="gray_light_22222222">#22222222</color>
+    <color name="gray_light_ffdddddd">#FFdddddd</color>
+
 </resources>

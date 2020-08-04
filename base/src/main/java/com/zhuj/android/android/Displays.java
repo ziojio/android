@@ -11,18 +11,14 @@ public class Displays {
 
     public static DisplayMetrics getDisplayMetrics(Context context, boolean isReal) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        if (windowManager != null) {
-            DisplayMetrics outMetrics = new DisplayMetrics();
-            if (isReal) {
-                windowManager.getDefaultDisplay().getRealMetrics(outMetrics);
-            } else {
-                windowManager.getDefaultDisplay().getMetrics(outMetrics);
-            }
-            return outMetrics;
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        if (isReal) {
+            windowManager.getDefaultDisplay().getRealMetrics(outMetrics);
+        } else {
+            windowManager.getDefaultDisplay().getMetrics(outMetrics);
         }
-        return null;
+        return outMetrics;
     }
-
 
     public static void logDisplayMetrics(DisplayMetrics metrics) {
         // 可用显示大小的绝对宽度（以像素为单位）。
@@ -42,6 +38,7 @@ public class Displays {
                         ", density=" + density +
                         ", scaledDensity=" + scaledDensity);
     }
+
     public static float getDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
     }

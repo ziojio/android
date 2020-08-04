@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,11 @@ public class FileUtils {
     private FileUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
+
+    public static String readFile(String filePath){
+        return readFile2String(new File(filePath), StandardCharsets.UTF_8.name());
+    }
+
     /**
      * 读取文件到字符串中
      *

@@ -3,12 +3,12 @@
 
     <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="textAllCaps">false</item>
-<!--        <item name="android:windowAnimationStyle">@style/IMAnimationStyle</item>-->
+        <!--        <item name="android:windowAnimationStyle">@style/IMAnimationStyle</item>-->
         <!--<item name="actionBarStyle">@style/IMActionBar</item>-->
-<!--        <item name="android:actionBarStyle">@style/myActionBar</item> &lt;!&ndash;设置ActionBarStyle&ndash;&gt;-->
-<!--        <item name="homeAsUpIndicator">@mipmap/return_icon</item>-->
-<!--        <item name="actionBarItemBackground">@drawable/actionbar_menu_selector</item>-->
-<!--        <item name="android:listViewStyle">@style/IMListView</item>-->
+        <!--        <item name="android:actionBarStyle">@style/myActionBar</item> &lt;!&ndash;设置ActionBarStyle&ndash;&gt;-->
+        <!--        <item name="homeAsUpIndicator">@mipmap/return_icon</item>-->
+        <!--        <item name="actionBarItemBackground">@drawable/actionbar_menu_selector</item>-->
+        <!--        <item name="android:listViewStyle">@style/IMListView</item>-->
     </style>
 
     <style name="BaseMaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -18,12 +18,25 @@
     <style name="divider_weight_1">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
+        <item name="android:visibility">invisible</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="divider_weight_2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_weight">2</item>
     </style>
 
     <style name="divider_line_1px">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
+        <item name="android:color">@android:color/darker_gray</item>
+    </style>
+    <style name="divider_line_1dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
         <item name="android:color">@android:color/darker_gray</item>
     </style>
 

@@ -32,4 +32,11 @@ public class Lang {
         return new ArrayList<>(Arrays.asList(e));
     }
 
+    public static int sumInt(int[] ints) {
+        int num = 0;
+        for (int i : ints) {
+            num += i;
+        }
+        return num;
+    }
 }

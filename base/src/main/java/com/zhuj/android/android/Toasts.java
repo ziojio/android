@@ -13,18 +13,31 @@ public class Toasts {
     }
 
     public static void show(Context context, String msg) {
-        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-        } else {
-            Androids.runOnUiThread(() -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show());
-        }
+        show(context, msg, Toast.LENGTH_SHORT);
+    }
+
+    public static void show(String msg) {
+        show(Androids.getContext(), msg, Toast.LENGTH_SHORT);
     }
 
     public static void showLong(Context context, String msg) {
+        show(context, msg, Toast.LENGTH_LONG);
+    }
+
+    public static void showLong(String msg) {
+        show(Androids.getContext(), msg, Toast.LENGTH_LONG);
+    }
+
+    public static void show(Context context, String msg, int duration) {
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, msg, duration).show();
         } else {
-            Androids.runOnUiThread(() -> Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
+            Androids.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, msg, duration).show();
+                }
+            });
         }
     }
 
