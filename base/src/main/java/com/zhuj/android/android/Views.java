@@ -4,10 +4,27 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhuj.android.logger.Logger;
+
 public class Views {
     private Views() {
     }
 
+    public static void logMeasureSpec(int measureSpec) {
+        int mode = View.MeasureSpec.getMode(measureSpec);
+        int size = View.MeasureSpec.getSize(measureSpec);
+        switch (mode) {
+            case View.MeasureSpec.UNSPECIFIED:
+                Logger.d("Mode: UNSPECIFIED" + "  size: " + size + "px");
+                break;
+            case View.MeasureSpec.AT_MOST:
+                Logger.d("Mode: AT_MOST" + "  size: " + size + "px");
+                break;
+            case View.MeasureSpec.EXACTLY:
+                Logger.d("Mode: EXACTLY" + "  size: " + size + "px");
+                break;
+        }
+    }
     /**
      * 设置View及其子View是否响应点击事件
      *

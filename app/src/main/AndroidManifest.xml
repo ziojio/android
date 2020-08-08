@@ -21,35 +21,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.TestFragmentActivity"></activity>
+
+        <activity android:name=".ui.activity.TestFragmentActivity" />
         <activity android:name=".ui.activity.TestActivity" />
-        <activity android:name=".MainActivity">
-
-            <!--
-            <intent-filter>设置
-            (1) 如果<intent-filter>中没有包含任何Action类型，那么无论什么Intent请求都无法和这条<intent-filter>匹配。
-            (2) 反之，如果Intent请求中没有设定Action类型，那么只要<intent-filter>中包含有Action类型，
-            这个Intent请求就将顺利地通过<intent-filter>的行为测试。
-
-            只有当Intent请求中所有的Category与组件中某一个IntentFilter的<category>完全匹配时，才会让该 Intent请求通过测试
-            ，IntentFilter中多余的<category>声明并不会导致匹配失败。一个没有指定任何类别测试的 IntentFilter仅仅只会匹配没
-            有设置类别的Intent请求。
-            只通过category匹配是无法匹配到AActivity的。因为category属性是一个执行Action的附加信息。
-
-            data 由两部分组成：mineType 和 URI
-            mineType： 指媒体类型 例如: image/jpeg vided/* ...
-            URl 可配置更多信息，类似于url。
-            我们可以看下URI的结构：<scheme>://<host>:<port>/[<path>|<pathPrefix>|<pathPattern>]
-            content://com.axe.mg:100/fold/subfolder/etc
-            http://www.axe.com:500/profile/info
-            URL的属性：
-            Scheme：URI的模式。如果URI中没有指定Scheme.那么整个URI无效。默认值为content 和 file。
-            Host：URI的host。比如www.axe.com。如果指定了scheme和port，path等其他参数，但是host未指定，那么整个URI无效；如果只指定了scheme，没有指定host和其他参数，URI是有效的。可以这样理解：一个完整的URI ：http://www.axe.com:500/profile/info 我将后面的prot 和path“:500/profile/info ”去掉，这个URI任然有效。如果我单独将www.axe.com 那这个URI就无效了。
-            Port：URI端口，当URI指定了scheme 和 host 参数时port参数才有意义。
-            path：用来匹配完整的路径，如：http://example.com/blog/abc.html，这里将 path 设置为 /blog/abc.html 才能够进行匹配；
-            pathPrefix： 用来匹配路径的开头部分，拿上面的 Uri 来说，这里将 pathPrefix 设置为 /blog 就能进行匹配了；
-            pathPattern： 用表达式来匹配整个路径。
-            -->
+        <activity android:name=".MainActivity" android:theme="@style/BaseMaterialTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

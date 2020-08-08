@@ -1,4 +1,14 @@
 <resources>
+    <declare-styleable name="ImageTextView">
+        <attr name="drawableWidth" format="dimension" />
+        <attr name="drawableHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="FlowLayout">
+        <!-- Horizontal spacing between two items being laid out. -->
+        <attr name="itemSpacing" format="dimension" />
+        <!-- Vertical Spacing between two lines of items being laid out. -->
+        <attr name="lineSpacing" format="dimension" />
+    </declare-styleable>
 
     <declare-styleable name="BorderCircleView">
         <attr name="circleColor" format="color" />
@@ -9,7 +19,6 @@
         <attr name="borderWidth" format="dimension" />
         <attr name="showCircle" format="boolean" />
         <attr name="showBorder" format="boolean" />
-
     </declare-styleable>
 
     <declare-styleable name="CircleImageView">

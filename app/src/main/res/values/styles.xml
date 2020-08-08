@@ -23,4 +23,16 @@
     </style>
 
 
+    <!-- Base application theme. -->
+    <style name="App_QMUI_Theme" parent="QMUI.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="qmui_round_btn_border_width">0dp</item>
+
+    </style>
+
 </resources>

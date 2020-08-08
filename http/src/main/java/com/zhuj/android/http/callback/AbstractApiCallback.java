@@ -21,7 +21,7 @@ import okhttp3.Response;
  * 默认是在主线程内处理回调
  */
 public abstract class AbstractApiCallback implements Callback {
-    procted String TAG = "AbstractApiCallback";
+    protected String TAG = "AbstractApiCallback";
 
     private ResponseParser apiResponseParser = new ApiResponseParser();
 
