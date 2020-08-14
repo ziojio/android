@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-
+    implementation deps.qmui
     implementation deps.material
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraintlayout

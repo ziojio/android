@@ -3,6 +3,7 @@ package com.zhuj.android.android;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.WindowManager;
 
 public class Displays {
@@ -38,25 +39,25 @@ public class Displays {
                         ", density=" + density +
                         ", scaledDensity=" + scaledDensity);
     }
+    public static int getScreenWidth(Context context) {
+        return getDisplayMetrics(context, false).widthPixels;
+    }
+
+    public static int getScreenHeight(Context context) {
+        return getDisplayMetrics(context, false).heightPixels;
+    }
+
+
+    public static DisplayMetrics getDisplayMetrics(Context context) {
+        return context.getResources().getDisplayMetrics();
+    }
 
     public static float getDensity(Context context) {
-        return context.getResources().getDisplayMetrics().density;
+        return getDisplayMetrics(context).density;
     }
 
     public static float getScaledDensity(Context context) {
-        return context.getResources().getDisplayMetrics().scaledDensity;
-    }
-
-    public static int getScreenWidthPx(Context context) {
-        return context.getResources().getDisplayMetrics().widthPixels;
-    }
-
-    public static int getScreenHeightPx(Context context) {
-        return context.getResources().getDisplayMetrics().heightPixels;
-    }
-
-    public static int dpToPx(Context context, float dpValue) {
-        return (int) (dpValue * getDensity(context) + 0.5f);
+        return getDisplayMetrics(context).scaledDensity;
     }
 
     public static int pxToDp(Context context, float pxValue) {
@@ -67,7 +68,12 @@ public class Displays {
         return (int) (pxValue / getScaledDensity(context) + 0.5f);
     }
 
-    public static int spToPx(Context context, float spValue) {
-        return (int) (spValue * getScaledDensity(context) + 0.5f);
+    public static int dpToPx(Context context, float dpValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getDisplayMetrics(context));
     }
+
+    public static int spToPx(Context context, float spValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getDisplayMetrics(context));
+    }
+
 }

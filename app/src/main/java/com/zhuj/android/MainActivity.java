@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.zhuj.android.base.activity.BaseActivity;
@@ -36,6 +37,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        Button button = findViewById( R.id.button_1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.setPressed(!button.isPressed());
+            }
+        });
 
     }
 
@@ -50,7 +58,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initActionBar() {
-        mActionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -78,7 +86,6 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.button_button:
                 // bindService();
-                Logger.d("ssss");
                 Intent intent = new Intent(this, BaseService.class);
                 startService(intent);
                 // startActivity(new Intent(mActivity, TestFragmentActivity.class));

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="zui_windowBackgroundColor" format="color" />
+    <attr name="zui_backgroundColor" format="color" />
+
+    <attr name="zui_borderWidth" format="dimension" />
+    <attr name="zui_borderColor" format="color" />
+
+    <attr name="zui_isAutoAdjustRoundSize" format="boolean" />
+    <attr name="zui_radius" format="dimension" />
+    <attr name="zui_radiusTopLeft" format="dimension" />
+    <attr name="zui_radiusTopRight" format="dimension" />
+    <attr name="zui_radiusBottomLeft" format="dimension" />
+    <attr name="zui_radiusBottomRight" format="dimension" />
+
+    <attr name="zui_drawableWidth" format="dimension" />
+    <attr name="zui_drawableHeight" format="dimension" />
+    <attr name="zui_drawablePaddingStart" format="dimension" />
+    <attr name="zui_drawablePaddingTop" format="dimension" />
+    <attr name="zui_drawablePaddingEnd" format="dimension" />
+    <attr name="zui_drawablePaddingBottom" format="dimension" />
+
+    <attr name="zui_alpha_disabled" format="float" />
+    <attr name="zui_alpha_pressed" format="float" />
+    <attr name="zui_alpha_mask" format="float" />
+    <attr name="zui_dialog_background_dim_amount" format="float" />
+</resources>

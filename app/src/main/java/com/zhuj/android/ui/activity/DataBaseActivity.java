@@ -34,7 +34,7 @@ public class DataBaseActivity extends BaseActivity {
 
     @Override
     protected int layoutId() {
-        return R.layout.activity_data_base;
+        return R.layout.activity_database;
     }
 
     @Override

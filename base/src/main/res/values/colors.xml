@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="transparent">@android:color/transparent</color>
-    <color name="white">@android:color/white</color>
-    <color name="black">@android:color/black</color>
-    <color name="background_dark">@android:color/background_dark</color>
-    <color name="background_light">@android:color/background_light</color>
-    <color name="darker_gray">@android:color/darker_gray</color>
 
     <color name="tab_indicator_text">@android:color/tab_indicator_text</color>
     <color name="primary_text_dark">@android:color/primary_text_dark</color>
@@ -21,8 +15,5 @@
     <color name="secondaryDarkColor">#009423</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#fafafa</color>
-
-    <!--   颜色 -->
-
 
 </resources>

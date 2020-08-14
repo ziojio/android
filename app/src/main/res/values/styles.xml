@@ -1,37 +1,30 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="BaseQMUITheme" parent="QMUI.Compat.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="textAllCaps">false</item>
-
-    </style>
-
-    <style name="AppTheme" parent="BaseAppTheme">
+    <style name="AppTheme" parent="ZUI">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#ff5252</item>
         <item name="colorSecondary">#00c652</item>
         <item name="colorAccent">#ff5252</item>
-
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#fafafa</item>
+        <item name="colorSecondaryVariant">#5efa81</item>
         <item name="android:colorPressedHighlight">#ff867f</item>
         <item name="android:colorPrimaryDark">#c50e29</item>
 
-        <item name="colorSecondaryVariant">#5efa81</item>
-
-        <item name="android:textColorPrimary">#000000</item>
-        <item name="android:textColorSecondary">#fafafa</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>   &lt;!&ndash; true: 窗口内容扩展到状态栏背景显示 &ndash;&gt;-->
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
-
     <!-- Base application theme. -->
-    <style name="App_QMUI_Theme" parent="QMUI.NoActionBar">
+    <style name="QMUITheme" parent="QMUI.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
         <item name="android:textColor">#333333</item>
-        <item name="android:textAllCaps">false</item>
         <item name="qmui_round_btn_border_width">0dp</item>
+        <item name="qmui_alpha_pressed">0.75</item>
+        <item name="qmui_alpha_disabled">0.5</item>
 
     </style>
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundButton">
+        <attr name="zui_drawableWidth" />
+        <attr name="zui_drawableHeight" />
+        <attr name="zui_drawablePaddingStart" />
+        <attr name="zui_drawablePaddingTop" />
+        <attr name="zui_drawablePaddingEnd" />
+        <attr name="zui_drawablePaddingBottom" />
+
+        <attr name="zui_backgroundColor" />
+        <attr name="zui_borderWidth" />
+        <attr name="zui_borderColor" />
+
+        <attr name="zui_isAutoAdjustRoundSize" />
+        <attr name="zui_radius" />
+        <attr name="zui_radiusTopLeft" />
+        <attr name="zui_radiusTopRight" />
+        <attr name="zui_radiusBottomLeft" />
+        <attr name="zui_radiusBottomRight" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TextView">
+        <attr name="zui_drawableWidth" />
+        <attr name="zui_drawableHeight" />
+        <attr name="zui_drawablePaddingStart" />
+        <attr name="zui_drawablePaddingTop" />
+        <attr name="zui_drawablePaddingEnd" />
+        <attr name="zui_drawablePaddingBottom" />
+    </declare-styleable>
+
+</resources>

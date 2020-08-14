@@ -11,10 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 public abstract class IActivity extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
     protected IActivity mActivity;
-    protected ActionBar mActionBar;
 
     /**
-     * @return 布局 id
+     * @return 布局 id 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
      */
     protected abstract int layoutId();
 
@@ -50,9 +49,11 @@ public abstract class IActivity extends AppCompatActivity {
         if (toolbarId() != 0) {
             Toolbar toolbar = findViewById(toolbarId());
             setSupportActionBar(toolbar);
-            mActionBar = getSupportActionBar();
         }
         initBehavior();
     }
 
+    public IActivity getActivity() {
+        return mActivity;
+    }
 }

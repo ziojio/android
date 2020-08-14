@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.android.Resources;
+import com.zhuj.android.android.ResUtils;
 import com.zhuj.code.util.IOUtils;
 
 import java.io.BufferedReader;
@@ -213,7 +213,7 @@ public final class ResourceUtils {
     public static Bitmap getImageFromAssets(Context context, String fileName) {
         InputStream is = null;
         try {
-            is = openAssetsFileWithException(context, Resources.DRAWABLE + "/" + fileName);
+            is = openAssetsFileWithException(context, ResUtils.DRAWABLE + "/" + fileName);
             return BitmapFactory.decodeStream(is);
         } catch (IOException e) {
             e.printStackTrace();

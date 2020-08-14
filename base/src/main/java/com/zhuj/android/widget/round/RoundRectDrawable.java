@@ -1,4 +1,4 @@
-package com.zhuj.android.widget;
+package com.zhuj.android.widget.round;
 
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -21,7 +21,7 @@ import androidx.annotation.RequiresApi;
  * reports proper outline for Lollipop.
  * <p>
  * Simpler and uses less resources compared to GradientDrawable or ShapeDrawable.
- *
+ * <p>
  * 从 CardView androidx.cardview.widget 拷贝
  */
 @RequiresApi(21)
@@ -43,6 +43,15 @@ public class RoundRectDrawable extends Drawable {
         mRadius = radius;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         setBackground(backgroundColor);
+
+        mBoundsF = new RectF();
+        mBoundsI = new Rect();
+    }
+
+
+    public RoundRectDrawable(float radius) {
+        mRadius = radius;
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 
         mBoundsF = new RectF();
         mBoundsI = new Rect();
@@ -95,32 +104,11 @@ public class RoundRectDrawable extends Drawable {
         mBoundsF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
         mBoundsI.set(bounds);
         if (mInsetForPadding) {
-            float vInset = calculateVerticalPadding(mPadding, mRadius, mInsetForRadius);
-            float hInset = calculateHorizontalPadding(mPadding, mRadius, mInsetForRadius);
+            float vInset = RoundRectDrawableWithShadow.calculateVerticalPadding(mPadding, mRadius, mInsetForRadius);
+            float hInset = RoundRectDrawableWithShadow.calculateHorizontalPadding(mPadding, mRadius, mInsetForRadius);
             mBoundsI.inset((int) Math.ceil(hInset), (int) Math.ceil(vInset));
             // to make sure they have same bounds.
             mBoundsF.set(mBoundsI);
-        }
-    }
-
-    // used to calculate content padding
-    private static final double COS_45 = Math.cos(Math.toRadians(45));
-
-    private static final float SHADOW_MULTIPLIER = 1.5f;
-
-    float calculateVerticalPadding(float maxShadowSize, float cornerRadius, boolean addPaddingForCorners) {
-        if (addPaddingForCorners) {
-            return (float) (maxShadowSize * SHADOW_MULTIPLIER + (1 - COS_45) * cornerRadius);
-        } else {
-            return maxShadowSize * SHADOW_MULTIPLIER;
-        }
-    }
-
-    float calculateHorizontalPadding(float maxShadowSize, float cornerRadius, boolean addPaddingForCorners) {
-        if (addPaddingForCorners) {
-            return (float) (maxShadowSize + (1 - COS_45) * cornerRadius);
-        } else {
-            return maxShadowSize;
         }
     }
 
@@ -218,3 +206,4 @@ public class RoundRectDrawable extends Drawable {
         return new PorterDuffColorFilter(color, tintMode);
     }
 }
+

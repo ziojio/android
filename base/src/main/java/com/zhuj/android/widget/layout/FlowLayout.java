@@ -1,4 +1,4 @@
-package com.zhuj.android.widget;
+package com.zhuj.android.widget.layout;
 
 import android.annotation.TargetApi;
 import android.content.Context;

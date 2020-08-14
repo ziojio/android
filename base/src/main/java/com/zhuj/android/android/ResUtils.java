@@ -9,8 +9,8 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 
-public class Resources {
-    private Resources() {
+public class ResUtils {
+    private ResUtils() {
     }
 
     public static final String POINT = ".";
