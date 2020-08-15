@@ -1,4 +1,4 @@
-package com.zhuj.android.view.badge;
+package com.zhuj.android.widget.badge;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;

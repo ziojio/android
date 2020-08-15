@@ -38,9 +38,6 @@ public class WorkExecutor implements Executor {
     @Override
     public void execute(@NonNull Runnable command) {
         mPoolExecutor.execute(command);
-        mPoolExecutor.submit(command);
     }
-
-
 
 }

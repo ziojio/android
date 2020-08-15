@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- style为单继承，parent方式优先级高于前缀继承，同时存在时，前缀的作用只作为名字 -->
+    <!-- style为单继承，parent方式优先级高于前缀继承，同时存在时，前缀的作用只作为名字，不继承前缀样式 -->
 
     <style name="RootTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
 
@@ -71,7 +71,7 @@
     <style name="ZUI.ButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
+        <!--<item name="android:gravity">center</item>-->
         <!--去掉5.0下Button点击的阴影动画效果-->
         <!--<item name="android:stateListAnimator">@null</item>-->
     </style>

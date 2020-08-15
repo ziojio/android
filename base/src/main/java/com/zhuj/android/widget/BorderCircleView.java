@@ -1,4 +1,4 @@
-package com.zhuj.android.view;
+package com.zhuj.android.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

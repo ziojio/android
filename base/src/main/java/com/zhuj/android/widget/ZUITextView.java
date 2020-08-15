@@ -11,36 +11,36 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.zhuj.android.base.R;
 
-public class TextView extends AppCompatTextView {
+public class ZUITextView extends AppCompatTextView {
 
-    public TextView(Context context) {
+    public ZUITextView(Context context) {
         this(context, null, 0);
     }
 
-    public TextView(Context context, AttributeSet attrs) {
+    public ZUITextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TextView(Context context, AttributeSet attrs, int defStyle) {
+    public ZUITextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         loadFromAttributes(context, attrs);
     }
 
     private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
         final TypedArray ta = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.TextView, 0, 0);
+                .obtainStyledAttributes(attrs, R.styleable.ZUITextView, 0, 0);
         setCompoundDrawablesFromAttributeSet(ta);
         ta.recycle();
     }
 
     private void setCompoundDrawablesFromAttributeSet(final TypedArray ta) {
-        int drawableWidth = ta.getDimensionPixelSize(R.styleable.TextView_zui_drawableWidth, 0);
-        int drawableHeight = ta.getDimensionPixelSize(R.styleable.TextView_zui_drawableHeight, 0);
+        int drawableWidth = ta.getDimensionPixelSize(R.styleable.ZUITextView_zui_drawableWidth, 0);
+        int drawableHeight = ta.getDimensionPixelSize(R.styleable.ZUITextView_zui_drawableHeight, 0);
 
-        int drawablePaddingStart = ta.getDimensionPixelSize(R.styleable.TextView_zui_drawablePaddingStart, 0);
-        int drawablePaddingTop = ta.getDimensionPixelSize(R.styleable.TextView_zui_drawablePaddingTop, 0);
-        int drawablePaddingEnd = ta.getDimensionPixelSize(R.styleable.TextView_zui_drawablePaddingEnd, 0);
-        int drawablePaddingBottom = ta.getDimensionPixelSize(R.styleable.TextView_zui_drawablePaddingBottom, 0);
+        int drawablePaddingStart = ta.getDimensionPixelSize(R.styleable.ZUITextView_zui_drawablePaddingStart, 0);
+        int drawablePaddingTop = ta.getDimensionPixelSize(R.styleable.ZUITextView_zui_drawablePaddingTop, 0);
+        int drawablePaddingEnd = ta.getDimensionPixelSize(R.styleable.ZUITextView_zui_drawablePaddingEnd, 0);
+        int drawablePaddingBottom = ta.getDimensionPixelSize(R.styleable.ZUITextView_zui_drawablePaddingBottom, 0);
 
         if (drawableWidth == 0 && drawableHeight == 0
                 && drawablePaddingStart == 0 && drawablePaddingEnd == 0

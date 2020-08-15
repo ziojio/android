@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="RoundButton">
+    <declare-styleable name="ZUIRoundButton">
         <attr name="zui_drawableWidth" />
         <attr name="zui_drawableHeight" />
         <attr name="zui_drawablePaddingStart" />
@@ -19,10 +19,9 @@
         <attr name="zui_radiusTopRight" />
         <attr name="zui_radiusBottomLeft" />
         <attr name="zui_radiusBottomRight" />
-
     </declare-styleable>
 
-    <declare-styleable name="TextView">
+    <declare-styleable name="ZUITextView">
         <attr name="zui_drawableWidth" />
         <attr name="zui_drawableHeight" />
         <attr name="zui_drawablePaddingStart" />

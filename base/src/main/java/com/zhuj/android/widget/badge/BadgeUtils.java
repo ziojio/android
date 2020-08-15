@@ -1,4 +1,4 @@
-package com.zhuj.android.view.badge;
+package com.zhuj.android.widget.badge;
 
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;

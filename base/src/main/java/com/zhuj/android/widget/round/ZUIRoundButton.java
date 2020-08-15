@@ -13,27 +13,27 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.zhuj.android.base.R;
 import com.zhuj.android.widget.helper.AlphaViewHelper;
 
-public class RoundButton extends AppCompatButton {
+public class ZUIRoundButton extends AppCompatButton {
     private static final int DEFAULT_RADIUS = 0;
 
     private AlphaViewHelper mAlphaViewHelper;
 
-    public RoundButton(@NonNull Context context) {
+    public ZUIRoundButton(@NonNull Context context) {
         this(context, null, 0);
     }
 
-    public RoundButton(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ZUIRoundButton(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RoundButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ZUIRoundButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         loadFromAttributes(context, attrs);
     }
 
     private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
         final TypedArray ta = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.RoundButton, 0, 0);
+                .obtainStyledAttributes(attrs, R.styleable.ZUIRoundButton, 0, 0);
         setBackgroundFromAttributeSet(ta);
         setCompoundDrawablesFromAttributeSet(ta);
         ta.recycle();
@@ -45,19 +45,19 @@ public class RoundButton extends AppCompatButton {
      * @param ta
      */
     private void setBackgroundFromAttributeSet(final TypedArray ta) {
-        ColorStateList bgColor = ta.getColorStateList(R.styleable.RoundButton_zui_backgroundColor);
+        ColorStateList bgColor = ta.getColorStateList(R.styleable.ZUIRoundButton_zui_backgroundColor);
         if (bgColor == null) {
             return;
         }
-        ColorStateList borderColor = ta.getColorStateList(R.styleable.RoundButton_zui_borderColor);
-        int borderWidth = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_borderWidth, 0);
+        ColorStateList borderColor = ta.getColorStateList(R.styleable.ZUIRoundButton_zui_borderColor);
+        int borderWidth = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_borderWidth, 0);
 
-        boolean isAutoAdjustRoundSize = ta.getBoolean(R.styleable.RoundButton_zui_isAutoAdjustRoundSize, false);
-        int radius = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_radius, DEFAULT_RADIUS);
-        int radiusTopLeft = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_radiusTopLeft, DEFAULT_RADIUS);
-        int radiusTopRight = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_radiusTopRight, DEFAULT_RADIUS);
-        int radiusBottomLeft = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_radiusBottomLeft, DEFAULT_RADIUS);
-        int radiusBottomRight = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_radiusBottomRight, DEFAULT_RADIUS);
+        boolean isAutoAdjustRoundSize = ta.getBoolean(R.styleable.ZUIRoundButton_zui_isAutoAdjustRoundSize, false);
+        int radius = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radius, DEFAULT_RADIUS);
+        int radiusTopLeft = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusTopLeft, DEFAULT_RADIUS);
+        int radiusTopRight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusTopRight, DEFAULT_RADIUS);
+        int radiusBottomLeft = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusBottomLeft, DEFAULT_RADIUS);
+        int radiusBottomRight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusBottomRight, DEFAULT_RADIUS);
 
         RoundRectResizeDrawable background = new RoundRectResizeDrawable();
 
@@ -85,13 +85,13 @@ public class RoundButton extends AppCompatButton {
     }
 
     private void setCompoundDrawablesFromAttributeSet(final TypedArray ta) {
-        int drawableWidth = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_drawableWidth, 0);
-        int drawableHeight = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_drawableHeight, 0);
+        int drawableWidth = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_drawableWidth, 0);
+        int drawableHeight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_drawableHeight, 0);
 
-        int drawablePaddingStart = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_drawablePaddingStart, 0);
-        int drawablePaddingTop = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_drawablePaddingTop, 0);
-        int drawablePaddingEnd = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_drawablePaddingEnd, 0);
-        int drawablePaddingBottom = ta.getDimensionPixelSize(R.styleable.RoundButton_zui_drawablePaddingBottom, 0);
+        int drawablePaddingStart = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_drawablePaddingStart, 0);
+        int drawablePaddingTop = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_drawablePaddingTop, 0);
+        int drawablePaddingEnd = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_drawablePaddingEnd, 0);
+        int drawablePaddingBottom = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_drawablePaddingBottom, 0);
 
         if (drawableWidth == 0 && drawableHeight == 0
                 && drawablePaddingStart == 0 && drawablePaddingEnd == 0
