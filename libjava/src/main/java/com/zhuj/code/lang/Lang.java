@@ -1,5 +1,7 @@
 package com.zhuj.code.lang;
 
+import com.google.common.base.Functions;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +11,7 @@ import java.util.Map;
 
 public class Lang {
     private Lang() {
+
     }
 
     public static boolean isEmpty(Object obj) {

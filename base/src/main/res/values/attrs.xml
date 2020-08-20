@@ -1,5 +1,18 @@
 <resources>
 
+    <declare-styleable name="ToolMenuView">
+        <attr name="leftDrawable" format="dimension" />
+        <attr name="leftDrawableWidth" format="dimension" />
+        <attr name="leftDrawableHeight" format="dimension" />
 
+        <attr name="rightDrawable" format="dimension" />
+        <attr name="rightDrawableWidth" format="dimension" />
+        <attr name="rightDrawableHeight" format="dimension" />
+
+        <attr name="showDivider" format="dimension" />
+        <attr name="lineColor" format="color" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="lineHeight" format="dimension" />
+    </declare-styleable>
 
 </resources>

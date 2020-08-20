@@ -10,17 +10,17 @@ public class ViewClickHelper {
     private ViewClickHelper() {
     }
 
-    protected void addClickListener(View.OnClickListener listener, View view) {
+    public void addClickListener(View.OnClickListener listener, View view) {
         view.setOnClickListener(listener);
     }
 
-    protected void addClickListener(View.OnClickListener listener, View... views) {
+    public void addClickListener(View.OnClickListener listener, View... views) {
         for (View view : views) {
             view.setOnClickListener(listener);
         }
     }
 
-    protected void addClickListener(View.OnClickListener listener, int... viewIds) {
+    public void addClickListener(View.OnClickListener listener, int... viewIds) {
         for (int id : viewIds) {
             if (listener instanceof Activity) {
                 ((Activity) listener).findViewById(id).setOnClickListener(listener);

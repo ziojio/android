@@ -16,4 +16,6 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#fafafa</color>
 
+    <color name="mp_toolbar_bg">#22000000</color>
+    <color name="mp_toolbar_bg_press">#55000000</color>
 </resources>
