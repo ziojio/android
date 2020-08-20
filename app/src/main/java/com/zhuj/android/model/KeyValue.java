@@ -1,5 +1,7 @@
 package com.zhuj.android.model;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class KeyValue<Key, Value> {
     protected Key key;
@@ -8,6 +10,7 @@ public class KeyValue<Key, Value> {
     public KeyValue(Key key, Value value) {
         this.key = key;
         this.value = value;
+        Map<String, Object> map = new HashMap<>();
     }
 
     public Key getKey() {

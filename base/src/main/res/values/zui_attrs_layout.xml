@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FlowLayout">
+        <!-- Horizontal spacing between two items being laid out. -->
+        <attr name="itemSpacing" format="dimension" />
+        <!-- Vertical Spacing between two lines of items being laid out. -->
+        <attr name="lineSpacing" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ZUIScrollView">
+        <!-- 原有最小高度，在增长到最大高度后，滑动 -->
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ZUIViewPager">
+        <!-- 原有最小高度，在增长到最大高度后，滑动 -->
+        <attr name="isScrollSwitch" format="boolean" />
+    </declare-styleable>
+
+
+</resources>

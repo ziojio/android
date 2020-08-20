@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:width="25dp" android:height="9dp" android:drawable="@drawable/ic_mp_menu" android:gravity="center">
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/mp_toolbar_bg_press" />
+                    <corners android:topLeftRadius="@dimen/mp_toolbar_height_half" android:bottomLeftRadius="@dimen/mp_toolbar_height_half" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/mp_toolbar_bg" />
+                    <corners android:topLeftRadius="@dimen/mp_toolbar_height_half" android:bottomLeftRadius="@dimen/mp_toolbar_height_half" />
+                </shape>
+            </item>
+            <item android:width="25dp" android:height="9dp" android:drawable="@drawable/ic_mp_menu" android:gravity="center">
+            </item>
+        </layer-list>
+    </item>
+</selector>

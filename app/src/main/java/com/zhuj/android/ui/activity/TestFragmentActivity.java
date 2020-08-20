@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.zhuj.android.permission.GrantResult;
+import com.zhuj.android.permission.easypermission.GrantResult;
 
 import java.util.HashMap;
 

@@ -1,6 +1,5 @@
 package com.zhuj.android.ui.activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -11,9 +10,8 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.zhuj.android.permission.EasyPermission;
-import com.zhuj.android.permission.GrantResult;
-import com.zhuj.android.permission.Permission;
+import com.zhuj.android.permission.easypermission.GrantResult;
+import com.zhuj.android.permission.easypermission.Permission;
 
 import java.util.ArrayList;
 import java.util.HashMap;

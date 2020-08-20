@@ -9,7 +9,7 @@ import android.view.WindowManager;
 public class Displays {
     private Displays() {
     }
-
+ 
     public static DisplayMetrics getDisplayMetrics(Context context, boolean isReal) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -20,7 +20,7 @@ public class Displays {
         }
         return outMetrics;
     }
-
+ 
     public static void logDisplayMetrics(Context context) {
         DisplayMetrics metrics = getDisplayMetrics(context, false);
         // 可用显示大小的绝对宽度（以像素为单位）。
@@ -33,24 +33,32 @@ public class Displays {
         float density = metrics.density;
         // 显示屏上显示的字体缩放系数。
         float scaledDensity = metrics.scaledDensity;
-        Log.d("Logs",
-                "widthPixels=" + widthPixels +
-                        ", heightPixels=" + heightPixels +
-                        ", densityDpi=" + densityDpi +
-                        ", density=" + density +
-                        ", scaledDensity=" + scaledDensity);
-    }
-    public static int getScreenWidth(Context context) {
-        return getDisplayMetrics(context, false).widthPixels;
+        Log.d("Displays", "widthPixels=" + widthPixels + ", heightPixels=" + heightPixels +
+                        ", densityDpi=" + densityDpi + ", density=" + density + ", scaledDensity=" + scaledDensity);
     }
 
-    public static int getScreenHeight(Context context) {
-        return getDisplayMetrics(context, false).heightPixels;
+    public static DisplayMetrics getDisplayMetrics(Context context, boolean isReal) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        assert windowManager != null;
+        if (isReal) {
+            windowManager.getDefaultDisplay().getRealMetrics(outMetrics);
+        } else {
+            windowManager.getDefaultDisplay().getMetrics(outMetrics);
+        }
+        return outMetrics;
     }
-
 
     public static DisplayMetrics getDisplayMetrics(Context context) {
         return context.getResources().getDisplayMetrics();
+    }
+
+    public static int getScreenWidth(Context context) {
+        return getDisplayMetrics(context).widthPixels;
+    }
+
+    public static int getScreenHeight(Context context) {
+        return getDisplayMetrics(context).heightPixels;
     }
 
     public static float getDensity(Context context) {
@@ -62,11 +70,11 @@ public class Displays {
     }
 
     public static int pxToDp(Context context, float pxValue) {
-        return (int) (pxValue / getDensity(context) + 0.5f);
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getDisplayMetrics(context));
     }
 
     public static int pxToSp(Context context, float pxValue) {
-        return (int) (pxValue / getScaledDensity(context) + 0.5f);
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getDisplayMetrics(context));
     }
 
     public static int dpToPx(Context context, float dpValue) {

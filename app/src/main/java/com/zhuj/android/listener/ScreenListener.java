@@ -20,11 +20,10 @@ public class ScreenListener {
      * screen状态广播接收者
      */
     private class ScreenBroadcastReceiver extends BroadcastReceiver {
-        private String action = null;
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            action = intent.getAction();
+            String action = intent.getAction();
             if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 // 开屏
                 mScreenStateListener.onScreenOn();

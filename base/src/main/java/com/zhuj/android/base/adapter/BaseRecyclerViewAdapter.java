@@ -3,31 +3,44 @@ package com.zhuj.android.base.adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-
-public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
-    private LayoutInflater mInflater;
+public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseViewHolder<T>> {
     protected List<T> dataList;
 
-    public BaseRecyclerViewAdapter(Context context) {
-        this.mInflater = LayoutInflater.from(context);
+    public BaseRecyclerViewAdapter() {
+        dataList = new ArrayList<>();
     }
 
-    public void notifyDataSetChanged(List<T> dataList) {
+    @Override
+    public int getItemCount() {
+        return dataList == null ? 0 : dataList.size();
+    }
+
+    public void update(List<T> dataList) {
         this.dataList = dataList;
         super.notifyDataSetChanged();
     }
 
+    public List<T> getDataList() {
+        return dataList;
+    }
+
     public void addItem(T t) {
+        if (t == null) {
+            return;
+        }
         if (dataList == null) {
             dataList = new ArrayList<>();
         }
@@ -36,7 +49,40 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         super.notifyItemInserted(idx);
     }
 
-    public static class ImageTextTextViewHolder extends RecyclerView.ViewHolder {
+    public void addAll(T[] t) {
+        if (t == null || t.length == 0) {
+            return;
+        }
+        if (dataList == null) {
+            dataList = new ArrayList<>();
+        }
+        int idx = dataList.size();
+        Collections.addAll(dataList, t);
+        super.notifyItemRangeInserted(idx, t.length);
+    }
+
+    public void addAll(List<T> t) {
+        if (t == null || t.size() == 0) {
+            return;
+        }
+        if (dataList == null) {
+            dataList = new ArrayList<>();
+        }
+        int idx = dataList.size();
+        this.dataList.addAll(t);
+        super.notifyItemRangeInserted(idx, t.size());
+    }
+
+    public static abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
+
+        public BaseViewHolder(@NonNull ViewGroup parent, int layoutId) {
+            super(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
+        }
+
+        public abstract void setItemData(T t);
+    }
+
+    public static class ImageTextTextViewHolder<T> extends BaseViewHolder<T> {
         public ImageView ivImage;
         public TextView tvTextMain;
         public TextView tvTextSub;
@@ -44,26 +90,23 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         /**
          * not use view, set viewId = View.NO_ID
          *
-         * @param itemView   custom view layout inflate view
+         * @param parent
          * @param imageId
          * @param textMainId
          * @param textSubId
          * @see View#NO_ID
          */
-        public ImageTextTextViewHolder(@NonNull View itemView, @IdRes int imageId, @IdRes int textMainId, @IdRes int textSubId) {
-            super(itemView);
+        public ImageTextTextViewHolder(@NonNull ViewGroup parent, @LayoutRes int layoutId, @IdRes int imageId, @IdRes int textMainId, @IdRes int textSubId) {
+            super(parent, layoutId);
             ivImage = itemView.findViewById(imageId);
             tvTextMain = itemView.findViewById(textMainId);
             tvTextSub = itemView.findViewById(textSubId);
         }
+
+        @Override
+        public void setItemData(T t) {
+
+        }
     }
 
-    public LayoutInflater getInflater() {
-        return mInflater;
-    }
-
-    @Override
-    public int getItemCount() {
-        return dataList == null ? 0 : dataList.size();
-    }
 }
