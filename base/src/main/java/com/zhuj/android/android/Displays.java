@@ -21,7 +21,8 @@ public class Displays {
         return outMetrics;
     }
 
-    public static void logDisplayMetrics(DisplayMetrics metrics) {
+    public static void logDisplayMetrics(Context context) {
+        DisplayMetrics metrics = getDisplayMetrics(context, false);
         // 可用显示大小的绝对宽度（以像素为单位）。
         int widthPixels = metrics.widthPixels;
         // 可用显示大小的绝对高度（以像素为单位）。

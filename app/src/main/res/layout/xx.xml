@@ -47,13 +47,11 @@
             android:padding="15dp"
             android:text="Hell9o" />
 
+
     </LinearLayout>
 
     <com.zhuj.android.widget.layout.FlowLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.google.android.material.circularreveal.CircularRevealGridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

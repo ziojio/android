@@ -3,6 +3,7 @@ package com.zhuj.android.widget.layout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.core.view.ViewCompat;
 
+import com.zhuj.android.android.Displays;
 import com.zhuj.android.base.R;
 import com.zhuj.android.logger.Logger;
 
@@ -72,6 +74,8 @@ public class GridLayout extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         Logger.d("int l=%s, int t=%s, int r=%s, int b=%s", l, t, r, b);
+        Displays.logDisplayMetrics(getContext());
+
         if (getChildCount() == 0) {
             // Do not re-layout when there are no children.
             return;
@@ -86,6 +90,7 @@ public class GridLayout extends ViewGroup {
          * 子View在右边最大能达到的位置
          */
         final int maxChildEnd = r - l - paddingEnd;
+        final int maxChildBottom = b - t - paddingBottom;
 
         /*
          * 每一个子View的位置
@@ -109,6 +114,8 @@ public class GridLayout extends ViewGroup {
                 LayoutParams marginLp = (LayoutParams) lp;
                 startMargin = MarginLayoutParamsCompat.getMarginStart(marginLp);
                 endMargin = MarginLayoutParamsCompat.getMarginEnd(marginLp);
+                topMargin = marginLp.topMargin;
+                bottomMargin = marginLp.bottomMargin;
 
                 Logger.d("width=%s, height=%s ", marginLp.width, marginLp.height);
                 Logger.d("topMargin=%s, bottomMargin=%s getMarginStart=%s, getMarginEnd=%s ",
@@ -117,11 +124,14 @@ public class GridLayout extends ViewGroup {
 
             childEnd = childStart + startMargin + child.getMeasuredWidth();
 
-            childBottom = childTop + child.getMeasuredHeight();
+            childBottom = childTop + topMargin + child.getMeasuredHeight();
 
             Logger.d("width=%s, height=%s ", lp.width, lp.height);
 
-            child.layout(childStart + startMargin, childTop, childEnd, childBottom);
+            child.layout(childStart + startMargin, childTop + topMargin, childEnd, childBottom);
+
+            childStart = childEnd + endMargin;
+
         }
     }
 

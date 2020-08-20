@@ -12,26 +12,31 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     flavorDimensions "mode"
     productFlavors {
         dev {
-            applicationIdSuffix ".dev"
             dimension "mode"
-            manifestPlaceholders = [PROJECT_NAME: "@string/app_name_dev", ]
+            applicationIdSuffix ".dev"
+            manifestPlaceholders = [PROJECT_NAME: "@string/app_name_dev",]
             buildConfigField 'String', 'API_URL', '"https://dev.android.com"'
-            buildConfigField 'String', 'APP_KEY', '"3824yk32"'
+            buildConfigField 'String', 'APP_KEY', '"123456"'
         }
         prod {
-            applicationIdSuffix ".prod"
             dimension "mode"
-            manifestPlaceholders = [PROJECT_NAME: "@string/app_name", ]
+            applicationIdSuffix ".prod"
+            manifestPlaceholders = [PROJECT_NAME: "@string/app_name",]
             buildConfigField 'String', 'API_URL', '"https://prod.android.com"'
-            buildConfigField 'String', 'APP_KEY', '"32143dsk2"'
+            buildConfigField 'String', 'APP_KEY', '"123456"'
         }
 
     }
