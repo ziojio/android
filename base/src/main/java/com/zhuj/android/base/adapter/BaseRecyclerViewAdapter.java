@@ -79,7 +79,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
             super(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
         }
 
-        public abstract void setItemData(T t);
+        public abstract void setData(T t);
     }
 
     public static class ImageTextTextViewHolder<T> extends BaseViewHolder<T> {
@@ -104,7 +104,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         }
 
         @Override
-        public void setItemData(T t) {
+        public void setData(T t) {
 
         }
     }
