@@ -48,9 +48,11 @@ dependencies {
 //    implementation deps.okhttp
     implementation deps.glide
     implementation deps.glideProcessor
-//    implementation deps.gson
-    implementation deps.webview.agentweb
+
     implementation project(path: ':libjava')
+//    implementation deps.gson
+
+    implementation deps.webview.agentweb
 
     compileOnly deps.lombok
     annotationProcessor deps.lombokProcessor
