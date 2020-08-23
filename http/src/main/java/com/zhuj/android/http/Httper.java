@@ -19,20 +19,20 @@ import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.Retrofit;
 
 public class Httper {
     private final String TAG = getClass().getSimpleName();
 
-    private Request.Builder requestBuilder = new Request.Builder();
 
     private static Httper instance = null;
     private static Application appContext;
     private static Context context;
 
-    public static final int DEFAULT_TIMEOUT_MILLISECONDS = 15000;     //默认的超时时间
-    public static final int DEFAULT_RETRY_COUNT = 0;                  //默认重试次数
-    public static final int DEFAULT_RETRY_INCREASE_DELAY = 0;         //默认重试叠加时间
-    public static final int DEFAULT_RETRY_DELAY = 500;                //默认重试延时
+    public static final int DEFAULT_TIMEOUT_MILLISECONDS = 15000;     // 默认的超时时间
+    public static final int DEFAULT_RETRY_COUNT = 0;                  // 默认重试次数
+    public static final int DEFAULT_RETRY_INCREASE_DELAY = 0;         // 默认重试叠加时间
+    public static final int DEFAULT_RETRY_DELAY = 500;                // 默认重试延时
     public static final int DEFAULT_CACHE_NEVER_EXPIRE = -1;
 
     public String getBaseUrl() {
@@ -44,14 +44,18 @@ public class Httper {
     }
 
     //======url地址=====//
-    private String mBaseUrl;                                          //全局BaseUrl
-    private String mSubUrl = "";                                      //全局SubUrl,介于BaseUrl和请求url之间
+    private String mBaseUrl;                                          // 全局BaseUrl
+    private String mSubUrl = "";                                      // 全局SubUrl,介于BaseUrl和请求url之间
 
     //======全局请求头、参数=====//
-    private HttpHeaders mCommonHeaders;                               //全局公共请求头
-    private HttpParams mCommonParams;                                 //全局公共请求参数
+    private HttpHeaders mCommonHeaders;                               // 全局公共请求头
+    private HttpParams mCommonParams;                                 // 全局公共请求参数
 
-    private OkHttpClient mOkHttpClient;                //okHttp请求的客户端
+    private Request.Builder requestBuilder = new Request.Builder();
+
+    private OkHttpClient mOkHttpClient;                               // okHttp请求的客户端
+
+    private ApiService apiService = new Retrofit.Builder().client(mOkHttpClient).build().create(ApiService.class);
 
     protected RequestFilter filter; // 默认请求处理
     protected ResponseParser parser; // 默认结果解析
@@ -196,7 +200,7 @@ public class Httper {
      */
     public Httper parser(ResponseParser parser) {
         if (parser == null) {
-            Exceptions.illegalArgument("parser is null");
+            Exceptions.throwIllegalArgument("parser is null");
         }
         this.parser = parser;
         return this;
@@ -208,7 +212,7 @@ public class Httper {
      */
     protected Httper filter(RequestFilter filter) {
         if (filter == null) {
-            Exceptions.illegalArgument("filter is null");
+            Exceptions.throwIllegalArgument("filter is null");
         }
         this.filter = filter;
         return this;

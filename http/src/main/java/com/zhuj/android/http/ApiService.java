@@ -1,7 +1,5 @@
 package com.zhuj.android.http;
 
-import android.database.Observable;
-
 import java.util.List;
 import java.util.Map;
 
