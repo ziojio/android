@@ -8,11 +8,11 @@
     <attr name="zui_borderColor" format="color" />
 
     <attr name="zui_isAutoAdjustRoundSize" format="boolean" />
-    <attr name="zui_radius" format="dimension" />
-    <attr name="zui_radiusTopLeft" format="dimension" />
-    <attr name="zui_radiusTopRight" format="dimension" />
-    <attr name="zui_radiusBottomLeft" format="dimension" />
-    <attr name="zui_radiusBottomRight" format="dimension" />
+    <attr name="zui_cornerRadius" format="dimension" />
+    <attr name="zui_cornerRadius_topLeft" format="dimension" />
+    <attr name="zui_cornerRadius_topRight" format="dimension" />
+    <attr name="zui_cornerRadius_bottomLeft" format="dimension" />
+    <attr name="zui_cornerRadius_bottomRight" format="dimension" />
 
     <attr name="zui_drawableWidth" format="dimension" />
     <attr name="zui_drawableHeight" format="dimension" />

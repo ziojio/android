@@ -1,4 +1,4 @@
-package com.zhuj.android.widget;
+package com.zhuj.android.widget.progress;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

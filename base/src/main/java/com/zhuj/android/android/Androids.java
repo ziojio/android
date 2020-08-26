@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 
 import com.zhuj.android.logger.Logger;
+import com.zhuj.android.thread.MainExecutor;
 import com.zhuj.android.thread.WorkExecutor;
 
 import java.util.List;
@@ -63,6 +65,15 @@ public class Androids {
         return MAIN_HANDLER;
     }
 
+    private static MainExecutor mainExecutor;
+
+    public static MainExecutor getMainExecutor() {
+        if (mainExecutor == null) {
+            mainExecutor = new MainExecutor();
+        }
+        return mainExecutor;
+    }
+
     /**
      * 在主线程中执行
      *
@@ -87,6 +98,15 @@ public class Androids {
 
     public static void runOnWorkThread(Runnable runnable) {
         getWorkExecutor().execute(runnable);
+    }
+
+    public static void runOnWorkThread(Runnable runnable, long ms) {
+        getMainHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runOnWorkThread(runnable);
+            }
+        }, ms);
     }
 
     /**

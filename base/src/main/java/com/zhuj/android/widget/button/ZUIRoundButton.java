@@ -1,4 +1,4 @@
-package com.zhuj.android.widget.round;
+package com.zhuj.android.widget.button;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.zhuj.android.base.R;
 import com.zhuj.android.widget.helper.AlphaViewHelper;
+import com.zhuj.android.widget.round.RoundRectResizeDrawable;
 
 public class ZUIRoundButton extends AppCompatButton {
     private static final int DEFAULT_RADIUS = 0;
@@ -53,11 +54,11 @@ public class ZUIRoundButton extends AppCompatButton {
         int borderWidth = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_borderWidth, 0);
 
         boolean isAutoAdjustRoundSize = ta.getBoolean(R.styleable.ZUIRoundButton_zui_isAutoAdjustRoundSize, false);
-        int radius = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radius, DEFAULT_RADIUS);
-        int radiusTopLeft = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusTopLeft, DEFAULT_RADIUS);
-        int radiusTopRight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusTopRight, DEFAULT_RADIUS);
-        int radiusBottomLeft = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusBottomLeft, DEFAULT_RADIUS);
-        int radiusBottomRight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_radiusBottomRight, DEFAULT_RADIUS);
+        int radius = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_cornerRadius, DEFAULT_RADIUS);
+        int radiusTopLeft = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_cornerRadius_topLeft, DEFAULT_RADIUS);
+        int radiusTopRight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_cornerRadius_topRight, DEFAULT_RADIUS);
+        int radiusBottomLeft = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_cornerRadius_bottomLeft, DEFAULT_RADIUS);
+        int radiusBottomRight = ta.getDimensionPixelSize(R.styleable.ZUIRoundButton_zui_cornerRadius_bottomRight, DEFAULT_RADIUS);
 
         RoundRectResizeDrawable background = new RoundRectResizeDrawable();
 
@@ -80,8 +81,8 @@ public class ZUIRoundButton extends AppCompatButton {
         }
         background.setAutoAdjustRoundSize(isAutoAdjustRoundSize);
         setBackground(background);
-        // int[] padding = new int[]{getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom()};
-        // setPadding(padding[0], padding[1], padding[2], padding[3]);
+        int[] padding = new int[]{getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom()};
+        setPadding(padding[0], padding[1], padding[2], padding[3]);
     }
 
     private void setCompoundDrawablesFromAttributeSet(final TypedArray ta) {
@@ -108,6 +109,7 @@ public class ZUIRoundButton extends AppCompatButton {
                 int y = drawablePaddingTop - drawablePaddingBottom;
                 drawable.setBounds(x, y, width + x, height + y);
                 isChanged = true;
+                break; //
             }
         }
         if (isChanged) {

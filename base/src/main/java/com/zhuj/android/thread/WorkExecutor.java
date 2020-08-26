@@ -48,7 +48,7 @@ public class WorkExecutor implements Executor {
      *
      * @param command 命令
      */
-    public void execute(final Runnable command) {
+    public void execute(Runnable command) {
         mPoolExecutor.execute(command);
     }
 
@@ -69,7 +69,7 @@ public class WorkExecutor implements Executor {
      * <p>启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
      * 如果已经关闭，则调用没有作用。</p>
      */
-    public void shutDown() {
+    public void shutdown() {
         mPoolExecutor.shutdown();
     }
 
@@ -80,7 +80,7 @@ public class WorkExecutor implements Executor {
      *
      * @return 等待执行的任务的列表
      */
-    public List<Runnable> shutDownNow() {
+    public List<Runnable> shutdownNow() {
         return mPoolExecutor.shutdownNow();
     }
 
@@ -89,7 +89,7 @@ public class WorkExecutor implements Executor {
      *
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    public boolean isShutDown() {
+    public boolean isShutdown() {
         return mPoolExecutor.isShutdown();
     }
 

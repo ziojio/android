@@ -1,4 +1,4 @@
-package com.zhuj.code.util;
+package com.zhuj.code.lang;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

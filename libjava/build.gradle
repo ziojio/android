@@ -1,9 +1,9 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation deps.squareup.okhttp
-    //noinspection GradleDependency
-//    implementation "com.squareup.okio:okio:1.17.5"
+//    implementation deps.squareup.okhttp
+
+    implementation "com.squareup.okio:okio:1.17.5"
 //    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
     implementation deps.google.gson

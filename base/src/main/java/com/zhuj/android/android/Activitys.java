@@ -6,12 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
-import com.zhuj.code.util.Strings;
-
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Activitys {
     private Activitys() {

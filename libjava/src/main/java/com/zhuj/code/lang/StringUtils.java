@@ -1,4 +1,4 @@
-package com.zhuj.code.util;
+package com.zhuj.code.lang;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -10,27 +10,17 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Strings {
+public class StringUtils {
     public static final String EMPTY_STRING = "";
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
     public static final String FILE_SEPARATOR = File.separator;
     public static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private Strings() {
+    private StringUtils() {
     }
 
     public static String format(String str, Object... args) {
         return String.format(Locale.CHINA, str, args);
-    }
-
-    /**
-     * 返回字符串长度
-     *
-     * @param s 字符串
-     * @return null 返回 0，其他返回自身长度
-     */
-    public static int length(CharSequence s) {
-        return s == null ? 0 : s.length();
     }
 
     public static String quote(String str) {
@@ -530,7 +520,7 @@ public class Strings {
      * @return 反转字符串
      */
     public static String reverse(final String s) {
-        int len = length(s);
+        int len =   s == null ? 0: s.length();
         if (len <= 1) return s;
         int mid = len >> 1;
         char[] chars = s.toCharArray();

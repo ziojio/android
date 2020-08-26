@@ -1,4 +1,4 @@
-package com.zhuj.code.util;
+package com.zhuj.code.lang;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

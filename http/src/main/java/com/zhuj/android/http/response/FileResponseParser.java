@@ -1,7 +1,6 @@
 package com.zhuj.android.http.response;
 
-import com.zhuj.android.http.response.ResponseParser;
-import com.zhuj.code.util.IOUtils;
+import com.zhuj.code.lang.IOUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

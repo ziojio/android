@@ -1,4 +1,6 @@
-package com.zhuj.code.util;
+package com.zhuj.code.lang;
+
+import com.zhuj.code.lang.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.File;

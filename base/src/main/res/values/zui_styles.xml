@@ -77,7 +77,7 @@
     </style>
 
     <style name="ZUI.ButtonStyle.Radius5">
-        <item name="zui_radius">5dp</item>
+        <item name="zui_cornerRadius">5dp</item>
         <item name="zui_backgroundColor">@color/zui_color_10_white</item>
     </style>
 

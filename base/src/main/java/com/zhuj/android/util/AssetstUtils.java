@@ -8,8 +8,8 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.Nullable;
 
 import com.zhuj.android.android.ResUtils;
-import com.zhuj.code.util.IOUtils;
-import com.zhuj.code.util.Strings;
+import com.zhuj.code.lang.IOUtils;
+import com.zhuj.code.lang.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -120,7 +120,7 @@ public final class AssetstUtils {
      * @return
      */
     public static String getFileFromAssets(Context context, String fileName, boolean isNeedAddLine) {
-        if (Strings.isEmpty(fileName)) {
+        if (StringUtils.isEmpty(fileName)) {
             return "";
         }
         return readInputStream(openAssetsFile(context, fileName), isNeedAddLine);

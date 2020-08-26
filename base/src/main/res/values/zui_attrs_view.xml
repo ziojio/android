@@ -14,11 +14,11 @@
         <attr name="zui_borderColor" />
 
         <attr name="zui_isAutoAdjustRoundSize" />
-        <attr name="zui_radius" />
-        <attr name="zui_radiusTopLeft" />
-        <attr name="zui_radiusTopRight" />
-        <attr name="zui_radiusBottomLeft" />
-        <attr name="zui_radiusBottomRight" />
+        <attr name="zui_cornerRadius" />
+        <attr name="zui_cornerRadius_topLeft" />
+        <attr name="zui_cornerRadius_topRight" />
+        <attr name="zui_cornerRadius_bottomLeft" />
+        <attr name="zui_cornerRadius_bottomRight" />
     </declare-styleable>
 
     <declare-styleable name="ZUITextView">

@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.zhuj.code.lang.Function1;
+import com.zhuj.code.lang.function.FunctionI;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class ActivityResultProxy {
         return this;
     }
 
-    public ActivityResultProxy onActivityResultOk(@Nullable final Function1<Intent> function) {
+    public ActivityResultProxy onActivityResultOk(@Nullable final FunctionI<Intent> function) {
         if (function != null) {
             this.resultListeners.add(new ActivityResultListener() {
                 @Override
@@ -80,7 +80,7 @@ public class ActivityResultProxy {
         return this;
     }
 
-    public ActivityResultProxy onActivityResultCancel(@Nullable final Function1<Intent> function) {
+    public ActivityResultProxy onActivityResultCancel(@Nullable final FunctionI<Intent> function) {
         if (function != null) {
             this.resultListeners.add(new ActivityResultListener() {
                 @Override
