@@ -3,7 +3,10 @@
 buildscript {
     apply from: "config.gradle"
 
-    addRepos(repositories)
+    repositories {
+        google()
+        jcenter()
+    }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.1'
@@ -14,20 +17,93 @@ buildscript {
 }
 
 allprojects {
-    addRepos(repositories)
-
     repositories {
-        google()
-        jcenter()
+        addRepos(repositories)
+    }
+
+        gradle.projectsEvaluated {
+        // tasks.withType(JavaCompile) {
+        //     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        // }
+
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+            options.addStringOption('encoding', 'UTF-8')
+        }
     }
 }
 
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
+rootProject.buildDir = rootDir.parent + "/" + project.name + ".build"
+
+def setProject = {
+    extension.with {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+        defaultConfig {
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+    println( it)
+    // dependencies {
+    //     // AndroidX
+    //     implementation "androidx.appcompat:appcompat:1.2.0"
+    //     // Test tools
+    //     testImplementation 'junit:junit:4.12'
+    //     androidTestImplementation 'androidx.test:runner:1.3.0'
+    //     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // }
+    loggerMarginStr(extension.properties)
+    loggerMarginStr(extension.properties.compileOptions.properties)
 }
+
+subprojects {
+    buildDir = rootProject.buildDir.path + "/" + project.name
+
+
+    def appPluginClass = com.android.build.gradle.AppPlugin
+    def libPluginClass = com.android.build.gradle.LibraryPlugin
+    def javaPluginClass = com.android.build.gradle.LibraryPlugin
+
+    plugins.withType(appPluginClass, setProject)
+    plugins.whenPluginAdded {
+        println it
+    }
+
+
+    plugins.withType(org.gradle.api.plugins.JavaLibraryPlugin) {
+        println it.
+
+        // extension.with {
+        //     sourceCompatibility JavaVersion.VERSION_1_8
+        //     targetCompatibility JavaVersion.VERSION_1_8
+        // }
+    }
+
+    afterEvaluate {
+        // if (plugins.hasPlugin(com.android.build.gradle.AppPlugin)) {
+        //     println("--------------------------      afterEvaluate start ---------------------------------------------")
+        //     loggerMarginStr(android.properties)
+        //     loggerMarginStr(android.properties.compileOptions.properties)
+        //     println("--------------------------      afterEvaluate  end  --------------------------------------------")
+        // }
+    }
+
+}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+
+def loggerMarginStr(value) {
+    println "---------------------------------------------------------------------------------------"
+    if (value instanceof Map || value instanceof List) {
+        value.forEach({ x, y -> println "[ " + x + " : " + y + " ]" })
+    } else {
+        println value
+    }
+    println "---------------------------------------------------------------------------------------"
+}

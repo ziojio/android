@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -46,7 +47,7 @@ public class WebViewActivity extends BaseActivity {
         String url = "http://www.baidu.com";
 
         mAgentWeb = AgentWeb.with(this)
-                .setAgentWebParent(findViewById(R.id.mLinearLayout), new LinearLayout.LayoutParams(-1, -1))
+                .setAgentWebParent((ViewGroup) findViewById(R.id.mLinearLayout), new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)

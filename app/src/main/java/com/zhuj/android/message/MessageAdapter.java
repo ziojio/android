@@ -1,6 +1,7 @@
 package com.zhuj.android.message;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,7 +34,7 @@ public class MessageAdapter<MESSAGE extends IMessage> extends BaseRecyclerViewAd
 
 
     public MessageAdapter(Context context) {
-        super(context);
+        super( );
     }
 
 
@@ -58,7 +59,7 @@ public class MessageAdapter<MESSAGE extends IMessage> extends BaseRecyclerViewAd
     @Override
     public  TextImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return new TextImageViewHolder(getInflater().inflate(10, parent, false), View.NO_ID, View.NO_ID);
+        return new TextImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(10, parent, false), View.NO_ID, View.NO_ID);
     }
 
     @Override

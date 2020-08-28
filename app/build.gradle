@@ -10,7 +10,10 @@ android {
         versionCode android_config.versionCode
         versionName android_config.versionName
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         debug {
             minifyEnabled false
@@ -41,10 +44,6 @@ android {
 
     }
 
-    compileOptions {
-        targetCompatibility = javaVersion
-        sourceCompatibility = javaVersion
-    }
 }
 
 dependencies {

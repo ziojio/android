@@ -16,7 +16,6 @@ import com.zhuj.android.message.listener.OnMessageClickListener;
 import com.zhuj.android.message.listener.OnMessageLongClickListener;
 import com.zhuj.android.message.listener.OnMessageStatusViewClickListener;
 
-
 /**
  * 初始化共有的一些布局
  */

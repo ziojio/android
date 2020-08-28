@@ -153,21 +153,20 @@ ext.deps.arouter = [
 ]
 
 
-
-static void addRepos(RepositoryHandler handler) {
-    handler.google()
-    handler.jcenter()
-    handler.mavenCentral()
-    handler.mavenLocal()
-    handler.maven { url "https://jitpack.io" }
-
+static addRepos(RepositoryHandler handler) {
     handler.maven { url 'https://maven.aliyun.com/repository/google' }
     handler.maven { url 'https://maven.aliyun.com/repository/jcenter' }
     handler.maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    handler.maven { url "https://jitpack.io" }
+    handler.mavenLocal()
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
     handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
     handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
 //    Add the Local repository
 //    maven { url rootProject.file('../libs/repository') }
 }
+
 ext.addRepos = this.&addRepos
 
