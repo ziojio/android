@@ -21,7 +21,7 @@ allprojects {
         addRepos(repositories)
     }
 
-        gradle.projectsEvaluated {
+    gradle.projectsEvaluated {
         // tasks.withType(JavaCompile) {
         //     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
         // }
@@ -35,61 +35,55 @@ allprojects {
 
 rootProject.buildDir = rootDir.parent + "/" + project.name + ".build"
 
-def setProject = {
-    extension.with {
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
-        defaultConfig {
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        }
-    }
-    println( it)
-    // dependencies {
-    //     // AndroidX
-    //     implementation "androidx.appcompat:appcompat:1.2.0"
-    //     // Test tools
-    //     testImplementation 'junit:junit:4.12'
-    //     androidTestImplementation 'androidx.test:runner:1.3.0'
-    //     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    // }
-    loggerMarginStr(extension.properties)
-    loggerMarginStr(extension.properties.compileOptions.properties)
-}
-
 subprojects {
     buildDir = rootProject.buildDir.path + "/" + project.name
 
-
-    def appPluginClass = com.android.build.gradle.AppPlugin
-    def libPluginClass = com.android.build.gradle.LibraryPlugin
-    def javaPluginClass = com.android.build.gradle.LibraryPlugin
-
-    plugins.withType(appPluginClass, setProject)
-    plugins.whenPluginAdded {
-        println it
+    pluginManager.withPlugin("java-library") {
+        println "------------------------------ withPlugin java-library start --------------------------"
+        println "------------------------------ withPlugin java-library  end  --------------------------"
     }
+    def androidPluginId = ["com.android.application", "com.android.library"]
+    for (String id : androidPluginId) {
+        // 在 module build.gradle 可以被覆写
+        pluginManager.withPlugin(id) {
+            println "------------------------------ withPlugin " + id + " start --------------------------"
+            android {
+                compileSdkVersion android_config.compileSdkVersion
+                buildToolsVersion android_config.buildToolsVersion
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+                defaultConfig {
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                }
+            }
 
-
-    plugins.withType(org.gradle.api.plugins.JavaLibraryPlugin) {
-        println it.
-
-        // extension.with {
-        //     sourceCompatibility JavaVersion.VERSION_1_8
-        //     targetCompatibility JavaVersion.VERSION_1_8
-        // }
+            dependencies {
+                // AndroidX
+                implementation "androidx.appcompat:appcompat:1.2.0"
+                // Test tools, 给所有 module 加上 test dependency
+                testImplementation 'junit:junit:4.12'
+                androidTestImplementation 'androidx.test:runner:1.3.0'
+                androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+            }
+            // loggerMarginStr( android.properties)
+            println "------------------------------ withPlugin " + id + "  end  --------------------------"
+        }
     }
 
     afterEvaluate {
-        // if (plugins.hasPlugin(com.android.build.gradle.AppPlugin)) {
-        //     println("--------------------------      afterEvaluate start ---------------------------------------------")
-        //     loggerMarginStr(android.properties)
-        //     loggerMarginStr(android.properties.compileOptions.properties)
-        //     println("--------------------------      afterEvaluate  end  --------------------------------------------")
-        // }
+        // module build.gradle 最后的结果可以在这里修改
+        if (plugins.hasPlugin(com.android.build.gradle.AppPlugin) || plugins.hasPlugin(com.android.build.gradle.LibraryPlugin)) {
+            println "------------------------------ afterEvaluate hasPlugin AppPlugin LibraryPlugin start --------------------------"
+            // loggerMarginStr(android.properties)
+            println "------------------------------ afterEvaluate hasPlugin AppPlugin LibraryPlugin  end   --------------------------"
+        }
+        if (plugins.hasPlugin(JavaLibraryPlugin)) {
+            println "------------------------------ afterEvaluate hasPlugin JavaLibraryPlugin start --------------------------"
+            println "------------------------------ afterEvaluate hasPlugin JavaLibraryPlugin  end  --------------------------"
+        }
     }
-
 }
 
 
@@ -97,10 +91,9 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-
 def loggerMarginStr(value) {
     println "---------------------------------------------------------------------------------------"
-    if (value instanceof Map || value instanceof List) {
+    if (value instanceof Map || value instanceof Collection) {
         value.forEach({ x, y -> println "[ " + x + " : " + y + " ]" })
     } else {
         println value
