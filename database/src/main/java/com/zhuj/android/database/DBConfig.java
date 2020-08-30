@@ -1,4 +1,4 @@
-package com.zhuj.android.data.database;
+package com.zhuj.android.database;
 
 public class DBConfig {
 

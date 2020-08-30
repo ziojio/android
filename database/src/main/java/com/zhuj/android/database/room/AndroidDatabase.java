@@ -1,4 +1,4 @@
-package com.zhuj.android.data.database.room;
+package com.zhuj.android.database.room;
 
 import android.content.Context;
 
@@ -6,9 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.zhuj.android.data.database.DBConfig;
-import com.zhuj.android.data.database.room.dao.UserDao;
-import com.zhuj.android.data.database.room.entity.User;
+import com.zhuj.android.database.DBConfig;
+import com.zhuj.android.database.room.dao.UserDao;
+import com.zhuj.android.database.room.entity.User;
 
 @Database(entities = {User.class}, version = DBConfig.ROOM_DB_VERSION, exportSchema = false)
 public abstract class AndroidDatabase extends RoomDatabase {

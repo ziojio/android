@@ -28,5 +28,5 @@ public interface Chain {
      *
      * @return {@link Call}.
      */
-    Call call();
+    // Call call();
 }

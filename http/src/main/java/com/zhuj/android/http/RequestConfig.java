@@ -59,7 +59,7 @@ public class RequestConfig {
      */
     public RequestConfig addCommonHeaders(HttpHeaders commonHeaders) {
         if (mCommonHeaders == null) mCommonHeaders = new HttpHeaders();
-        mCommonHeaders.put(commonHeaders);
+        mCommonHeaders.add(commonHeaders);
         return this;
     }
 

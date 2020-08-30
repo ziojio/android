@@ -2,18 +2,15 @@ package com.zhuj.android;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.zhuj.android.android.Activitys;
-import com.zhuj.android.android.Displays;
-import com.zhuj.android.logger.Logger;
 import com.zhuj.android.util.PackageUtils;
 import com.zhuj.android.android.Toasts;
 import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.base.service.BaseService;
-import com.zhuj.android.data.database.sqlitehelper.AppDatabase;
+import com.zhuj.android.database.sqlitehelper.AppDatabase;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.thread.WorkExecutor;
 import com.zhuj.android.ui.activity.WebViewActivity;

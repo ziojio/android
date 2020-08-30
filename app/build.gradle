@@ -1,12 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion android_config.compileSdkVersion
 
     defaultConfig {
         applicationId android_config.applicationId
-        minSdkVersion android_config.minSdkVersion
-        targetSdkVersion android_config.targetSdkVersion
+
         versionCode android_config.versionCode
         versionName android_config.versionName
     }
@@ -52,9 +50,12 @@ dependencies {
 //    implementation deps.androidx.viewpager
 //    implementation deps.androidx.multidex
 
-//    implementation deps.glide
+    implementation deps.glide
+    implementation deps.glideProcessor
+
     implementation deps.google.gson
     implementation deps.logger
+
     implementation deps.webview.agentweb
 
     implementation project(path: ':base')

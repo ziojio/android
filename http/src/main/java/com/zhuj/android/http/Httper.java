@@ -1,11 +1,8 @@
 package com.zhuj.android.http;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.zhuj.android.http.request.RequestFilter;
-import com.zhuj.android.http.request.method.GetRequest;
-import com.zhuj.android.http.request.method.PostRequest;
 import com.zhuj.android.http.response.ApiCallback;
 import com.zhuj.android.http.response.ResponseParser;
 import com.zhuj.code.lang.Exceptions;
@@ -24,11 +21,9 @@ import retrofit2.Retrofit;
 public class Httper {
     private final String TAG = getClass().getSimpleName();
 
+    private Context appContext;
 
-    private static Httper instance = null;
-    private static Application appContext;
-    private static Context context;
-
+    // default config
     public static final int DEFAULT_TIMEOUT_MILLISECONDS = 15000;     // 默认的超时时间
     public static final int DEFAULT_RETRY_COUNT = 0;                  // 默认重试次数
     public static final int DEFAULT_RETRY_INCREASE_DELAY = 0;         // 默认重试叠加时间
@@ -60,26 +55,15 @@ public class Httper {
     protected RequestFilter filter; // 默认请求处理
     protected ResponseParser parser; // 默认结果解析
 
-    /**
-     * 获取Http实例, 使用一个
-     */
-    public static Httper getInstance() {
-        if (instance == null) {
-            synchronized (Httper.class) {
-                if (instance == null) {
-                    instance = new Httper();
-                }
-            }
-        }
-        return instance;
-    }
 
     public void init(Context appContext) {
-        Httper.appContext = (Application) appContext;
-        Httper.context = appContext;
+        this.appContext = appContext.getApplicationContext();
     }
 
     public Context getContext() {
+        if (appContext == null) {
+            throw new IllegalStateException("context is null, please init in use before!");
+        }
         return appContext;
     }
 
@@ -99,20 +83,20 @@ public class Httper {
     }
 
     //==================获取Request请求=====================//
-
-    /**
-     * @return get请求
-     */
-    public GetRequest get(String url) {
-        return new GetRequest(this).url(url);
-    }
-
-    /**
-     * @return post请求
-     */
-    public PostRequest post(String url) {
-        return new PostRequest(this).url(url);
-    }
+    //
+    // /**
+    //  * @return get请求
+    //  */
+    // public GetRequest get(String url) {
+    //     return new GetRequest(this).url(url);
+    // }
+    //
+    // /**
+    //  * @return post请求
+    //  */
+    // public PostRequest post(String url) {
+    //     return new PostRequest(this).url(url);
+    // }
 
     // /**
     //  * @return delete请求
@@ -182,14 +166,14 @@ public class Httper {
      * 获取全局公共请求参数
      */
     public HttpParams getCommonParams() {
-        return getInstance().mCommonParams;
+        return mCommonParams;
     }
 
     /**
      * 获取全局公共请求头
      */
     public HttpHeaders getCommonHeaders() {
-        return getInstance().mCommonHeaders;
+        return mCommonHeaders;
     }
 
     /**

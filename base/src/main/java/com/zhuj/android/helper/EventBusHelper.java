@@ -25,4 +25,19 @@ public class EventBusHelper {
             }
         });
     }
+
+    public static void register(LifecycleOwner activity, boolean isStartStop) {
+        activity.getLifecycle().addObserver(new LifecycleObserver() {
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_START)
+            void create() {
+                EventBus.getDefault().register(activity);
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            void destroy() {
+                EventBus.getDefault().unregister(activity);
+            }
+        });
+    }
 }

@@ -1,4 +1,4 @@
-package com.zhuj.android.data.database.room.entity;
+package com.zhuj.android.database.room.entity;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;

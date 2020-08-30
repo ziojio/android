@@ -27,9 +27,17 @@ allprojects {
         // }
 
         tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-            options.addStringOption('encoding', 'UTF-8')
+
         }
+    }
+
+    tasks.withType(Javadoc) {
+        options.encoding = 'UTF-8'
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
     }
 }
 
@@ -55,6 +63,8 @@ subprojects {
                     targetCompatibility JavaVersion.VERSION_1_8
                 }
                 defaultConfig {
+                    minSdkVersion android_config.minSdkVersion
+                    targetSdkVersion android_config.targetSdkVersion
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
             }
@@ -90,6 +100,7 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 
 def loggerMarginStr(value) {
     println "---------------------------------------------------------------------------------------"

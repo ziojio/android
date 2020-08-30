@@ -147,7 +147,7 @@ public final class HttpConfig {
             mHttpHeaders.set(HttpHeaders.KEY_ACCEPT_ENCODING, HttpHeaders.VALUE_ACCEPT_ENCODING);
             mHttpHeaders.set(HttpHeaders.KEY_CONTENT_TYPE, HttpHeaders.VALUE_APPLICATION_URLENCODED);
             mHttpHeaders.set(HttpHeaders.KEY_CONNECTION, HttpHeaders.VALUE_KEEP_ALIVE);
-            mHttpHeaders.set(HttpHeaders.KEY_USER_AGENT, HttpHeaders.getUserAgent(Httper.getInstance().getContext()));
+            // mHttpHeaders.set(HttpHeaders.KEY_USER_AGENT, HttpHeaders.getUserAgent(Httper.getInstance().getContext()));
             mHttpHeaders.set(HttpHeaders.KEY_ACCEPT_LANGUAGE, HttpHeaders.getAcceptLanguage());
         }
 

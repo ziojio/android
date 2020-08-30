@@ -15,6 +15,7 @@ import java.util.Stack;
 public class ActivityLifecycleHelper implements Application.ActivityLifecycleCallbacks {
 
     private final Stack<Activity> mActivityStack = new Stack<>();
+    private Activity mResumeActivity;
 
     private final Object mLock = new Object();
 
@@ -39,11 +40,13 @@ public class ActivityLifecycleHelper implements Application.ActivityLifecycleCal
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
         Logger.v("[onActivityResumed]:" + getName(activity));
+        mResumeActivity = activity;
     }
 
     @Override
     public void onActivityPaused(@NonNull Activity activity) {
         Logger.v("[onActivityPaused]:" + getName(activity));
+        mResumeActivity = null;
     }
 
     @Override

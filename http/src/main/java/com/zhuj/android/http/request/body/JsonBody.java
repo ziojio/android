@@ -1,5 +1,7 @@
 package com.zhuj.android.http.request.body;
 
+import com.zhuj.android.http.HttpHeaders;
+
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -14,6 +16,6 @@ public class JsonBody extends StringBody {
     }
 
     public JsonBody(String body, Charset charset) {
-        super(body, charset, VALUE_APPLICATION_JSON);
+        super(body, charset, HttpHeaders.VALUE_APPLICATION_JSON);
     }
 }

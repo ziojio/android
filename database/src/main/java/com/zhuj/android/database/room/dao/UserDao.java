@@ -1,4 +1,4 @@
-package com.zhuj.android.data.database.room.dao;
+package com.zhuj.android.database.room.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.zhuj.android.data.database.room.entity.User;
+import com.zhuj.android.database.room.entity.User;
 
 import java.util.List;
 

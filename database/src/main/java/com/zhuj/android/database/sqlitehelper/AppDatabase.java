@@ -1,4 +1,4 @@
-package com.zhuj.android.data.database.sqlitehelper;
+package com.zhuj.android.database.sqlitehelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.data.database.DBConfig;
+import com.zhuj.android.database.DBConfig;
 
 public class AppDatabase extends SQLiteOpenHelper {
 

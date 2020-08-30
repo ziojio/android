@@ -18,9 +18,9 @@ import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.logger.Logger;
 import com.zhuj.android.thread.WorkExecutor;
 
-import com.zhuj.android.data.database.room.AndroidDatabase;
-import com.zhuj.android.data.database.room.entity.User;
-import com.zhuj.android.data.database.sqlitehelper.AppDatabase;
+import com.zhuj.android.database.room.AndroidDatabase;
+import com.zhuj.android.database.room.entity.User;
+import com.zhuj.android.database.sqlitehelper.AppDatabase;
 
 import java.util.List;
 import java.util.Random;
