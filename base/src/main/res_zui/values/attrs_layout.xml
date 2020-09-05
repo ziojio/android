@@ -9,7 +9,7 @@
     </declare-styleable>
 
 
-    <declare-styleable name="ZUIScrollView">
+    <declare-styleable name="ZUINestedScrollView">
         <!-- 原有最小高度，在增长到最大高度后，滑动 -->
         <attr name="maxHeight" format="dimension" />
     </declare-styleable>

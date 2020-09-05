@@ -168,6 +168,15 @@ static addRepos(RepositoryHandler handler) {
 //    Add the Local repository
 //    maven { url rootProject.file('../libs/repository') }
 }
-
 ext.addRepos = this.&addRepos
 
+static def getAppName(a) {
+    def appId = a.defaultConfig.applicationId;
+    return appId.substring(appId.lastIndexOf(".") + 1);
+}
+ext.getAppName = this.&getAppName
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+8"))
+}
+ext.releaseTime = this.&releaseTime

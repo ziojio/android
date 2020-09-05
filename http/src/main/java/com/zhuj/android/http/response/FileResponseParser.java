@@ -1,6 +1,6 @@
 package com.zhuj.android.http.response;
 
-import com.zhuj.code.lang.IOUtils;
+import com.zhuj.code.file.FileIO;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +20,7 @@ public class FileResponseParser implements ResponseParser<File> {
             InputStream ret = response.body() != null ? response.body().byteStream() : null;
             if (ret != null) {
                 FileOutputStream fout = new FileOutputStream(filePath);
-                IOUtils.write(ret, fout);
+                FileIO.write(ret, fout);
                 return new File(filePath);
             }
         } catch (Exception ex) {

@@ -2,7 +2,7 @@ package com.zhuj.android.http.request.body;
 
 
 import com.zhuj.android.http.util.StringUtils;
-import com.zhuj.code.lang.IOUtils;
+import com.zhuj.code.file.FileIO;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -39,7 +39,7 @@ public class StringBody implements RequestBody {
     @Override
     public long contentLength() {
         if (StringUtils.isEmpty(mBody)) return 0;
-        byte[] bytes = IOUtils.toByteArray(mBody, mCharset);
+        byte[] bytes = FileIO.toByteArray(mBody, mCharset);
         return bytes.length;
     }
 
@@ -50,7 +50,7 @@ public class StringBody implements RequestBody {
 
     @Override
     public void writeTo(OutputStream writer) throws IOException {
-        IOUtils.write(writer, mBody, mCharset);
+        FileIO.write(writer, mBody, mCharset);
     }
 
     @Override

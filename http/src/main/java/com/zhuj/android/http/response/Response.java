@@ -2,7 +2,7 @@ package com.zhuj.android.http.response;
 
 
 import com.zhuj.android.http.HttpHeaders;
-import com.zhuj.code.lang.IOUtils;
+import com.zhuj.code.file.IOUtils;
 
 import java.io.Closeable;
 import java.io.IOException;

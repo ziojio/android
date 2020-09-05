@@ -65,19 +65,19 @@ public class Displays {
         return getDisplayMetrics(context).scaledDensity;
     }
 
-    public static int pxToDp(Context context, float pxValue) {
+    public static int px2dp(Context context, int pxValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getDisplayMetrics(context));
     }
 
-    public static int pxToSp(Context context, float pxValue) {
+    public static int px2sp(Context context, int pxValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getDisplayMetrics(context));
     }
 
-    public static int dpToPx(Context context, float dpValue) {
+    public static int dp2px(Context context, int dpValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getDisplayMetrics(context));
     }
 
-    public static int spToPx(Context context, float spValue) {
+    public static int sp2px(Context context, int spValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getDisplayMetrics(context));
     }
 

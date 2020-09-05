@@ -3,34 +3,36 @@ package com.zhuj.android.widget.layout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 
 import com.zhuj.android.base.R;
 
-public class ZUIScrollView extends ScrollView {
+/**
+ * 设置不滑动的最大的高度，小于最大高度时包裹内容，不滑动
+ */
+public class ZUINestedScrollView extends NestedScrollView {
     private int maxHeight;
 
-    public ZUIScrollView(Context context) {
+    public ZUINestedScrollView(Context context) {
         this(context, null);
     }
 
-    public ZUIScrollView(Context context, AttributeSet attrs) {
+    public ZUINestedScrollView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ZUIScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZUINestedScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         loadFromAttributes(context, attrs);
     }
 
     private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
         final TypedArray ta = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.ZUIScrollView, 0, 0);
-        maxHeight = ta.getDimensionPixelSize(R.styleable.ZUIScrollView_maxHeight, -1);
+                .obtainStyledAttributes(attrs, R.styleable.ZUINestedScrollView, 0, 0);
+        maxHeight = ta.getDimensionPixelSize(R.styleable.ZUINestedScrollView_maxHeight, 0);
 
         ta.recycle();
     }

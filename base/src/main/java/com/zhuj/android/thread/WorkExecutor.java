@@ -37,7 +37,7 @@ public class WorkExecutor implements Executor {
                 CPU_COUNT * 2 + 1,
                 60L,
                 TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(128),
+                new LinkedBlockingQueue<Runnable>(128),
                 THREAD_FACTORY);
         mPoolExecutor.allowCoreThreadTimeOut(true);
     }

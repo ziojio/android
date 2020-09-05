@@ -73,14 +73,18 @@ public final class PackageUtils {
     private PackageUtils() {
     }
 
-    public static boolean isInstall(String packageName) {
+    public static boolean isAppInstalled(String packageName) {
+        if (TextUtils.isEmpty(packageName)) {
+            return false;
+        }
+        PackageInfo packageInfo;
         try {
-            Androids.getPackageManager().getPackageInfo(packageName, 0);
+            packageInfo = Androids.getPackageManager().getPackageInfo(packageName, 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return packageInfo != null;
     }
 
     public static boolean isExistsActivity(String packageName, String activityClassName) {

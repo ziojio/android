@@ -20,7 +20,7 @@ public class Strings {
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
     public static final String FILE_SEPARATOR = File.separator;
     public static final String LINE_SEPARATOR = System.lineSeparator();
-    /** A cheap and type-safe constant for the UTF-8 Charset. */
+
     public static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     private Strings() {
@@ -43,9 +43,7 @@ public class Strings {
     }
 
     public static boolean isBlankChar(String str) {
-        if (str == null) {
-            return true;
-        }
+        if (str == null) return true;
         for (int i = 0, len = str.length(); i < len; ++i) {
             if (!Character.isWhitespace(str.charAt(i))) {
                 return false;

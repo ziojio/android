@@ -39,6 +39,12 @@ android {
 
     }
 
+    android.applicationVariants.all { variant ->
+        // Assigns a different version code for each output APK other than the universal APK.
+        variant.outputs.each { output ->
+            output.outputFileName = getAppName(android) + "_" + buildType.name + "_" + releaseTime() + "_v" + defaultConfig.versionName + ".apk"
+        }
+    }
 }
 
 dependencies {

@@ -15,6 +15,11 @@ import androidx.core.view.ViewCompat;
 
 import com.zhuj.android.base.R;
 
+/**
+ * copy from com.google.android.material.internal.FlowLayout
+ * Horizontally lay out children until the row is filled and then moved to the next line. Call
+ * {@link FlowLayout#setSingleLine(boolean)} to disable reflow and lay all children out in one line.
+ */
 public class FlowLayout extends ViewGroup {
     private int lineSpacing;
     private int itemSpacing;

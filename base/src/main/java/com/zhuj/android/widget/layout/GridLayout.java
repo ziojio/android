@@ -17,6 +17,9 @@ import com.zhuj.android.android.Displays;
 import com.zhuj.android.base.R;
 import com.zhuj.android.logger.Logger;
 
+/**
+ * 没有写好, 使用 Android GridLayout
+ */
 public class GridLayout extends ViewGroup {
 
     public GridLayout(Context context) {

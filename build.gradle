@@ -50,11 +50,12 @@ subprojects {
         println "------------------------------ withPlugin java-library start --------------------------"
         println "------------------------------ withPlugin java-library  end  --------------------------"
     }
-    def androidPluginId = ["com.android.application", "com.android.library"]
+    def androidPluginId = ["com.android.library", "com.android.application"]
     for (String id : androidPluginId) {
+        println "------------------------------ " + project.name + " withPlugin " + id + " --------------------------"
         // 在 module build.gradle 可以被覆写
         pluginManager.withPlugin(id) {
-            println "------------------------------ withPlugin " + id + " start --------------------------"
+            println "------------------------------ withPlugin " + it.id + " start --------------------------"
             android {
                 compileSdkVersion android_config.compileSdkVersion
                 buildToolsVersion android_config.buildToolsVersion
@@ -76,18 +77,21 @@ subprojects {
                 testImplementation 'junit:junit:4.12'
                 androidTestImplementation 'androidx.test:runner:1.3.0'
                 androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+                // 可能使用 lombok
+                compileOnly deps.lombok
+                annotationProcessor deps.lombokProcessor
             }
             // loggerMarginStr( android.properties)
-            println "------------------------------ withPlugin " + id + "  end  --------------------------"
+            println "------------------------------ withPlugin " + it.id + "  end  --------------------------"
         }
     }
 
     afterEvaluate {
         // module build.gradle 最后的结果可以在这里修改
         if (plugins.hasPlugin(com.android.build.gradle.AppPlugin) || plugins.hasPlugin(com.android.build.gradle.LibraryPlugin)) {
-            println "------------------------------ afterEvaluate hasPlugin AppPlugin LibraryPlugin start --------------------------"
+            println "------------------------------ afterEvaluate hasPlugin AppPlugin or LibraryPlugin start --------------------------"
             // loggerMarginStr(android.properties)
-            println "------------------------------ afterEvaluate hasPlugin AppPlugin LibraryPlugin  end   --------------------------"
+            println "------------------------------ afterEvaluate hasPlugin AppPlugin or LibraryPlugin  end   --------------------------"
         }
         if (plugins.hasPlugin(JavaLibraryPlugin)) {
             println "------------------------------ afterEvaluate hasPlugin JavaLibraryPlugin start --------------------------"

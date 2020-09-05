@@ -77,5 +77,6 @@
             android:text="do something" />
     </LinearLayout>
 
+    <include layout="@layout/sample_tool_menu_view" />
 
 </LinearLayout>

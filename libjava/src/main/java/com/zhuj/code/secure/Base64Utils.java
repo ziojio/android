@@ -1,5 +1,7 @@
 package com.zhuj.code.secure;
 
+import java.nio.charset.StandardCharsets;
+
 import okio.ByteString;
 
 public class Base64Utils {
@@ -11,6 +13,9 @@ public class Base64Utils {
     public static byte[] decode(String base64Str) {
         ByteString byteString = ByteString.decodeBase64(base64Str);
         return byteString != null ? byteString.toByteArray() : new byte[0];
+    }
+    public static String decodeString(String base64Str) {
+        return new String(decode(base64Str), StandardCharsets.UTF_8);
     }
 
     /**

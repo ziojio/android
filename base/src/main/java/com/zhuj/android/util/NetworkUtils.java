@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
 import com.zhuj.android.android.Androids;
-import com.zhuj.code.lang.IOUtils;
+import com.zhuj.code.file.IOUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

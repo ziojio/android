@@ -113,7 +113,6 @@ public class AlphaViewHelper {
         if (target != null) {
             onEnabledChanged(target, target.isEnabled());
         }
-
     }
 
 }

@@ -18,10 +18,24 @@ public abstract class IFragment extends Fragment {
 
     protected abstract int layoutId();
 
+    protected abstract void initView();
+
+    protected abstract void initData();
+
+    protected abstract void initEvent();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(layoutId(), container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView();
+        initData();
+        initEvent();
     }
 
     protected <T extends View> T findViewById(@IdRes int id) {

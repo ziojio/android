@@ -100,7 +100,6 @@ public class ZUIRoundButton extends AppCompatButton {
             return;
         }
         Drawable[] drawables = getCompoundDrawablesRelative();
-        boolean isChanged = false;
         for (Drawable drawable : drawables) {
             if (drawable != null) {
                 int width = drawableWidth != 0 ? drawableWidth : drawable.getIntrinsicWidth();
@@ -108,13 +107,9 @@ public class ZUIRoundButton extends AppCompatButton {
                 int x = drawablePaddingStart - drawablePaddingEnd;
                 int y = drawablePaddingTop - drawablePaddingBottom;
                 drawable.setBounds(x, y, width + x, height + y);
-                isChanged = true;
-                break; //
             }
         }
-        if (isChanged) {
-            setCompoundDrawablesRelative(drawables[0], drawables[1], drawables[2], drawables[3]);
-        }
+        setCompoundDrawablesRelative(drawables[0], drawables[1], drawables[2], drawables[3]);
     }
 
     @Override

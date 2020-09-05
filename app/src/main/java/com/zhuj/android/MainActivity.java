@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity {
     }
 
     void doSomething() {
-        if (!PackageUtils.isInstall("com.jbzh.jbpaintviewcore")) {
+        if (!PackageUtils.isAppInstalled("com.jbzh.jbpaintviewcore")) {
             Activitys.openActivity(this, "com.jbzh.jbpaintviewcore", "com.jbzh.editimage.MainActivity");
         } else {
             Toasts.show(MainActivity.this, "没有安装 com.jbzh.jbpaintviewcore");

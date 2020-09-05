@@ -22,9 +22,6 @@ dependencies {
     implementation deps.squareup.okhttp
     implementation deps.google.gson
 
-    compileOnly deps.lombok
-    annotationProcessor deps.lombokProcessor
-
     implementation deps.squareup.retrofit2
     implementation deps.squareup.converterGson 
 

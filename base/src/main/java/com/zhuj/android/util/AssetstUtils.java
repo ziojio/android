@@ -8,7 +8,7 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.Nullable;
 
 import com.zhuj.android.android.ResUtils;
-import com.zhuj.code.lang.IOUtils;
+import com.zhuj.code.file.IOUtils;
 import com.zhuj.code.lang.StringUtils;
 
 import java.io.BufferedReader;

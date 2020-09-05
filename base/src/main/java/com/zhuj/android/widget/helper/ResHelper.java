@@ -17,6 +17,7 @@ import com.qmuiteam.qmui.util.QMUIDrawableHelper;
 public class ResHelper {
 
     private static TypedValue sTmpValue;
+
     @Nullable
     public static String getAttrString(Context context, int attrRes) {
         if (sTmpValue == null) {

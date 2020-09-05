@@ -27,6 +27,10 @@ public abstract class IDialogFragment extends DialogFragment {
 
     protected abstract void initView();
 
+    protected abstract void initData();
+
+    protected abstract void initEvent();
+
     /**
      * 设置 window
      * 1. 可以直接代码设置窗口样式
@@ -53,6 +57,8 @@ public abstract class IDialogFragment extends DialogFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
+        initData();
+        initEvent();
         windowBehavior();
     }
 
@@ -74,6 +80,7 @@ public abstract class IDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         return super.onCreateDialog(savedInstanceState);
     }
+
     /**
      * 设置外部回调方法，
      * 覆写DialogFragment {@link DialogFragment#onCancel(DialogInterface)}
