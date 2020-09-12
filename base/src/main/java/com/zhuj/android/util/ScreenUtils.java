@@ -24,6 +24,22 @@ import com.zhuj.android.logger.Logger;
 
 public final class ScreenUtils {
 
+    public static void fullScreen(Window window) {
+        View decorView = window.getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                // 隐藏导航栏，内容显示在导航栏下方
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                // 隐藏导航栏
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                // 内容延申到状态栏
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                // 全屏显示，隐藏状态栏
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+
     public static int getDisplayMetrics(boolean isReal) {
         WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE, WindowManager.class);
         DisplayMetrics dm = new DisplayMetrics();

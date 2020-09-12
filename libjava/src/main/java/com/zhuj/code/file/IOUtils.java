@@ -29,11 +29,13 @@ import javax.xml.stream.FactoryConfigurationError;
 import okio.Okio;
 
 public class IOUtils {
-
     public static final int DEFAULT_BUFFER_SIZE = 4096;
     public static final String FILE_SEPARATOR = File.separator;
     public static final String LINE_SEPARATOR = System.lineSeparator();
     public static final Charset UTF_8 = StandardCharsets.UTF_8;
+
+    private IOUtils() {
+    }
 
     /**
      * The number of bytes in a kilobyte.
@@ -71,10 +73,6 @@ public class IOUtils {
     //****************** Transform ************************
 
     //****************** Read ************************
-    public static List<String> readLines(InputStream input, String charset) throws IOException {
-        return readLines(input, Charset.forName(charset));
-    }
-
     public static List<String> readLines(InputStream input, Charset charset) throws IOException {
         Reader reader = new InputStreamReader(input, charset);
         return readLines(reader);
@@ -84,7 +82,6 @@ public class IOUtils {
         Reader reader = new InputStreamReader(input);
         return readLines(reader);
     }
-
 
     public static List<String> readLines(Reader input) throws IOException {
         BufferedReader reader = toBufferedReader(input);
@@ -162,11 +159,6 @@ public class IOUtils {
         write(input, out);
     }
 
-    public static void write(InputStream input, Writer output) throws IOException {
-        Reader in = new InputStreamReader(input);
-        write(in, output);
-    }
-
     public static void write(Reader input, OutputStream output, Charset charset) throws IOException {
         Writer out = new OutputStreamWriter(output, charset);
         write(input, out);
@@ -174,6 +166,11 @@ public class IOUtils {
 
     public static void write(InputStream input, OutputStream output, Charset charset) throws IOException {
         Reader in = new InputStreamReader(input, charset);
+        write(in, output);
+    }
+
+    public static void write(InputStream input, Writer output) throws IOException {
+        Reader in = new InputStreamReader(input);
         write(in, output);
     }
 
@@ -223,56 +220,10 @@ public class IOUtils {
             output.flush();
         }
     }
+
     //****************** Write ************************
 
     //****************** toString ************************
-
-    public static String toString(String filepath) {
-        if (!FileCheck.isExists(filepath)) {
-            return null;
-        }
-        return toString(new File(filepath), UTF_8);
-    }
-
-    public static String toString(String filepath, Charset charset) {
-        if (!FileCheck.isExists(filepath)) {
-            return null;
-        }
-        return toString(new File(filepath), charset);
-    }
-
-    public static String toString(File file) {
-        return toString(file, UTF_8);
-    }
-
-    public static String toString(File file, Charset charset) {
-        if (!FileCheck.isExists(file)) {
-            return null;
-        }
-        BufferedReader reader = null;
-        try {
-            StringBuilder sb = new StringBuilder();
-            if (charset == null) {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            } else {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
-            }
-            String line;
-            if ((line = reader.readLine()) != null) {
-                sb.append(line);
-                while ((line = reader.readLine()) != null) {
-                    sb.append(LINE_SEPARATOR).append(line);
-                }
-            }
-            return sb.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            close(reader);
-        }
-    }
-
     public static String toString(InputStream input) throws IOException {
         return new String(toByteArray(input));
     }
@@ -299,6 +250,10 @@ public class IOUtils {
     //****************** toString ************************
 
     //****************** to Array ************************
+    public static byte[] toByteArray(String input, Charset charset) {
+        return input.getBytes(charset);
+    }
+
     public static byte[] toByteArray(InputStream input) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         write(input, output);

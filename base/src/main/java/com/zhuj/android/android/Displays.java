@@ -10,7 +10,6 @@ import android.view.WindowManager;
 public class Displays {
     private Displays() {
     }
-
     public static DisplayMetrics getDisplayMetrics(Context context, boolean isReal) {
         DisplayMetrics outMetrics = new DisplayMetrics();
         if (isReal) {
@@ -30,7 +29,7 @@ public class Displays {
     }
 
     public static void logDisplayMetrics(Context context) {
-        DisplayMetrics metrics = getDisplayMetrics(context, false);
+        DisplayMetrics metrics = getDisplayMetrics(context, true);
         // 可用显示大小的绝对宽度（以像素为单位）。
         int widthPixels = metrics.widthPixels;
         // 可用显示大小的绝对高度（以像素为单位）。
@@ -45,40 +44,56 @@ public class Displays {
                 ", densityDpi=" + densityDpi + ", density=" + density + ", scaledDensity=" + scaledDensity);
     }
 
-    public static DisplayMetrics getDisplayMetrics(Context context) {
-        return context.getResources().getDisplayMetrics();
-    }
-
     public static int getScreenWidth(Context context) {
-        return getDisplayMetrics(context).widthPixels;
+        return getDisplayMetrics(context, false).widthPixels;
     }
 
     public static int getScreenHeight(Context context) {
-        return getDisplayMetrics(context).heightPixels;
+        return getDisplayMetrics(context, false).heightPixels;
     }
 
     public static float getDensity(Context context) {
-        return getDisplayMetrics(context).density;
+        return getDisplayMetrics(context, false).density;
     }
 
     public static float getScaledDensity(Context context) {
-        return getDisplayMetrics(context).scaledDensity;
+        return getDisplayMetrics(context, false).scaledDensity;
     }
 
-    public static int px2dp(Context context, int pxValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getDisplayMetrics(context));
+    public static DisplayMetrics getResourceDisplayMetrics(Context context) {
+        return context.getResources().getDisplayMetrics();
     }
 
-    public static int px2sp(Context context, int pxValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getDisplayMetrics(context));
+    public static int getResourceWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
     }
 
-    public static int dp2px(Context context, int dpValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getDisplayMetrics(context));
+    public static int getResourceHeight(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
     }
 
-    public static int sp2px(Context context, int spValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getDisplayMetrics(context));
+    public static float getResourceDensity(Context context) {
+        return context.getResources().getDisplayMetrics().density;
+    }
+
+    public static float getResourceScaledDensity(Context context) {
+        return context.getResources().getDisplayMetrics().scaledDensity;
+    }
+
+    public static int pxToDp(Context context, float pxValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getResourceDisplayMetrics(context));
+    }
+
+    public static int pxToSp(Context context, float pxValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, getResourceDisplayMetrics(context));
+    }
+
+    public static int dpToPx(Context context, float dpValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getResourceDisplayMetrics(context));
+    }
+
+    public static int spToPx(Context context, float spValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getResourceDisplayMetrics(context));
     }
 
 }

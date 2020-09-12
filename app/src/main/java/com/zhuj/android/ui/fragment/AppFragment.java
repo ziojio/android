@@ -16,6 +16,10 @@ public class AppFragment extends BaseFragment {
         return R.layout.activity_main;
     }
 
+    @Override
+    protected void initView() {
+
+    }
 
     @Override
     public void onClick(View v) {

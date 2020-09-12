@@ -13,6 +13,8 @@
         <attr name="zui_borderWidth" />
         <attr name="zui_borderColor" />
 
+        <attr name="zui_press_effect" />
+
         <attr name="zui_isAutoAdjustRoundSize" />
         <attr name="zui_cornerRadius" />
         <attr name="zui_cornerRadius_topLeft" />
@@ -28,6 +30,10 @@
         <attr name="zui_drawablePaddingTop" />
         <attr name="zui_drawablePaddingEnd" />
         <attr name="zui_drawablePaddingBottom" />
+    </declare-styleable>
+
+    <declare-styleable name="ZUIImageButton">
+        <attr name="zui_press_effect" />
     </declare-styleable>
 
 </resources>

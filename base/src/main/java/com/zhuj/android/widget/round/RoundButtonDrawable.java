@@ -3,12 +3,10 @@ package com.zhuj.android.widget.round;
 import android.content.res.ColorStateList;
 import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 
 import androidx.annotation.Nullable;
 
-public class RoundRectResizeDrawable extends GradientDrawable {
-
+public class RoundButtonDrawable extends GradientDrawable {
     /**
      * 圆角大小是否自适应为 View 的高度的一般
      */
@@ -20,8 +18,8 @@ public class RoundRectResizeDrawable extends GradientDrawable {
 
     @Override
     public void setColor(@Nullable ColorStateList colorStateList) {
-        super.setColor(colorStateList);
         mBackground = colorStateList;
+        super.setColor(colorStateList);
     }
 
     @Override
@@ -31,9 +29,9 @@ public class RoundRectResizeDrawable extends GradientDrawable {
 
     @Override
     public void setStroke(int width, @Nullable ColorStateList colors) {
-        super.setStroke(width, colors);
         mStrokeWidth = width;
         mStrokeColors = colors;
+        super.setStroke(width, colors);
     }
 
     public int getStrokeWidth() {
@@ -48,22 +46,31 @@ public class RoundRectResizeDrawable extends GradientDrawable {
         return isAutoAdjustRoundSize;
     }
 
-    private boolean hasNativeStateListAPI() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    }
-
     public void setAutoAdjustRoundSize(boolean autoAdjustRoundSize) {
         isAutoAdjustRoundSize = autoAdjustRoundSize;
     }
 
     @Override
     protected boolean onStateChange(int[] stateSet) {
-        return super.onStateChange(stateSet);
+        boolean superRet = super.onStateChange(stateSet);
+        if (mBackground != null) {
+            int color = mBackground.getColorForState(stateSet, 0);
+            setColor(color);
+            superRet = true;
+        }
+        if (mStrokeColors != null) {
+            int color = mStrokeColors.getColorForState(stateSet, 0);
+            setStroke(mStrokeWidth, color);
+            superRet = true;
+        }
+        return superRet;
     }
 
     @Override
     public boolean isStateful() {
-        return super.isStateful();
+        return (mBackground != null && mBackground.isStateful())
+                || (mStrokeColors != null && mStrokeColors.isStateful())
+                || super.isStateful();
     }
 
     @Override

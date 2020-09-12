@@ -1,7 +1,10 @@
 package com.zhuj.code.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class Times {
@@ -35,4 +38,31 @@ public class Times {
 
     private static DateFormat dateFormat = DateFormat.getDateTimeInstance();
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(STYLE_yyyyMMdd_HHmmss, Locale.getDefault());
+
+
+    public static boolean isToday(String day, String pattern) {
+        try {
+            Date date = new SimpleDateFormat(pattern, Locale.getDefault()).parse(day);
+            return isToday(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean isToday(Date date) {
+        Calendar cur = Calendar.getInstance();
+        Date predate = new Date();
+        cur.setTime(predate);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        if (cur.get(Calendar.YEAR) == cal.get(Calendar.YEAR)) {
+            int diffDay =  cur.get(Calendar.DAY_OF_YEAR) - cal.get(Calendar.DAY_OF_YEAR);
+            return diffDay == 0;
+        }
+        return false;
+    }
+
 }

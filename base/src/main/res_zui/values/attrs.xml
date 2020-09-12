@@ -24,5 +24,13 @@
     <attr name="zui_alpha_disabled" format="float" />
     <attr name="zui_alpha_pressed" format="float" />
     <attr name="zui_alpha_mask" format="float" />
+
+    <attr name="zui_press_effect">
+        <enum name="none" value="0" />
+        <enum name="alpha" value="1" />
+        <enum name="backgroundTint" value="2" />
+        <enum name="foreground" value="3" />
+    </attr>
+
     <attr name="zui_dialog_background_dim_amount" format="float" />
 </resources>

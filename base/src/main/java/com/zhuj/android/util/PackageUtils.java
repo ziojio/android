@@ -22,6 +22,7 @@ import androidx.core.content.FileProvider;
 import com.zhuj.android.android.Androids;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -71,6 +72,24 @@ public final class PackageUtils {
     public static final int DELETE_FAILED_PERMISSION_DENIED = -4;
 
     private PackageUtils() {
+    }
+    // 获取显示在桌面的应用程序
+    public static List<PackageInfo> getDesktopLauncherAppInfo(Context context) {
+        PackageManager manager = context.getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> resolveInfos = manager.queryIntentActivities(intent, 0);
+        List<PackageInfo> packageInfos = new ArrayList<>();
+        for (ResolveInfo info : resolveInfos) {
+            String pn = info.activityInfo.packageName;
+            try {
+                PackageInfo packageInfo = manager.getPackageInfo(pn, 0);
+                packageInfos.add(packageInfo);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return packageInfos;
     }
 
     public static boolean isAppInstalled(String packageName) {

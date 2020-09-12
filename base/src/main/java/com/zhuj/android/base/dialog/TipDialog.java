@@ -43,6 +43,16 @@ public class TipDialog extends IDialogFragment {
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initEvent() {
+
+    }
+
+    @Override
     protected void windowBehavior() {
 
     }

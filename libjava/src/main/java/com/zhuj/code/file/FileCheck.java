@@ -84,9 +84,16 @@ public class FileCheck {
     public static boolean isExists(String filepath) {
         return !Strings.isBlankChar(filepath) && new File(filepath).exists();
     }
+    public static boolean isNotExists(String filepath) {
+        return !isExists(filepath);
+    }
 
     public static boolean isExists(File file) {
         return file != null && file.exists();
+    }
+
+    public static boolean isNotExists(File file) {
+        return !isExists(file);
     }
 
     /**
