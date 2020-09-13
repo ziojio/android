@@ -41,10 +41,10 @@ allprojects {
     }
 }
 
-rootProject.buildDir = rootDir.parent + "/" + project.name + ".build"
+rootProject.buildDir = rootDir.parentFile.absolutePath + "/" + project.name + ".build"
 
 subprojects {
-    buildDir = rootProject.buildDir.path + "/" + project.name
+    buildDir = rootProject.buildDir.absolutePath + "/" + project.name
 
     pluginManager.withPlugin("java-library") {
         println "------------------------------ withPlugin java-library start --------------------------"
