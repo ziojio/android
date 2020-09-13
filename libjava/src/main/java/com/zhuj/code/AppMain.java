@@ -1,5 +1,6 @@
 package com.zhuj.code;
 
+import com.google.gson.JsonObject;
 import com.zhuj.code.lang.Objects;
 
 import org.slf4j.Logger;
@@ -14,12 +15,13 @@ public class AppMain {
 
         // Reflections.logObjectField(new Mt(), "ss","sss", "ssss");
         String[] strings = new String[]{"adaf", "add"};
-        strings = null;
-        int line = 0;
-        for (; line != 1; line++) {
-            logger.debug("line = " + line);
-        }
-        logger.debug("line2 = " + line);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", "hello");
+        jsonObject.addProperty("age", 18);
+        jsonObject.addProperty("sex", true);
+        String res = jsonObject.toString();
+        new Callback<JsonObject>(){}.onResponse(res);
+
     }
 
     static class Mt {

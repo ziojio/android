@@ -39,13 +39,6 @@ public class GsonUtils {
         return null;
     }
 
-    /**
-     * Array         的泛型Type  Class[].class -> int[].class / Integer[].class
-     * ArrayList<T>  的泛型Type  new TypeToken< ArrayList<Founder> >(){}.getType();
-     * 使用一个 Class 包含泛型List<T> 可以直接传递 Class<T>.class
-     *
-     * @param classOfT 泛型类
-     */
     public static <T> T fromJson(String json, Class<T> classOfT) {
         try {
             return gson.fromJson(json, classOfT);
@@ -55,6 +48,13 @@ public class GsonUtils {
         return null;
     }
 
+    /**
+     * Array         的泛型Type  Class[].class -> int[].class / Integer[].class
+     * ArrayList<T>  的泛型Type  new TypeToken< ArrayList<Founder> >(){}.getType();
+     * 使用一个 Class 包含泛型List<T> 可以直接传递 Class<T>.class
+     *
+     * @param type 泛型类
+     */
     public static <T> T fromJson(String json, Type type) {
         try {
             return gson.fromJson(json, type);

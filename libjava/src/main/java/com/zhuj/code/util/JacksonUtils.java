@@ -67,7 +67,7 @@ public class JacksonUtils {
 
     public static JsonNode toJsonNode(String json) {
         try {
-            objectMapper.readTree(json);
+           return objectMapper.readTree(json);
         } catch (IOException e) {
             e.printStackTrace();
         }

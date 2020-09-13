@@ -631,7 +631,7 @@ public class SnackbarUtils {
                 android:textAlignment="viewStart"/>
         */
         //文字高度+paddingTop+paddingBottom : 14sp + 14dp*2
-        int SnackbarHeight = Displays.dp2px(getSnackbar().getView().getContext(), 28) + Displays.sp2px(getSnackbar().getView().getContext(), 14);
+        int SnackbarHeight = Displays.dpToPx(getSnackbar().getView().getContext(), 28) + Displays.dpToPx(getSnackbar().getView().getContext(), 14);
         Logger.d(TAG, "直接获取MessageView高度:" + getSnackbar().getView().findViewById(R.id.snackbar_text).getHeight());
         return SnackbarHeight;
     }
