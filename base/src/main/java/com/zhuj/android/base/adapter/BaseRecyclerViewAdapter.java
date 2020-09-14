@@ -1,6 +1,5 @@
 package com.zhuj.android.base.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,7 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         return dataList == null ? 0 : dataList.size();
     }
 
-    public void update(List<T> dataList) {
+    public void setData(List<T> dataList) {
         this.dataList = dataList;
         super.notifyDataSetChanged();
     }
@@ -49,18 +48,6 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         super.notifyItemInserted(idx);
     }
 
-    public void addAll(T[] t) {
-        if (t == null || t.length == 0) {
-            return;
-        }
-        if (dataList == null) {
-            dataList = new ArrayList<>();
-        }
-        int idx = dataList.size();
-        Collections.addAll(dataList, t);
-        super.notifyItemRangeInserted(idx, t.length);
-    }
-
     public void addAll(List<T> t) {
         if (t == null || t.size() == 0) {
             return;
@@ -71,6 +58,18 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         int idx = dataList.size();
         this.dataList.addAll(t);
         super.notifyItemRangeInserted(idx, t.size());
+    }
+
+    public void addAll(T[] t) {
+        if (t == null || t.length == 0) {
+            return;
+        }
+        if (dataList == null) {
+            dataList = new ArrayList<>();
+        }
+        int idx = dataList.size();
+        Collections.addAll(dataList, t);
+        super.notifyItemRangeInserted(idx, t.length);
     }
 
     public static abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {

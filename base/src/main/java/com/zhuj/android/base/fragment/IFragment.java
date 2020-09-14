@@ -24,18 +24,25 @@ public abstract class IFragment extends Fragment {
 
     protected abstract void initEvent();
 
+    /**
+     * 修改初始化的顺序，在其中添加其他操作
+     */
+    protected void initBehavior() {
+        initView();
+        initData();
+        initEvent();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(layoutId(), container, false);
+        return layoutId() != 0 ? inflater.inflate(layoutId(), container, false) : super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
-        initData();
-        initEvent();
+        initBehavior();
     }
 
     protected <T extends View> T findViewById(@IdRes int id) {

@@ -17,34 +17,16 @@ buildscript {
 }
 
 allprojects {
+
     repositories {
         addRepos(repositories)
     }
-
-    gradle.projectsEvaluated {
-        // tasks.withType(JavaCompile) {
-        //     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-        // }
-
-        tasks.withType(Javadoc) {
-
-        }
-    }
-
-    tasks.withType(Javadoc) {
-        options.encoding = 'UTF-8'
-        options.addStringOption('Xdoclint:none', '-quiet')
-    }
-
-    tasks.withType(JavaCompile) {
-        options.encoding = 'UTF-8'
-    }
 }
 
-rootProject.buildDir = rootDir.parentFile.absolutePath + "/" + project.name + ".build"
+rootProject.buildDir = rootDir.parent + "/" + project.name + ".build"
 
 subprojects {
-    buildDir = rootProject.buildDir.absolutePath + "/" + project.name
+    buildDir = rootProject.buildDir.path + "/" + project.name
 
     pluginManager.withPlugin("java-library") {
         println "------------------------------ withPlugin java-library start --------------------------"

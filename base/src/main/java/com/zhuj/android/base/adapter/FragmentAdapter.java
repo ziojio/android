@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,7 @@ import java.util.List;
  * Fragment的适配器, 详情参考{@link FragmentPagerAdapter}
  */
 public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
-
+    private long baseId = 0;
     private List<T> mFragmentList = new ArrayList<>();
 
     private List<String> mTitleList = new ArrayList<>();
@@ -83,11 +84,46 @@ public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
         return this;
     }
 
+    public void clear() {
+        notifyChangeInPosition(getCount());
+        if (mFragmentList != null) {
+            mFragmentList.clear();
+        }
+        if (mTitleList != null) {
+            mTitleList.clear();
+        }
+    }
+    
     @NonNull
     @Override
     public T getItem(int position) {
         return mFragmentList.get(position);
     }
+
+    @Override
+    public long getItemId(int position) {
+        return baseId + position;
+    }
+
+    /**
+     * Notify that the position of a fragment has been changed.
+     * Create a new ID for each position to force recreation of the fragment
+     *
+     * @param n number of items which have been changed
+     */
+    public void notifyChangeInPosition(int n) {
+        // shift the ID returned by getItemId outside the range of all previous fragments
+        baseId += getCount() + n;
+    }
+
+    // this is called when notifyDataSetChanged() is called
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        // int index = mFragmentList.indexOf(object);
+        // if (index == -1) {
+        return PagerAdapter.POSITION_NONE;
+    }
+
 
     @Override
     public int getCount() {
