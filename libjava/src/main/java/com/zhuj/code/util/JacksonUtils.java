@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -43,11 +44,15 @@ public class JacksonUtils {
         // objectMapper.enable(JsonParser.Feature.ALLOW_SINGLE_QUOTES);
     }
 
+    public static ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
+
     public static void setObjectMapper(ObjectMapper mapper) {
         objectMapper = mapper;
     }
 
-    public String toJson(Object obj) {
+    public static String toJson(Object obj) {
         try {
             return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
@@ -56,7 +61,7 @@ public class JacksonUtils {
         return null;
     }
 
-    public <T> T fromJson(String json, Class<T> classOfT) {
+    public static <T> T fromJson(String json, Class<T> classOfT) {
         try {
             return objectMapper.readValue(json, classOfT);
         } catch (IOException e) {
@@ -65,9 +70,18 @@ public class JacksonUtils {
         return null;
     }
 
+    public static <T> T fromJson(String json, Type type) {
+        try {
+            return objectMapper.readValue(json, objectMapper.getTypeFactory().constructType(type));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static JsonNode toJsonNode(String json) {
         try {
-           return objectMapper.readTree(json);
+            return objectMapper.readTree(json);
         } catch (IOException e) {
             e.printStackTrace();
         }

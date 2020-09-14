@@ -16,7 +16,7 @@ public abstract class Callback<T> {
     public static Logger logger = LoggerFactory.getLogger(Callback.class);
 
     public void onResponse(String response) {
-        T result = null;
+        T result;
         logger.info(getClass().getGenericSuperclass().getTypeName());
         ParameterizedType parameterizedType;
         try {
@@ -25,7 +25,9 @@ public abstract class Callback<T> {
         } catch (Exception ignored) {
             return;
         }
-        result = GsonUtils.fromJson(response, parameterizedType.getActualTypeArguments()[0]);
+          result = JSONObject.parseObject(response, parameterizedType.getActualTypeArguments()[0]);
+        // result = JacksonUtils.fromJson(response, parameterizedType.getActualTypeArguments()[0]);
+        // result = GsonUtils.fromJson(response, parameterizedType.getActualTypeArguments()[0]);
         logger.info("result: " + result);
 
     }

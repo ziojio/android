@@ -1,5 +1,7 @@
 package com.zhuj.code;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.JsonObject;
 import com.zhuj.code.lang.Objects;
 
@@ -17,11 +19,10 @@ public class AppMain {
         String[] strings = new String[]{"adaf", "add"};
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("name", "hello");
-        jsonObject.addProperty("age", 18);
-        jsonObject.addProperty("sex", true);
+        jsonObject.addProperty("age", "18");
+        jsonObject.addProperty("sex", 2);
         String res = jsonObject.toString();
-        new Callback<JsonObject>(){}.onResponse(res);
-
+        new Callback<UserData>(){}.onResponse(res);
     }
 
     static class Mt {

@@ -1,5 +1,6 @@
 package com.zhuj.code.util;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -11,19 +12,14 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
 
 public class GsonUtils {
-    private static Gson gson;
+    private static Gson gson = new GsonBuilder().setPrettyPrinting()
+            .serializeNulls().disableHtmlEscaping().create();
 
     private GsonUtils() {
-    }
-
-    static {
-        gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .serializeNulls()
-                .disableHtmlEscaping()
-                .create();
     }
 
     public static void setGson(Gson gson) {
@@ -50,7 +46,7 @@ public class GsonUtils {
 
     /**
      * Array         的泛型Type  Class[].class -> int[].class / Integer[].class
-     * ArrayList<T>  的泛型Type  new TypeToken< ArrayList<Founder> >(){}.getType();
+     * ArrayList<T>  的泛型Type  new TypeToken<ArrayList<Object> >(){}.getType();
      * 使用一个 Class 包含泛型List<T> 可以直接传递 Class<T>.class
      *
      * @param type 泛型类
@@ -64,7 +60,7 @@ public class GsonUtils {
         return null;
     }
 
-    public static JsonObject toJsonObject(String json) {
+    public static JsonObject parseJsonObject(String json) {
         try {
             JsonElement element = JsonParser.parseString(json);
             return element.getAsJsonObject();
@@ -74,7 +70,7 @@ public class GsonUtils {
         return null;
     }
 
-    public static JsonArray toJsonArray(String json) {
+    public static JsonArray parseJsonArray(String json) {
         try {
             JsonElement element = JsonParser.parseString(json);
             return element.getAsJsonArray();
@@ -84,4 +80,14 @@ public class GsonUtils {
         return null;
     }
 
+    @Override
+    public <T> List<T> parseList(String json) {
+        new Gson().fromJson(json, new TypeToken<T>(){}.getType());
+        return null;
+    }
+
+    @Override
+    public <T> Map<String, T> parseMap(String json) {
+        return null;
+    }
 }
