@@ -51,7 +51,9 @@ public class Strings {
         }
         return true;
     }
-
+    public static boolean isNotBlankChar(String str) {
+        return !isBlankChar(str);
+    }
     /**
      * 过滤字符串中的空格
      */

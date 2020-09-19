@@ -117,7 +117,8 @@ ext.deps.kotlin = [
 ]
 
 ext.deps.google = [
-        gson: "com.google.code.gson:gson:$version.gson",
+        gson   : "com.google.code.gson:gson:$version.gson",
+        flexbox: "com.google.android:flexbox:2.0.1"
 ]
 
 ext.deps.ali = [

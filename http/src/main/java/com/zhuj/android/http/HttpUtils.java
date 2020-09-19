@@ -1,201 +1,161 @@
-// package com.zhuj.android.http;
-//
-// import android.util.Log;
-//
-// import androidx.annotation.NonNull;
-//
-// import com.alibaba.fastjson.JSON;
-// import com.google.gson.JsonObject;
-// import com.google.gson.JsonParser;
-// import com.zhuj.code.util.GsonUtils;
-//
-// import org.json.JSONArray;
-// import org.json.JSONObject;
-//
-// import java.io.File;
-// import java.io.IOException;
-// import java.lang.reflect.ParameterizedType;
-// import java.util.HashMap;
-// import java.util.Map;
-// import java.util.Objects;
-//
-// import okhttp3.Call;
-// import okhttp3.FormBody;
-// import okhttp3.HttpUrl;
-// import okhttp3.MediaType;
-// import okhttp3.MultipartBody;
-// import okhttp3.OkHttpClient;
-// import okhttp3.Request;
-// import okhttp3.RequestBody;
-// import okhttp3.Response;
-//
-// public class HttpUtils {
-//     private static final String TAG = "HttpUtils";
-//
-//     private static final String HOST = "http://apijbzh.vanpin.com";
-//
-//     private static final String GetAll = "/App/YiBenZhiHui/GetAll";
-//
-//     public static <T> void GetAll(Callback<T> callback) {
-//         Map<String, String> map = new HashMap<>();
-//         post(HOST, GetAll, map, callback);
-//     }
-//
-//     private static FormBody buildFormBody(Map<String, String> map) {
-//         FormBody.Builder formBuilder = new FormBody.Builder();
-//         for (Map.Entry<String, String> entry : map.entrySet()) {
-//             formBuilder.add(entry.getKey(), entry.getValue());
-//         }
-//         return formBuilder.build();
-//     }
-//
-//     private static Request buildGetRequest(String url, Map<String, String> map) {
-//         return buildRequest("GET", url, map, null);
-//     }
-//
-//     private static Request buildJsonRequest(String url, String json) {
-//         RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, json);
-//         return new Request.Builder().url(url).post(requestBody).build();
-//     }
-//
-//     private static Request buildRequest(String method, String url, Map<String, String> map, Map<String, File> files) {
-//         okhttp3.HttpUrl httpUrl = Objects.requireNonNull(okhttp3.HttpUrl.parse(url), "url == NULL or is ERROR");
-//         Request.Builder requestBuilder = new Request.Builder();
-//         if ("GET".equalsIgnoreCase(method)) {
-//             if (map != null) {
-//                 HttpUrl.Builder urlBuilder = httpUrl.newBuilder();
-//                 for (Map.Entry<String, String> entry : map.entrySet()) {
-//                     urlBuilder.addQueryParameter(entry.getKey(), entry.getValue());
-//                 }
-//                 return requestBuilder.url(urlBuilder.build()).build();
-//             }
-//             return requestBuilder.url(httpUrl).build();
-//         } else if ("POST".equalsIgnoreCase(method)) {
-//             if (files == null) {
-//                 Objects.requireNonNull(map, "POST map must NOT NULL");
-//                 FormBody.Builder formBuilder = new FormBody.Builder();
-//                 for (Map.Entry<String, String> entry : map.entrySet()) {
-//                     formBuilder.add(entry.getKey(), entry.getValue());
-//                 }
-//                 return requestBuilder.url(httpUrl).post(formBuilder.build()).build();
-//             }
-//             MultipartBody.Builder multiBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-//             for (Map.Entry<String, File> entry : files.entrySet()) {
-//                 File file = entry.getValue();
-//                 multiBuilder.addFormDataPart(entry.getKey(), file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
-//             }
-//             if (map != null) {
-//                 for (Map.Entry<String, String> entry : map.entrySet()) {
-//                     multiBuilder.addFormDataPart(entry.getKey(), entry.getValue());
-//                 }
-//             }
-//             return requestBuilder.url(httpUrl).post(multiBuilder.build()).build();
-//         } else {
-//             return null;
-//         }
-//     }
-//
-//     public static <T> void get(String url, Map<String, String> map, Callback<T> callback) {
-//         Request request = buildGetRequest(url, map);
-//         call(request, callback);
-//     }
-//
-//     public static <T> void postFile(String url, String apiName, Map<String, String> map, Map<String, File> files, Callback<T> callback) {
-//         Request request = buildRequest("POST", url + apiName, map, files);
-//         call(request, callback);
-//     }
-//
-//     public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
-//
-//     public static <T> void postJson(String url, String apiName, String json, Callback<T> callback) {
-//         if (json == null) {
-//             throw new NullPointerException("json == null");
-//         }
-//         Request request = buildJsonRequest(url + apiName, json);
-//         call(request, callback);
-//     }
-//
-//     public static <T> void post(String url, String apiName, Map<String, String> map, Callback<T> callback) {
-//         if (map == null) {
-//             throw new NullPointerException("map == null");
-//         }
-//         Request request = buildRequest("POST", url + apiName, map, null);
-//         call(request, callback);
-//     }
-//
-//     public static <T> void call(Request request, final Callback<T> callback) {
-//         OkHttpClient okHttpClient = new OkHttpClient();
-//         okHttpClient.newCall(request).enqueue(callback);
-//     }
-//
-//     public static <T> void syncCall(Request request, Callback<T> callback) {
-//         OkHttpClient okHttpClient = new OkHttpClient();
-//         Call call = okHttpClient.newCall(request);
-//         try (Response response = call.execute()) {
-//             callback.onResponse(call, response);
-//         } catch (IOException e) {
-//             callback.onFailure(call, e);
-//         }
-//     }
-//
-//     public abstract static class Callback<T> implements okhttp3.Callback {
-//         @Override
-//         public void onResponse(@NonNull Call call, Response response) throws IOException {
-//             if (response.isSuccessful()) {
-//                 JsonObject jsonObject;
-//                 try {
-//                     String bodyStr = Objects.requireNonNull(response.body()).string();
-//                     Log.d(TAG, bodyStr);
-//                     jsonObject = JsonParser.parseString(bodyStr).getAsJsonObject();
-//                     // Logger.d(TAG, jsonObject.toString(SerializerFeature.PrettyFormat));
-//                 } catch (Exception e) {
-//                     onFailure(call, new IOException("parser json error: " + e.getMessage()));
-//                     return;
-//                 }
-//                 if (jsonObject.get("ret").getAsInt() != 200) {
-//                     onFailure(call, new IOException(
-//                             "retCode error, ret=" + jsonObject.get("ret").getAsInt()
-//                                     + ", msg=" + jsonObject.get("msg").getAsString()));
-//                     return;
-//                 }
-//                 T result = null;
-//                 String data = jsonObject.get("data").getAsString();
-//                 ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-//                 if (parameterizedType == null) {
-//                     onFailure(call, new IOException("泛型参数 is NULL"));
-//                     return;
-//                 }
-//                 // Logger.d(Arrays.toString(parameterizedType.getActualTypeArguments()));
-//                 Class<T> clazz = null;
-//                 try {
-//                     clazz = (Class<T>) parameterizedType.getActualTypeArguments()[0];
-//                 } catch (Exception ignored) {
-//                 }
-//                 // Logger.d("clazz: " + clazz);
-//                 // 不是类
-//                 if (clazz == null) {
-//                     result = JSON.parseObject(data, parameterizedType.getActualTypeArguments()[0]);
-//                 } else {
-//                     if (clazz.getTypeName().equals(String.class.getTypeName())) {
-//                         result = (T) data;
-//                     } else if (clazz.getTypeName().equals(JSONObject.class.getTypeName())) {
-//                         result = (T) GsonUtils.toJsonObject(data);
-//                     } else if (clazz.getTypeName().equals(JSONArray.class.getTypeName())) {
-//                         result = (T) GsonUtils.toJsonArray(data);
-//                     }
-//                 }
-//                 try {
-//                     onSuccess(result);
-//                 } catch (Exception e) {
-//                     e.printStackTrace();
-//                     onFailure(call, new IOException(e));
-//                 }
-//             } else {
-//                 onFailure(call, new IOException("response code=" + response.code() + ", msg=" + response.message()));
-//             }
-//         }
-//
-//         public abstract void onSuccess(T result);
-//     }
-// }
-//
+package com.zhuj.android.http;
+
+import android.os.Environment;
+
+import com.google.gson.JsonObject;
+import com.zhuj.code.file.FileIO;
+import com.zhuj.code.lang.Strings;
+import com.zhuj.code.util.GsonUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class HttpUtils {
+    private static final String TAG = "HttpUtils";
+
+    private static String baseUrl = "https://apijbzh.vanpin.com";
+    private static String subUrl = "";
+    private static Map<String, HttpUrl> URL_MAP = new HashMap<>();
+
+    public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
+
+    private static Map<String, String> requestMap = new HashMap<>();
+
+    public static void initCommonParams() {
+        String json = FileIO.readString(Environment.getExternalStorageDirectory() + "/jbzh/config/.DTOKEN");
+        try {
+            JsonObject object = GsonUtils.parseJsonObject(json);
+            String dtoken = object.get("dtoken").getAsString();
+            if (Strings.isNotBlank(dtoken)) {
+                requestMap.put("dtoken", dtoken);
+            }
+        } catch (Exception ignored) {
+        }
+    }
+
+    public static Map<String, String> getRequestParams(Map<String, String> map) {
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        if (requestMap != null && !requestMap.isEmpty()) {
+            map.putAll(requestMap);
+        }
+        return map;
+    }
+
+    private static HttpUrl buildHttpUrl(String url) {
+        if (url.startsWith("http")) {
+            Logger.d("build url use set url: " + url);
+            return Objects.requireNonNull(HttpUrl.parse(url), "Url is NULL or ERROR");
+        }
+        HttpUrl httpUrl = URL_MAP.get(baseUrl);
+        if (httpUrl == null) {
+            httpUrl = Objects.requireNonNull(HttpUrl.parse(baseUrl), "Base Url is NULL or ERROR");
+            URL_MAP.put(baseUrl, httpUrl);
+        }
+        HttpUrl.Builder builder = httpUrl.newBuilder();
+        if (subUrl != null && !subUrl.isEmpty()) builder.addPathSegments(subUrl);
+        builder.addPathSegments(url);
+        Logger.d("build url use base url: " + builder.toString());
+        return builder.build();
+    }
+
+    private static FormBody buildFormBody(Map<String, String> map) {
+        FormBody.Builder formBuilder = new FormBody.Builder();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            formBuilder.add(entry.getKey(), entry.getValue());
+        }
+        return formBuilder.build();
+    }
+
+    private static Request getRequest(HttpUrl httpUrl, Map<String, String> map) {
+        Request.Builder requestBuilder = new Request.Builder();
+        if (map != null) {
+            HttpUrl.Builder urlBuilder = httpUrl.newBuilder();
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                urlBuilder.addQueryParameter(entry.getKey(), entry.getValue());
+            }
+            return requestBuilder.url(urlBuilder.build()).build();
+        }
+        return requestBuilder.url(httpUrl).build();
+    }
+
+    private static Request postRequest(HttpUrl httpUrl, Map<String, String> map, Map<String, File> files) {
+        Request.Builder requestBuilder = new Request.Builder();
+        if (files == null) {
+            Objects.requireNonNull(map, "POST map must NOT NULL");
+            FormBody.Builder formBuilder = new FormBody.Builder();
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                formBuilder.add(entry.getKey(), entry.getValue());
+            }
+            return requestBuilder.url(httpUrl).post(formBuilder.build()).build();
+        }
+        MultipartBody.Builder multiBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        for (Map.Entry<String, File> entry : files.entrySet()) {
+            File file = entry.getValue();
+            multiBuilder.addFormDataPart(entry.getKey(), file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+        }
+        if (map != null) {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                multiBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+            }
+        }
+        return requestBuilder.url(httpUrl).post(multiBuilder.build()).build();
+
+    }
+
+    public static <T> void get(String url, Map<String, String> map, Callback<T> callback) {
+        HttpUrl httpUrl = buildHttpUrl(url);
+        Request request = getRequest(httpUrl, getRequestParams(map));
+        call(request, callback);
+    }
+
+    public static <T> void post(String url, Map<String, String> map, Callback<T> callback) {
+        postFile(url, map, null, callback);
+    }
+
+    public static <T> void postFile(String url, Map<String, String> map, Map<String, File> files, Callback<T> callback) {
+        HttpUrl httpUrl = buildHttpUrl(url);
+        Request request = postRequest(httpUrl, getRequestParams(map), files);
+        call(request, callback);
+    }
+
+    public static <T> void postJson(String url, String json, Callback<T> callback) {
+        if (json == null) {
+            throw new NullPointerException("json == null");
+        }
+        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, json);
+        HttpUrl httpUrl = buildHttpUrl(url);
+        Request request = new Request.Builder().url(httpUrl).post(requestBody).build();
+        call(request, callback);
+    }
+
+    public static <T> void call(Request request, final Callback<T> callback) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.newCall(request).enqueue(callback);
+    }
+
+    public static <T> void syncCall(Request request, Callback<T> callback) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Call call = okHttpClient.newCall(request);
+        try (Response response = call.execute()) {
+            callback.onResponse(call, response);
+        } catch (IOException e) {
+            callback.onFailure(call, e);
+        }
+    }
+
+}

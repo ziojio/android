@@ -80,13 +80,12 @@ public class GsonUtils {
         return null;
     }
 
-    @Override
     public <T> List<T> parseList(String json) {
         new Gson().fromJson(json, new TypeToken<T>(){}.getType());
         return null;
     }
 
-    @Override
+
     public <T> Map<String, T> parseMap(String json) {
         return null;
     }
