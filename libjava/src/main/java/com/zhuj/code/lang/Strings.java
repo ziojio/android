@@ -1,14 +1,10 @@
 package com.zhuj.code.lang;
 
 import java.io.File;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +26,7 @@ public class Strings {
         return String.format(Locale.CHINA, str, args);
     }
 
-    public static String trim(String str) {
+    public static String trimNotNull(String str) {
         return str == null ? "" : str.trim();
     }
 
@@ -51,9 +47,11 @@ public class Strings {
         }
         return true;
     }
+
     public static boolean isNotBlankChar(String str) {
         return !isBlankChar(str);
     }
+
     /**
      * 过滤字符串中的空格
      */
@@ -73,6 +71,24 @@ public class Strings {
 
     public static boolean isNotEmpty(CharSequence cs) {
         return !isEmpty(cs);
+    }
+
+    public static int toInt(String value, int defValue) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return defValue;
+    }
+
+    public static float toFloat(String value, float defValue) {
+        try {
+            return Float.parseFloat(value);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return defValue;
     }
 
     /**

@@ -8,16 +8,6 @@ public abstract class BaseDialogFragment extends IDialogFragment implements View
      */
     protected View.OnClickListener callbackListener;
 
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected void initEvent() {
-
-    }
-
     protected void setCallbackListener(View.OnClickListener callbackListener) {
         this.callbackListener = callbackListener;
     }

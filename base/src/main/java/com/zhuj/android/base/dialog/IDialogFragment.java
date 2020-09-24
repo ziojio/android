@@ -32,6 +32,15 @@ public abstract class IDialogFragment extends DialogFragment {
     protected abstract void initEvent();
 
     /**
+     * 修改初始化的顺序，在其中添加其他操作
+     */
+    protected void initBehavior() {
+        initView();
+        initData();
+        initEvent();
+    }
+
+    /**
      * 设置 window
      * 1. 可以直接代码设置窗口样式
      * WindowManager.LayoutParams lp = window.getAttributes();
@@ -47,18 +56,13 @@ public abstract class IDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (layoutId() != 0) {
-            return inflater.inflate(layoutId(), container, false);
-        }
-        return null;
+        return layoutId() != 0 ? inflater.inflate(layoutId(), container, false) : super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
-        initData();
-        initEvent();
+        initBehavior();
         windowBehavior();
     }
 

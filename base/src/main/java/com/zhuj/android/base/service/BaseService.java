@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import com.zhuj.android.logger.Logger;
 
 public class BaseService extends Service {
-    private final String TAG = getClass().getSimpleName();
+    protected final String TAG = getClass().getSimpleName();
 
     public class ServiceBinder extends Binder {
         public Service getService() {
@@ -56,7 +56,7 @@ public class BaseService extends Service {
     public boolean onUnbind(Intent intent) {
         boolean bool = super.onUnbind(intent);
         Logger.d(TAG, "onUnbind: return=" + bool);
-        return super.onUnbind(intent);
+        return bool;
     }
 
     @Override

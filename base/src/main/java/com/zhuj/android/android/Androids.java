@@ -12,6 +12,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.zhuj.android.helper.ActivityLifecycleHelper;
 import com.zhuj.android.logger.Logger;
 import com.zhuj.android.thread.MainExecutor;
 import com.zhuj.android.thread.WorkExecutor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class Androids {
 
     private static Application App;
+    private static ActivityLifecycleHelper activityLifecycleHelper;
 
     /**
      * 主线程Handler
@@ -51,6 +53,8 @@ public class Androids {
      */
     public static void debug(boolean isDebug) {
         Logger.debug(isDebug);
+        ((Application) Androids.getContext()).registerActivityLifecycleCallbacks(getActivityLifecycleHelper());
+
         // if (isDebug) {
         //
         // }
@@ -63,6 +67,13 @@ public class Androids {
      */
     public static Handler getMainHandler() {
         return MAIN_HANDLER;
+    }
+
+    public static ActivityLifecycleHelper getActivityLifecycleHelper() {
+        if(activityLifecycleHelper == null){
+            activityLifecycleHelper = new ActivityLifecycleHelper();
+        }
+        return activityLifecycleHelper;
     }
 
     private static MainExecutor mainExecutor;

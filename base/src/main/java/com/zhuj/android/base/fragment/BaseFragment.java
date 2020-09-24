@@ -17,11 +17,4 @@ public abstract class BaseFragment extends IFragment implements View.OnClickList
         }
     }
 
-    @Override
-    protected void initData() {
-    }
-
-    @Override
-    protected void initEvent() {
-    }
 }

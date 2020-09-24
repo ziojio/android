@@ -94,7 +94,7 @@ ext.deps.lifecycle = [
 ]
 
 ext.deps.support = [
-        design            : "com.android.support:design:$version.support",
+        design      : "com.android.support:design:$version.support",
         app_compat  : "com.android.support:appcompat-v7:$version.support",
         annotations : "com.android.support:support-annotations:$version.support",
         recyclerview: "com.android.support:recyclerview-v7:$version.support",
@@ -161,28 +161,31 @@ ext.deps.arouter = [
 
 
 static addRepos(RepositoryHandler handler) {
+    // Add the Local repository
+    // maven { url rootProject.file('../libs/repository') }
     handler.maven { url 'https://maven.aliyun.com/repository/google' }
     handler.maven { url 'https://maven.aliyun.com/repository/jcenter' }
     handler.maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     handler.maven { url "https://jitpack.io" }
+    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
     handler.mavenLocal()
     handler.google()
     handler.jcenter()
     handler.mavenCentral()
-    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
-    handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-//    Add the Local repository
-//    maven { url rootProject.file('../libs/repository') }
 }
+
 ext.addRepos = this.&addRepos
 
 static def getAppName(a) {
     def appId = a.defaultConfig.applicationId;
     return appId.substring(appId.lastIndexOf(".") + 1);
 }
+
 ext.getAppName = this.&getAppName
 
 static def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+8"))
 }
+
 ext.releaseTime = this.&releaseTime

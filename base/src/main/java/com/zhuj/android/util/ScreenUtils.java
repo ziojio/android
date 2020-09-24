@@ -7,7 +7,9 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -24,21 +26,76 @@ import com.zhuj.android.logger.Logger;
 
 public final class ScreenUtils {
 
-    public static void fullScreen(Window window) {
-        View decorView = window.getDecorView();
+    public static void setFullScreenHideBar(Window window) {
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 // 隐藏导航栏，内容显示在导航栏下方
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                // 隐藏导航栏
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                // 内容延申到状态栏
+                // 内容延申到状态栏，全屏指的是状态栏
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                // 全屏显示，隐藏状态栏
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
+                // 不用自动隐藏bar
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(uiOptions);
+        window.getDecorView().setSystemUiVisibility(uiOptions);
     }
 
+    /**
+     * 沉浸式
+     *
+     * @param activity
+     */
+    public static void setFullScreenTransparentBar(Activity activity) {
+        Window window = activity.getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+    }
+
+    /**
+     * 半沉浸式
+     */
+    public static void setFullScreenTranslucentBar(Activity activity) {
+        Window window = activity.getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+    }
+
+    public static void hideStatusBar(Window window) {
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    public static void hideNavigationBar(Window window) {
+        View decorView = window.getDecorView();
+        int option = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(option);
+    }
+
+    public static int getSystemStatusBarHeight(Context context) {
+        int id = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return id > 0 ? context.getResources().getDimensionPixelSize(id) : id;
+    }
+
+    public static int getStatusBarHeight(Activity activity) {
+        Rect rectangle = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rectangle);
+        return rectangle.top;
+    }
+
+    public static int getTitleBarHeight(Activity activity) {
+        Rect rectangle = new Rect();
+        Window window = activity.getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
+        int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+        return contentViewTop - rectangle.top;
+    }
 
     public static int getDisplayMetrics(boolean isReal) {
         WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE, WindowManager.class);
