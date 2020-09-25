@@ -60,6 +60,11 @@ public class Androids {
         // }
     }
 
+    /** Returns true if the calling thread is the main thread. */
+    public static boolean isMainThread() {
+        return Looper.getMainLooper().getThread() == Thread.currentThread();
+    }
+
     /**
      * 获取主线程的Handler
      *

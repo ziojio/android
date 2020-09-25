@@ -44,7 +44,7 @@ public class Toasts {
     }
 
     public static void show(Context context, String msg, int duration) {
-        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+        if (Androids.isMainThread()) {
             Toast.makeText(context, msg, duration).show();
         } else {
             Androids.runOnUiThread(new Runnable() {

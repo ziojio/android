@@ -2,10 +2,12 @@ package com.zhuj.android.http.callback;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
 import com.zhuj.code.util.GsonUtils;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -18,9 +20,7 @@ public abstract class Callback<T> implements okhttp3.Callback {
             ApiResult<T> result;
             try {
                 String bodyStr = Objects.requireNonNull(response.body()).string();
-                Logger.e(bodyStr);
-                result = GsonUtils.getGson().fromJson(bodyStr, new ApiResultTypeImpl(getClass()));
-                Logger.e(GsonUtils.toPrettyJson(result));
+                result = new Gson().fromJson(bodyStr, new ApiResultTypeImpl(getClass()));
             } catch (Exception e) { // 捕获 type get error
                 onFailure(call, new IOException("parser json error: " + e.getMessage()));
                 return;
@@ -45,7 +45,7 @@ public abstract class Callback<T> implements okhttp3.Callback {
 
     @Override
     public void onFailure(Call call, IOException e) {
-        Logger.e("Call: " + call.request().url() + ", msg: " + e.getMessage());
+        // Logger.e("Call: " + call.request().url() + ", msg: " + e.getMessage());
         onFailure(e);
     }
 

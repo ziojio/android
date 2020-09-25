@@ -1,3 +1,4 @@
+include ':libannotations'
 rootProject.name='android'
 include ':app'
 

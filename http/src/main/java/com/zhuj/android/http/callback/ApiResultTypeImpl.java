@@ -1,5 +1,7 @@
 package com.zhuj.android.http.callback;
 
+import com.zhuj.code.util.TypeUtils;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 

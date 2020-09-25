@@ -61,7 +61,7 @@ subprojects {
                 androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
                 // 可能使用 lombok
                 compileOnly deps.lombok
-                annotationProcessor deps.lombokProcessor
+                annotationProcessor deps.processor
             }
             // loggerMarginStr( android.properties)
             println "------------------------------ withPlugin " + it.id + "  end  --------------------------"

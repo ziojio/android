@@ -3,6 +3,7 @@ package com.zhuj.android.http;
 import android.os.Environment;
 
 import com.google.gson.JsonObject;
+import com.zhuj.android.http.callback.Callback;
 import com.zhuj.code.file.FileIO;
 import com.zhuj.code.lang.Strings;
 import com.zhuj.code.util.GsonUtils;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -58,7 +60,7 @@ public class HttpUtils {
 
     private static HttpUrl buildHttpUrl(String url) {
         if (url.startsWith("http")) {
-            Logger.d("build url use set url: " + url);
+            // Logger.d("build url use set url: " + url);
             return Objects.requireNonNull(HttpUrl.parse(url), "Url is NULL or ERROR");
         }
         HttpUrl httpUrl = URL_MAP.get(baseUrl);
@@ -69,7 +71,7 @@ public class HttpUtils {
         HttpUrl.Builder builder = httpUrl.newBuilder();
         if (subUrl != null && !subUrl.isEmpty()) builder.addPathSegments(subUrl);
         builder.addPathSegments(url);
-        Logger.d("build url use base url: " + builder.toString());
+        // Logger.d("build url use base url: " + builder.toString());
         return builder.build();
     }
 

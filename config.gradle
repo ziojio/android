@@ -62,11 +62,13 @@ ext.deps = [
         material          : "com.google.android.material:material:$version.material",
         qmui              : "com.qmuiteam:qmui:$version.qmui",
 
+        // 	compileOnly 'org.projectlombok:lombok:1.18.12'
+        //	annotationProcessor 'org.projectlombok:lombok:1.18.12'
         lombok            : "org.projectlombok:lombok:$version.lombok",
-        lombokProcessor   : "org.projectlombok:lombok:$version.lombok",
+        processor         : "org.projectlombok:lombok:$version.lombok",
 
         glide             : "com.github.bumptech.glide:glide:$version.glide",
-        glideProcessor    : "com.github.bumptech.glide:compiler:$version.glide",
+        compiler          : "com.github.bumptech.glide:compiler:$version.glide",
 
         eventbus          : "org.greenrobot:eventbus:$version.eventbus",
 
@@ -104,10 +106,10 @@ ext.deps.support = [
 ]
 
 ext.deps.room = [
-        runtime  : "androidx.room:room-runtime:$version.room",
-        processor: "androidx.room:room-compiler:$version.room",
-        rxjava2  : "android.arch.persistence.room:rxjava2:$version.room",
-        testing  : "android.arch.persistence.room:testing:$version.room",
+        runtime : "androidx.room:room-runtime:$version.room",
+        compiler: "androidx.room:room-compiler:$version.room",
+        rxjava2 : "android.arch.persistence.room:rxjava2:$version.room",
+        testing : "android.arch.persistence.room:testing:$version.room",
 ]
 
 ext.deps.kotlin = [
@@ -117,8 +119,19 @@ ext.deps.kotlin = [
 ]
 
 ext.deps.google = [
-        gson   : "com.google.code.gson:gson:$version.gson",
-        flexbox: "com.google.android:flexbox:2.0.1"
+        gson          : "com.google.code.gson:gson:$version.gson",
+        flexbox       : "com.google.android:flexbox:2.0.1",
+        auto          : [
+                'service': 'com.google.auto.service:auto-service:1.0-rc4',
+                'common' : 'com.google.auto:auto-common:0.10'],
+]
+
+ext.deps.squareup = [
+        okhttp       : "com.squareup.okhttp3:okhttp:$version.okhttp3",
+        okio         : "com.squareup.okio:okio:$version.okio",
+        retrofit2    : "com.squareup.retrofit2:retrofit:$version.retrofit2",
+        converterGson: "com.squareup.retrofit2:converter-gson:$version.retrofit2",
+        javapoet     : 'com.squareup:javapoet:1.10.0',
 ]
 
 ext.deps.ali = [
@@ -131,12 +144,6 @@ ext.deps.webview = [
         downloader : "com.download.library:Downloader:$version.agentweb",
 ]
 
-ext.deps.squareup = [
-        okhttp       : "com.squareup.okhttp3:okhttp:$version.okhttp3",
-        okio         : "com.squareup.okio:okio:$version.okio",
-        retrofit2    : "com.squareup.retrofit2:retrofit:$version.retrofit2",
-        converterGson: "com.squareup.retrofit2:converter-gson:$version.retrofit2",
-]
 
 ext.deps.test = [
         espresso_core   : "androidx.test.espresso:espresso-core:$version.espresso",
