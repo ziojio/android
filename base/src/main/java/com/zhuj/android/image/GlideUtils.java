@@ -19,9 +19,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.jbzh.baseapp.logger.Logger;
-import com.jbzh.baseapp.util.Androids;
-import com.jbzh.baseapp.util.Views;
+import com.zhuj.android.android.Androids;
+import com.zhuj.android.android.Views;
+import com.zhuj.android.logger.Logger;
 
 import java.io.File;
 import java.util.concurrent.ExecutionException;

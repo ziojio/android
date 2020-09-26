@@ -11,4 +11,6 @@ java {
 dependencies {
     compileOnly deps.squareup.javapoet
     compileOnly deps.google.auto.service
+    // api deps.incap.runtime
+    // compileOnly deps.incap.processor
 }

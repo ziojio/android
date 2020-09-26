@@ -1,13 +1,68 @@
 package com.zhuj.android.android;
 
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.IntRange;
 
 import com.zhuj.android.logger.Logger;
 
 public class Views {
     private Views() {
+    }
+
+    public static void setPressAlphaEffect(View view, float alpha, int duration) {
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getActionMasked();
+                if (action == MotionEvent.ACTION_DOWN) {
+                    view.animate().alpha(alpha).setDuration(duration).start();
+                } else if (action == MotionEvent.ACTION_UP
+                        || action == MotionEvent.ACTION_OUTSIDE
+                        || action == MotionEvent.ACTION_CANCEL) {
+                    view.animate().alpha(1f).setDuration(duration).start();
+                }
+                return false;
+            }
+        });
+    }
+
+    public static void setTextViewCompoundDrawables(TextView textView, Drawable drawable, @IntRange(from = 0, to = 3) int direction) {
+        if (direction == 0) {
+            setTextViewCompoundDrawables(textView, drawable, null, null, null);
+        } else if (direction == 1) {
+            setTextViewCompoundDrawables(textView, null, drawable, null, null);
+        } else if (direction == 2) {
+            setTextViewCompoundDrawables(textView, null, null, drawable, null);
+        } else if (direction == 3) {
+            setTextViewCompoundDrawables(textView, null, null, null, drawable);
+        }
+    }
+
+    public static void setTextViewCompoundDrawables(TextView textView, Drawable start, Drawable top, Drawable end, Drawable bottom) {
+        Drawable[] drawables = textView.getCompoundDrawablesRelative();
+        if (start != null) {
+            start.setBounds(drawables[0].getBounds());
+            drawables[0] = start;
+        }
+        if (top != null) {
+            top.setBounds(drawables[1].getBounds());
+            drawables[1] = top;
+        }
+        if (end != null) {
+            end.setBounds(drawables[2].getBounds());
+            drawables[2] = end;
+        }
+        if (bottom != null) {
+            bottom.setBounds(drawables[3].getBounds());
+            drawables[3] = bottom;
+        }
+        textView.setCompoundDrawablesRelative(drawables[0], drawables[1], drawables[2], drawables[3]);
     }
 
     public static void logMeasureSpec(int measureSpec) {

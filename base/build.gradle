@@ -1,13 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
-
 //    resourcePrefix "sample_" // 在xml类型的资源文件命名不是以 moduleName_ 为前缀，会提示
-
     defaultConfig {
-        versionCode 1
-        versionName "1.0"
-
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -47,7 +42,7 @@ dependencies {
 
 //    implementation deps.okhttp
     implementation deps.glide
-    implementation deps.compiler
+    implementation deps.glideCompiler
 
     implementation project(path: ':libjava')
 //    implementation deps.gson

@@ -2,7 +2,7 @@ package com.zhuj.android.util;
 
 import android.net.Uri;
 
-import com.jbzh.baseapp.model.ListMap;
+import com.zhuj.code.model.ListMap;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

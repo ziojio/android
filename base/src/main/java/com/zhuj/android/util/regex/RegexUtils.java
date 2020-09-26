@@ -1,6 +1,7 @@
 package com.zhuj.android.util.regex;
 
-import com.jbzh.baseapp.util.Strings;
+
+import com.zhuj.code.lang.Strings;
 
 import java.util.regex.Pattern;
 

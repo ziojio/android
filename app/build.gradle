@@ -4,9 +4,6 @@ android {
 
     defaultConfig {
         applicationId android_config.applicationId
-
-        versionCode android_config.versionCode
-        versionName android_config.versionName
     }
 
     buildTypes {
@@ -45,6 +42,10 @@ android {
             output.outputFileName = getAppName(android) + "_" + buildType.name + "_" + releaseTime() + "_v" + defaultConfig.versionName + ".apk"
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+    }
 }
 
 dependencies {
@@ -64,9 +65,13 @@ dependencies {
 
     implementation deps.webview.agentweb
 
+    implementation deps.room.runtime
+
     implementation project(path: ':base')
     implementation project(path: ':database')
     implementation project(path: ':libjava')
+    implementation project(path: ':libannotations')
+    annotationProcessor project(path: ':libannotations')
 //    implementation project(path: ':http')
 
 }

@@ -5,11 +5,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class GradientColor {
     int id;
-    @JsonIgnore
     int tag;
     String startColor;
     String centerColor;
@@ -17,9 +15,7 @@ public class GradientColor {
     float radius;
     int angle; // Angle of the gradient, used only with linear gradient. Must be a multiple of 45 in the range [0, 315]
 
-    @JsonIgnore
     GradientDrawable.Orientation orientation;
-    @JsonIgnore
     GradientDrawable drawable;
 
     public GradientDrawable getGradientColorDrawable() {

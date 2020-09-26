@@ -1,14 +1,10 @@
-include ':libannotations'
 rootProject.name='android'
 include ':app'
-
 include ':base'
-
 include ':http'
-
 include ':database'
-
 include ':libjava'
+include ':libannotations'
 
 
 

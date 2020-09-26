@@ -22,6 +22,16 @@ public class CenterDialog extends BaseDialogFragment {
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initEvent() {
+
+    }
+
+    @Override
     protected void windowBehavior() {
         Window window = requireDialog().getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
