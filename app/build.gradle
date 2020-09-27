@@ -58,7 +58,7 @@ dependencies {
 //    implementation deps.androidx.multidex
 
     implementation deps.glide
-    implementation deps.processor
+    implementation deps.glideCompiler
 
     implementation deps.google.gson
     implementation deps.logger

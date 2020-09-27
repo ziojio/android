@@ -1,0 +1,38 @@
+/**
+ * Utilities
+ */
+
+static def getAppName(android) {
+    def appName = android.defaultConfig.applicationId;
+    if (appName == null) {
+        appName = "app"
+    }
+    return appName.substring(appName.lastIndexOf(".") + 1);
+}
+
+ext.getAppName = this.&getAppName
+
+static def releaseTime(String format) {
+    return new Date().format(format, TimeZone.getTimeZone("GMT+8"))
+}
+
+ext.releaseTime = this.&releaseTime
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd_HHmmss", TimeZone.getTimeZone("GMT+8"))
+}
+
+ext.releaseTime = this.&releaseTime
+
+
+static def loggerMarginStr(obj) {
+    println "---------------------------------------------------------------------------------------"
+    if (obj instanceof Map || obj instanceof Collection) {
+        obj.forEach({ x, y -> println "[ " + x + " : " + y + " ]" })
+    } else {
+        println obj
+    }
+    println "---------------------------------------------------------------------------------------"
+}
+
+ext.loggerMarginStr = this.&loggerMarginStr

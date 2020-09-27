@@ -1,0 +1,129 @@
+//
+
+def version = [
+        javaVersion: JavaVersion.VERSION_1_8,
+        support    : "28.0.0",
+        lifecycle  : "2.2.0",
+        room       : "2.2.5",
+
+        gson       : "2.8.6",
+        okhttp3    : "3.14.9",
+        okio       : "1.17.5",
+        eventbus   : "3.2.0",
+        glide      : "4.11.0",
+        lombok     : "1.18.12",
+
+        retrofit2  : "2.9.0",
+        agentweb   : "4.1.3",
+        dagger     : "2.16",
+        fastjson   : "1.2.73",
+
+        junit      : "4.12",
+        espresso   : "3.2.0",
+        runner     : "1.2.0",
+]
+ext.versions = version
+
+ext.deps = [
+        material          : "com.google.android.material:material:1.1.0",
+        qmui              : "com.qmuiteam:qmui:2.0.0-alpha10",
+        lombok            : "org.projectlombok:lombok:$version.lombok",
+        glide             : "com.github.bumptech.glide:glide:$version.glide",
+        glideCompiler     : "com.github.bumptech.glide:compiler:$version.glide",
+        eventbus          : "org.greenrobot:eventbus:$version.eventbus",
+        logger            : "com.orhanobut:logger:2.2.0",
+        swiperefreshlayout: "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
+        yzjrecyclerview   : "com.yanzhenjie.recyclerview:x:1.3.2"
+]
+
+ext.deps.androidx = [
+        appcompat       : "androidx.appcompat:appcompat:1.2.0",
+        annotation      : "androidx.annotation:annotation:1.1.0",
+        constraintlayout: "androidx.constraintlayout:constraintlayout:2.0.1",
+        recyclerview    : "androidx.recyclerview:recyclerview:1.1.0",
+        viewpager       : "androidx.viewpager:viewpager:1.0.0",
+        cardview        : "androidx.cardview:cardview:1.0.0",
+        multidex        : "androidx.multidex:multidex:2.0.0"
+]
+
+ext.deps.lifecycle = [
+        runtime    : "androidx.lifecycle:lifecycle-runtime:$version.lifecycle",
+        viewmodel  : "androidx.lifecycle:lifecycle-viewmodel:$version.lifecycle",
+        livedata   : "androidx.lifecycle:lifecycle-livedata:$version.lifecycle",
+        commonjava8: "androidx.lifecycle:lifecycle-common-java8:$version.lifecycle",
+        extensions : "androidx.lifecycle:lifecycle-extensions:$version.lifecycle"
+]
+
+ext.deps.support = [
+        design      : "com.android.support:design:$version.support",
+        app_compat  : "com.android.support:appcompat-v7:$version.support",
+        annotations : "com.android.support:support-annotations:$version.support",
+        recyclerview: "com.android.support:recyclerview-v7:$version.support",
+        cardview    : "com.android.support:cardview-v7:$version.support",
+        v4          : "com.android.support:support-v4:$version.support",
+        core_utils  : "com.android.support:support-core-utils:$version.support"
+]
+
+ext.deps.room = [
+        runtime : "androidx.room:room-runtime:$version.room",
+        compiler: "androidx.room:room-compiler:$version.room",
+        rxjava2 : "android.arch.persistence.room:rxjava2:$version.room",
+        testing : "android.arch.persistence.room:testing:$version.room",
+]
+
+ext.deps.kotlin = [
+        stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$version.kotlin",
+        test  : "org.jetbrains.kotlin:kotlin-test-junit:$version.kotlin",
+        plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$version.kotlin",
+]
+
+ext.deps.google = [
+        gson   : "com.google.code.gson:gson:$version.gson",
+        flexbox: "com.google.android:flexbox:2.0.1",
+        auto   : [
+                'service': 'com.google.auto.service:auto-service:1.0-rc4',
+                'common' : 'com.google.auto:auto-common:0.10'],
+]
+
+ext.deps.squareup = [
+        okhttp       : "com.squareup.okhttp3:okhttp:$version.okhttp3",
+        okio         : "com.squareup.okio:okio:$version.okio",
+        retrofit2    : "com.squareup.retrofit2:retrofit:$version.retrofit2",
+        converterGson: "com.squareup.retrofit2:converter-gson:$version.retrofit2",
+        javapoet     : 'com.squareup:javapoet:1.10.0',
+]
+
+ext.deps.ali = [
+        fastjson       : "com.alibaba:fastjson:$version.fastjson",
+        arouterApi     : "com.alibaba:arouter-api:1.3.1",
+        arouterCompiler: "com.alibaba:arouter-compiler:1.1.4"
+]
+
+ext.deps.incap = [
+        runtime  : "net.ltgt.gradle.incap:incap:0.2",
+        processor: "net.ltgt.gradle.incap:incap-processor:0.2",
+]
+
+ext.deps.webview = [
+        agentweb   : "com.just.agentweb:agentweb:$version.agentweb",
+        filechooser: "com.just.agentweb:filechooser:$version.agentweb",
+        downloader : "com.download.library:Downloader:$version.agentweb",
+]
+
+
+static addRepos(RepositoryHandler handler) {
+    // Add the Local repository
+    // maven { url rootProject.file('../libs/repository') }
+    handler.maven { url 'https://maven.aliyun.com/repository/google' }
+    handler.maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    handler.maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    handler.maven { url "https://jitpack.io" }
+    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
+    handler.mavenLocal()
+    handler.mavenCentral()
+    handler.google()
+    handler.jcenter()
+}
+
+ext.addRepos = this.&addRepos
