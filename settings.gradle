@@ -4,7 +4,8 @@ include ':base'
 include ':http'
 include ':database'
 include ':libjava'
-include ':libannotations'
+include ':libannotation'
+include ':libprocessor'
 
 
 

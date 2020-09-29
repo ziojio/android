@@ -14,8 +14,9 @@
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/http" />
-            <option value="$PROJECT_DIR$/libannotations" />
+            <option value="$PROJECT_DIR$/libannotation" />
             <option value="$PROJECT_DIR$/libjava" />
+            <option value="$PROJECT_DIR$/libprocessor" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

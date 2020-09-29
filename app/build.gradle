@@ -42,12 +42,7 @@ android {
             output.outputFileName = getAppName(android) + "_" + buildType.name + "_" + releaseTime() + "_v" + defaultConfig.versionName + ".apk"
         }
     }
-
-    packagingOptions {
-        exclude 'META-INF/gradle/incremental.annotation.processors'
-    }
 }
-
 dependencies {
     implementation deps.material
     implementation deps.qmui
@@ -55,23 +50,23 @@ dependencies {
     implementation deps.androidx.constraintlayout
     implementation deps.androidx.recyclerview
 //    implementation deps.androidx.viewpager
-//    implementation deps.androidx.multidex
 
     implementation deps.glide
-    implementation deps.glideCompiler
+    annotationProcessor deps.glideCompiler
 
-    implementation deps.google.gson
     implementation deps.logger
 
-    implementation deps.webview.agentweb
-
+    implementation deps.google.gson
     implementation deps.room.runtime
+    implementation deps.webview.agentweb
 
     implementation project(path: ':base')
     implementation project(path: ':database')
+    // implementation project(path: ':http')
     implementation project(path: ':libjava')
-    implementation project(path: ':libannotations')
-    annotationProcessor project(path: ':libannotations')
-//    implementation project(path: ':http')
+    implementation project(':libannotation')
+    annotationProcessor project(':libprocessor')
+
 
 }
+

@@ -3,15 +3,13 @@ apply plugin: 'com.android.library'
 android {
     defaultConfig {
         consumerProguardFiles "consumer-rules.pro"
-        // javaCompileOptions {
-        //     annotationProcessorOptions {
-        //         arguments = [
-        //                 "room.schemaLocation"  : "$projectDir/schemas".toString(),
-        //                 "room.incremental"     : "true",
-        //                 "room.expandProjection": "true"
-        //         ]
-        //     }
-        // }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.incremental": "true",
+                ]
+            }
+        }
     }
 
     buildTypes {

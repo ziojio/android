@@ -1,13 +1,8 @@
 package com.zhuj.android.http.response;
 
-import com.google.gson.annotations.SerializedName;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
  * {
@@ -19,20 +14,12 @@ import lombok.ToString;
  * }
  */
 @AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString
-public class ApiResponse {
+@Data
+public class ApiResponse<T> {
 
     //    @SerializedName(value = "ret", alternate = {"code", "retCode"})
     int ret;
     String msg;
-    String data;
-
-    public ApiResponse(int ret, String data) {
-        this.ret = ret;
-        this.data = data;
-    }
+    T data;
 
 }

@@ -1,13 +1,12 @@
 package com.zhuj.android.http.callback;
 
+
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
-import com.zhuj.code.util.GsonUtils;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.Response;

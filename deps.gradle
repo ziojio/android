@@ -81,8 +81,15 @@ ext.deps.google = [
         gson   : "com.google.code.gson:gson:$version.gson",
         flexbox: "com.google.android:flexbox:2.0.1",
         auto   : [
-                'service': 'com.google.auto.service:auto-service:1.0-rc4',
-                'common' : 'com.google.auto:auto-common:0.10'],
+                service : [
+                        'processor'  : 'com.google.auto.service:auto-service:1.0-rc7',
+                        'annotations': 'com.google.auto.service:auto-service-annotations:1.0-rc7',
+                ],
+                value : [
+                        'auto-value'  : 'com.google.auto.service:auto-value:1.7.4',
+                        'auto-value-annotations': 'com.google.auto.service:auto-value-annotations:1.7.4',
+                ],
+                'common': 'com.google.auto:auto-common:0.11'],
 ]
 
 ext.deps.squareup = [
@@ -90,7 +97,7 @@ ext.deps.squareup = [
         okio         : "com.squareup.okio:okio:$version.okio",
         retrofit2    : "com.squareup.retrofit2:retrofit:$version.retrofit2",
         converterGson: "com.squareup.retrofit2:converter-gson:$version.retrofit2",
-        javapoet     : 'com.squareup:javapoet:1.10.0',
+        javapoet     : 'com.squareup:javapoet:1.13.0',
 ]
 
 ext.deps.ali = [
@@ -100,8 +107,8 @@ ext.deps.ali = [
 ]
 
 ext.deps.incap = [
-        runtime  : "net.ltgt.gradle.incap:incap:0.2",
-        processor: "net.ltgt.gradle.incap:incap-processor:0.2",
+        runtime  : "net.ltgt.gradle.incap:incap:0.3",
+        processor: "net.ltgt.gradle.incap:incap-processor:0.3",
 ]
 
 ext.deps.webview = [

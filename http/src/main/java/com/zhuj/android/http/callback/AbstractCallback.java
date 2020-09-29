@@ -6,7 +6,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-
 import com.zhuj.android.http.response.ResponseParser;
 
 import java.io.IOException;

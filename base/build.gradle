@@ -42,7 +42,7 @@ dependencies {
 
 //    implementation deps.okhttp
     implementation deps.glide
-    implementation deps.glideCompiler
+    annotationProcessor deps.glideCompiler
 
     implementation project(path: ':libjava')
 //    implementation deps.gson
