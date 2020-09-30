@@ -98,7 +98,7 @@ public final class ScreenUtils {
     }
 
     public static int getDisplayMetrics(boolean isReal) {
-        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE, WindowManager.class);
+        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         if (wm != null) {
             if (isReal) {
@@ -119,7 +119,7 @@ public final class ScreenUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static DisplayMetrics getRealDisplayMetrics() {
         DisplayMetrics dm = new DisplayMetrics();
-        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE, WindowManager.class);
+        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE);
         if (wm != null) {
             wm.getDefaultDisplay().getRealMetrics(dm);
         }
@@ -132,7 +132,7 @@ public final class ScreenUtils {
      * @return 屏幕的尺寸
      */
     private static Point getDisplaySize() {
-        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE, WindowManager.class);
+        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE);
         Point size = new Point();
         if (wm != null) {
             wm.getDefaultDisplay().getSize(size);
@@ -147,7 +147,7 @@ public final class ScreenUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private static Point getDisplayRealSize() {
-        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE, WindowManager.class);
+        WindowManager wm = Androids.getSystemService(Context.WINDOW_SERVICE);
         Point size = new Point();
         if (wm != null) {
             wm.getDefaultDisplay().getRealSize(size);

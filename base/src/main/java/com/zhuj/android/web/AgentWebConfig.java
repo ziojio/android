@@ -6,7 +6,6 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 
@@ -138,7 +137,7 @@ public class AgentWebConfig {
         if (!TextUtils.isEmpty(AGENTWEB_FILE_PATH)) {
             return AGENTWEB_FILE_PATH;
         }
-        String dir =  context.getExternalCacheDir().getAbsolutePath();
+        String dir = context.getExternalCacheDir().getAbsolutePath();
         File mFile = new File(dir, FILE_CACHE_PATH);
         try {
             if (!mFile.exists()) {

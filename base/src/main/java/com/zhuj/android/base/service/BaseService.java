@@ -21,7 +21,7 @@ public class BaseService extends Service {
         }
     }
 
-    private ServiceBinder binder = new ServiceBinder();
+    private final ServiceBinder binder = new ServiceBinder();
 
     protected boolean isAllowBind() {
         return true;

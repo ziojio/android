@@ -70,7 +70,7 @@ public class ActivityResultFragment extends Fragment {
     }
 
     private void removeFragment() {
-        requireFragmentManager().beginTransaction()
+        getParentFragmentManager().beginTransaction()
                 .remove(this)
                 .commitAllowingStateLoss();
     }

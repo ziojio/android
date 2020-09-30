@@ -25,6 +25,10 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
         borderPaint.setStyle(Paint.Style.STROKE);
     }
 
+    /**
+     * 使用分隔的空隙，不初始化Paint
+     * @param lineSpace 每一行的高度
+     */
     public LinearItemDecoration(int lineSpace) {
         this.lineSpace = lineSpace;
     }

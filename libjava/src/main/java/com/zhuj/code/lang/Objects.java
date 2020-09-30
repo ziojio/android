@@ -1,5 +1,8 @@
 package com.zhuj.code.lang;
 
+import com.google.gson.internal.$Gson$Preconditions;
+import com.zhuj.code.Preconditions;
+
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
@@ -32,29 +35,32 @@ public class Objects {
 
     /**
      * 类型强转
+     *
      * @param object 需要强转的对象
      * @param clazz  需要强转的类型
      * @return 类型强转结果
      */
+    @SuppressWarnings("unchecked")
     public static <T> T cast(final Object object, Class<T> clazz) {
-        return clazz != null && clazz.isInstance(object) ? (T) object : null;
+        Preconditions.checkNotNull(clazz);
+        return clazz.isInstance(object) ? (T) object : null;
     }
 
     /**
      * 类型强转
-     *
-     * @param object       需要强转的对象
-     * @param defaultValue 强转的默认值
-     * @param <T>
+     * @param object   需要强转的对象
+     * @param defValue 强转的默认值
      * @return 类型强转结果
      */
-    public static <T> T cast(Object object, T defaultValue) {
-        if (defaultValue == null) {
-            return null;
-        } else if (object == null) {
-            return null;
-        } else {
-            return defaultValue.getClass() == object.getClass() ? (T) object : defaultValue;
+    @SuppressWarnings("unchecked")
+    public static <T> T cast(Object object, T defValue) {
+        if (object == null) {
+            return defValue;
+        }
+        try {
+            return (T) object;
+        } catch (Exception e) {
+            return defValue;
         }
     }
 }

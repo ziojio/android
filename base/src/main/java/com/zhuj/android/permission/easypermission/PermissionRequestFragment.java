@@ -2,7 +2,7 @@ package com.zhuj.android.permission.easypermission;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Fragment;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,12 +59,12 @@ public final class PermissionRequestFragment extends Fragment implements Runnabl
     /**
      * 开始请求
      */
-    public void go(Activity activity) {
+    public void go(FragmentActivity activity) {
         if (activity != null) {
             if (Looper.getMainLooper() != Looper.myLooper()) {
                 throw new RuntimeException("you must request permission in main thread!!");
             }
-            activity.getFragmentManager().beginTransaction().add(this, activity.getClass().getName()).commit();
+            activity.getSupportFragmentManager().beginTransaction().add(this, activity.getClass().getName()).commit();
         } else {
             throw new RuntimeException("activity is null!!");
         }
@@ -174,7 +177,7 @@ public final class PermissionRequestFragment extends Fragment implements Runnabl
         if (mPermissionRequestListener != null) {
             mPermissionRequestListener.onGrant(mPermissionGrantMap);
         }
-        getFragmentManager().beginTransaction().remove(this).commit();
+        getParentFragmentManager().beginTransaction().remove(this).commit();
     }
 
 

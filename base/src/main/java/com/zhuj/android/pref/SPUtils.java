@@ -2,7 +2,8 @@ package com.zhuj.android.pref;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import com.zhuj.android.android.Androids;
 import com.zhuj.code.lang.StringUtils;

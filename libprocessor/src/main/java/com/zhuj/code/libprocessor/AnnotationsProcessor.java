@@ -57,7 +57,6 @@ public class AnnotationsProcessor extends AbstractProcessor {
         isFileCreated = true;
 
         for (Element element : roundEnv.getElementsAnnotatedWith(ImplClass.class)) {
-            info(element, "Printing: " + element.toString());
             if (element.getKind() != ElementKind.CLASS) {
                 error(element, "Only classes can be annotated with @%s", ImplClass.class.getSimpleName());
                 return true; // Exit processing

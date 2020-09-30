@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,29 +18,12 @@ public class FragmentStateAdapter<T extends Fragment> extends FragmentStatePager
 
     private List<String> mTitleList = new ArrayList<>();
 
-    public FragmentStateAdapter(@NonNull FragmentManager fm) {
-        super(fm);
-    }
-
-    public FragmentStateAdapter(@NonNull FragmentManager fm, T[] fragments) {
-        this(fm, Arrays.asList(fragments));
-    }
-
-    public FragmentStateAdapter(@NonNull FragmentManager fm, List<T> fragments) {
-        super(fm);
-        setFragments(fragments);
-    }
-
     public FragmentStateAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
-    public FragmentStateAdapter(@NonNull FragmentManager fm, int behavior, T[] fragments) {
-        this(fm, behavior, Arrays.asList(fragments));
-    }
-
-    public FragmentStateAdapter(@NonNull FragmentManager fm, int behavior, List<T> fragments) {
-        super(fm, behavior);
+    public FragmentStateAdapter(@NonNull FragmentManager fm, List<T> fragments) {
+        super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         setFragments(fragments);
     }
 

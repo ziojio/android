@@ -27,10 +27,12 @@ dependencies {
     implementation deps.qmui
     implementation deps.material
     implementation deps.androidx.appcompat
-    implementation deps.androidx.constraintlayout
-    implementation deps.androidx.recyclerview
-//    implementation deps.androidx.viewpager
-//    implementation deps.androidx.multidex
+    implementation deps.androidx.fragment
+    implementation deps.androidx.preference
+    implementation deps.viewlayout.constraintlayout
+    implementation deps.viewlayout.recyclerview
+//    implementation deps.viewlayout.viewpager
+//    implementation deps.viewlayout.multidex
 
     implementation deps.eventbus
 
@@ -41,8 +43,8 @@ dependencies {
 //    implementation deps.lifecycle.extensions
 
 //    implementation deps.okhttp
-    implementation deps.glide
-    annotationProcessor deps.glideCompiler
+    implementation deps.glide.glide
+    annotationProcessor deps.glide.compiler
 
     implementation project(path: ':libjava')
 //    implementation deps.gson

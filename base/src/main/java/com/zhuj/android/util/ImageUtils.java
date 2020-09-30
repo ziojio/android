@@ -98,7 +98,6 @@ public final class ImageUtils {
             }
         }
         options.inSampleSize = sampleSize;
-        options.inDither = true;
         return BitmapFactory.decodeFile(filePath, options);
     }
 
@@ -188,16 +187,10 @@ public final class ImageUtils {
         }
         Bitmap bitmap;
         if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1,
-                    drawable.getOpacity() != PixelFormat.OPAQUE
-                            ? Bitmap.Config.ARGB_8888
-                            : Bitmap.Config.RGB_565);
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
         } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-                    drawable.getIntrinsicHeight(),
-                    drawable.getOpacity() != PixelFormat.OPAQUE
-                            ? Bitmap.Config.ARGB_8888
-                            : Bitmap.Config.RGB_565);
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
+                    Bitmap.Config.ARGB_8888);
         }
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -2285,7 +2278,7 @@ public final class ImageUtils {
             }
         }
         // 创建一个新的和SRC长度宽度一样的位图
-        Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_4444);
+        Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas cv = new Canvas(result);
         cv.drawColor(bgColor);
         //在canvas上绘制原图和新的水印图

@@ -60,7 +60,9 @@ public class Androids {
         // }
     }
 
-    /** Returns true if the calling thread is the main thread. */
+    /**
+     * Returns true if the calling thread is the main thread.
+     */
     public static boolean isMainThread() {
         return Looper.getMainLooper().getThread() == Thread.currentThread();
     }
@@ -75,7 +77,7 @@ public class Androids {
     }
 
     public static ActivityLifecycleHelper getActivityLifecycleHelper() {
-        if(activityLifecycleHelper == null){
+        if (activityLifecycleHelper == null) {
             activityLifecycleHelper = new ActivityLifecycleHelper();
         }
         return activityLifecycleHelper;
@@ -164,21 +166,15 @@ public class Androids {
     /**
      * 避免 NullPointException 的提示
      *
-     * @param serviceName
+     * @param serviceName Context @ServiceName 注解值
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getSystemService(String serviceName) {
         Object obj = getContext().getSystemService(serviceName);
         return (T) obj;
     }
 
-    public static <T> T getSystemService(Class<T> clazz) {
-        return getContext().getSystemService(clazz);
-    }
-
-    public static <T> T getSystemService(String serviceName, Class<T> clazz) {
-        return getSystemService(getContext(), serviceName, clazz);
-    }
-
+    @SuppressWarnings("unchecked")
     public static <T> T getSystemService(Context context, String name, Class<T> clazz) {
         Object obj = context.getSystemService(name);
         if (clazz.isInstance(obj)) {
@@ -193,7 +189,7 @@ public class Androids {
      */
     private static String getProcessName(Context context) {
         ActivityManager am = getSystemService(context, Context.ACTIVITY_SERVICE, ActivityManager.class);
-        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am != null ? am.getRunningAppProcesses() : null;
         if (runningApps != null) {
             for (ActivityManager.RunningAppProcessInfo proInfo : runningApps) {
                 if (proInfo.pid == android.os.Process.myPid()) {

@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,29 +19,12 @@ public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
 
     private List<String> mTitleList = new ArrayList<>();
 
-    public FragmentAdapter(@NonNull FragmentManager fm) {
-        super(fm);
-    }
-
-    public FragmentAdapter(@NonNull FragmentManager fm, T[] fragments) {
-        this(fm, Arrays.asList(fragments));
-    }
-
-    public FragmentAdapter(@NonNull FragmentManager fm, List<T> fragments) {
-        super(fm);
-        setFragments(fragments);
-    }
-
     public FragmentAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
-    public FragmentAdapter(@NonNull FragmentManager fm, int behavior, T[] fragments) {
-        this(fm, behavior, Arrays.asList(fragments));
-    }
-
-    public FragmentAdapter(@NonNull FragmentManager fm, int behavior, List<T> fragments) {
-        super(fm, behavior);
+    public FragmentAdapter(@NonNull FragmentManager fm, List<T> fragments) {
+        super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         setFragments(fragments);
     }
 
@@ -93,7 +75,7 @@ public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
             mTitleList.clear();
         }
     }
-    
+
     @NonNull
     @Override
     public T getItem(int position) {

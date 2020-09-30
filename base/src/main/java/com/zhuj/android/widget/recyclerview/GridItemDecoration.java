@@ -1,4 +1,4 @@
-package com.jbzh.baseapp.widget.recyclerview;
+package com.zhuj.android.widget.recyclerview;
 
 import android.graphics.Rect;
 import android.view.View;

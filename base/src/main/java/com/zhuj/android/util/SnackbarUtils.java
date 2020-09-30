@@ -351,7 +351,7 @@ public class SnackbarUtils {
      */
     public SnackbarUtils setCallback(Snackbar.Callback setCallback) {
         if (getSnackbar() != null) {
-            getSnackbar().setCallback(setCallback);
+            getSnackbar().addCallback(setCallback);
         }
         return this;
     }
@@ -370,7 +370,7 @@ public class SnackbarUtils {
             if (leftDrawable != null) {
                 try {
                     drawableLeft = getSnackbar().getView().getResources().getDrawable(leftDrawable);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
             if (rightDrawable != null) {

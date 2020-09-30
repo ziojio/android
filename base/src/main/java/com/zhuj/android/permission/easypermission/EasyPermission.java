@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import androidx.fragment.app.FragmentActivity;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,7 +25,7 @@ import java.util.List;
  */
 public class EasyPermission implements NextAction {
     public static final String TAG = "EasyPermission";
-    private Activity mActivity;
+    private FragmentActivity mActivity;
     private LinkedList<String> mPermissionList = new LinkedList<>();
     private PermissionRequestListener mPermissionRequestListener;
     private String mCurPermission;
@@ -31,7 +33,7 @@ public class EasyPermission implements NextAction {
     private HashMap<String, RequestPermissionRationalListener> mRequestPermissionRationalListenerMap = new HashMap<>();
     private HashMap<String, GrantResult> mPermissionGrantMap = new HashMap<>();
 
-    public EasyPermission(Activity activity) {
+    public EasyPermission(FragmentActivity activity) {
         mActivity = activity;
     }
 
@@ -41,7 +43,7 @@ public class EasyPermission implements NextAction {
      * @param activity
      * @return
      */
-    public static EasyPermission with(Activity activity) {
+    public static EasyPermission with(FragmentActivity activity) {
         return new EasyPermission(activity);
     }
 

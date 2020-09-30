@@ -297,8 +297,7 @@ public class Drawables {
         }
 
         try {
-            Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                    : Bitmap.Config.RGB_565;
+            Bitmap.Config config = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, config);
             Canvas canvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());

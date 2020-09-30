@@ -47,12 +47,12 @@ dependencies {
     implementation deps.material
     implementation deps.qmui
     implementation deps.androidx.appcompat
-    implementation deps.androidx.constraintlayout
-    implementation deps.androidx.recyclerview
-//    implementation deps.androidx.viewpager
+    implementation deps.viewlayout.constraintlayout
+    implementation deps.viewlayout.recyclerview
+//    implementation deps.viewlayout.viewpager
 
-    implementation deps.glide
-    annotationProcessor deps.glideCompiler
+    implementation deps.glide.glide
+    annotationProcessor deps.glide.compiler
 
     implementation deps.logger
 

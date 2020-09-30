@@ -1,6 +1,5 @@
 package com.zhuj.android.message;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zhuj.android.message.listener.OnAvatarClickListener;
@@ -10,7 +9,6 @@ import com.zhuj.android.message.listener.OnMessageStatusViewClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * 定义所有的具体消息内容

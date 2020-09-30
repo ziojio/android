@@ -23,7 +23,6 @@ import com.zhuj.android.android.Androids;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public final class PackageUtils {
@@ -73,6 +72,7 @@ public final class PackageUtils {
 
     private PackageUtils() {
     }
+
     // 获取显示在桌面的应用程序
     public static List<PackageInfo> getDesktopLauncherAppInfo(Context context) {
         PackageManager manager = context.getPackageManager();
@@ -334,7 +334,7 @@ public final class PackageUtils {
      *
      * @param context
      */
-    public static int getAppVersionCode(Context context) {
+    public static long getAppVersionCode(Context context) {
         if (context != null) {
             PackageManager pm = context.getPackageManager();
             if (pm != null) {
@@ -342,7 +342,11 @@ public final class PackageUtils {
                 try {
                     pi = pm.getPackageInfo(context.getPackageName(), 0);
                     if (pi != null) {
-                        return pi.versionCode;
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                            return pi.versionCode;
+                        } else {
+                            return pi.getLongVersionCode();
+                        }
                     }
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
@@ -381,7 +385,11 @@ public final class PackageUtils {
             return false;
         }
         try {
-            ApplicationInfo info = context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                context.getPackageManager().getApplicationInfo(packageName, PackageManager.MATCH_UNINSTALLED_PACKAGES);
+            } else {
+                context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            }
             return true;
         } catch (PackageManager.NameNotFoundException e) {
             return false;
@@ -455,7 +463,7 @@ public final class PackageUtils {
             intent.setFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
-        List<ResolveInfo> list = pkgMag.queryIntentActivities(intent, PackageManager.GET_ACTIVITIES);
+        List<ResolveInfo> list = pkgMag.queryIntentActivities(intent, PackageManager.GET_META_DATA);
         for (int i = 0; i < list.size(); i++) {
             ResolveInfo info = list.get(i);
             if (info.activityInfo.packageName.equals(packageName)) {

@@ -16,7 +16,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.zhuj.android.android.Androids;
@@ -61,34 +61,12 @@ public class GlideUtils {
 
     }
 
-    // public static void loadCompoundDrawable(TextView view, int direction, String url, RequestOptions requestOptions) {
-    //     RequestBuilder<Drawable> requestBuilder = Glide.with(view.getContext()).asDrawable().load(url);
-    //     if (requestOptions != null) {
-    //         requestBuilder = requestBuilder.apply(requestOptions);
-    //     }
-    //     requestBuilder.listener(requestListenerDrawable).into(new CustomViewTarget<TextView, Drawable>(view) {
-    //         @Override
-    //         public void onLoadFailed(@Nullable Drawable errorDrawable) {
-    //             Views.setTextViewCompoundDrawables(view, errorDrawable, direction);
-    //         }
-    //
-    //         @Override
-    //         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-    //             Views.setTextViewCompoundDrawables(view, resource, direction);
-    //         }
-    //
-    //         @Override
-    //         protected void onResourceCleared(@Nullable Drawable placeholder) {
-    //             Views.setTextViewCompoundDrawables(view, placeholder, direction);
-    //         }
-    //     });
-    // }
     public static void loadCompoundDrawable(TextView view, int direction, String url, RequestOptions requestOptions) {
         RequestBuilder<Drawable> requestBuilder = Glide.with(view.getContext()).asDrawable().load(url);
         if (requestOptions != null) {
             requestBuilder = requestBuilder.apply(requestOptions);
         }
-        requestBuilder.listener(requestListenerDrawable).into(new SimpleTarget<Drawable>() {
+        requestBuilder.listener(requestListenerDrawable).into(new CustomViewTarget<TextView, Drawable>(view) {
             @Override
             public void onLoadFailed(@Nullable Drawable errorDrawable) {
                 Views.setTextViewCompoundDrawables(view, errorDrawable, direction);
@@ -98,15 +76,22 @@ public class GlideUtils {
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                 Views.setTextViewCompoundDrawables(view, resource, direction);
             }
+
+            @Override
+            protected void onResourceCleared(@Nullable Drawable placeholder) {
+                Views.setTextViewCompoundDrawables(view, placeholder, direction);
+            }
         });
     }
+
 
     public static void loadViewBackground(View view, String url, RequestOptions requestOptions) {
         RequestBuilder<Drawable> requestBuilder = Glide.with(view.getContext()).asDrawable().load(url);
         if (requestOptions != null) {
             requestBuilder = requestBuilder.apply(requestOptions);
         }
-        requestBuilder.listener(requestListenerDrawable).into(new SimpleTarget<Drawable>() {
+        requestBuilder.listener(requestListenerDrawable).into(new CustomViewTarget<View, Drawable>(view) {
+
             @Override
             public void onLoadFailed(@Nullable Drawable errorDrawable) {
                 view.setBackground(errorDrawable);
@@ -115,6 +100,11 @@ public class GlideUtils {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                 view.setBackground(resource);
+            }
+
+            @Override
+            protected void onResourceCleared(@Nullable Drawable placeholder) {
+                view.setBackground(placeholder);
             }
         });
     }

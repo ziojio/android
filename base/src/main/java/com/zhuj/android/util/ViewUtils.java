@@ -99,7 +99,7 @@ public final class ViewUtils {
         Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), res);
         BitmapDrawable bd = new BitmapDrawable(context.getResources(), bmp);
         if (view != null) {
-            view.setBackgroundDrawable(bd);
+            view.setBackground(bd);
         }
     }
 
