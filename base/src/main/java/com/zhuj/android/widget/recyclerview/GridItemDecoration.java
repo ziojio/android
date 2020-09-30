@@ -1,4 +1,4 @@
-package com.zhuj.android.widget.recyclerview;
+package com.jbzh.baseapp.widget.recyclerview;
 
 import android.graphics.Rect;
 import android.view.View;
@@ -7,38 +7,33 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GridViewItemDecoration extends RecyclerView.ItemDecoration {
-    int spanCount = -1;
-    int itemSize = -1;
+public class GridItemDecoration extends RecyclerView.ItemDecoration {
+    int spanCount = 0;
+    int itemSize = 0;
     int lineSpace = 0;
     int itemSpace = 0;
     int topMargin;
     int bottomMargin;
 
-    public GridViewItemDecoration() {
+    public GridItemDecoration() {
     }
 
-    public GridViewItemDecoration(int spanCount, int lineSpace, int itemSpace) {
-        this.spanCount = spanCount;
+    public GridItemDecoration setLineSpace(int lineSpace) {
         this.lineSpace = lineSpace;
+        return this;
+    }
+
+    public GridItemDecoration setItemSpace(int itemSpace) {
         this.itemSpace = itemSpace;
+        return this;
     }
 
-    public GridViewItemDecoration(int spanCount, int lineSpace) {
-        this.spanCount = spanCount;
-        this.lineSpace = lineSpace;
-    }
-
-    public GridViewItemDecoration(int lineSpace) {
-        this.lineSpace = lineSpace;
-    }
-
-    public GridViewItemDecoration setTopMargin(int topMargin) {
+    public GridItemDecoration setTopMargin(int topMargin) {
         this.topMargin = topMargin;
         return this;
     }
 
-    public GridViewItemDecoration setBottomMargin(int bottomMargin) {
+    public GridItemDecoration setBottomMargin(int bottomMargin) {
         this.bottomMargin = bottomMargin;
         return this;
     }
@@ -46,18 +41,18 @@ public class GridViewItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         // Logger.d("spanCount: " + spanCount);
-        if (spanCount <= 0) {
+        if (spanCount == 0) {
             RecyclerView.LayoutManager g = parent.getLayoutManager();
             if (g instanceof GridLayoutManager) {
                 spanCount = ((GridLayoutManager) g).getSpanCount();
             }
         }
-        if (spanCount <= 0) return;// 不处理不是GridLayoutManager的情况
-
-        RecyclerView.Adapter<?> adapter = parent.getAdapter();
-        if (adapter == null) return;
-        itemSize = adapter.getItemCount();
-        if (itemSize <= 0) return;
+        if (spanCount == 0) return;
+        if (itemSize == 0) {
+            RecyclerView.LayoutManager g = parent.getLayoutManager();
+            itemSize = g != null ? g.getItemCount() : 0;
+        }
+        if (itemSize == 0) return;
 
         int index = parent.getChildAdapterPosition(view);
         // Logger.d("position: " + index);
