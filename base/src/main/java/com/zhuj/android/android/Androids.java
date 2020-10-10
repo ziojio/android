@@ -1,5 +1,6 @@
 package com.zhuj.android.android;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
@@ -22,6 +23,7 @@ import java.util.List;
 public class Androids {
 
     private static Application App;
+    @SuppressLint("StaticFieldLeak")
     private static ActivityLifecycleHelper activityLifecycleHelper;
 
     /**
@@ -53,11 +55,9 @@ public class Androids {
      */
     public static void debug(boolean isDebug) {
         Logger.debug(isDebug);
-        ((Application) Androids.getContext()).registerActivityLifecycleCallbacks(getActivityLifecycleHelper());
-
-        // if (isDebug) {
-        //
-        // }
+        if (isDebug) {
+            ((Application) Androids.getContext()).registerActivityLifecycleCallbacks(getActivityLifecycleHelper());
+        }
     }
 
     /**

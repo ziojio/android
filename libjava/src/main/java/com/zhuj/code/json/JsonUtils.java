@@ -1,4 +1,4 @@
-package com.zhuj.code;
+package com.zhuj.code.json;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

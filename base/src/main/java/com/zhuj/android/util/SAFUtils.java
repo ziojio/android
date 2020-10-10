@@ -46,7 +46,6 @@ public final class SAFUtils {
     }
 
     private SAFUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
     /**

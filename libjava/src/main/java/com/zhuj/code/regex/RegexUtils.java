@@ -1,20 +1,6 @@
-/*
- * Copyright (C) 2018 xuexiangjys(xuexiangjys@163.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.zhuj.code.regex;
 
-package com.zhuj.code.util;
+import com.zhuj.code.lang.Strings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,21 +8,27 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * 正则表达式工具类
- *
- * @author xuexiang
- * @since 2018/6/27 下午2:26
- */
-public final class RegexUtils {
+public class RegexUtils {
+    private static final Pattern COLOR_PATTERN = Pattern.compile(RegexConstants.COLOR);
+    private static final Pattern URL = Pattern.compile(RegexConstants.URL);
+    private static final Pattern HTTP_URL = Pattern.compile(RegexConstants.HTTP_URL);
 
-    private RegexUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
+    /**
+     * @param colorStr format #FF123456 or #FF123 or #123456 or #123
+     */
+    public static boolean isColor(String colorStr) {
+        if (Strings.isBlank(colorStr)) {
+            return false;
+        }
+        return COLOR_PATTERN.matcher(colorStr).matches();
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // If u want more please visit http://toutiao.com/i6231678548520731137
-    ///////////////////////////////////////////////////////////////////////////
+    public static boolean isHttpUrl(String url) {
+        if (Strings.isBlank(url)) {
+            return false;
+        }
+        return HTTP_URL.matcher(url).matches();
+    }
 
     /**
      * Return whether input matches regex of simple mobile.
@@ -45,7 +37,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isMobileSimple(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_MOBILE_SIMPLE, input);
+        return isMatch(RegexConstants.MOBILE_SIMPLE, input);
     }
 
     /**
@@ -55,7 +47,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isMobileExact(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_MOBILE_EXACT, input);
+        return isMatch(RegexConstants.MOBILE_EXACT, input);
     }
 
     /**
@@ -65,7 +57,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isTel(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_TEL, input);
+        return isMatch(RegexConstants.TEL, input);
     }
 
     /**
@@ -75,7 +67,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isIDCard15(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_ID_CARD15, input);
+        return isMatch(RegexConstants.ID_CARD15, input);
     }
 
     /**
@@ -85,7 +77,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isIDCard18(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_ID_CARD18, input);
+        return isMatch(RegexConstants.ID_CARD18, input);
     }
 
     /**
@@ -95,7 +87,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isEmail(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_EMAIL, input);
+        return isMatch(RegexConstants.EMAIL, input);
     }
 
     /**
@@ -105,7 +97,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isURL(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_URL, input);
+        return isMatch(RegexConstants.URL, input);
     }
 
     /**
@@ -115,7 +107,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isZh(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_ZH, input);
+        return isMatch(RegexConstants.ZH, input);
     }
 
     /**
@@ -128,7 +120,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isUsername(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_USERNAME, input);
+        return isMatch(RegexConstants.USERNAME, input);
     }
 
     /**
@@ -138,7 +130,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isDate(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_DATE, input);
+        return isMatch(RegexConstants.DATE, input);
     }
 
     /**
@@ -148,7 +140,7 @@ public final class RegexUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isIP(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_IP, input);
+        return isMatch(RegexConstants.IP, input);
     }
 
     /**
@@ -180,59 +172,5 @@ public final class RegexUtils {
             matches.add(matcher.group());
         }
         return matches;
-    }
-
-    /**
-     * Splits input around matches of the regex.
-     *
-     * @param input The input.
-     * @param regex The regex.
-     * @return the array of strings computed by splitting input around matches of regex
-     */
-    public static String[] getSplits(final String input, final String regex) {
-        if (input == null) {
-            return new String[0];
-        }
-        return input.split(regex);
-    }
-
-    /**
-     * Replace the first subsequence of the input sequence that matches the
-     * regex with the given replacement string.
-     *
-     * @param input       The input.
-     * @param regex       The regex.
-     * @param replacement The replacement string.
-     * @return the string constructed by replacing the first matching
-     * subsequence by the replacement string, substituting captured
-     * subsequences as needed
-     */
-    public static String getReplaceFirst(final String input,
-                                         final String regex,
-                                         final String replacement) {
-        if (input == null) {
-            return "";
-        }
-        return Pattern.compile(regex).matcher(input).replaceFirst(replacement);
-    }
-
-    /**
-     * Replace every subsequence of the input sequence that matches the
-     * pattern with the given replacement string.
-     *
-     * @param input       The input.
-     * @param regex       The regex.
-     * @param replacement The replacement string.
-     * @return the string constructed by replacing each matching subsequence
-     * by the replacement string, substituting captured subsequences
-     * as needed
-     */
-    public static String getReplaceAll(final String input,
-                                       final String regex,
-                                       final String replacement) {
-        if (input == null) {
-            return "";
-        }
-        return Pattern.compile(regex).matcher(input).replaceAll(replacement);
     }
 }

@@ -1,5 +1,7 @@
 package com.zhuj.android.util;
 
+
+
 import android.net.Uri;
 
 import com.zhuj.code.model.ListMap;
@@ -8,10 +10,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MapUtils {
+public class UriUtils {
     private final Map<String, String> map = new HashMap<>();
 
-    private MapUtils() {
+    private UriUtils() {
     }
 
     /**

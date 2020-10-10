@@ -1,4 +1,4 @@
-package com.zhuj.code.util;
+package com.zhuj.code.lang;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -47,6 +47,10 @@ public final class TypeUtils {
     public static ParameterizedType newParameterizedTypeWithOwner(
             Type ownerType, Type rawType, Type... typeArguments) {
         return new ParameterizedTypeImpl(ownerType, rawType, typeArguments);
+    }
+
+    public static ParameterizedType newParameterizedType(Type rawType, Type... typeArguments) {
+        return new ParameterizedTypeImpl(null, rawType, typeArguments);
     }
 
     /**

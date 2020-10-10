@@ -1,6 +1,5 @@
-package com.zhuj.code.util;
+package com.zhuj.code.json;
 
-import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -10,6 +9,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -81,7 +81,12 @@ public class GsonUtils {
     }
 
     public <T> List<T> parseList(String json) {
-        new Gson().fromJson(json, new TypeToken<T>(){}.getType());
+        try {
+            gson.fromJson(json, new TypeToken<T>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

@@ -8,7 +8,7 @@ import androidx.preference.PreferenceManager;
 import com.zhuj.android.android.Androids;
 import com.zhuj.code.lang.StringUtils;
 import com.zhuj.code.secure.Base64Utils;
-import com.zhuj.code.util.GsonUtils;
+import com.zhuj.code.json.GsonUtils;
 
 import java.lang.reflect.Type;
 import java.util.Map;

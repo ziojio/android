@@ -1,6 +1,6 @@
 package com.zhuj.code.lang.function;
 
 @FunctionalInterface
-public interface Function {
-    void apply();
+public interface Function<I, O> {
+    O apply(I i);
 }

@@ -22,15 +22,9 @@ public class Objects {
             return true;
         } else if (obj.getClass().isArray() && Array.getLength(obj) == 0) {
             return true;
+        } else {
+            return false;
         }
-        return false;
-    }
-
-    public static <T> T requireNonNull(final T object, final String message) {
-        if (object == null) {
-            throw new NullPointerException(message);
-        }
-        return object;
     }
 
     /**

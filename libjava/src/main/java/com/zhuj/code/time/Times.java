@@ -1,4 +1,4 @@
-package com.zhuj.code.util;
+package com.zhuj.code.time;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -1,18 +1,23 @@
 package com.zhuj.code.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
  * 一个 Map, 存储的是 List
+ *
  * @param <K>
  * @param <V> List<V> 中的泛型
  */
 public class ListMap<K, V> {
+    private final Map<K, List<V>> mSource;
 
-    private Map<K, List<V>> mSource;
+    public ListMap() {
+        this.mSource = new HashMap<>();
+    }
 
     public ListMap(Map<K, List<V>> source) {
         this.mSource = source;

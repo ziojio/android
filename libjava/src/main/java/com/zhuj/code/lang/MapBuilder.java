@@ -1,4 +1,4 @@
-package com.zhuj.android.util;
+package com.zhuj.code.lang;
 
 import java.util.HashMap;
 import java.util.Map;

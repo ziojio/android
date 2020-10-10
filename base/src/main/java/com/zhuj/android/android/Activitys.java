@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import com.zhuj.code.Preconditions;
+
 import java.io.Serializable;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ public class Activitys {
     }
 
     public static void putMapToIntentExtra(Intent intent, Map<String, Object> map) {
+        Preconditions.checkNotNull(intent);
         if (map == null || map.size() == 0) {
             return;
         }
