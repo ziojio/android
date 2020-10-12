@@ -5,10 +5,10 @@ plugins {
 dependencies {
     implementation project(path: ':libannotation')
 
-    implementation deps.squareup.javapoet
-
     implementation deps.google.auto.service.annotations
     annotationProcessor deps.google.auto.service.processor
+
+    implementation deps.squareup.javapoet
 
     implementation deps.incap.runtime
     annotationProcessor deps.incap.processor

@@ -18,6 +18,22 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+
+    <com.zhuj.android.widget.button.ZUIRoundButton
+        android:id="@+id/btn"
+        android:layout_width="160dp"
+        android:layout_height="64dp"
+        app:zui_backgroundColor="@color/selector_system_init_btn_color_bg"
+        app:zui_isAutoAdjustRoundSize="true" />
+
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/btn2"
+        android:layout_width="160dp"
+        android:layout_height="64dp"
+        app:qmui_backgroundColor="@color/selector_system_init_btn_color_bg"
+        app:qmui_isRadiusAdjustBounds="true" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"

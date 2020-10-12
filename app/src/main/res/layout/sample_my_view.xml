@@ -9,4 +9,10 @@
         android:paddingStart="20dp"
         android:paddingBottom="40dp" />
 
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:layout_width="160dp"
+        android:layout_height="64dp"
+        app:qmui_backgroundColor="@color/selector_system_init_btn_color_bg"
+        app:qmui_isRadiusAdjustBounds="true" />
+
 </FrameLayout>

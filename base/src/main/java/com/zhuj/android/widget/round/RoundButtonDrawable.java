@@ -23,11 +23,6 @@ public class RoundButtonDrawable extends GradientDrawable {
     }
 
     @Override
-    public void setColor(int argb) {
-        setColor(ColorStateList.valueOf(argb));
-    }
-
-    @Override
     public void setStroke(int width, @Nullable ColorStateList colors) {
         mStrokeWidth = width;
         mStrokeColors = colors;
@@ -84,7 +79,7 @@ public class RoundButtonDrawable extends GradientDrawable {
 
     @Override
     public void setCornerRadius(float radius) {
-        super.setCornerRadius(radius);
         mRadius = radius;
+        super.setCornerRadius(radius);
     }
 }

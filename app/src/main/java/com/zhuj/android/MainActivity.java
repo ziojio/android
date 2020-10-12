@@ -80,11 +80,15 @@ public class MainActivity extends BaseActivity {
     }
 
     void doSomething() {
-        if (!PackageUtils.isAppInstalled("com.jbzh.jbpaintviewcore")) {
-            Activitys.openActivity(this, "com.jbzh.jbpaintviewcore", "com.jbzh.editimage.MainActivity");
-        } else {
-            Toasts.show(MainActivity.this, "没有安装 com.jbzh.jbpaintviewcore");
-        }
+
+        findViewById(R.id.btn).setSelected(true);
+        findViewById(R.id.btn2).setSelected(true);
+
+        // if (!PackageUtils.isAppInstalled("com.jbzh.jbpaintviewcore")) {
+        //     Activitys.openActivity(this, "com.jbzh.jbpaintviewcore", "com.jbzh.editimage.MainActivity");
+        // } else {
+        //     Toasts.show(MainActivity.this, "没有安装 com.jbzh.jbpaintviewcore");
+        // }
 
         // PackageUtils.isInstall(getPackageName() );
         // PackageUtils.isExistsActivity(getPackageName(), "");

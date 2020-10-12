@@ -31,21 +31,21 @@ public class ZUIRoundButton extends AppCompatButton {
 
     public ZUIRoundButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        loadFromAttributes(context, attrs);
+        loadFromAttributes(context, attrs, defStyleAttr);
     }
 
-    private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
+    private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         final TypedArray ta = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.ZUIRoundButton, 0, 0);
+                .obtainStyledAttributes(attrs, R.styleable.ZUIRoundButton, defStyleAttr, 0);
         setBackgroundFromAttributeSet(ta);
         setCompoundDrawablesFromAttributeSet(ta);
         int pressEffect = ta.getInt(R.styleable.ZUIRoundButton_zui_press_effect, PressEffect.NONE);
+        ta.recycle();
         if (pressEffect == PressEffect.ALPHA) {
             setChangeAlphaWhenPress(true);
         } else {
             setChangeAlphaWhenPress(false);
         }
-        ta.recycle();
     }
 
     /**
@@ -124,7 +124,23 @@ public class ZUIRoundButton extends AppCompatButton {
 
     @Override
     public void setBackgroundColor(int color) {
-        roundButtonDrawable.setColor(color);
+        roundButtonDrawable.setColor(ColorStateList.valueOf(color));
+    }
+
+    public void setBackgroundColors(@Nullable ColorStateList colors) {
+        roundButtonDrawable.setColor(colors);
+    }
+
+    public void setBorderStroke(int width, @Nullable ColorStateList colors) {
+        roundButtonDrawable.setStroke(width, colors);
+    }
+
+    public int getStrokeWidth(){
+        return roundButtonDrawable.getStrokeWidth();
+    }
+
+    public void setStrokeColors(ColorStateList colors) {
+        roundButtonDrawable.setStrokeColors(colors);
     }
 
     @Override
