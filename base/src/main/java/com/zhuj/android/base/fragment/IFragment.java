@@ -20,19 +20,6 @@ public abstract class IFragment extends Fragment {
 
     protected abstract void initView();
 
-    protected abstract void initData();
-
-    protected abstract void initEvent();
-
-    /**
-     * 修改初始化的顺序，在其中添加其他操作
-     */
-    protected void initBehavior() {
-        initView();
-        initData();
-        initEvent();
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +29,7 @@ public abstract class IFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initBehavior();
+        initView();
     }
 
     protected <T extends View> T findViewById(@IdRes int id) {

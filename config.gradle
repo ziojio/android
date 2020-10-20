@@ -2,7 +2,7 @@
 //
 
 ext {
-    android_config = [
+    config = [
             compileSdkVersion: 29,
             buildToolsVersion: '29.0.3',
             applicationId    : 'com.zhuj.android',

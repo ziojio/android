@@ -20,16 +20,6 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
-    protected void initEvent() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -39,11 +29,7 @@ public class TestActivity extends BaseActivity {
         byte b1 = -15;
         Log.d(TAG, "onCreate: b1=" + (a1 >> 24));
         Log.d(TAG, "onCreate: ret=" + (b | b1));
-        findViewById(0);
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
+
 }

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
 
     defaultConfig {
-        applicationId android_config.applicationId
+        applicationId config.applicationId
     }
 
     buildTypes {

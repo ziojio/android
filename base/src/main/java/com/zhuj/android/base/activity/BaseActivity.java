@@ -3,17 +3,17 @@ package com.zhuj.android.base.activity;
 import android.view.View;
 
 
-public abstract class BaseActivity extends IActivity implements View.OnClickListener {
+public abstract class BaseActivity extends IActivity {
 
-    protected void addClick(View... views) {
+    protected void addClickListener(View.OnClickListener listener, View... views) {
         for (View view : views) {
-            view.setOnClickListener(this);
+            view.setOnClickListener(listener);
         }
     }
 
-    protected void addClick(int... viewIds) {
+    protected void addClickListener(View.OnClickListener listener, int... viewIds) {
         for (int id : viewIds) {
-            findViewById(id).setOnClickListener(this);
+            findViewById(id).setOnClickListener(listener);
         }
     }
 

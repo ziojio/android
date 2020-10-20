@@ -2,7 +2,7 @@ package com.zhuj.android.base.dialog;
 
 import android.view.View;
 
-public abstract class BaseDialogFragment extends IDialogFragment implements View.OnClickListener {
+public abstract class BaseDialogFragment extends IDialogFragment {
     /**
      * 给Activity 监控 Dialog 的 View Click事件
      */
@@ -24,15 +24,15 @@ public abstract class BaseDialogFragment extends IDialogFragment implements View
         }
     }
 
-    protected void addClick(View... views) {
+    protected void addClickListener(View.OnClickListener listener, View... views) {
         for (View view : views) {
-            view.setOnClickListener(this);
+            view.setOnClickListener(listener);
         }
     }
 
-    protected void addClick(int... viewIds) {
+    protected void addClickListener(View.OnClickListener listener, int... viewIds) {
         for (int id : viewIds) {
-            findViewById(id).setOnClickListener(this);
+            findViewById(id).setOnClickListener(listener);
         }
     }
 }

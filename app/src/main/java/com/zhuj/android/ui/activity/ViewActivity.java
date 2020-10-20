@@ -20,22 +20,11 @@ public class ViewActivity extends BaseActivity {
     }
 
     @Override
-    protected void initEvent() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addClick(R.id.button_1);
+        addClickListener(this::onClick, R.id.button_1);
     }
 
-    @Override
     public void onClick(View v) {
     }
 }

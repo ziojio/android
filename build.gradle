@@ -36,15 +36,15 @@ subprojects {
         // 在 module build.gradle or project.afterEvaluate 可以被覆写
         apply from: rootDir.path + "/config.gradle"
         android {
-            compileSdkVersion android_config.compileSdkVersion
-            buildToolsVersion android_config.buildToolsVersion
+            compileSdkVersion config.compileSdkVersion
+            buildToolsVersion config.buildToolsVersion
             compileOptions {
                 sourceCompatibility JavaVersion.VERSION_1_8
                 targetCompatibility JavaVersion.VERSION_1_8
             }
             defaultConfig {
-                minSdkVersion android_config.minSdkVersion
-                targetSdkVersion android_config.targetSdkVersion
+                minSdkVersion config.minSdkVersion
+                targetSdkVersion config.targetSdkVersion
             }
         }
     }

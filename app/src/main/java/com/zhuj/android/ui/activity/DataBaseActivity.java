@@ -43,16 +43,6 @@ public class DataBaseActivity extends BaseActivity {
     }
 
     @Override
-    protected void initEvent() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -71,8 +61,6 @@ public class DataBaseActivity extends BaseActivity {
         }
     };
 
-
-    @Override
     public void onClick(View v) {
 
         int id = v.getId();

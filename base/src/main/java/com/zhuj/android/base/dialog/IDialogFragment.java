@@ -3,7 +3,6 @@ package com.zhuj.android.base.dialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,32 +12,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.zhuj.android.base.BuildConfig;
-
 public abstract class IDialogFragment extends DialogFragment {
     protected final String TAG = getClass().getSimpleName();
 
     /**
+     * 设置外部回调方法，
+     * 覆写DialogFragment {@link DialogFragment#onCancel(DialogInterface)}
+     * and {@link DialogFragment#onDismiss(DialogInterface)}
+     */
+    protected DialogInterface.OnCancelListener onCancelListener;
+
+    protected DialogInterface.OnDismissListener onDismissListener;
+
+    /**
      * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
-     *
-     * @return 布局id
      */
     protected abstract int layoutId();
 
     protected abstract void initView();
-
-    protected abstract void initData();
-
-    protected abstract void initEvent();
-
-    /**
-     * 修改初始化的顺序，在其中添加其他操作
-     */
-    protected void initBehavior() {
-        initView();
-        initData();
-        initEvent();
-    }
 
     /**
      * 设置 window
@@ -47,7 +38,7 @@ public abstract class IDialogFragment extends DialogFragment {
      * 2. 由于填充的根为null, 根布局的部分参数失效，在xml文件多嵌套一个布局
      * 使用CardView作为dialog的容器
      */
-    protected abstract void windowBehavior();
+    protected abstract void initWindow();
 
     public IDialogFragment() {
         setStyle(STYLE_NO_TITLE, 0);
@@ -57,21 +48,6 @@ public abstract class IDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return layoutId() != 0 ? inflater.inflate(layoutId(), container, false) : super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initBehavior();
-        windowBehavior();
-    }
-
-    protected <T extends View> T findViewById(int id) {
-        return requireView().findViewById(id);
-    }
-
-    public void show(FragmentActivity fragmentActivity) {
-        show(fragmentActivity.getSupportFragmentManager(), TAG);
     }
 
     /**
@@ -85,14 +61,20 @@ public abstract class IDialogFragment extends DialogFragment {
         return super.onCreateDialog(savedInstanceState);
     }
 
-    /**
-     * 设置外部回调方法，
-     * 覆写DialogFragment {@link DialogFragment#onCancel(DialogInterface)}
-     * and {@link DialogFragment#onDismiss(DialogInterface)}
-     */
-    protected DialogInterface.OnCancelListener onCancelListener;
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView();
+        initWindow();
+    }
 
-    protected DialogInterface.OnDismissListener onDismissListener;
+    protected <T extends View> T findViewById(int id) {
+        return requireView().findViewById(id);
+    }
+
+    public void show(FragmentActivity fragmentActivity) {
+        show(fragmentActivity.getSupportFragmentManager(), this.toString());
+    }
 
     public void setOnCancelListener(DialogInterface.OnCancelListener cancelListener) {
         this.onCancelListener = cancelListener;
