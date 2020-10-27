@@ -32,10 +32,6 @@ public class App extends Application {
         roomDB = AndroidDatabase.getInstance(this);
     }
 
-    public static App getInstance() {
-        return INSTANCE;
-    }
-
     public AndroidDatabase db() {
         return roomDB;
     }

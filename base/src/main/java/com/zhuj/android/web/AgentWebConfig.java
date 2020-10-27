@@ -11,7 +11,8 @@ import android.webkit.WebView;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.base.BuildConfig;
+
+import com.just.agentweb.BuildConfig;
 
 import java.io.File;
 

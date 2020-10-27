@@ -4,6 +4,14 @@ android {
 //    resourcePrefix "sample_" // 在xml类型的资源文件命名不是以 moduleName_ 为前缀，会提示
     defaultConfig {
         consumerProguardFiles "consumer-rules.pro"
+
+
+    }
+
+    buildFeatures {
+        dataBinding true
+        // for view binding:
+        // viewBinding true
     }
 
     buildTypes {
@@ -36,8 +44,8 @@ dependencies {
 
     implementation deps.eventbus
 
-//    implementation deps.lifecycle.runtime
-//    implementation deps.lifecycle.lifecycle_java8
+   implementation deps.lifecycle.runtime
+   implementation deps.lifecycle.commonjava8
     implementation deps.lifecycle.viewmodel
     implementation deps.lifecycle.livedata
 //    implementation deps.lifecycle.extensions

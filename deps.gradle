@@ -2,24 +2,13 @@
 
 def versions = [
         javaVersion: JavaVersion.VERSION_1_8,
-        support    : "28.0.0",
-        lifecycle  : "2.2.0",
-        room       : "2.2.5",
-        fragment   : "1.2.1",
-        sqlite     : "2.1.0",
-        paging     : "2.1.2",
-        camerax    : "1.0.0-beta08",
         gson       : "2.8.6",
         okhttp3    : "3.14.9",
         okio       : "1.17.5",
-        eventbus   : "3.2.0",
         glide      : "4.11.0",
-        lombok     : "1.18.12",
         retrofit2  : "2.9.0",
         agentweb   : "4.1.3",
-        dagger     : "2.16",
         fastjson   : "1.2.73",
-
         junit      : "4.12",
         espresso   : "3.2.0",
         runner     : "1.2.0",
@@ -29,9 +18,8 @@ ext.versions = versions
 ext.deps = [
         material          : "com.google.android.material:material:1.1.0",
         qmui              : "com.qmuiteam:qmui:2.0.0-alpha10",
-        lombok            : "org.projectlombok:lombok:${versions.lombok}",
-
-        eventbus          : "org.greenrobot:eventbus:${versions.eventbus}",
+        lombok            : "org.projectlombok:lombok:1.18.12",
+        eventbus          : "org.greenrobot:eventbus:3.2.0",
         logger            : "com.orhanobut:logger:2.2.0",
         swiperefreshlayout: "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
         yzjrecyclerview   : "com.yanzhenjie.recyclerview:x:1.3.2"
@@ -39,17 +27,18 @@ ext.deps = [
 
 ext.deps.androidx = [
         appcompat           : "androidx.appcompat:appcompat:1.2.0",
-        fragment            : "androidx.fragment:fragment:${versions.fragment}",
+        fragment            : "androidx.fragment:fragment:1.2.1",
         annotation          : "androidx.annotation:annotation:1.1.0",
         webkit              : "androidx.webkit:webkit:1.3.0",
         preference          : "androidx.preference:preference:1.1.1",
         multidex            : "androidx.multidex:multidex:2.0.0",
-        paging              : "androidx.paging:paging-runtime:${versions.paging}",
+        paging              : "androidx.paging:paging-runtime:2.1.2",
         // Preferences DataStore
         datastorePreferences: "androidx.datastore:datastore-preferences:1.0.0-alpha01",
         // Proto DataStore
         datastoreCore       : "androidx.datastore:datastore-core:1.0.0-alpha01",
         browser             : "androidx.browser:browser:1.2.0",
+        navigation          : "androidx.navigation:navigation-runtime:2.3.1",
 ]
 
 ext.deps.viewlayout = [
@@ -63,6 +52,7 @@ ext.deps.viewlayout = [
         customview       : "androidx.customview:customview:1.1.0",
 ]
 
+versions["sqlite"] = "2.1.0"
 ext.deps.sqlite = [
         // Java language implementation
         sqlite         : "androidx.sqlite:sqlite:$versions.sqlite",
@@ -71,6 +61,7 @@ ext.deps.sqlite = [
         sqliteFramework: "androidx.sqlite:sqlite-framework:$versions.sqlite",
 ]
 
+versions["camerax"] = "1.0.0-beta08"
 ext.deps.camerax = [
         // The following line is optional, as the core library is included indirectly by camera-camera2
         core      : "androidx.camera:camera-core:${versions.camerax}",
@@ -83,6 +74,7 @@ ext.deps.camerax = [
         extensions: "androidx.camera:camera-extensions:1.0.0-alpha15",
 ]
 
+versions["lifecycle"] = "2.2.0"
 ext.deps.lifecycle = [
         runtime    : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle",
         compiler   : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
@@ -92,6 +84,7 @@ ext.deps.lifecycle = [
         extensions : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
 ]
 
+versions["support"] = "28.0.0"
 ext.deps.support = [
         design      : "com.android.support:design:$versions.support",
         app_compat  : "com.android.support:appcompat-v7:$versions.support",
@@ -102,6 +95,7 @@ ext.deps.support = [
         core_utils  : "com.android.support:support-core-utils:$versions.support"
 ]
 
+versions["room"] = "2.2.5"
 ext.deps.room = [
         runtime : "androidx.room:room-runtime:$versions.room",
         compiler: "androidx.room:room-compiler:$versions.room",
