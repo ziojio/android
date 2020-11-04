@@ -18,21 +18,23 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
     <com.zhuj.android.widget.button.ZUIRoundButton
         android:id="@+id/btn"
         android:layout_width="160dp"
         android:layout_height="64dp"
-        app:zui_backgroundColor="@color/selector_system_init_btn_color_bg"
-        app:zui_isAutoAdjustRoundSize="true" />
+        android:clickable="true"
+        app:zui_backgroundColor="#367EE8"
+        app:zui_isAutoAdjustRoundSize="true"
+        app:zui_press_effect="backgroundTint" />
 
+    <com.zhuj.android.widget.imageview.ZUIImageButton
+        android:id="@+id/image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/ic_icon1"
+        app:zui_press_effect="backgroundTint" />
 
-    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-        android:id="@+id/btn2"
-        android:layout_width="160dp"
-        android:layout_height="64dp"
-        app:qmui_backgroundColor="@color/selector_system_init_btn_color_bg"
-        app:qmui_isRadiusAdjustBounds="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,6 +45,7 @@
             android:id="@+id/button_sql"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/zui_color_black_10"
             android:text="跳转 to Sql" />
 
         <View style="@style/divider_weight_1" />
@@ -78,6 +81,7 @@
             android:text="跳转 to view" />
 
         <View style="@style/divider_weight_1" />
+
         <Button
             android:id="@+id/button_button"
             android:layout_width="wrap_content"

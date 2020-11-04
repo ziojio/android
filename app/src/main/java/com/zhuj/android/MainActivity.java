@@ -59,7 +59,6 @@ public class MainActivity extends BaseActivity {
     void doSomething() {
 
         findViewById(R.id.btn).setSelected(true);
-        findViewById(R.id.btn2).setSelected(true);
 
         // if (!PackageUtils.isAppInstalled("com.jbzh.jbpaintviewcore")) {
         //     Activitys.openActivity(this, "com.jbzh.jbpaintviewcore", "com.jbzh.editimage.MainActivity");

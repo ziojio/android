@@ -40,8 +40,8 @@ public class AlphaViewHelper {
 
     public AlphaViewHelper(@NonNull View target) {
         mTarget = new WeakReference<>(target);
-        mPressedAlpha = ResHelper.getAttrFloatValue(target.getContext(), R.attr.zui_alpha_pressed);
-        mDisabledAlpha = ResHelper.getAttrFloatValue(target.getContext(), R.attr.zui_alpha_disabled);
+        mPressedAlpha = ResHelper.getAttrFloatValue(target.getContext(), R.attr.zui_disabled_alpha);
+        mDisabledAlpha = ResHelper.getAttrFloatValue(target.getContext(), R.attr.zui_press_alpha);
     }
 
     public AlphaViewHelper(@NonNull View target, float pressedAlpha, float disabledAlpha) {

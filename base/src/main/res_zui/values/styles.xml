@@ -11,7 +11,7 @@
     </style>
 
     <style name="BaseDialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:backgroundDimAmount">?attr/zui_dialog_background_dim_amount</item>
+        <item name="android:backgroundDimAmount">?attr/zui_dialog_windowBackground_dimAmount</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item> <!-- 在中间弹框、背后有遮罩的效果 -->
@@ -24,10 +24,11 @@
 
     <!-- 自定义的属性值在 ZUI 开头的 Theme 里设置默认值 -->
     <style name="ZUI" parent="BaseTheme">
-        <item name="zui_alpha_disabled">0.5</item>
-        <item name="zui_alpha_pressed">0.75</item>
+        <item name="zui_disabled_alpha">0.5</item>
+        <item name="zui_press_alpha">0.75</item>
+        <item name="zui_press_backgroundTintColor">@color/zui_color_black_10</item>
 
-        <item name="android:textColorPrimary">@color/zui_color_text_main</item>
+        <item name="android:textColorPrimary">@color/zui_color_text_black</item>
 
         <item name="android:textAppearance">@style/ZUI.TextAppearance</item>
         <item name="android:textViewStyle">@style/ZUI.TextStyle</item>
@@ -38,9 +39,9 @@
     </style>
 
     <style name="ZUI.Dialog" parent="BaseDialog">
-        <item name="zui_alpha_disabled">0.5</item>
-        <item name="zui_alpha_pressed">0.75</item>
-        <item name="zui_dialog_background_dim_amount">0.5</item>
+        <item name="zui_disabled_alpha">0.5</item>
+        <item name="zui_press_alpha">0.75</item>
+        <item name="zui_dialog_windowBackground_dimAmount">0.5</item>
     </style>
 
     <style name="ZUI.TextAppearance" parent="TextAppearance.AppCompat">
@@ -78,11 +79,11 @@
 
     <style name="ZUI.ButtonStyle.Radius5">
         <item name="zui_cornerRadius">5dp</item>
-        <item name="zui_backgroundColor">@color/zui_color_10_white</item>
+        <item name="zui_backgroundColor">@color/zui_color_white_10</item>
     </style>
 
     <style name="ZUI.ButtonStyle.RadiusAuto">
-        <item name="zui_backgroundColor">@color/zui_color_10_white</item>
+        <item name="zui_backgroundColor">@color/zui_color_white_10</item>
         <item name="zui_isAutoAdjustRoundSize">true</item>
     </style>
 

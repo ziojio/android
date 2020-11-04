@@ -1,5 +1,6 @@
 package com.zhuj.android.base.viewmodel;
 
+import androidx.databinding.BaseObservable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

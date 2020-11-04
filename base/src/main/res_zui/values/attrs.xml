@@ -21,16 +21,18 @@
     <attr name="zui_drawablePaddingEnd" format="dimension" />
     <attr name="zui_drawablePaddingBottom" format="dimension" />
 
-    <attr name="zui_alpha_disabled" format="float" />
-    <attr name="zui_alpha_pressed" format="float" />
-    <attr name="zui_alpha_mask" format="float" />
+    <attr name="zui_disabled_alpha" format="float" />
+
+    <attr name="zui_press_alpha" format="float" />
+    <attr name="zui_press_backgroundTintColor" format="color" />
+    <attr name="zui_press_backgroundColor" format="color" />
 
     <attr name="zui_press_effect">
         <enum name="none" value="0" />
         <enum name="alpha" value="1" />
-        <enum name="backgroundTint" value="2" />
-        <enum name="foreground" value="3" />
+        <enum name="backgroundColor" value="2" />
+        <enum name="backgroundTint" value="3" />
+        <enum name="foreground" value="4" />
     </attr>
-
-    <attr name="zui_dialog_background_dim_amount" format="float" />
+    <attr name="zui_dialog_windowBackground_dimAmount" format="float" />
 </resources>
