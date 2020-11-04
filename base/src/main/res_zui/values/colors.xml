@@ -1,52 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--   ZUI 颜色 -->
-
     <color name="zui_color_transparent">#00000000</color>
     <color name="zui_color_white">#ffffffff</color>
     <color name="zui_color_black">#ff000000</color>
 
-    <color name="zui_color_red">#FF0000</color>
-    <color name="zui_color_green">#00FF00</color>
-    <color name="zui_color_blue">#0000FF</color>
-
-    <color name="zui_color_text_main">#FF222222</color>
-
-
-    <color name="zui_color_pressed">#EEEEF0</color>
-    <color name="zui_color_list_pressed">#DEE0E2</color>
-    <color name="zui_color_list_separator">#DEE0E2</color>
-    <color name="zui_color_press_alpha_22000000">#22000000</color>
-
-    <color name="zui_color_10_pure_black">#19000000</color>
-    <color name="zui_color_10_white">#19FFFFFF</color>
-    <color name="zui_color_15_pure_black">#26000000</color>
-    <color name="zui_color_15_white">#26FFFFFF</color>
-    <color name="zui_color_25_pure_black">#40000000</color>
-    <color name="zui_color_25_white">#40FFFFFF</color>
-    <color name="zui_color_50_blue">#801B88EE</color>
-    <color name="zui_color_50_pure_black">#80000000</color>
-    <color name="zui_color_50_white">#80FFFFFF</color>
-    <color name="zui_color_60_pure_black">#99000000</color>
-    <color name="zui_color_75_pure_black">#C0000000</color>
-    <color name="zui_color_75_white">#C0FFFFFF</color>
+    <color name="zui_color_text_black">#FF222222</color>
+    <color name="zui_color_text_white">#eeEEEEEE</color>
+    <color name="zui_color_pressed">#DEE0E2</color>
 
     <color name="zui_color_background">#F4F5F7</color>
-    <color name="zui_color_background_pressed">#EEEFF1</color>
+    <color name="zui_color_background_pressed">@color/zui_color_pressed</color>
 
-    <color name="zui_color_gray_1">#353C46</color>
-    <color name="zui_color_gray_2">#49505A</color>
-    <color name="zui_color_gray_3">#5D646E</color>
-    <color name="zui_color_gray_4">#717882</color>
+    <color name="zui_color_list_pressed">@color/zui_color_pressed</color>
+    <color name="zui_color_list_separator">#DEE0E2</color>
+
+    <!--不透明-->
+    <!--100% FF-->
+    <!--95% F2-->
+    <!--90% E6-->
+    <!--85% D9-->
+    <!--80% CC-->
+    <!--75% BF-->
+    <!--70% B3-->
+    <!--65% A6-->
+    <!--60% 99-->
+    <!--55% 8C-->
+    <!--半透明-->
+    <!--50% 80-->
+    <!--45% 73-->
+    <!--40% 66-->
+    <!--35% 59-->
+    <!--30% 4D-->
+    <!--25% 40-->
+    <!--20% 33-->
+    <!--15% 26-->
+    <!--10% 1A-->
+    <!--5% 0D-->
+    <!--全透明-->
+    <!--0% 00-->
+
+    <!-- 带透明度的颜色 alpha的百分比  00 - FF -->
+    <color name="zui_color_black_5">#0D000000</color>
+    <color name="zui_color_black_10">#1A000000</color>
+    <color name="zui_color_black_15">#26000000</color>
+    <color name="zui_color_black_20">#33000000</color>
+    <color name="zui_color_black_25">#40000000</color>
+    <color name="zui_color_black_30">#4D000000</color>
+    <color name="zui_color_black_35">#59000000</color>
+    <color name="zui_color_black_50">#80000000</color>
+    <color name="zui_color_black_60">#99000000</color>
+    <color name="zui_color_black_75">#C0000000</color>
+    <color name="zui_color_black_80">#CC000000</color>
+    <color name="zui_color_black_85">#D9000000</color>
+    <color name="zui_color_black_90">#E6000000</color>
+    <color name="zui_color_black_95">#F2000000</color>
+
+    <color name="zui_color_white_5">#0DFFFFFF</color>
+    <color name="zui_color_white_10">#1AFFFFFF</color>
+    <color name="zui_color_white_15">#26FFFFFF</color>
+    <color name="zui_color_white_20">#33FFFFFF</color>
+    <color name="zui_color_white_25">#40FFFFFF</color>
+    <color name="zui_color_white_30">#4DFFFFFF</color>
+    <color name="zui_color_white_35">#59FFFFFF</color>
+    <color name="zui_color_white_50">#80FFFFFF</color>
+    <color name="zui_color_white_60">#99FFFFFF</color>
+    <color name="zui_color_white_75">#C0FFFFFF</color>
+    <color name="zui_color_white_80">#CCFFFFFF</color>
+    <color name="zui_color_white_85">#D9FFFFFF</color>
+    <color name="zui_color_white_90">#E6FFFFFF</color>
+    <color name="zui_color_white_95">#F2FFFFFF</color>
+
+    <color name="zui_color_gray_1">#D8DCE4</color>
+    <color name="zui_color_gray_2">#C4C8D0</color>
+    <color name="zui_color_gray_3">#ADB4BE</color>
+    <color name="zui_color_gray_4">#99A0AA</color>
     <color name="zui_color_gray_5">#858C96</color>
-    <color name="zui_color_gray_6">#99A0AA</color>
-    <color name="zui_color_gray_7">#ADB4BE</color>
-    <color name="zui_color_gray_8">#C4C8D0</color>
-    <color name="zui_color_gray_9">#D8DCE4</color>
+    <color name="zui_color_gray_6">#717882</color>
+    <color name="zui_color_gray_7">#5D646E</color>
+    <color name="zui_color_gray_8">#49505A</color>
+    <color name="zui_color_gray_9">#353C46</color>
+
+    <!-- 警告，错误，成功、、、特殊颜色   -->
+    <color name="zui_color_waring">#FEC005</color>
+    <color name="zui_color_error">#F15C58</color>
+    <color name="zui_color_successful">#17B86D</color>
+
+
+    <color name="zui_color_pure_yellow">#FFFF00</color>
+    <color name="zui_color_light_yellow">#FFFFC0</color>
+
+
+    <color name="zui_color_pure_blue">#0000FF</color>
+    <color name="zui_color_50_blue">#801B88EE</color>
+    <color name="zui_color_blue">#1B88EE</color>
+    <color name="zui_color_dark_blue_gray">#223B53</color>
+    <color name="zui_color_middle_blue_gray">#6A798E</color>
+    <color name="zui_color_light_blue_gray">#9FABBC</color>
+    <color name="zui_color_light_blue">#299EE3</color>
 
     <color name="zui_color_link">#547FB0</color>
     <color name="zui_color_separator">#DEE0E2</color>
     <color name="zui_color_separator_darken">#D4D6D8</color>
-
 
 </resources>

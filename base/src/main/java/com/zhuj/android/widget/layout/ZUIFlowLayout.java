@@ -18,29 +18,29 @@ import com.zhuj.android.base.R;
 /**
  * copy from com.google.android.material.internal.FlowLayout
  * Horizontally lay out children until the row is filled and then moved to the next line. Call
- * {@link FlowLayout#setSingleLine(boolean)} to disable reflow and lay all children out in one line.
+ * {@link ZUIFlowLayout#setSingleLine(boolean)} to disable reflow and lay all children out in one line.
  */
-public class FlowLayout extends ViewGroup {
+public class ZUIFlowLayout extends ViewGroup {
     private int lineSpacing;
     private int itemSpacing;
     private boolean singleLine;
 
-    public FlowLayout(@NonNull Context context) {
+    public ZUIFlowLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    public FlowLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ZUIFlowLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FlowLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ZUIFlowLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         singleLine = false;
         loadFromAttributes(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public FlowLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ZUIFlowLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         singleLine = false;
         loadFromAttributes(context, attrs);

@@ -3,6 +3,7 @@ package com.zhuj.android.widget.button;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
@@ -11,14 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.zhuj.android.base.R;
-import com.zhuj.android.widget.PressEffect;
-import com.zhuj.android.widget.helper.AlphaViewHelper;
+import com.zhuj.android.widget.helper.AttrHelper;
+import com.zhuj.android.widget.helper.PressEffectHelper;
 import com.zhuj.android.widget.round.RoundButtonDrawable;
 
 public class ZUIRoundButton extends AppCompatButton {
     private static final int DEFAULT_RADIUS = 0;
 
-    private AlphaViewHelper mAlphaViewHelper;
+    private PressEffectHelper mPressEffectHelper;
     private RoundButtonDrawable roundButtonDrawable;
 
     public ZUIRoundButton(@NonNull Context context) {
@@ -39,12 +40,17 @@ public class ZUIRoundButton extends AppCompatButton {
                 .obtainStyledAttributes(attrs, R.styleable.ZUIRoundButton, defStyleAttr, 0);
         setBackgroundFromAttributeSet(ta);
         setCompoundDrawablesFromAttributeSet(ta);
-        int pressEffect = ta.getInt(R.styleable.ZUIRoundButton_zui_press_effect, PressEffect.NONE);
+        int pressEffectType = ta.getInt(R.styleable.ZUIRoundButton_zui_press_effect, PressEffectHelper.NONE);
         ta.recycle();
-        if (pressEffect == PressEffect.ALPHA) {
-            setChangeAlphaWhenPress(true);
-        } else {
-            setChangeAlphaWhenPress(false);
+
+        getPressEffectHelper().setPressEffectType(pressEffectType);
+        if (pressEffectType == PressEffectHelper.ALPHA) {
+            getPressEffectHelper().setAlpha(AttrHelper.
+                    getAttrFloatValue(getContext(), R.attr.zui_press_alpha, 0.75f));
+        } else if (pressEffectType == PressEffectHelper.BACKGROUND_TINT) {
+            getPressEffectHelper().setTintColor(
+                    AttrHelper.getAttrColor(getContext(), R.attr.zui_press_backgroundTintColor),
+                    PorterDuff.Mode.SRC_ATOP);
         }
     }
 
@@ -115,11 +121,11 @@ public class ZUIRoundButton extends AppCompatButton {
         setCompoundDrawablesRelative(drawables[0], drawables[1], drawables[2], drawables[3]);
     }
 
-    public AlphaViewHelper getAlphaViewHelper() {
-        if (mAlphaViewHelper == null) {
-            mAlphaViewHelper = new AlphaViewHelper(this);
+    public PressEffectHelper getPressEffectHelper() {
+        if (mPressEffectHelper == null) {
+            mPressEffectHelper = new PressEffectHelper(this);
         }
-        return mAlphaViewHelper;
+        return mPressEffectHelper;
     }
 
     @Override
@@ -127,7 +133,7 @@ public class ZUIRoundButton extends AppCompatButton {
         roundButtonDrawable.setColor(ColorStateList.valueOf(color));
     }
 
-    public void setBackgroundColors(@Nullable ColorStateList colors) {
+    public void setBackgroundColor(@Nullable ColorStateList colors) {
         roundButtonDrawable.setColor(colors);
     }
 
@@ -146,31 +152,12 @@ public class ZUIRoundButton extends AppCompatButton {
     @Override
     public void setPressed(boolean pressed) {
         super.setPressed(pressed);
-        getAlphaViewHelper().onPressedChanged(this, pressed);
+        getPressEffectHelper().onPressedChanged(this, pressed);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        getAlphaViewHelper().onEnabledChanged(this, enabled);
-    }
-
-    /**
-     * 设置是否要在 press 时改变透明度
-     *
-     * @param changeAlphaWhenPress 是否要在 press 时改变透明度
-     */
-    public void setChangeAlphaWhenPress(boolean changeAlphaWhenPress) {
-        getAlphaViewHelper().setChangeAlphaWhenPress(changeAlphaWhenPress);
-    }
-
-    /**
-     * 设置是否要在 disabled 时改变透明度
-     *
-     * @param changeAlphaWhenDisable 是否要在 disabled 时改变透明度
-     */
-    public void setChangeAlphaWhenDisable(boolean changeAlphaWhenDisable) {
-        getAlphaViewHelper().setChangeAlphaWhenDisable(changeAlphaWhenDisable);
     }
 
 }
