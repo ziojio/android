@@ -15,7 +15,3 @@ dependencies {
     compileOnly deps.lombok
     annotationProcessor deps.lombok
 }
-
-//tasks.withType(JavaCompile) {
-//    options.encoding = "UTF-8"
-//}

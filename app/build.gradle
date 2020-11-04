@@ -36,6 +36,7 @@ android {
 
     }
 
+
     android.applicationVariants.all { variant ->
         // Assigns a different version code for each output APK other than the universal APK.
         variant.outputs.each { output ->
