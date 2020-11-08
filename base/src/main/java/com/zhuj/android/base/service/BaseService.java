@@ -10,7 +10,8 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.logger.Logger;
+import com.zhuj.comutils.logger.Logger;
+
 
 public class BaseService extends Service {
     protected final String TAG = getClass().getSimpleName();

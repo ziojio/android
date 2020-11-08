@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.zhuj.android.R;
 import com.zhuj.android.base.activity.BaseActivity;
-import com.zhuj.android.logger.Logger;
-import com.zhuj.android.thread.WorkExecutor;
+import com.zhuj.comutils.logger.Logger;
+import com.zhuj.comutils.thread.WorkExecutor;
 
 import com.zhuj.android.database.room.AndroidDatabase;
 import com.zhuj.android.database.room.entity.User;

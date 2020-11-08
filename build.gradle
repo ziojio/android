@@ -3,9 +3,9 @@
 buildscript {
     apply from: rootDir.path + "/deps.gradle"
     repositories {
-        addRepos(repositories)
         google()
         jcenter()
+        addRepos(repositories)
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
@@ -18,6 +18,8 @@ allprojects {
     apply from: rootDir.path + "/deps.gradle"
     apply from: rootDir.path + "/utils.gradle"
     repositories {
+        google()
+        jcenter()
         addRepos(repositories)
     }
 //    gradle.projectsEvaluated {

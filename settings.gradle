@@ -1,3 +1,5 @@
+include ':comutils'
+include ':zui'
 rootProject.name='android'
 include ':app'
 include ':base'

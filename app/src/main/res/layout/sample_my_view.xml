@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.zhuj.android.widget.textview.ZUITextView
+    <com.zhuj.zui.widget.textview.ZUITextView
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:paddingStart="20dp"

@@ -7,8 +7,8 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.zhuj.android.android.Androids;
 import com.zhuj.android.database.room.AndroidDatabase;
+import com.zhuj.comutils.android.Androids;
 
 public class App extends Application {
     private static App INSTANCE;

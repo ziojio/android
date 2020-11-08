@@ -4,8 +4,6 @@ android {
 //    resourcePrefix "sample_" // 在xml类型的资源文件命名不是以 moduleName_ 为前缀，会提示
     defaultConfig {
         consumerProguardFiles "consumer-rules.pro"
-
-
     }
 
     buildFeatures {
@@ -20,21 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    sourceSets {
-        main {
-            res.srcDirs = [
-                    'src/main/res_zui',
-                    'src/main/res'
-            ]
-        }
-    }
-
 }
 
 dependencies {
-    implementation deps.qmui
-    implementation deps.material
+
     implementation deps.androidx.appcompat
     implementation deps.androidx.fragment
     implementation deps.androidx.preference
@@ -53,9 +40,11 @@ dependencies {
 
 //    implementation deps.okhttp
     implementation deps.glide.glide
+    implementation project(path: ':comutils')
     annotationProcessor deps.glide.compiler
 
     implementation project(path: ':libjava')
+    implementation project(path: ':zui')
 //    implementation deps.gson
 
     implementation deps.webview.agentweb

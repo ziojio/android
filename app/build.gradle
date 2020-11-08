@@ -45,15 +45,11 @@ android {
     }
 }
 dependencies {
-    implementation deps.material
-    implementation deps.qmui
     implementation deps.androidx.appcompat
     implementation deps.viewlayout.constraintlayout
     implementation deps.viewlayout.recyclerview
 //    implementation deps.viewlayout.viewpager
 
-    implementation deps.glide.glide
-    annotationProcessor deps.glide.compiler
 
     implementation deps.logger
 
@@ -62,12 +58,13 @@ dependencies {
     implementation deps.webview.agentweb
 
     implementation project(path: ':base')
+    implementation project(path: ':comutils')
     implementation project(path: ':database')
-    // implementation project(path: ':http')
-    implementation project(path: ':libjava')
     implementation project(':libannotation')
     annotationProcessor project(':libprocessor')
 
+    // implementation project(path: ':http')
+    implementation project(path: ':libjava')
 
 }
 

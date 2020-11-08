@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.base.service.BaseService;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;
-import com.zhuj.android.thread.WorkExecutor;
+import com.zhuj.comutils.thread.WorkExecutor;
 import com.zhuj.android.ui.activity.TestActivity;
 import com.zhuj.android.ui.activity.ViewActivity;
 import com.zhuj.android.ui.activity.WebViewActivity;

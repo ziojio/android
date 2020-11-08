@@ -15,13 +15,10 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
 
-import com.zhuj.android.android.Androids;
-import com.zhuj.android.permission.easypermission.Permission;
+import com.zhuj.comutils.android.Androids;
 
 import java.util.ArrayList;
 import java.util.Arrays;
