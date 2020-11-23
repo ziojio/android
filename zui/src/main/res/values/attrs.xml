@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="zui_windowBackgroundColor" format="color" />
+    <attr name="zui_backgroundColor" format="color" />
+
+    <attr name="zui_borderWidth" format="dimension" />
+    <attr name="zui_borderColor" format="color" />
+
+    <attr name="zui_isAutoAdjustRoundSize" format="boolean" />
+    <attr name="zui_cornerRadius" format="dimension" />
+    <attr name="zui_cornerRadius_topLeft" format="dimension" />
+    <attr name="zui_cornerRadius_topRight" format="dimension" />
+    <attr name="zui_cornerRadius_bottomLeft" format="dimension" />
+    <attr name="zui_cornerRadius_bottomRight" format="dimension" />
+
+    <attr name="zui_drawableWidth" format="dimension" />
+    <attr name="zui_drawableHeight" format="dimension" />
+    <attr name="zui_drawablePaddingStart" format="dimension" />
+    <attr name="zui_drawablePaddingTop" format="dimension" />
+    <attr name="zui_drawablePaddingEnd" format="dimension" />
+    <attr name="zui_drawablePaddingBottom" format="dimension" />
+
+    <attr name="zui_disabled_alpha" format="float" />
+
+    <attr name="zui_press_alpha" format="float" />
+    <attr name="zui_press_backgroundTintColor" format="color" />
+    <attr name="zui_press_backgroundColor" format="color" />
+
+    <attr name="zui_press_effect">
+        <enum name="none" value="0" />
+        <enum name="alpha" value="1" />
+        <enum name="backgroundColor" value="2" />
+        <enum name="backgroundTint" value="3" />
+        <enum name="foreground" value="4" />
+    </attr>
+    <attr name="zui_dialog_windowBackground_dimAmount" format="float" />
+</resources>
