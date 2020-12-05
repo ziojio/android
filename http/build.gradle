@@ -15,8 +15,6 @@ android {
 }
 
 dependencies {
-    compileOnly deps.lombok
-    annotationProcessor deps.lombok
 
     implementation deps.androidx.annotation
     implementation deps.squareup.okhttp3

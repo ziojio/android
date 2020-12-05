@@ -58,11 +58,10 @@ dependencies {
     implementation deps.webview.agentweb
 
     implementation project(path: ':base')
-    implementation project(path: ':comutils')
+    implementation project(path: ':zutils')
     implementation project(path: ':database')
     implementation project(':libannotation')
     annotationProcessor project(':libprocessor')
-
     // implementation project(path: ':http')
     implementation project(path: ':libjava')
 
