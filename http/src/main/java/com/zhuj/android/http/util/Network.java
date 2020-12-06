@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zhuj.android.http;
+package com.zhuj.android.http.util;
 
 /**
  * Created by Zhenjie Yan on 2018/2/13.

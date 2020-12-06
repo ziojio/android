@@ -1,10 +1,10 @@
-package com.zhuj.code.libprocessor;
+package com.zhuj.code.processor;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
-import com.zhuj.code.libannotation.ImplClass;
+import com.zhuj.code.annotation.ImplClass;
 
 import net.ltgt.gradle.incap.IncrementalAnnotationProcessor;
 import net.ltgt.gradle.incap.IncrementalAnnotationProcessorType;

@@ -1,4 +1,4 @@
-package com.zhuj.code.libannotation;
+package com.zhuj.code.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

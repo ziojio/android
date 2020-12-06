@@ -3,7 +3,7 @@ package com.zhuj.android.app.ui.activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.zhuj.android.R;
+import com.zhuj.android.app.R;
 import com.zhuj.android.base.activity.BaseActivity;
 
 

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zhuj.android.BuildConfig;
 import com.zhuj.android.app.message.BaseMessageViewHolder;
 import com.zhuj.android.app.message.IMessage;
 
@@ -113,10 +112,6 @@ public class VoiceViewHolder<MESSAGE extends IMessage> extends BaseMessageViewHo
             public boolean onLongClick(View view) {
                 if (mMsgLongClickListener != null) {
                     mMsgLongClickListener.onMessageLongClick(view, message);
-                } else {
-                    if (BuildConfig.DEBUG) {
-                        Log.w("MsgListAdapter", "Didn't set long click listener! Drop event.");
-                    }
                 }
                 return true;
             }

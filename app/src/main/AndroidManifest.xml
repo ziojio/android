@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zhuj.android">
+    package="com.zhuj.android.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".app.App"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -22,21 +22,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".app.ui.activity.TestFragmentActivity" />
-        <activity android:name=".app.ui.activity.TestActivity" />
+        <activity android:name=".ui.activity.TestFragmentActivity" />
+        <activity android:name=".ui.activity.TestActivity" />
 
-        <activity android:name=".app.MainActivity" >
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.ui.activity.CursorLoaderActivity" />
-        <activity android:name=".app.ui.activity.WebViewActivity" />
-        <activity android:name=".app.ui.activity.ViewActivity" />
+        <activity android:name=".ui.activity.CursorLoaderActivity" />
+        <activity android:name=".ui.activity.WebViewActivity" />
+        <activity android:name=".ui.activity.ViewActivity" />
 
-        <service android:name=".base.service.BaseService"/>
+        <service android:name=".ui.TestService" />
     </application>
 
 </manifest>

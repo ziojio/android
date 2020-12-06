@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.zhuj.android.R;
+import com.zhuj.android.app.R;
 import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.util.logger.Logger;
 import com.zhuj.android.util.thread.WorkExecutor;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.zhuj.android.R;
 import com.zhuj.android.base.activity.BaseActivity;
 import com.zhuj.android.base.service.BaseService;
 import com.zhuj.android.database.sqlitehelper.AppDatabase;

@@ -1,4 +1,4 @@
-package com.zhuj.android.app.model;
+package com.zhuj.android.model;
 
 import android.os.Bundle;
 import android.os.Parcelable;

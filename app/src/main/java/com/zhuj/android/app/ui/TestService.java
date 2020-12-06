@@ -7,24 +7,26 @@ import android.os.RemoteException;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.ICallBack;
-import com.zhuj.android.IRemoteService;
+
+import com.zhuj.android.remote.CallBack;
+import com.zhuj.android.remote.RemoteService;
+
 
 public class TestService extends Service {
-    IRemoteService service;
+    RemoteService service;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        service = new IRemoteService.Stub() {
+        service = new RemoteService.Stub() {
             @Override
             public Intent syncFunction(String funcName, Intent data) throws RemoteException {
                 return null;
             }
 
             @Override
-            public void asyncFunction(String funcName, Intent data, ICallBack callback) throws RemoteException {
+            public void asyncFunction(String funcName, Intent data, CallBack callback) throws RemoteException {
                 callback.onResult(10, new Intent());
             }
         };

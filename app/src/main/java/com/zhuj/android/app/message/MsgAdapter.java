@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.zhuj.android.R;
+import com.zhuj.android.app.R;
 import com.zhuj.android.app.message.viewholder.TextViewHolder;
 
 public class MsgAdapter extends BaseMessageAdapter<Message> {

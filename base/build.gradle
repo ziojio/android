@@ -40,11 +40,11 @@ dependencies {
 
 //    implementation deps.okhttp
     implementation deps.glide.glide
-    implementation project(path: ':zutils')
     annotationProcessor deps.glide.compiler
 
     implementation project(path: ':libjava')
     implementation project(path: ':zui')
+    implementation project(path: ':zutils')
 //    implementation deps.gson
 
     implementation deps.webview.agentweb

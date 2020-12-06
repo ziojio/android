@@ -2,9 +2,14 @@ package com.zhuj.android.app.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
-import com.zhuj.android.R;
+import androidx.annotation.NonNull;
+
+import com.zhuj.android.app.R;
 import com.zhuj.android.base.activity.BaseActivity;
+import com.zhuj.android.http.Httper2;
+import com.zhuj.android.http.callback.Callback;
 
 public class TestActivity extends BaseActivity {
 
@@ -22,12 +27,21 @@ public class TestActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int a = 15;
-        int a1 = -15;
-        byte b = 15;
-        byte b1 = -15;
-        Log.d(TAG, "onCreate: b1=" + (a1 >> 24));
-        Log.d(TAG, "onCreate: ret=" + (b | b1));
+        Httper2.ME.get("http://www.baidu.com").callback(new Callback<String>(){
+
+            @Override
+            public void onSuccess(@NonNull String s) {
+                runOnUiThread(()->{
+                    TextView textView = findViewById(R.id.text);
+                    textView.setText(s);
+                });
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        } );
 
     }
 

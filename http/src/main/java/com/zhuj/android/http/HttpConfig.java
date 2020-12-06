@@ -1,8 +1,8 @@
 package com.zhuj.android.http;
 
 
-import com.zhuj.android.http.interceptor.Interceptor;
 import com.zhuj.android.http.ssl.SSLUtils;
+import com.zhuj.android.http.util.Network;
 
 import java.net.CookieStore;
 import java.net.Proxy;
@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSocketFactory;
+
+import okhttp3.Interceptor;
 
 public final class HttpConfig {
 
@@ -32,7 +34,7 @@ public final class HttpConfig {
     private final HostnameVerifier mHostnameVerifier;
     private final int mConnectTimeout;
     private final int mReadTimeout;
-    private final Params mParams;
+    private final HttpParams mParams;
 
 
     private final Network mNetwork;
@@ -53,7 +55,7 @@ public final class HttpConfig {
         this.mHostnameVerifier = builder.mHostnameVerifier == null ? SSLUtils.HOSTNAME_VERIFIER : builder.mHostnameVerifier;
         this.mConnectTimeout = builder.mConnectTimeout <= 0 ? 10000 : builder.mConnectTimeout;
         this.mReadTimeout = builder.mReadTimeout <= 0 ? 10000 : builder.mReadTimeout;
-        this.mParams = builder.mParams.build();
+        this.mParams = builder.mParams;
 
         this.mNetwork = builder.mNetwork == null ? Network.DEFAULT : builder.mNetwork;
 //        this.mConnectFactory = builder.mConnectFactory == null ? URLConnectionFactory.newBuilder().build() : builder.mConnectFactory;
@@ -99,7 +101,7 @@ public final class HttpConfig {
         return mReadTimeout;
     }
 
-    public Params getParams() {
+    public HttpParams getParams() {
         return mParams;
     }
 
@@ -130,7 +132,7 @@ public final class HttpConfig {
         private HostnameVerifier mHostnameVerifier;
         private int mConnectTimeout;
         private int mReadTimeout;
-        private Params.Builder mParams;
+        private HttpParams mParams;
 
 
         private Network mNetwork;
@@ -140,7 +142,7 @@ public final class HttpConfig {
 
         private Builder() {
             this.mHttpHeaders = new HttpHeaders();
-            this.mParams = Params.newBuilder();
+            this.mParams = new HttpParams() ;
             this.mInterceptors = new ArrayList<>();
 
             mHttpHeaders.set(HttpHeaders.KEY_ACCEPT, HttpHeaders.VALUE_ACCEPT_ALL);
@@ -237,7 +239,7 @@ public final class HttpConfig {
          * Add the global param.
          */
         public Builder addParam(String key, String value) {
-            mParams.add(key, value);
+            mParams.put(key, value);
             return this;
         }
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zhuj.android.R;
+import com.zhuj.android.app.R;
 import com.zhuj.android.app.message.listener.OnAvatarClickListener;
 import com.zhuj.android.app.message.listener.OnMessageClickListener;
 import com.zhuj.android.app.message.listener.OnMessageLongClickListener;

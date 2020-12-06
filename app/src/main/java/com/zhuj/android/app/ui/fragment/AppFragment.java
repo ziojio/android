@@ -1,7 +1,7 @@
 package com.zhuj.android.app.ui.fragment;
 
 
-import com.zhuj.android.R;
+import com.zhuj.android.app.R;
 import com.zhuj.android.base.fragment.BaseFragment;
 
 public class AppFragment extends BaseFragment {

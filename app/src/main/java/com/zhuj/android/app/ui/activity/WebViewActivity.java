@@ -13,7 +13,7 @@ import com.just.agentweb.AgentWebConfig;
 import com.just.agentweb.AgentWebView;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
-import com.zhuj.android.R;
+import com.zhuj.android.app.R;
 import com.zhuj.android.base.activity.BaseActivity;
 
 public class WebViewActivity extends BaseActivity {

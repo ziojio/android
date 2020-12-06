@@ -1,14 +1,11 @@
 package com.zhuj.android.http.util;
 
-import com.zhuj.android.http.ListMap;
 import com.zhuj.android.http.callback.IProgressResponseCallBack;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.net.FileNameMap;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

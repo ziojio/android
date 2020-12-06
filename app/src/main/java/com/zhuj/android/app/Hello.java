@@ -1,6 +1,6 @@
 package com.zhuj.android.app;
 
-import com.zhuj.code.libannotation.ImplClass;
+import com.zhuj.code.annotation.ImplClass;
 
 @ImplClass
 public class Hello {
