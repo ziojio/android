@@ -32,19 +32,19 @@ dependencies {
 
     implementation deps.eventbus
 
-   implementation deps.lifecycle.runtime
-   implementation deps.lifecycle.commonjava8
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.commonjava8
     implementation deps.lifecycle.viewmodel
     implementation deps.lifecycle.livedata
 //    implementation deps.lifecycle.extensions
 
 //    implementation deps.okhttp
     implementation deps.glide.glide
-    implementation project(path: ':comutils')
     annotationProcessor deps.glide.compiler
 
     implementation project(path: ':libjava')
     implementation project(path: ':zui')
+    implementation project(path: ':zutils')
 //    implementation deps.gson
 
     implementation deps.webview.agentweb

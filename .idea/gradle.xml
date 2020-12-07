@@ -12,13 +12,12 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
-            <option value="$PROJECT_DIR$/comutils" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/http" />
             <option value="$PROJECT_DIR$/libannotation" />
             <option value="$PROJECT_DIR$/libjava" />
-            <option value="$PROJECT_DIR$/libprocessor" />
             <option value="$PROJECT_DIR$/zui" />
+            <option value="$PROJECT_DIR$/zutils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

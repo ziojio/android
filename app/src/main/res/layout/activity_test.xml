@@ -4,12 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.TestActivity">
+    tools:context=".ui.activity.TestActivity"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/text_show_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AA"
         android:textColor="@color/black"
         android:textSize="22sp" />
 

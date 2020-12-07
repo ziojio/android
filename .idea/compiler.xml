@@ -6,13 +6,6 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
-        </processorPath>
-        <module name="android.libjava" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service/1.0-rc7/894e4af172edf98872bf87f5a90912f86f3e9158/auto-service-1.0-rc7.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.ltgt.gradle.incap/incap-processor/0.3/9be2a1a54ac5dc3b2b2e4097f6591735cff08253/incap-processor-0.3.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service-annotations/1.0-rc7/8849037b03b10cd3d71cce67f8b99aed183971cb/auto-service-annotations-1.0-rc7.jar" />
@@ -27,7 +20,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.1/ed28ded51a8b1c6b112568def5f4b455e6809019/j2objc-annotations-1.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/f97ce6decaea32b36101e37979f8b647f00681fb/animal-sniffer-annotations-1.17.jar" />
         </processorPath>
-        <module name="android.libprocessor" />
+        <module name="android.libannotation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

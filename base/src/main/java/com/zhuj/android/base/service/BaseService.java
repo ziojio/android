@@ -10,7 +10,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.comutils.logger.Logger;
+import com.zhuj.android.util.logger.Logger;
 
 
 public class BaseService extends Service {

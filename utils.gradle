@@ -20,7 +20,7 @@ static def releaseTime(String format) {
 ext.releaseTime = this.&releaseTime
 
 static def releaseTime() {
-    return new Date().format("yyyyMMdd_HHmmss", TimeZone.getTimeZone("GMT+8"))
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+8"))
 }
 
 ext.releaseTime = this.&releaseTime
