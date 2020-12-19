@@ -12,32 +12,30 @@ public class EventBusHelper {
     private EventBusHelper() {
     }
 
-    public static void register(LifecycleOwner activity) {
-        activity.getLifecycle().addObserver(new LifecycleObserver() {
-
+    public static void register(LifecycleOwner lifecycleOwner) {
+        lifecycleOwner.getLifecycle().addObserver(new LifecycleObserver() {
             @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-            void create() {
-                EventBus.getDefault().register(activity);
+            void ON_CREATE() {
+                EventBus.getDefault().register(lifecycleOwner);
             }
 
             @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            void destroy() {
-                EventBus.getDefault().unregister(activity);
+            void ON_DESTROY() {
+                EventBus.getDefault().unregister(lifecycleOwner);
             }
         });
     }
 
-    public static void register(LifecycleOwner activity, boolean isStartStop) {
-        activity.getLifecycle().addObserver(new LifecycleObserver() {
-
+    public static void registerStartStop(LifecycleOwner lifecycleOwner) {
+        lifecycleOwner.getLifecycle().addObserver(new LifecycleObserver() {
             @OnLifecycleEvent(Lifecycle.Event.ON_START)
-            void create() {
-                EventBus.getDefault().register(activity);
+            void ON_START() {
+                EventBus.getDefault().register(lifecycleOwner);
             }
 
             @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-            void destroy() {
-                EventBus.getDefault().unregister(activity);
+            void ON_STOP() {
+                EventBus.getDefault().unregister(lifecycleOwner);
             }
         });
     }

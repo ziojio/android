@@ -23,27 +23,10 @@ public final class JsonUtils {
         return null;
     }
 
-    public <T> T parseJson(String json, Class<T> classOfT) {
+    public <T> T fromJson(String json, Type type) {
+
         return null;
     }
 
-    public <T> T parseJson(String json, Type typeOfT) {
-        return null;
-    }
 
-    public JsonObject parseJsonObject(String json) {
-        return null;
-    }
-
-    public JsonArray parseJsonArray(String json) {
-        return null;
-    }
-
-    public <T> List<T> parseList(String json) {
-        return null;
-    }
-
-    public <T> Map<String, T> parseMap(String json) {
-        return null;
-    }
 }

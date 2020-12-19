@@ -3,7 +3,8 @@ package com.zhuj.android.util.util;
 import android.os.SystemClock;
 import android.view.View;
 
-import com.zhuj.android.util.android.Toasts;
+import com.zhuj.android.util.R;
+import com.zhuj.android.util.Toasts;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,7 +14,7 @@ public final class ClickUtils {
     /**
      * 默认点击时间间期（毫秒）
      */
-    private final static long DEFAULT_INTERVAL_MILLIS = 1000;
+    private final static int DEFAULT_INTERVAL_MILLIS = 1000;
     /**
      * 最近一次点击的时间
      */
@@ -23,9 +24,55 @@ public final class ClickUtils {
      */
     private static int sLastClickViewId;
 
+
+    private final static int LAST_TIME_VIEW_TAG = R.id.view_tag_click_1;
+
     private ClickUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
     }
+
+    /**
+     * 是否是快速点击
+     *
+     * @param view     点击的控件
+     * @param duration 时间间期（毫秒）
+     */
+    public static boolean isDoubleClick(View view, long duration) {
+        long cur = System.currentTimeMillis();
+        Object time = view.getTag(LAST_TIME_VIEW_TAG);
+        long lastTime = time == null ? 0 : (long) time;
+        long timeInterval = cur - lastTime;
+        if (0 < lastTime && timeInterval < duration) {
+            view.setTag(LAST_TIME_VIEW_TAG, 0); // 清除点击状态
+            return true;
+        } else {
+            view.setTag(LAST_TIME_VIEW_TAG, cur);
+            return false;
+        }
+    }
+
+    public static boolean isSingleClick(View view) {
+        return isSingleClick(view, DEFAULT_INTERVAL_MILLIS);
+    }
+
+    /**
+     * 在持续时间内只有一次点击事件有效
+     *
+     * @param view
+     * @param duration
+     */
+    public static boolean isSingleClick(View view, int duration) {
+        Object time = view.getTag(LAST_TIME_VIEW_TAG);
+        long lastTime = time == null ? 0 : (long) time;
+        long cur = System.currentTimeMillis();
+        if (lastTime == 0 || cur - lastTime > duration) {
+            view.setTag(LAST_TIME_VIEW_TAG, cur);
+            return true;
+        } else {
+            view.setTag(LAST_TIME_VIEW_TAG, cur);
+            return false;
+        }
+    }
+
 
     /**
      * 是否是快速点击

@@ -3,8 +3,13 @@ package com.zhuj.code;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Map;
 
+/**
+ * checkXXX() throw Exception()
+ * isXXX() return true or false
+ */
 public final class Preconditions {
 
     private Preconditions() {
@@ -92,9 +97,21 @@ public final class Preconditions {
         checkArgument(!(type instanceof Class<?>) || ((Class<?>) type).isPrimitive());
     }
 
-    public static <T> T checkNotNull(T arg) {
-        return checkNotNull(arg, "");
+    public static <T> boolean isNull(T arg) {
+        return arg == null;
     }
+
+    public static <T> boolean isNotNull(T arg) {
+        return arg != null;
+    }
+
+    public static <T> T checkNotNull(T arg) {
+        if (arg == null) {
+            throw new NullPointerException();
+        }
+        return arg;
+    }
+
 
     public static <T> T checkNotNull(T arg, String message) {
         if (arg == null) {
@@ -103,6 +120,7 @@ public final class Preconditions {
         return arg;
     }
 
+
     public static String checkNotEmpty(String string) {
         if (string == null || string.isEmpty()) {
             throw new IllegalArgumentException("Must not be null or empty");
@@ -110,10 +128,44 @@ public final class Preconditions {
         return string;
     }
 
+
+    public static String checkNotBlank(String string) {
+        if (string == null || string.trim().isEmpty()) {
+            throw new IllegalArgumentException("Must not be null or blank");
+        }
+        return string;
+    }
+
+
     public static <T extends Collection<?>> T checkNotEmpty(T collection) {
         if (collection == null || collection.isEmpty()) {
             throw new IllegalArgumentException("Must not be null or empty.");
         }
         return collection;
+    }
+
+    /**
+     * Ensures that the argument int value is within the inclusive range.
+     *
+     * @param value     a int value
+     * @param lower     the lower endpoint of the inclusive range
+     * @param upper     the upper endpoint of the inclusive range
+     * @param valueName the name of the argument to use if the check fails
+     * @return the validated int value
+     * @throws IllegalArgumentException if {@code value} was not within the range
+     */
+    public static int checkArgumentInRange(int value, int lower, int upper,
+                                           String valueName) {
+        if (value < lower) {
+            throw new IllegalArgumentException(
+                    String.format(Locale.US,
+                            "%s is out of range of [%d, %d] (too low)", valueName, lower, upper));
+        } else if (value > upper) {
+            throw new IllegalArgumentException(
+                    String.format(Locale.US,
+                            "%s is out of range of [%d, %d] (too high)", valueName, lower, upper));
+        }
+
+        return value;
     }
 }

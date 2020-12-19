@@ -26,19 +26,17 @@ allprojects {
 //    }
 }
 
-rootProject.buildDir = rootDir.parent + "/" + project.name + ".build"
+rootProject.buildDir = "../${rootProject.name}.build"
 
 subprojects {
-    buildDir = rootProject.buildDir.path + "/" + project.name
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
 
     String pluginId = "app" == project.name ? "com.android.application" : "com.android.library"
     // application，library 的通用处理
     pluginManager.withPlugin(pluginId) {
         // 在 module build.gradle or project.afterEvaluate 可以被覆写
         apply from: rootDir.path + "/config.gradle"
-        if (pluginId.equals("com.android.application")) {
-            apply from: rootDir.path + "/utils.gradle"
-        }
+
         android {
             compileSdkVersion config.compileSdkVersion
             buildToolsVersion config.buildToolsVersion
@@ -49,6 +47,14 @@ subprojects {
             defaultConfig {
                 minSdkVersion config.minSdkVersion
                 targetSdkVersion config.targetSdkVersion
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+            }
+            dependencies {
+                implementation 'androidx.appcompat:appcompat:1.2.0'
+                implementation 'com.google.android.material:material:1.2.1'
+                testImplementation 'junit:junit:4.13.1'
+                androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+                androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
             }
         }
     }

@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.core.view.ViewCompat;
 
-import com.zhuj.android.util.android.Displays;
+import com.zhuj.android.util.Displays;
 import com.zhuj.android.util.logger.timber.Logger;
 import com.zhuj.android.zui.R;
 

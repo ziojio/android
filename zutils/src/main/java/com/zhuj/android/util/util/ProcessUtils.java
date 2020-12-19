@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 import com.zhuj.android.util.logger.Logger;
 
 import java.util.Arrays;
@@ -57,7 +57,7 @@ public class ProcessUtils {
     @RequiresPermission(PACKAGE_USAGE_STATS)
     public static String getForegroundProcessName() {
         ActivityManager manager =
-                (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (manager == null) {
             return null;
         }
@@ -71,7 +71,7 @@ public class ProcessUtils {
             }
         }
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
-            PackageManager packageManager = Androids.getContext().getPackageManager();
+            PackageManager packageManager = Androids.getApp().getPackageManager();
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             List<ResolveInfo> list =
                     packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
@@ -83,15 +83,15 @@ public class ProcessUtils {
             }
             try {// 有"有权查看使用权限的应用"选项
                 ApplicationInfo info =
-                        packageManager.getApplicationInfo(Androids.getContext().getPackageName(), 0);
+                        packageManager.getApplicationInfo(Androids.getApp().getPackageName(), 0);
                 AppOpsManager aom =
-                        (AppOpsManager) Androids.getContext().getSystemService(Context.APP_OPS_SERVICE);
+                        (AppOpsManager) Androids.getApp().getSystemService(Context.APP_OPS_SERVICE);
                 if (aom != null) {
                     if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                             info.uid,
                             info.packageName) != AppOpsManager.MODE_ALLOWED) {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        Androids.getContext().startActivity(intent);
+                        Androids.getApp().startActivity(intent);
                     }
                     if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                             info.uid,
@@ -100,7 +100,7 @@ public class ProcessUtils {
                         return null;
                     }
                 }
-                UsageStatsManager usageStatsManager = (UsageStatsManager) Androids.getContext()
+                UsageStatsManager usageStatsManager = (UsageStatsManager) Androids.getApp()
                         .getSystemService(Context.USAGE_STATS_SERVICE);
                 List<UsageStats> usageStatsList = null;
                 if (usageStatsManager != null) {
@@ -135,7 +135,7 @@ public class ProcessUtils {
      */
     public static Set<String> getAllBackgroundProcesses() {
         ActivityManager am =
-                (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) {
             return Collections.emptySet();
         }
@@ -156,7 +156,7 @@ public class ProcessUtils {
      */
     public static boolean isProcessRunning(@NonNull String processName) {
         ActivityManager am =
-                (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) {
             return false;
         }
@@ -181,7 +181,7 @@ public class ProcessUtils {
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         ActivityManager am =
-                (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) {
             return Collections.emptySet();
         }
@@ -213,7 +213,7 @@ public class ProcessUtils {
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {
         ActivityManager am =
-                (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) {
             return false;
         }
@@ -248,7 +248,7 @@ public class ProcessUtils {
     public static int gc() {
         long beforeGCDeviceUsableMemory = getDeviceUsableMemory();
         int count = 0; // 清理掉的进程数
-        ActivityManager am = (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         // 获取正在运行的service列表
         List<ActivityManager.RunningServiceInfo> serviceList = am.getRunningServices(100);
         if (serviceList != null) {
@@ -296,7 +296,7 @@ public class ProcessUtils {
      * @return 当前内存大小
      */
     public static int getDeviceUsableMemory() {
-        ActivityManager am = (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         am.getMemoryInfo(mi);
         // 返回当前系统的可用内存
@@ -309,7 +309,7 @@ public class ProcessUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isMainProcess() {
-        return Androids.getContext().getPackageName().equals(getCurrentProcessName());
+        return Androids.getApp().getPackageName().equals(getCurrentProcessName());
     }
 
     /**
@@ -318,7 +318,7 @@ public class ProcessUtils {
      * @return 当前进程的名字
      */
     public static String getCurrentProcessName() {
-        ActivityManager am = (ActivityManager) Androids.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Androids.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) {
             return null;
         }

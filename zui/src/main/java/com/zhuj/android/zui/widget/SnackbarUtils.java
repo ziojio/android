@@ -24,7 +24,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.SnackbarContentLayout;
-import com.zhuj.android.util.android.Displays;
+import com.zhuj.android.util.Displays;
 import com.zhuj.android.util.logger.Logger;
 import com.zhuj.android.zui.R;
 

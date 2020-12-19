@@ -50,7 +50,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -1261,7 +1261,7 @@ public final class SpanUtils {
 
         private Bitmap uri2Bitmap(final Uri uri) {
             try {
-                return MediaStore.Images.Media.getBitmap(Androids.getContext().getContentResolver(), uri);
+                return MediaStore.Images.Media.getBitmap(Androids.getApp().getContentResolver(), uri);
             } catch (IOException e) {
                 e.printStackTrace();
                 return Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
@@ -1269,7 +1269,7 @@ public final class SpanUtils {
         }
 
         private Bitmap resource2Bitmap(final int resourceId) {
-            Drawable drawable = ContextCompat.getDrawable(Androids.getContext(), resourceId);
+            Drawable drawable = ContextCompat.getDrawable(Androids.getApp(), resourceId);
             if (drawable == null) {
                 return null;
             }
@@ -1441,7 +1441,7 @@ public final class SpanUtils {
 
         private CustomImageSpan(final Bitmap b, final int verticalAlignment) {
             super(verticalAlignment);
-            mDrawable = new BitmapDrawable(Androids.getContext().getResources(), b);
+            mDrawable = new BitmapDrawable(Androids.getApp().getResources(), b);
             mDrawable.setBounds(0, 0, mDrawable.getIntrinsicWidth(), mDrawable.getIntrinsicHeight());
         }
 
@@ -1469,9 +1469,9 @@ public final class SpanUtils {
             } else if (mContentUri != null) {
                 Bitmap bitmap;
                 try {
-                    InputStream is = Androids.getContext().getContentResolver().openInputStream(mContentUri);
+                    InputStream is = Androids.getApp().getContentResolver().openInputStream(mContentUri);
                     bitmap = BitmapFactory.decodeStream(is);
-                    drawable = new BitmapDrawable(Androids.getContext().getResources(), bitmap);
+                    drawable = new BitmapDrawable(Androids.getApp().getResources(), bitmap);
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                     if (is != null) {
                         is.close();
@@ -1481,7 +1481,7 @@ public final class SpanUtils {
                 }
             } else {
                 try {
-                    drawable = ContextCompat.getDrawable(Androids.getContext(), mResourceId);
+                    drawable = ContextCompat.getDrawable(Androids.getApp(), mResourceId);
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                 } catch (Exception e) {
                     Log.e("sms", "Unable to find resource: " + mResourceId);

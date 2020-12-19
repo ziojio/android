@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import com.zhuj.code.json.GsonUtils;
 import com.zhuj.code.lang.StringUtils;
 import com.zhuj.code.secure.Base64Utils;
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -36,7 +36,7 @@ public final class SPUtils {
      * @return
      */
     public static SharedPreferences getDefaultSharedPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(Androids.getContext());
+        return PreferenceManager.getDefaultSharedPreferences(Androids.getApp());
     }
 
     /**
@@ -46,7 +46,7 @@ public final class SPUtils {
      * @return
      */
     public static SharedPreferences getSharedPreferences(String spName) {
-        return Androids.getContext().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        return Androids.getApp().getSharedPreferences(spName, Context.MODE_PRIVATE);
     }
 
     //=======================================键值保存==================================================//

@@ -6,7 +6,7 @@ import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.StringDef;
 
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

@@ -38,7 +38,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -204,7 +204,7 @@ public final class ImageUtils {
      * @return drawable
      */
     public static Drawable bitmap2Drawable(final Bitmap bitmap) {
-        return bitmap == null ? null : new BitmapDrawable(Androids.getContext().getResources(), bitmap);
+        return bitmap == null ? null : new BitmapDrawable(Androids.getApp().getResources(), bitmap);
     }
 
     /**
@@ -392,7 +392,7 @@ public final class ImageUtils {
      * @return bitmap
      */
     public static Bitmap getBitmap(@DrawableRes final int resId) {
-        Drawable drawable = ContextCompat.getDrawable(Androids.getContext(), resId);
+        Drawable drawable = ContextCompat.getDrawable(Androids.getApp(), resId);
         if (drawable == null) {
             return null;
         }
@@ -418,7 +418,7 @@ public final class ImageUtils {
                                    final int maxWidth,
                                    final int maxHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        final Resources resources = Androids.getContext().getResources();
+        final Resources resources = Androids.getApp().getResources();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(resources, resId, options);
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
@@ -1436,7 +1436,7 @@ public final class ImageUtils {
         RenderScript rs = null;
         Bitmap ret = recycle ? src : src.copy(src.getConfig(), true);
         try {
-            rs = RenderScript.create(Androids.getContext());
+            rs = RenderScript.create(Androids.getApp());
             rs.setMessageHandler(new RenderScript.RSMessageHandler());
             Allocation input = Allocation.createFromBitmap(rs,
                     ret,

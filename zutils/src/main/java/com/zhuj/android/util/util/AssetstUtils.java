@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.util.android.ResUtils;
+import com.zhuj.android.util.ResUtils;
 import com.zhuj.code.file.IOUtils;
 import com.zhuj.code.lang.StringUtils;
 

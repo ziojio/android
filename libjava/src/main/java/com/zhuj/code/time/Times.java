@@ -1,5 +1,7 @@
 package com.zhuj.code.time;
 
+import com.zhuj.code.Preconditions;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +10,15 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Times {
-    private static final String TAG = Times.class.getSimpleName();
+
+    public static final int SECONDS_PER_MINUTE = 60;
+    public static final int SECONDS_PER_HOUR = 60 * 60;
+    public static final int SECONDS_PER_DAY = 60 * 60 * 24;
+
+    public static final int MILLISECONDS_PER_SECOND = 1000;
+    public static final int MILLISECONDS_PER_MINUTE = 1000 * 60;
+    public static final int MILLISECONDS_PER_HOUR = 1000 * 60 * 60;
+    public static final int MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 
     /**
      * 字母      含义     示例
@@ -32,34 +42,33 @@ public class Times {
     private Times(String y, String M, String d, String D, String E, String H, String h, String m, String s, String S) {
     }
 
-    public static final String STYLE_yyyyMMdd_HHmmss = "yyyy-MM-dd HH:mm:ss";
-    public static final String STYLE_yyyyMMdd  = "yyyy-MM-dd";
-    public static final String STYLE_HHmmss = "HH:mm:ss";
+    public static final String STYLE_yyyMMdd_HHmmss = "yyyy-MM-dd HH:mm:ss";
 
-    private static DateFormat dateFormat = DateFormat.getDateTimeInstance();
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(STYLE_yyyyMMdd_HHmmss, Locale.getDefault());
+    public static final SimpleDateFormat FORMAT_yyyMMdd_HHmmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    public static final SimpleDateFormat FORMAT_yyyMMdd_HHmmss_2 = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+    public static final SimpleDateFormat FORMAT_yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    public static final SimpleDateFormat FORMAT_HHmmss = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+    public static final SimpleDateFormat FORMAT_HHmm = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
-
-    public static boolean isToday(String day, String pattern) {
+    public static Date parseDate(String pattern, String date) {
         try {
-            Date date = new SimpleDateFormat(pattern, Locale.getDefault()).parse(day);
-            return isToday(date);
+            return new SimpleDateFormat(pattern, Locale.getDefault()).parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
     public static boolean isToday(Date date) {
+        Preconditions.checkNotNull(date);
         Calendar cur = Calendar.getInstance();
-        Date predate = new Date();
-        cur.setTime(predate);
+        cur.setTimeInMillis(System.currentTimeMillis());
 
         Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
+        cal.setTimeInMillis(date.getTime());
 
         if (cur.get(Calendar.YEAR) == cal.get(Calendar.YEAR)) {
-            int diffDay =  cur.get(Calendar.DAY_OF_YEAR) - cal.get(Calendar.DAY_OF_YEAR);
+            int diffDay = cur.get(Calendar.DAY_OF_YEAR) - cal.get(Calendar.DAY_OF_YEAR);
             return diffDay == 0;
         }
         return false;

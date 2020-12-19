@@ -22,6 +22,18 @@ public class Strings {
     private Strings() {
     }
 
+    public static String findFirstChinese(String str) {
+        if(str == null){
+            return null;
+        }
+        for (char c : str.toCharArray()) {
+            if (c >= 0x4E00 && c <= 0x9FA5) {
+                return String.valueOf(c);
+            }
+        }
+        return String.valueOf(str.charAt(0));
+    }
+
     public static String format(String str, Object... args) {
         return String.format(Locale.CHINA, str, args);
     }

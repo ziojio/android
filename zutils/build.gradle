@@ -34,4 +34,5 @@ dependencies {
     implementation deps.glide.glide
     annotationProcessor deps.glide.compiler
     implementation deps.eventbus
+    implementation deps.google.gson
 }

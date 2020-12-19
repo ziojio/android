@@ -19,8 +19,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.zhuj.android.util.android.Androids;
-import com.zhuj.android.util.android.Views;
+import com.zhuj.android.util.Androids;
+import com.zhuj.android.util.Views;
 import com.zhuj.android.util.logger.Logger;
 
 import java.io.File;
@@ -32,7 +32,9 @@ public class GlideUtils {
     private GlideUtils() {
     }
 
-    private static final RequestOptions requestOptions = new RequestOptions();
+    public static final RequestOptions REQUEST_OPTIONS_NO = new RequestOptions();
+
+    public static final RequestOptions REQUEST_OPTIONS_BASE = new RequestOptions();
 
     private static final RequestListener<Drawable> requestListenerDrawable = new RequestListener<Drawable>() {
         @Override
@@ -52,14 +54,14 @@ public class GlideUtils {
         }
     };
 
-    public static void loadImageView(ImageView imageView, String url, @Nullable RequestOptions requestOptions) {
-        RequestBuilder<Drawable> requestBuilder = Glide.with(imageView.getContext()).asDrawable().load(url);
-        if (requestOptions != null) {
-            requestBuilder = requestBuilder.apply(requestOptions);
-        }
-        requestBuilder.listener(requestListenerDrawable).into(imageView);
-
+    public static void loadImageView(ImageView imageView, Object url, @Nullable RequestOptions requestOptions) {
+        Glide.with(imageView.getContext())
+                .asBitmap()
+                .load(url)
+                .apply(requestOptions == null ? REQUEST_OPTIONS_NO : requestOptions)
+                .into(imageView);
     }
+
 
     public static void loadCompoundDrawable(TextView view, int direction, String url, RequestOptions requestOptions) {
         RequestBuilder<Drawable> requestBuilder = Glide.with(view.getContext()).asDrawable().load(url);
@@ -111,11 +113,11 @@ public class GlideUtils {
 
     // *****************   下载图片   ******************
     public static void download(String url, DownloadFileListener downloadFileListener) {
-        download(Androids.getContext(), url, null, downloadFileListener);
+        download(Androids.getApp(), url, null, downloadFileListener);
     }
 
     public static void download(String url, RequestOptions requestOptions, DownloadFileListener downloadFileListener) {
-        download(Androids.getContext(), url, requestOptions, downloadFileListener);
+        download(Androids.getApp(), url, requestOptions, downloadFileListener);
     }
 
     public static void download(Context context, String url, DownloadFileListener downloadFileListener) {

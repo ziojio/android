@@ -12,17 +12,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.zhuj.android.base.R;
+
 public abstract class IDialogFragment extends DialogFragment {
     protected final String TAG = getClass().getSimpleName();
 
-    /**
-     * 设置外部回调方法，
-     * 覆写DialogFragment {@link DialogFragment#onCancel(DialogInterface)}
-     * and {@link DialogFragment#onDismiss(DialogInterface)}
-     */
     protected DialogInterface.OnCancelListener onCancelListener;
-
     protected DialogInterface.OnDismissListener onDismissListener;
+
+    public IDialogFragment() {
+        setStyle(STYLE_NO_TITLE, R.style.ZUI_Dialog);
+    }
 
     /**
      * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
@@ -32,17 +32,9 @@ public abstract class IDialogFragment extends DialogFragment {
     protected abstract void initView();
 
     /**
-     * 设置 window
-     * 1. 可以直接代码设置窗口样式
-     * WindowManager.LayoutParams lp = window.getAttributes();
-     * 2. 由于填充的根为null, 根布局的部分参数失效，在xml文件多嵌套一个布局
-     * 使用CardView作为dialog的容器
+     *
      */
     protected abstract void initWindow();
-
-    public IDialogFragment() {
-        setStyle(STYLE_NO_TITLE, 0);
-    }
 
     @Nullable
     @Override

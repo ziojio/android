@@ -7,7 +7,7 @@ import android.graphics.Color;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 
 import java.util.Random;
 
@@ -19,7 +19,7 @@ public final class Colors {
     private static final int FOCUSED_ATTR = android.R.attr.state_focused;
 
     public static int getColor(int colorId) {
-        return Androids.getContext().getColor(colorId);
+        return Androids.getApp().getColor(colorId);
     }
 
     public static int getColor(Context context, int colorId) {

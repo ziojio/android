@@ -12,7 +12,7 @@ import android.telephony.TelephonyManager;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
-import com.zhuj.android.util.android.Androids;
+import com.zhuj.android.util.Androids;
 import com.zhuj.code.file.IOUtils;
 
 import java.io.ByteArrayOutputStream;
