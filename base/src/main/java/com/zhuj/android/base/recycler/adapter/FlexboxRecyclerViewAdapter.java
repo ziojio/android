@@ -4,8 +4,9 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.jbzh.baseapp.android.Views;
-import com.jbzh.baseapp.recycler.viewholder.BaseViewHolder;
+import com.zhuj.android.base.recycler.viewholder.BaseViewHolder;
+import com.zhuj.android.util.Views;
+
 
 public abstract class FlexboxRecyclerViewAdapter<T, VH extends BaseViewHolder<T>> extends BaseRecyclerViewAdapter<T, VH> {
     protected int column;

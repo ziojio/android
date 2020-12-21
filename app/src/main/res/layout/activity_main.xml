@@ -33,7 +33,15 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:background="@drawable/ic_icon1"
-        app:zui_press_effect="backgroundTint" />
+        />
+    <com.zhuj.android.zui.widget.imageview.ZUIImageButton
+        android:id="@+id/image_btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/ic_icon1"
+        android:backgroundTintMode="multiply"
+        android:backgroundTint="#cccccc"/>
 
 
     <LinearLayout

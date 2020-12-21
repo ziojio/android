@@ -1,6 +1,6 @@
 package com.zhuj.android.util.file;
 
-import com.jbzh.baseapp.util.IOUtils;
+import com.zhuj.code.file.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.File;

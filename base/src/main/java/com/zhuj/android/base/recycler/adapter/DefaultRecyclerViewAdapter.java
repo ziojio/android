@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zhuj.android.base.recycler.listener.OnItemClickListener2;
+import com.zhuj.android.base.recycler.listener.OnItemClickListener;
 import com.zhuj.android.base.recycler.viewholder.DefaultViewHolder;
 import com.zhuj.android.util.Views;
 
@@ -35,9 +35,9 @@ public abstract class DefaultRecyclerViewAdapter<T> extends RecyclerView.Adapter
         this.layouts.put(viewType, layoutId);
     }
 
-    protected OnItemClickListener2<T, DefaultViewHolder> onItemClickListener;
+    protected OnItemClickListener<T> onItemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener2<T, DefaultViewHolder> onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

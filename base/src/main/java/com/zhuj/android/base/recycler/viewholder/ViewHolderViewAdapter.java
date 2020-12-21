@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.jbzh.baseapp.R;
+import com.zhuj.android.base.R;
+
 
 public class ViewHolderViewAdapter<T extends ViewHolderDataAdapter> extends BaseViewHolder<T> {
     public ImageView image1;
