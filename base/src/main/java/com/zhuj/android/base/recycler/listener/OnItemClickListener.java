@@ -4,6 +4,8 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zhuj.android.base.recycler.viewholder.DefaultViewHolder;
+
 public interface OnItemClickListener<T> {
-    void onItemClick(RecyclerView.ViewHolder vh, View v, int position, T t);
+    void onItemClick(DefaultViewHolder vh, View v, int position, T t);
 }

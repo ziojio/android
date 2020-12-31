@@ -5,14 +5,15 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-public abstract class CommonSharedPrefs {
+public class CommonSharedPrefs {
+    private final static CommonSharedPrefs INSTANCE = new CommonSharedPrefs();
     private SharedPreferences sharePrefs;
 
-    public CommonSharedPrefs(Context context, String spName) {
-        sharePrefs = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
+    public void set(SharedPreferences sp) {
+        this.sharePrefs = sp;
     }
 
-    public SharedPreferences getSharePreferences() {
+    public SharedPreferences get() {
         return sharePrefs;
     }
 

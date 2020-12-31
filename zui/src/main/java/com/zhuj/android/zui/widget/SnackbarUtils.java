@@ -706,7 +706,7 @@ public class SnackbarUtils {
             int[] locations = new int[2];
             targetView.getLocationOnScreen(locations);
             int snackbarHeight = calculateSnackBarHeight();
-            int screenHeight = Displays.getScreenHeight(getSnackbar().getView().getContext());
+            int screenHeight = Displays.getResourceDisplayMetrics(getSnackbar().getView().getContext()).heightPixels;
             //必须保证指定View的底部可见 且 单行Snackbar可以完整的展示
             //为什么要'+2'? 因为在Android L(Build.VERSION_CODES.LOLLIPOP)以上,例如Button会有一定的'阴影(shadow)',阴影的大小由'高度(elevation)'决定.
             //为了在Android L以上的系统中展示的Snackbar不要覆盖targetView的阴影部分太大比例,所以人为减小2px的layout_marginBottom属性.
@@ -727,7 +727,7 @@ public class SnackbarUtils {
             int[] locations = new int[2];
             targetView.getLocationOnScreen(locations);
             int snackbarHeight = calculateSnackBarHeight();
-            int screenHeight = Displays.getScreenHeight(getSnackbar().getView().getContext());
+            int screenHeight = Displays.getResourceDisplayMetrics(getSnackbar().getView().getContext()).heightPixels;
             //必须保证指定View的底部可见 且 单行Snackbar可以完整的展示
             //为什么要'+2'? 因为在Android L(Build.VERSION_CODES.LOLLIPOP)以上,例如Button会有一定的'阴影(shadow)',阴影的大小由'高度(elevation)'决定.
             //为了在Android L以上的系统中展示的Snackbar不要覆盖targetView的阴影部分太大比例,所以人为减小2px的layout_marginBottom属性.
