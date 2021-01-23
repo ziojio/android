@@ -3,12 +3,12 @@
     android:layout_height="match_parent">
 
 
-    <com.zhuj.android.zui.widget.layout.ZUILinearLayout
+    <zui.widget.layout.ZUILinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-    </com.zhuj.android.zui.widget.layout.ZUILinearLayout>
+    </zui.widget.layout.ZUILinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

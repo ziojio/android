@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".app.ui.activity.ViewActivity">
 
-    <com.zhuj.android.zui.widget.ToolMenuView
+    <zui.widget.ToolMenuView
         android:layout_width="@dimen/mp_toolbar_width"
         android:layout_height="@dimen/mp_toolbar_height"
         android:layout_marginTop="25dp"

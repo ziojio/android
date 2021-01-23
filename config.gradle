@@ -1,11 +1,10 @@
 //
-//
 
 ext {
     config = [
             compileSdkVersion: 30,
             buildToolsVersion: '30.0.2',
-            applicationId    : 'com.zhuj.android.app',
+            applicationId    : 'zhuj.android.app',
             minSdkVersion    : 26,
             targetSdkVersion : 30,
             versionCode      : 1,

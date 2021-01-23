@@ -1,4 +1,4 @@
-package com.zhuj.android.jsbridge.webview;
+package zhuj.jsbridge.webview;
 
 import android.graphics.Bitmap;
 import android.net.http.SslError;

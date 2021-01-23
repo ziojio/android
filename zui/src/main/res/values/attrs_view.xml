@@ -33,14 +33,22 @@
         <attr name="zui_cornerRadius_bottomRight" />
     </declare-styleable>
 
-    <declare-styleable name="ZUITextView">
+    <declare-styleable name="ZUITextViewIcon">
         <attr name="zui_drawableWidth" />
         <attr name="zui_drawableHeight" />
+        <attr name="zui_drawableSize" />
         <attr name="zui_drawablePaddingStart" />
         <attr name="zui_drawablePaddingTop" />
         <attr name="zui_drawablePaddingEnd" />
         <attr name="zui_drawablePaddingBottom" />
     </declare-styleable>
+    <declare-styleable name="ZUITextViewState">
+
+    </declare-styleable>
+    <declare-styleable name="ZUITextView">
+
+    </declare-styleable>
+
 
     <declare-styleable name="ZUIImageButton">
         <attr name="zui_press_effect" />

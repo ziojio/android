@@ -1,4 +1,4 @@
-// package com.zhuj.android.jsbridge;
+// package zhuj.jsbridge;
 //
 //
 // import android.annotation.SuppressLint;

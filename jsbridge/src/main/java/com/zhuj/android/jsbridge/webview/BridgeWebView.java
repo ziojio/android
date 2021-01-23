@@ -1,4 +1,4 @@
-package com.zhuj.android.jsbridge.webview;
+package zhuj.jsbridge.webview;
 
 import android.app.Activity;
 import android.app.Dialog;

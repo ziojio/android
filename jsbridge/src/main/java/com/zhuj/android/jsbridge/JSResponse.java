@@ -1,4 +1,4 @@
-package com.zhuj.android.jsbridge;
+package zhuj.jsbridge;
 
 /**
  * Created on 2019/7/10.

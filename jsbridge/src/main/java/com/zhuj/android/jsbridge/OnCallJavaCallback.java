@@ -1,4 +1,4 @@
-package com.zhuj.android.jsbridge;
+package zhuj.jsbridge;
 
 public interface OnCallJavaCallback<T> {
     void onCompleted(T retValue);
