@@ -9,7 +9,7 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
 import zhuj.android.database.room.AndroidDatabase;
-import zhuj.utils.Androids;
+import zhuj.android.Androids;
 
 public class App extends Application {
     private static App INSTANCE;

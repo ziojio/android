@@ -5,7 +5,7 @@ import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import zhuj.base.dialog.BaseDialogFragment;
+import zhuj.android.base.dialog.BaseDialogFragment;
 
 
 public class CenterDialog extends BaseDialogFragment {

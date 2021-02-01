@@ -1,7 +1,6 @@
 package zhuj.http.response;
 
-import com.zhuj.code.file.FileIO;
-import com.zhuj.code.file.IOUtils;
+import zhuj.file.IOUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

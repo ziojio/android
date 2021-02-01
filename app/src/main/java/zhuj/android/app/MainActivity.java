@@ -6,12 +6,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import zhuj.android.database.sqlitehelper.AppDatabase;
-import zhuj.base.activity.BaseActivity;
-import zhuj.base.service.BaseService;
-import zhuj.utils.thread.WorkExecutor;
+import zhuj.android.base.activity.BaseActivity;
+import zhuj.android.base.service.BaseService;
 import zhuj.android.app.ui.activity.TestActivity;
 import zhuj.android.app.ui.activity.ViewActivity;
 import zhuj.android.app.ui.activity.WebViewActivity;
+import zhuj.android.helper.ClickHelper;
+import zhuj.thread.WorkExecutor;
 
 public class MainActivity extends BaseActivity {
 
@@ -21,32 +22,31 @@ public class MainActivity extends BaseActivity {
     private TextView showText;
 
     @Override
-    protected int layoutId() {
+    protected int getLayoutRes() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    protected void initView() {
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addClickListener(this::onClick, R.id.button_sql, R.id.button_test, R.id.button_webview,
+        ClickHelper.addClickListener(
+                this.getViewHelper().getRootView(),
+                this::onClick,
+                R.id.button_sql, R.id.button_test, R.id.button_webview,
                 R.id.button_view, R.id.button_button, R.id.button_do);
     }
 
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.button_sql) {
-            startActivity(new Intent(mActivity, MainActivity.class));
+            startActivity(new Intent(getActivity(), MainActivity.class));
         } else if (id == R.id.button_test) {
-            startActivity(new Intent(mActivity, TestActivity.class));
+            startActivity(new Intent(getActivity(), TestActivity.class));
         } else if (id == R.id.button_webview) {
-            startActivity(new Intent(mActivity, WebViewActivity.class));
+            startActivity(new Intent(getActivity(), WebViewActivity.class));
         } else if (id == R.id.button_view) {
-            startActivity(new Intent(mActivity, ViewActivity.class));
+            startActivity(new Intent(getActivity(), ViewActivity.class));
         } else if (id == R.id.button_button) {// bindService();
             Intent intent = new Intent(this, BaseService.class);
             startService(intent);

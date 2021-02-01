@@ -18,7 +18,7 @@
             android:id="@+id/progress_bar_circle"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:progressTint="@color/main_color" />
+            android:progressTint="?colorPrimary" />
 
         <TextView
             android:id="@+id/loading"
@@ -70,7 +70,7 @@
             android:id="@+id/click_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击空白处刷新"
+            android:text="@string/load_click_refresh"
             android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

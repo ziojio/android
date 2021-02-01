@@ -17,9 +17,9 @@ import zhuj.android.app.R;
 import zhuj.android.database.room.AndroidDatabase;
 import zhuj.android.database.room.entity.User;
 import zhuj.android.database.sqlitehelper.AppDatabase;
-import zhuj.base.activity.BaseActivity;
-import zhuj.utils.logger.Logger;
-import zhuj.utils.thread.WorkExecutor;
+import zhuj.android.base.activity.BaseActivity;
+import zhuj.android.logger.Logger;
+import zhuj.thread.WorkExecutor;
 
 
 import java.util.List;
@@ -33,13 +33,8 @@ public class DataBaseActivity extends BaseActivity {
     private TextView showText;
 
     @Override
-    protected int layoutId() {
+    protected int getLayoutRes() {
         return R.layout.activity_database;
-    }
-
-    @Override
-    protected void initView() {
-
     }
 
     @Override
@@ -85,7 +80,7 @@ public class DataBaseActivity extends BaseActivity {
                 public void run() {
                     User u = new User();
                     u.setId(new Random().nextInt(100));
-                    AndroidDatabase.getInstance(mActivity).userDao().insert(u);
+                    AndroidDatabase.getInstance(getActivity()).userDao().insert(u);
                 }
             });
         } else if (id == R.id.button_room_query) {
@@ -93,7 +88,7 @@ public class DataBaseActivity extends BaseActivity {
             workExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    List<User> users =  AndroidDatabase.getInstance(mActivity).userDao().getAllUser();
+                    List<User> users =  AndroidDatabase.getInstance(getActivity()).userDao().getAllUser();
                     for (User user : users) {
                         Message message = Message.obtain();
                         message.obj = user;

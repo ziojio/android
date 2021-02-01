@@ -1,23 +1,19 @@
 package zhuj.http;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import zhuj.http.request.RequestFilter;
-import zhuj.http.response.ApiCallback;
 import zhuj.http.response.ResponseParser;
-import com.zhuj.code.lang.Exceptions;
+import zhuj.lang.Exceptions;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import retrofit2.Retrofit;
 
 public class Httper2 {
     private final String TAG = getClass().getSimpleName();

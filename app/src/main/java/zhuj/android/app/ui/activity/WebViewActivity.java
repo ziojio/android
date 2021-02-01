@@ -14,25 +14,16 @@ import com.just.agentweb.AgentWebView;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import zhuj.android.app.R;
-import zhuj.base.activity.BaseActivity;
+import zhuj.android.base.activity.BaseActivity;
 
 public class WebViewActivity extends BaseActivity {
     AgentWeb mAgentWeb;
     AgentWebView.AgentWebClient mBridgeWebViewClient;
 
     @Override
-    protected int layoutId() {
-        return R.layout.activity_webvew;
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_webvew);
         String url = "http://www.baidu.com";
 
         mAgentWeb = AgentWeb.with(this)

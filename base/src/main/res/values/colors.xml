@@ -18,4 +18,7 @@
 
     <color name="mp_toolbar_bg">#22000000</color>
     <color name="mp_toolbar_bg_press">#55000000</color>
+
+    <color name="statusbar_background_color">@color/primaryColor</color>
+    <color name="titlebar_text_color">@color/zui_color_white</color>
 </resources>
