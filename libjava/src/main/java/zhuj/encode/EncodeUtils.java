@@ -7,7 +7,6 @@ import okio.ByteString;
 
 public class EncodeUtils {
 
-
     public static String md5(String str) {
         return ByteString.encodeUtf8(str).md5().utf8();
     }

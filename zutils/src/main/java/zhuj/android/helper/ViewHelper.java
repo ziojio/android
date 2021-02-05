@@ -26,8 +26,17 @@ public class ViewHelper {
         return rootView.getContext();
     }
 
-    public View getRootView() {
+    public View getView() {
         return rootView;
+    }
+
+    public <T extends View> T findViewById(@IdRes int viewId) {
+        View view = views.get(viewId);
+        if (view == null) {
+            view = rootView.findViewById(viewId);
+            views.put(viewId, view);
+        }
+        return (T) view;
     }
 
     public <T extends View> T getView(Class<T> viewClass, @IdRes int viewId) {
@@ -35,15 +44,11 @@ public class ViewHelper {
     }
 
     public <T extends View> T getView(@IdRes int viewId) {
-        View view = views.get(viewId);
+        T view = findViewById(viewId);
         if (view == null) {
-            view = rootView.findViewById(viewId);
-            if (view == null) {
-                throw new IllegalArgumentException("not find view for id#" + viewId);
-            }
-            views.put(viewId, view);
+            throw new IllegalArgumentException("not find view for id#" + viewId);
         }
-        return (T) view;
+        return view;
     }
 
     public ViewHelper setOnClickListener(@IdRes int viewId, View.OnClickListener listener) {
@@ -51,6 +56,10 @@ public class ViewHelper {
         return this;
     }
 
+    public ViewHelper setOnLongClickListener(@IdRes int viewId, View.OnLongClickListener listener) {
+        getView(viewId).setOnLongClickListener(listener);
+        return this;
+    }
     public ViewHelper setText(@IdRes int viewId, CharSequence value) {
         getView(TextView.class, viewId).setText(value);
         return this;

@@ -1,11 +1,11 @@
 plugins {
-    id 'java-library'
+    id 'java'
 }
 
 dependencies {
 
-    implementation deps.google.auto.service.annotations
-    annotationProcessor deps.google.auto.service.processor
+    implementation deps.google.autoservice.annotations
+    annotationProcessor deps.google.autoservice.processor
 
     implementation deps.squareup.javapoet
 

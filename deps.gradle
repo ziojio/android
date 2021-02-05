@@ -1,19 +1,6 @@
-//
+ext.versions = [:]
 
-def versions = [
-        javaVersion: JavaVersion.VERSION_1_8,
-        gson       : "2.8.6",
-        okhttp3    : "3.14.9",
-        okio       : "1.17.5",
-        glide      : "4.11.0",
-        retrofit2  : "2.9.0",
-        agentweb   : "4.1.3",
-        fastjson   : "1.2.73",
-        junit      : "4.12",
-        espresso   : "3.2.0",
-        runner     : "1.2.0",
-]
-ext.versions = versions
+ext.javaVersion = JavaVersion.VERSION_1_8
 
 ext.deps = [
         material          : "com.google.android.material:material:1.2.1",
@@ -50,90 +37,90 @@ ext.deps.viewlayout = [
         percentlayout    : "androidx.percentlayout:percentlayout:1.0.0",
         coordinatorlayout: "androidx.coordinatorlayout:coordinatorlayout:1.1.0",
         customview       : "androidx.customview:customview:1.1.0",
+        flexbox       : "com.google.android:flexbox:2.0.1",
 ]
 
-versions["sqlite"] = "2.1.0"
+def sqlite = "2.1.0"
 ext.deps.sqlite = [
         // Java language implementation
-        sqlite         : "androidx.sqlite:sqlite:$versions.sqlite",
-        sqliteKtx      : "androidx.sqlite:sqlite-ktx:$versions.sqlite",
+        sqlite         : "androidx.sqlite:sqlite:$sqlite",
+        sqliteKtx      : "androidx.sqlite:sqlite-ktx:$sqlite",
         // Implementation of the AndroidX SQLite interfaces via the Android framework APIs.
-        sqliteFramework: "androidx.sqlite:sqlite-framework:$versions.sqlite",
+        sqliteFramework: "androidx.sqlite:sqlite-framework:$sqlite",
 ]
 
-versions["camerax"] = "1.0.0-beta08"
+def camerax = "1.0.0-beta08"
 ext.deps.camerax = [
         // The following line is optional, as the core library is included indirectly by camera-camera2
-        core      : "androidx.camera:camera-core:${versions.camerax}",
-        camera2   : "androidx.camera:camera-camera2:${versions.camerax}",
+        core      : "androidx.camera:camera-core:${camerax}",
+        camera2   : "androidx.camera:camera-camera2:${camerax}",
         // If you want to additionally use the CameraX Lifecycle library
-        lifecycle : "androidx.camera:camera-lifecycle:${versions.camerax}",
+        lifecycle : "androidx.camera:camera-lifecycle:${camerax}",
         // If you want to additionally use the CameraX View class
         view      : "androidx.camera:camera-view:1.0.0-alpha15",
         // If you want to additionally use the CameraX Extensions library
         extensions: "androidx.camera:camera-extensions:1.0.0-alpha15",
 ]
 
-versions["lifecycle"] = "2.2.0"
+def lifecycle = "2.2.0"
 ext.deps.lifecycle = [
-        runtime    : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle",
-        compiler   : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
-        viewmodel  : "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycle",
-        livedata   : "androidx.lifecycle:lifecycle-livedata:$versions.lifecycle",
-        commonjava8: "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle",
-        extensions : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+        runtime    : "androidx.lifecycle:lifecycle-runtime:$lifecycle",
+        compiler   : "androidx.lifecycle:lifecycle-compiler:$lifecycle",
+        viewmodel  : "androidx.lifecycle:lifecycle-viewmodel:$lifecycle",
+        livedata   : "androidx.lifecycle:lifecycle-livedata:$lifecycle",
+        commonjava8: "androidx.lifecycle:lifecycle-common-java8:$lifecycle",
+        extensions : "androidx.lifecycle:lifecycle-extensions:$lifecycle"
 ]
 
-versions["support"] = "28.0.0"
+def support = "28.0.0"
 ext.deps.support = [
-        design      : "com.android.support:design:$versions.support",
-        app_compat  : "com.android.support:appcompat-v7:$versions.support",
-        annotations : "com.android.support:support-annotations:$versions.support",
-        recyclerview: "com.android.support:recyclerview-v7:$versions.support",
-        cardview    : "com.android.support:cardview-v7:$versions.support",
-        v4          : "com.android.support:support-v4:$versions.support",
-        core_utils  : "com.android.support:support-core-utils:$versions.support"
+        design      : "com.android.support:design:$support",
+        app_compat  : "com.android.support:appcompat-v7:$support",
+        annotations : "com.android.support:support-annotations:$support",
+        recyclerview: "com.android.support:recyclerview-v7:$support",
+        cardview    : "com.android.support:cardview-v7:$support",
+        v4          : "com.android.support:support-v4:$support",
+        core_utils  : "com.android.support:support-core-utils:$support"
 ]
 
-versions["room"] = "2.2.5"
+def room = "2.2.5"
 ext.deps.room = [
-        runtime : "androidx.room:room-runtime:$versions.room",
-        compiler: "androidx.room:room-compiler:$versions.room",
-        rxjava2 : "android.arch.persistence.room:rxjava2:$versions.room",
-        testing : "android.arch.persistence.room:testing:$versions.room",
+        runtime : "androidx.room:room-runtime:$room",
+        compiler: "androidx.room:room-compiler:$room",
+        rxjava2 : "android.arch.persistence.room:rxjava2:$room",
+        testing : "android.arch.persistence.room:testing:$room",
 ]
 
+def kotlin = "1.3.70"
 ext.deps.kotlin = [
-        stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin",
-        test  : "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin",
-        plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+        stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin",
+        test  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin",
+        plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin",
 ]
 
 ext.deps.google = [
-        gson   : "com.google.code.gson:gson:${versions.gson}",
-        flexbox: "com.google.android:flexbox:2.0.1",
-        auto   : [
-                service : [
-                        'processor'  : 'com.google.auto.service:auto-service:1.0-rc7',
-                        'annotations': 'com.google.auto.service:auto-service-annotations:1.0-rc7',
-                ],
-                value   : [
-                        'processor'  : 'com.google.auto.service:auto-value:1.7.4',
-                        'annotations': 'com.google.auto.service:auto-value-annotations:1.7.4',
-                ],
-                'common': 'com.google.auto:auto-common:0.11'],
+        gson          : "com.google.code.gson:gson:2.8.6",
+        autoservice: [
+                'processor'  : 'com.google.auto.service:auto-service:1.0-rc7',
+                'annotations': 'com.google.auto.service:auto-service-annotations:1.0-rc7',
+        ],
+        autovalue  : [
+                'processor'  : 'com.google.auto.service:auto-value:1.7.4',
+                'annotations': 'com.google.auto.service:auto-value-annotations:1.7.4',
+        ],
+        autocommon : 'com.google.auto:auto-common:0.11'
 ]
 
 ext.deps.squareup = [
-        okhttp3      : "com.squareup.okhttp3:okhttp:${versions.okhttp3}",
-        okio         : "com.squareup.okio:okio:${versions.okio}",
-        retrofit2    : "com.squareup.retrofit2:retrofit:${versions.retrofit2}",
-        converterGson: "com.squareup.retrofit2:converter-gson:${versions.retrofit2}",
+        okhttp3      : "com.squareup.okhttp3:okhttp:3.14.9",
+        okio         : "com.squareup.okio:okio:1.17.5",
+        retrofit2    : "com.squareup.retrofit2:retrofit:2.9.0",
+        converterGson: "com.squareup.retrofit2:converter-gson:2.9.0",
         javapoet     : 'com.squareup:javapoet:1.13.0',
 ]
 
 ext.deps.ali = [
-        fastjson       : "com.alibaba:fastjson:${versions.fastjson}",
+        fastjson       : "com.alibaba:fastjson:1.2.73",
         arouterApi     : "com.alibaba:arouter-api:1.3.1",
         arouterCompiler: "com.alibaba:arouter-compiler:1.1.4"
 ]
@@ -144,29 +131,29 @@ ext.deps.incap = [
 ]
 
 ext.deps.glide = [
-        glide   : "com.github.bumptech.glide:glide:${versions.glide}",
-        compiler: "com.github.bumptech.glide:compiler:${versions.glide}",
+        glide   : "com.github.bumptech.glide:glide:4.11.0",
+        compiler: "com.github.bumptech.glide:compiler:4.11.0",
 ]
 
+def agentweb = "4.1.4"
 ext.deps.webview = [
-        agentweb   : "com.just.agentweb:agentweb:$versions.agentweb",
-        filechooser: "com.just.agentweb:filechooser:$versions.agentweb",
-        downloader : "com.download.library:Downloader:$versions.agentweb",
+        agentwebx   : "com.just.agentweb:agentweb-androidx:$agentweb",
+        filechooser: "com.just.agentweb:filechooser-androidx:$agentweb",
+        downloader : "com.download.library:downloader-androidx:$agentweb",
 ]
 
 
 static addRepos(RepositoryHandler handler) {
     // Add the Local repository
     // maven { url rootProject.file('../libs/repository') }
+    handler.maven { url 'https://maven.aliyun.com/repository/public' }
     handler.maven { url 'https://maven.aliyun.com/repository/google' }
-    handler.maven { url 'https://maven.aliyun.com/repository/jcenter' }
     handler.maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-    handler.maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     handler.maven { url "https://jitpack.io" }
-    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
     handler.google()
     handler.jcenter()
     handler.mavenLocal()
+    handler.maven { url "https://oss.sonatype.org/content/repositories/public" }
     handler.mavenCentral()
 }
 

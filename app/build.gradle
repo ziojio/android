@@ -57,7 +57,7 @@ dependencies {
 
     implementation deps.google.gson
     implementation deps.room.runtime
-    implementation deps.webview.agentweb
+    implementation deps.webview.agentwebx
 
     implementation project(path: ':base')
     implementation project(path: ':zutils')

@@ -29,7 +29,7 @@ public abstract class BaseActivity extends  IActivity {
 
     public LoadingHelper getLoadingHelper() {
         if (loadingHelper == null) {
-            loadingHelper = new LoadingHelper(getViewHelper().getRootView());
+            loadingHelper = new LoadingHelper(getViewHelper().getView());
         }
         return loadingHelper;
     }

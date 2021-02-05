@@ -2,12 +2,13 @@ package zhuj.android.pref;
 
 import android.content.SharedPreferences;
 
-import zhuj.android.Preconditions;
-import zhuj.json.GsonUtils;
-import zhuj.lang.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.Map;
+
+import zhuj.android.Preconditions;
+import zhuj.json.GsonUtils;
+import zhuj.lang.StringUtils;
 
 public class SPWrap {
     private final SharedPreferences sp;

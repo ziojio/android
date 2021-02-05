@@ -10,7 +10,6 @@ public class AppMain {
 
         String s = " XXXXXXXXXXXXX ";
         logger.info(s);
-
     }
 
     static class Mt {

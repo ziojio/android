@@ -47,6 +47,6 @@ dependencies {
     implementation project(path: ':zutils')
 //    implementation deps.gson
 
-    implementation deps.webview.agentweb
+    implementation deps.webview.agentwebx
 
 }
