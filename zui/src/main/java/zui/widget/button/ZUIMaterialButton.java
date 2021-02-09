@@ -1,4 +1,4 @@
-package zui.widget.textview;
+package zui.widget.button;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,13 +7,12 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
+
+import com.google.android.material.button.MaterialButton;
 
 import zui.R;
 
-
-public class ZUITextViewIcon extends AppCompatTextView {
-    private int drawableSize;
+public class ZUIMaterialButton extends MaterialButton {
     private int drawableWidth;
     private int drawableHeight;
     private int paddingStart;
@@ -21,23 +20,24 @@ public class ZUITextViewIcon extends AppCompatTextView {
     private int paddingEnd;
     private int paddingBottom;
 
-
-    public ZUITextViewIcon(Context context) {
-        this(context, null, 0);
+    public ZUIMaterialButton(Context context) {
+        super(context);
+        loadFromAttributes(context, null);
     }
 
-    public ZUITextViewIcon(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public ZUIMaterialButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        loadFromAttributes(context, attrs);
     }
 
-    public ZUITextViewIcon(Context context, AttributeSet attrs, int defStyle) {
+    public ZUIMaterialButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         loadFromAttributes(context, attrs);
     }
 
     private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
         final TypedArray ta = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.ZUITextViewIcon, 0, 0);
+                .obtainStyledAttributes(attrs, R.styleable.ZUIMaterialButton, 0, 0);
         setCompoundDrawablesFromAttributeSet(ta);
         ta.recycle();
         Drawable[] drawables = getCompoundDrawablesRelative();
@@ -46,15 +46,15 @@ public class ZUITextViewIcon extends AppCompatTextView {
     }
 
     private void setCompoundDrawablesFromAttributeSet(final TypedArray ta) {
-        drawableSize = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawableSize, 0);
-        drawableWidth = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawableWidth, 0);
-        drawableHeight = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawableHeight, 0);
-        paddingStart = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawablePaddingStart, 0);
-        paddingTop = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawablePaddingTop, 0);
-        paddingEnd = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawablePaddingEnd, 0);
-        paddingBottom = ta.getDimensionPixelSize(R.styleable.ZUITextViewIcon_zui_drawablePaddingBottom, 0);
+        int drawableSize = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawableSize, 0);
+        drawableWidth = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawableWidth, 0);
+        drawableHeight = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawableHeight, 0);
+        paddingStart = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawablePaddingStart, 0);
+        paddingTop = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawablePaddingTop, 0);
+        paddingEnd = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawablePaddingEnd, 0);
+        paddingBottom = ta.getDimensionPixelSize(R.styleable.ZUIMaterialButton_zui_drawablePaddingBottom, 0);
 
-        if (drawableWidth == 0 && drawableHeight == 0 && drawableSize != 0) {
+        if (drawableSize != 0) {
             drawableWidth = drawableSize;
             drawableHeight = drawableSize;
         }

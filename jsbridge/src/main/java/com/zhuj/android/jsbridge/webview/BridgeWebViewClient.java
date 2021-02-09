@@ -17,7 +17,7 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
 
-import com.zhuj.android.jsbridge.BridgeUtil;
+import zhuj.android.jsbridge.BridgeUtil;
 
 
 /**

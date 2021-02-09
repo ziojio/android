@@ -10,7 +10,7 @@
 // import androidx.recyclerview.widget.LinearLayoutManager;
 // import androidx.recyclerview.widget.RecyclerView;
 //
-// import com.zhuj.android.R;
+// import zhuj.android.R;
 // import zhuj.android.app.model.DeviceInfo;
 // import zhuj.android.app.adapter.DeviceInfoAdapter;
 //

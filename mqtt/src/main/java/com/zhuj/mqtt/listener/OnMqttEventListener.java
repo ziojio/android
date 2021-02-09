@@ -15,9 +15,9 @@
  *
  */
 
-package com.zhuj.mqtt.listener;
+package zhuj.mqtt.listener;
 
-import com.zhuj.mqtt.model.ConnectionStatus;
+import zhuj.mqtt.model.ConnectionStatus;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 

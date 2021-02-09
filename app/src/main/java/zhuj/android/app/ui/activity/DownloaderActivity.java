@@ -36,7 +36,7 @@
 //import com.squareup.picasso.Downloader;
 //import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Transformation;
-//import com.zhuj.android.R;
+//import zhuj.android.R;
 //
 //import java.io.File;
 //import java.util.ArrayList;

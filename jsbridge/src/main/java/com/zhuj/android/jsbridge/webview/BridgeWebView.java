@@ -33,8 +33,8 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import com.zhuj.android.jsbridge.OnCallJavaCallback;
-import com.zhuj.android.jsbridge.OnReturnValue;
+import zhuj.android.jsbridge.OnCallJavaCallback;
+import zhuj.android.jsbridge.OnReturnValue;
 
 import org.json.JSONArray;
 import org.json.JSONException;

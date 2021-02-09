@@ -11,29 +11,7 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="ZUIRoundButton">
-        <attr name="zui_drawableWidth" />
-        <attr name="zui_drawableHeight" />
-        <attr name="zui_drawablePaddingStart" />
-        <attr name="zui_drawablePaddingTop" />
-        <attr name="zui_drawablePaddingEnd" />
-        <attr name="zui_drawablePaddingBottom" />
-
-        <attr name="zui_backgroundColor" />
-        <attr name="zui_borderWidth" />
-        <attr name="zui_borderColor" />
-
-        <attr name="zui_press_effect" />
-
-        <attr name="zui_isAutoAdjustRoundSize" />
-        <attr name="zui_cornerRadius" />
-        <attr name="zui_cornerRadius_topLeft" />
-        <attr name="zui_cornerRadius_topRight" />
-        <attr name="zui_cornerRadius_bottomLeft" />
-        <attr name="zui_cornerRadius_bottomRight" />
-    </declare-styleable>
-
-    <declare-styleable name="ZUITextViewIcon">
+    <declare-styleable name="ZUITextView">
         <attr name="zui_drawableWidth" />
         <attr name="zui_drawableHeight" />
         <attr name="zui_drawableSize" />
@@ -42,11 +20,14 @@
         <attr name="zui_drawablePaddingEnd" />
         <attr name="zui_drawablePaddingBottom" />
     </declare-styleable>
-    <declare-styleable name="ZUITextViewState">
-
-    </declare-styleable>
-    <declare-styleable name="ZUITextView">
-
+    <declare-styleable name="ZUIMaterialButton">
+        <attr name="zui_drawableWidth" />
+        <attr name="zui_drawableHeight" />
+        <attr name="zui_drawableSize" />
+        <attr name="zui_drawablePaddingStart" />
+        <attr name="zui_drawablePaddingTop" />
+        <attr name="zui_drawablePaddingEnd" />
+        <attr name="zui_drawablePaddingBottom" />
     </declare-styleable>
 
 

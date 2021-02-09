@@ -1,4 +1,4 @@
-// package com.zhuj.code.libannotations;
+// package zhuj.code.libannotations;
 //
 // import butterknife.BindAnim;
 // import butterknife.BindArray;

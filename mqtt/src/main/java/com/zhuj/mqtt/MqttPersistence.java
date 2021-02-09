@@ -1,9 +1,9 @@
-package com.zhuj.mqtt;
+package zhuj.mqtt;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.zhuj.mqtt.model.Subscription;
+import zhuj.mqtt.model.Subscription;
 
 import java.util.ArrayList;
 import java.util.HashSet;

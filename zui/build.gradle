@@ -32,4 +32,7 @@ dependencies {
     api deps.material
     api deps.qmui
     implementation project(path: ':zutils')
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.20'
+
+
 }

@@ -1,4 +1,4 @@
-package com.zhuj.mqtt.model;
+package zhuj.mqtt.model;
 
 public enum ConnectionStatus {
     /**

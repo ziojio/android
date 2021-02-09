@@ -29,8 +29,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':libjava')
-    implementation deps.androidx.preference
+    api project(path: ':libjava')
+    implementation deps.androidx.appcompat
     implementation deps.glide.glide
     annotationProcessor deps.glide.compiler
     implementation deps.eventbus

@@ -7,7 +7,6 @@ import android.net.NetworkCapabilities;
 
 import androidx.annotation.NonNull;
 
-import org.jetbrains.annotations.NotNull;
 
 public class NetworkCallback extends ConnectivityManager.NetworkCallback {
     protected boolean hasNetwork;
@@ -33,7 +32,7 @@ public class NetworkCallback extends ConnectivityManager.NetworkCallback {
      * 网络不可用时调用和onAvailable成对出现
      */
     @Override
-    public void onLost(@NotNull Network network) {
+    public void onLost(@NonNull Network network) {
         super.onLost(network);
         hasNetwork = false;
     }
@@ -42,7 +41,7 @@ public class NetworkCallback extends ConnectivityManager.NetworkCallback {
      * 在网络连接正常的情况下，丢失数据会有回调 即将断开时
      */
     @Override
-    public void onLosing(@NotNull Network network, int maxMsToLive) {
+    public void onLosing(@NonNull Network network, int maxMsToLive) {
         super.onLosing(network, maxMsToLive);
         hasNetwork = false;
     }
@@ -54,7 +53,7 @@ public class NetworkCallback extends ConnectivityManager.NetworkCallback {
      * @param networkCapabilities
      */
     @Override
-    public void onCapabilitiesChanged(@NotNull Network network, @NotNull NetworkCapabilities networkCapabilities) {
+    public void onCapabilitiesChanged(@NonNull Network network, @NonNull NetworkCapabilities networkCapabilities) {
         super.onCapabilitiesChanged(network, networkCapabilities);
     }
 
@@ -65,7 +64,7 @@ public class NetworkCallback extends ConnectivityManager.NetworkCallback {
      * @param linkProperties
      */
     @Override
-    public void onLinkPropertiesChanged(@NotNull Network network, @NotNull LinkProperties linkProperties) {
+    public void onLinkPropertiesChanged(@NonNull Network network, @NonNull LinkProperties linkProperties) {
         super.onLinkPropertiesChanged(network, linkProperties);
     }
 

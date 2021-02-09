@@ -1,4 +1,4 @@
-package  zhuj.android;
+package zhuj.android;
 
 import android.app.Activity;
 import android.content.Context;

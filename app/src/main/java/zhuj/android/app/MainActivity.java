@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         ClickHelper.addClickListener(
-                this.getViewHelper().getView(),
+                this.getViewHelper().getRootView(),
                 this::onClick,
                 R.id.button_sql, R.id.button_test, R.id.button_webview,
                 R.id.button_view, R.id.button_button, R.id.button_do);

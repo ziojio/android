@@ -23,7 +23,7 @@ public class ActivityLifecycleHelper implements Application.ActivityLifecycleCal
     }
 
     /**
-     * 判断是否在前台: 判断标准还存在 start resume 状态 的activity
+     * 判断是否在前台: 判断标准 还存在 start resume 状态 的activity
      */
     public boolean isForeground() {
         return activityCount > 0;

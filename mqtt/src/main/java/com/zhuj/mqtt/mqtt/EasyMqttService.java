@@ -1,4 +1,4 @@
-package com.zhuj.mqtt.mqtt;
+package zhuj.mqtt.mqtt;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

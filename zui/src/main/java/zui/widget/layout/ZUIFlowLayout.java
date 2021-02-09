@@ -15,11 +15,10 @@ import androidx.core.view.ViewCompat;
 
 import zui.R;
 
-
 /**
  * copy from com.google.android.material.internal.FlowLayout
  * Horizontally lay out children until the row is filled and then moved to the next line. Call
- * {@link ZUIFlowLayout#setSingleLine(boolean)} to disable reflow and lay all children out in one line.
+ * {@link com.google.android.material.internal.FlowLayout#setSingleLine(boolean)} to disable reflow and lay all children out in one line.
  */
 public class ZUIFlowLayout extends ViewGroup {
     private int lineSpacing;
@@ -27,11 +26,13 @@ public class ZUIFlowLayout extends ViewGroup {
     private boolean singleLine;
 
     public ZUIFlowLayout(@NonNull Context context) {
-        this(context, null);
+        super(context);
+        loadFromAttributes(context, null);
     }
 
     public ZUIFlowLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        loadFromAttributes(context, attrs);
     }
 
     public ZUIFlowLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -49,9 +50,9 @@ public class ZUIFlowLayout extends ViewGroup {
 
     private void loadFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
         final TypedArray array = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.FlowLayout, 0, 0);
-        lineSpacing = array.getDimensionPixelSize(R.styleable.FlowLayout_lineSpacing, 0);
-        itemSpacing = array.getDimensionPixelSize(R.styleable.FlowLayout_itemSpacing, 0);
+                .obtainStyledAttributes(attrs, R.styleable.ZUIFlowLayout, 0, 0);
+        lineSpacing = array.getDimensionPixelSize(R.styleable.ZUIFlowLayout_lineSpacing, 0);
+        itemSpacing = array.getDimensionPixelSize(R.styleable.ZUIFlowLayout_itemSpacing, 0);
         array.recycle();
     }
 

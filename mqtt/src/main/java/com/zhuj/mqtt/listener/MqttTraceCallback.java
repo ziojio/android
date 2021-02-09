@@ -1,4 +1,4 @@
-package com.zhuj.mqtt.listener;
+package zhuj.mqtt.listener;
 
 import android.util.Log;
 

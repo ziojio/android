@@ -1,4 +1,4 @@
-package com.zhuj.mqtt.mqtt;
+package zhuj.mqtt.mqtt;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;

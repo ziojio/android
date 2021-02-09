@@ -1,4 +1,4 @@
-package com.zhuj.mqtt;
+package zhuj.mqtt;
 
 import org.junit.Test;
 

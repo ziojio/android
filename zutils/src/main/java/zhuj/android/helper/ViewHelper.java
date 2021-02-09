@@ -26,7 +26,7 @@ public class ViewHelper {
         return rootView.getContext();
     }
 
-    public View getView() {
+    public View getRootView() {
         return rootView;
     }
 

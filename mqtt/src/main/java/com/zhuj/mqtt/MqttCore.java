@@ -1,17 +1,17 @@
-package com.zhuj.mqtt;
+package zhuj.mqtt;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.zhuj.mqtt.listener.MqttTraceCallback;
-import com.zhuj.mqtt.listener.OnMqttActionListener;
-import com.zhuj.mqtt.listener.OnMqttEventListener;
-import com.zhuj.mqtt.model.ConnectionStatus;
-import com.zhuj.mqtt.model.MqttAction;
-import com.zhuj.mqtt.model.PublishMessage;
-import com.zhuj.mqtt.model.Subscription;
+import zhuj.mqtt.listener.MqttTraceCallback;
+import zhuj.mqtt.listener.OnMqttActionListener;
+import zhuj.mqtt.listener.OnMqttEventListener;
+import zhuj.mqtt.model.ConnectionStatus;
+import zhuj.mqtt.model.MqttAction;
+import zhuj.mqtt.model.PublishMessage;
+import zhuj.mqtt.model.Subscription;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;

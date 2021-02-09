@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import zhuj.android.Androids;
 import zhuj.json.GsonUtils;
 import zhuj.lang.StringUtils;
 import zhuj.secure.Base64Utils;
-import zhuj.android.Androids;
 
 import java.lang.reflect.Type;
 import java.util.Map;

@@ -1,9 +1,9 @@
-package com.zhuj.mqtt;
+package zhuj.mqtt;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.zhuj.mqtt.model.Subscription;
+import zhuj.mqtt.model.Subscription;
 
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 

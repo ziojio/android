@@ -1,11 +1,11 @@
-package com.zhuj.mqtt;
+package zhuj.mqtt;
 
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.zhuj.mqtt.listener.OnMqttActionListener;
-import com.zhuj.mqtt.listener.OnMqttEventListener;
-import com.zhuj.mqtt.model.MqttAction;
+import zhuj.mqtt.listener.OnMqttActionListener;
+import zhuj.mqtt.listener.OnMqttEventListener;
+import zhuj.mqtt.model.MqttAction;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;

@@ -3,8 +3,8 @@ package zhuj.android.folderpicker;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.preference.Preference;
 
-import androidx.preference.Preference;
 
 public class SavedStateHandler extends Preference.BaseSavedState {
     public static final Parcelable.Creator<SavedStateHandler> CREATOR = new Parcelable.Creator<SavedStateHandler>() {

@@ -1,4 +1,4 @@
-package com.zhuj.mqtt.model;
+package zhuj.mqtt.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

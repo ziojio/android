@@ -176,7 +176,7 @@ public final class PermissionRequestFragment extends Fragment implements Runnabl
         if (mPermissionRequestListener != null) {
             mPermissionRequestListener.onGrant(mPermissionGrantMap);
         }
-        getParentFragmentManager().beginTransaction().remove(this).commit();
+        getFragmentManager().beginTransaction().remove(this).commit();
     }
 
 

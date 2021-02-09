@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import zhuj.android.base.R;
-import zui.widget.round.RoundRectDrawable;
+import zui.drawable.round.RoundRectDrawable;
 
 
 public class TipDialog extends IDialogFragment {

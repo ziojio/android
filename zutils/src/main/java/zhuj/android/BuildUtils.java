@@ -2,8 +2,8 @@ package zhuj.android;
 
 import androidx.annotation.NonNull;
 
-public class AndroidHelper {
-    private AndroidHelper(){
+public class BuildUtils {
+    private BuildUtils(){
     }
 
     /**
