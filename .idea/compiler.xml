@@ -24,6 +24,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="android.app" target="15" />
+      <module name="android.base" target="15" />
+      <module name="android.database" target="15" />
+      <module name="android.http" target="15" />
+      <module name="android.zui" target="15" />
+      <module name="android.zutils" target="15" />
       <module name="libjava" target="1.7" />
     </bytecodeTargetLevel>
   </component>

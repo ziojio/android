@@ -1,10 +1,9 @@
 package zhuj;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import zhuj.log.ZLog;
 
 public class AppMain {
-    public static Logger logger = LoggerFactory.getLogger(AppMain.class);
+    public static ZLog logger = new ZLog();
 
     public static void main(String[] args) {
 
@@ -12,10 +11,4 @@ public class AppMain {
         logger.info(s);
     }
 
-    static class Mt {
-        String defaultStr = "default field";
-        private String privateStr = "private field";
-        protected String protectedStr = "protected field";
-        public String publicStr = "public field";
-    }
 }

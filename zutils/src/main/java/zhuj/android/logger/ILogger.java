@@ -35,7 +35,7 @@ public abstract class ILogger {
         if (stackTrace.length <= CALL_STACK_INDEX) {
             throw new IllegalStateException("stacktrace didn't have enough elements.");
         }
-        return stackTrace[CALL_STACK_INDEX];
+        return stack Trace[CALL_STACK_INDEX];
     }
 
     /**

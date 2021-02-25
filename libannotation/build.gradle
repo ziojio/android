@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-
     implementation deps.google.autoservice.annotations
     annotationProcessor deps.google.autoservice.processor
 
@@ -11,4 +10,9 @@ dependencies {
 
     implementation deps.incap.runtime
     annotationProcessor deps.incap.processor
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
