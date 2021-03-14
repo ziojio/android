@@ -13,7 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.core.view.ViewCompat;
 
-import zui.R;
+import zhuj.android.zui.R;
+
 
 /**
  * copy from com.google.android.material.internal.FlowLayout

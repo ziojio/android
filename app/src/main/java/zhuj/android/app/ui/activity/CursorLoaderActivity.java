@@ -16,7 +16,7 @@ import zhuj.android.base.activity.BaseActivity;
 public class CursorLoaderActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
-    protected int getLayoutRes() {
+    public int getLayoutRes() {
         return 0;
     }
 

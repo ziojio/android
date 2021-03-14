@@ -18,8 +18,8 @@ import zhuj.android.database.room.AndroidDatabase;
 import zhuj.android.database.room.entity.User;
 import zhuj.android.database.sqlitehelper.AppDatabase;
 import zhuj.android.base.activity.BaseActivity;
-import zhuj.android.logger.Logger;
-import zhuj.thread.WorkExecutor;
+import zhuj.android.utils.log.Logger;
+import zhuj.java.thread.WorkExecutor;
 
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class DataBaseActivity extends BaseActivity {
     private TextView showText;
 
     @Override
-    protected int getLayoutRes() {
+    public int getLayoutRes() {
         return R.layout.activity_database;
     }
 

@@ -10,9 +10,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-
-import zhuj.android.Displays;
-import zui.R;
+import zhuj.android.zui.R;
+import zhuj.android.zui.util.Displays;
 
 
 public class TriangleView extends View {

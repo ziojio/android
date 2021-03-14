@@ -24,9 +24,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.SnackbarContentLayout;
-import zhuj.android.Displays;
-import zhuj.android.logger.Logger;
-import zui.R;
+import zhuj.android.zui.R;
+import zhuj.android.zui.util.Displays;
+import zhuj.android.zui.util.ZDebug;
 
 import java.lang.ref.WeakReference;
 
@@ -402,7 +402,7 @@ public class SnackbarUtils {
             message.setLayoutParams(paramsMessage);
             message.setCompoundDrawablePadding(message.getPaddingLeft());
             int textSize = (int) message.getTextSize();
-            Logger.d(TAG, "textSize:" + textSize);
+            ZDebug.debug(TAG, "textSize:" + textSize);
             if (leftDrawable != null) {
                 leftDrawable.setBounds(0, 0, textSize, textSize);
             }
@@ -634,7 +634,7 @@ public class SnackbarUtils {
         */
         //文字高度+paddingTop+paddingBottom : 14sp + 14dp*2
         int SnackbarHeight = Displays.dpToPx(getSnackbar().getView().getContext(), 28) + Displays.dpToPx(getSnackbar().getView().getContext(), 14);
-        Logger.d(TAG, "直接获取MessageView高度:" + getSnackbar().getView().findViewById(R.id.snackbar_text).getHeight());
+        ZDebug.debug(TAG, "直接获取MessageView高度:" + getSnackbar().getView().findViewById(R.id.snackbar_text).getHeight());
         return SnackbarHeight;
     }
 
@@ -654,9 +654,9 @@ public class SnackbarUtils {
             marginRight = Math.max(marginRight, 0);
             int[] locations = new int[2];
             targetView.getLocationOnScreen(locations);
-            Logger.d(TAG, "距离屏幕左侧:" + locations[0] + "==距离屏幕顶部:" + locations[1]);
+            ZDebug.debug(TAG, "距离屏幕左侧:" + locations[0] + "==距离屏幕顶部:" + locations[1]);
             int snackbarHeight = calculateSnackBarHeight();
-            Logger.d(TAG, "Snackbar高度:" + snackbarHeight);
+            ZDebug.debug(TAG, "Snackbar高度:" + snackbarHeight);
             //必须保证指定View的顶部可见 且 单行Snackbar可以完整的展示
             if (locations[1] >= contentViewTop + snackbarHeight) {
                 gravityFrameLayout(Gravity.BOTTOM);
@@ -675,9 +675,9 @@ public class SnackbarUtils {
             marginRight = Math.max(marginRight, 0);
             int[] locations = new int[2];
             targetView.getLocationOnScreen(locations);
-            Logger.d(TAG, "距离屏幕左侧:" + locations[0] + "==距离屏幕顶部:" + locations[1]);
+            ZDebug.debug(TAG, "距离屏幕左侧:" + locations[0] + "==距离屏幕顶部:" + locations[1]);
             int snackbarHeight = calculateSnackBarHeight();
-            Logger.d(TAG, "Snackbar高度:" + snackbarHeight);
+            ZDebug.debug(TAG, "Snackbar高度:" + snackbarHeight);
             //必须保证指定View的顶部可见 且 单行Snackbar可以完整的展示
             if (locations[1] >= contentViewTop + snackbarHeight) {
                 gravityCoordinatorLayout(Gravity.BOTTOM);
@@ -748,7 +748,7 @@ public class SnackbarUtils {
         if (getSnackbar() != null) {
             getSnackbar().show();
         } else {
-            Logger.d(TAG, "已经被回收");
+            ZDebug.debug(TAG, "已经被回收");
         }
     }
 }

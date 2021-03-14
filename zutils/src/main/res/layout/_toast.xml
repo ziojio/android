@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toast_root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/toast_corner_24dp"
     android:fitsSystemWindows="false"
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:background="@drawable/_toast_frame"
-    tools:ignore="UseCompoundDrawables">
+    android:minHeight="48dp"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp"
+    >
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/toast_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp" />
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/toast_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"/>
+        android:maxWidth="365dp"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        />
 
 </LinearLayout>

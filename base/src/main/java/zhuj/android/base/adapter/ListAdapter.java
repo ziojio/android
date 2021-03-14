@@ -16,6 +16,7 @@ public abstract class ListAdapter<T> extends BaseAdapter {
         this.dataList = dataList;
         super.notifyDataSetChanged();
     }
+
     public List<T> getDataList() {
         return dataList;
     }

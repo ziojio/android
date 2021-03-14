@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="image" type="id" />
+    <item name="text" type="id" />
+
+    <item type="id" name="view_tag_1" />
+    <item type="id" name="view_tag_2" />
+    <item type="id" name="view_tag_3" />
+
+    <item type="id" name="view_id_1" />
+    <item type="id" name="view_id_2" />
+    <item type="id" name="view_id_3" />
+
+    <item type="id" name="layout_load_state" />
+
+    <item type="id" name="view_tag_click_time_1" />
+    <item type="id" name="view_tag_click_time_2" />
+
+    <item type="id" name="titlebar_title" />
+    <item type="id" name="titlebar_back" />
+
+</resources>

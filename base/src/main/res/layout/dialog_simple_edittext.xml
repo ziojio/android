@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="580dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect_round_16dp_white"
+        android:backgroundTint="@color/zui_color_background"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="编辑文本"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            />
+
+        <View
+            android:id="@+id/divider_title"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/zui_color_gray_5"
+            android:visibility="visible"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
+            app:boxBackgroundColor="@color/zui_color_white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="1px"
+            app:layout_constraintBottom_toTopOf="@id/divider_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_title"
+            app:layout_goneMarginBottom="@dimen/titlebar_textSize"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:paddingVertical="16dp"
+                android:text=""
+                android:textSize="18sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <View
+            android:id="@+id/divider_content"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/zui_color_gray_5"
+            android:visibility="visible"
+            />
+
+        <LinearLayout
+            android:id="@+id/layout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/button_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rect_bottom_left_round_16dp_white"
+                android:backgroundTint="@color/selector_press_darker"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp"
+                android:text="取消"
+                android:textColor="?colorError"
+                android:textSize="22sp"
+                android:visibility="visible"
+                />
+
+            <View
+                android:id="@+id/divider_button"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/zui_color_gray_5"
+                android:visibility="visible"
+                />
+
+            <TextView
+                android:id="@+id/button_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rect_bottom_right_round_16dp_white"
+                android:backgroundTint="@color/selector_press_darker"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp"
+                android:text="确认"
+                android:textColor="?colorPrimary"
+                android:textSize="22sp"
+                android:visibility="visible"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
+

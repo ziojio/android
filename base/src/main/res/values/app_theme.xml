@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FullScreen" parent="AppTheme">
+        <item name="statusBarBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+    </style>
+
+    <style name="AppTheme" parent="ZUI.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#ff5252</item>
+        <item name="colorSecondary">#00c652</item>
+        <item name="colorAccent">#ff5252</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#fafafa</item>
+        <item name="colorSecondaryVariant">#5efa81</item>
+        <item name="android:colorPressedHighlight">#ff867f</item>
+        <item name="android:colorPrimaryDark">#c50e29</item>
+    </style>
+
+    <style name="AppTheme.Transparent" parent="AppTheme">
+        <item name="android:windowBackground">@color/zui_color_transparent</item>
+    </style>
+
+    <style name="AppDialog" parent="ZUI.Dialog">
+        <item name="colorPrimary">@color/zui_color_blue</item>
+        <item name="colorAccent">@color/zui_color_blue_dark</item>
+        <item name="colorError">@color/zui_color_error</item>
+
+        <item name="android:textColor">@color/zui_color_text_black</item>
+    </style>
+
+    <style name="record_voice_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@drawable/round_background</item>
+    </style>
+</resources>

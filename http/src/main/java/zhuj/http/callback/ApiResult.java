@@ -3,37 +3,38 @@ package zhuj.http.callback;
 import com.google.gson.annotations.SerializedName;
 
 public class ApiResult<T> {
+
     public final static String CODE = "code";
     public final static String MSG = "msg";
     public final static String DATA = "data";
 
-    @SerializedName(value = CODE, alternate = {"ret", "Code"})
-    private int Code;
-    @SerializedName(value = MSG, alternate = {"message", "Msg"})
-    private String Msg;
-    @SerializedName(value = DATA, alternate = {"Data"})
-    private T Data;
+    @SerializedName(value = CODE, alternate = {"ret"})
+    private int code;
+    @SerializedName(value = MSG, alternate = {"message"})
+    private String msg;
+    @SerializedName(value = DATA)
+    private T data;
 
     public int getCode() {
-        return Code;
+        return code;
     }
 
     public ApiResult<T> setCode(int code) {
-        Code = code;
+        this.code = code;
         return this;
     }
 
     public String getMsg() {
-        return Msg;
+        return msg;
     }
 
     public ApiResult<T> setMsg(String msg) {
-        Msg = msg;
+        this.msg = msg;
         return this;
     }
 
     public ApiResult<T> setData(T data) {
-        Data = data;
+        this.data = data;
         return this;
     }
 
@@ -41,7 +42,7 @@ public class ApiResult<T> {
      * 获取请求响应的数据，自定义api的时候需要重写【很关键】
      */
     public T getData() {
-        return Data;
+        return data;
     }
 
     /**
@@ -54,9 +55,9 @@ public class ApiResult<T> {
     @Override
     public String toString() {
         return "ApiResult{" +
-                "Code=" + Code +
-                ", Msg='" + Msg + '\'' +
-                ", Data=" + Data +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
                 '}';
     }
 }

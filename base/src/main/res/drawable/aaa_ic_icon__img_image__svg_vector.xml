@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- icon 小图标 -->
+    <!-- image 通用图片，泛指 -->
+    <!-- svg 矢量图形 Android特有svg格式 -->
+</selector>

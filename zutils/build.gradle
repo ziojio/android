@@ -4,10 +4,12 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
+
+//    resourcePrefix "sample_" // 在xml类型的资源文件命名不是以 moduleName_ 为前缀，会提示
 
     defaultConfig {
-        minSdkVersion 23
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -22,6 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -30,9 +33,14 @@ android {
 
 dependencies {
     api project(path: ':libjava')
-    implementation deps.androidx.appcompat
-    implementation deps.glide.glide
-    annotationProcessor deps.glide.compiler
-    implementation deps.eventbus
-    implementation deps.google.gson
+    api "com.google.code.gson:gson:2.8.6"
+
+    api deps.androidx.preference
+    def work_version = "2.5.0"
+    // (Java only)
+    api "androidx.work:work-runtime:$work_version"
+
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+
 }

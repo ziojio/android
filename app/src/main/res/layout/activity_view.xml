@@ -3,24 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".app.ui.activity.ViewActivity">
+    android:layout_height="match_parent">
 
-    <zui.widget.ToolMenuView
-        android:layout_width="@dimen/mp_toolbar_width"
-        android:layout_height="@dimen/mp_toolbar_height"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/toolbar_icon_layout_shape"
-
-        android:clickable="true"
-        android:focusable="true"
-        app:leftDrawable="@drawable/ic_mp_toolbar_btn_menu"
-
-        app:leftDrawableHeight="42dp"
-        app:leftDrawableWidth="58dp"
-        app:rightDrawable="@drawable/ic_mp_toolbar_btn_close"
-        app:rightDrawableHeight="@dimen/mp_toolbar_height"
-        app:rightDrawableWidth="@dimen/mp_toolbar_width_half" />
 
     <Button
         android:id="@+id/button_1"

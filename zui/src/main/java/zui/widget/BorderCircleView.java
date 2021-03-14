@@ -10,7 +10,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import zui.R;
+import zhuj.android.zui.R;
 
 
 public class BorderCircleView extends View {

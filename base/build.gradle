@@ -1,13 +1,23 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
 
 android {
-//    resourcePrefix "sample_" // 在xml类型的资源文件命名不是以 moduleName_ 为前缀，会提示
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
     defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
     buildFeatures {
-        dataBinding true
+        // dataBinding true
         // for view binding:
         // viewBinding true
     }
@@ -18,35 +28,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+    api "com.google.android.material:material:1.2.1"
+    api "com.qmuiteam:qmui:2.0.0-alpha10"
+    implementation project(path: ':libjava')
+    implementation project(path: ':zutils')
+    implementation project(path: ':zui')
 
     implementation deps.androidx.appcompat
     implementation deps.androidx.fragment
     implementation deps.androidx.preference
     implementation deps.viewlayout.constraintlayout
     implementation deps.viewlayout.recyclerview
-//    implementation deps.viewlayout.viewpager
-//    implementation deps.viewlayout.multidex
+    implementation deps.viewlayout.viewpager2
+    implementation 'com.google.android:flexbox:2.0.1'
 
-    implementation deps.eventbus
+    // implementation deps.lifecycle.runtime
+    // implementation deps.lifecycle.commonjava8
+    // implementation deps.lifecycle.viewmodel
+    // implementation deps.lifecycle.livedata
+    // implementation deps.lifecycle.extensions
 
-    implementation deps.lifecycle.runtime
-    implementation deps.lifecycle.commonjava8
-    implementation deps.lifecycle.viewmodel
-    implementation deps.lifecycle.livedata
-//    implementation deps.lifecycle.extensions
+    implementation "com.squareup.okhttp3:okhttp:3.14.9"
+    implementation "com.squareup.okio:okio:1.17.5"
 
-//    implementation deps.okhttp
-    implementation deps.glide.glide
-    annotationProcessor deps.glide.compiler
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
 
-    implementation project(path: ':libjava')
-    implementation project(path: ':zui')
-    implementation project(path: ':zutils')
-//    implementation deps.gson
-
-    implementation deps.webview.agentwebx
+    implementation "org.greenrobot:eventbus:3.2.0"
 
 }

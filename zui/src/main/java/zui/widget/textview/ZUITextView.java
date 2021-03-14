@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.textview.MaterialTextView;
 
-import zui.R;
+import zhuj.android.zui.R;
 
 public class ZUITextView extends MaterialTextView {
     private int drawableWidth;

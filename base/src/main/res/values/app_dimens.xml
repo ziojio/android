@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="avatar_size">64dp</dimen>
+
+    <dimen name="titlebar_height">58dp</dimen>
+    <dimen name="titlebar_title_textSize">24sp</dimen>
+    <dimen name="titlebar_textSize">20sp</dimen>
+
+
+    <dimen name="mp_toolbar_width">116dp</dimen>
+    <dimen name="mp_toolbar_width_half">58dp</dimen>
+    <dimen name="mp_toolbar_height">42dp</dimen>
+    <dimen name="mp_toolbar_height_half">21dp</dimen>
+
+</resources>

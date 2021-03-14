@@ -5,27 +5,50 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * Fragment的适配器, 详情参考{@link FragmentPagerAdapter}
- */
+
 public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
     private long baseId = 0;
     private List<T> mFragmentList = new ArrayList<>();
 
     private List<String> mTitleList = new ArrayList<>();
 
+    public FragmentAdapter(@NonNull FragmentManager fm) {
+        super(fm);
+    }
+
+    public FragmentAdapter(@NonNull FragmentManager fm, T[] fragments) {
+        this(fm, Arrays.asList(fragments));
+    }
+
+    public FragmentAdapter(@NonNull FragmentManager fm, List<T> fragments) {
+        super(fm);
+        setFragments(fragments);
+    }
+
     public FragmentAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
-    public FragmentAdapter(@NonNull FragmentManager fm, List<T> fragments) {
-        super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public FragmentAdapter(@NonNull FragmentManager fm, int behavior, T[] fragments) {
+        this(fm, behavior, Arrays.asList(fragments));
+    }
+
+    public FragmentAdapter(@NonNull FragmentManager fm, int behavior, List<T> fragments) {
+        super(fm, behavior);
         setFragments(fragments);
+    }
+
+    public List<T> getFragmentList() {
+        return mFragmentList;
+    }
+
+    public List<String> getTitleList() {
+        return mTitleList;
     }
 
     public FragmentAdapter<T> setFragments(List<T> fragments) {
@@ -67,7 +90,6 @@ public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
     }
 
     public void clear() {
-        notifyChangeInPosition(getCount());
         if (mFragmentList != null) {
             mFragmentList.clear();
         }
@@ -98,18 +120,9 @@ public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
         baseId += getCount() + n;
     }
 
-    // this is called when notifyDataSetChanged() is called
-    @Override
-    public int getItemPosition(@NonNull Object object) {
-        // int index = mFragmentList.indexOf(object);
-        // if (index == -1) {
-        return PagerAdapter.POSITION_NONE;
-    }
-
-
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return mFragmentList == null ? 0 : mFragmentList.size();
     }
 
     @Nullable
@@ -118,11 +131,5 @@ public class FragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
         return mTitleList.get(position);
     }
 
-    public List<T> getFragmentList() {
-        return mFragmentList;
-    }
 
-    public List<String> getTitleList() {
-        return mTitleList;
-    }
 }

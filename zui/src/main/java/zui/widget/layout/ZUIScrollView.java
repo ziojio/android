@@ -9,7 +9,7 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import zui.R;
+import zhuj.android.zui.R;
 
 /**
  * 设置不滑动的最大的高度，小于最大高度时包裹内容，不滑动

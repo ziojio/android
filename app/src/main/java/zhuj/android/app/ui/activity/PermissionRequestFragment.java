@@ -11,8 +11,8 @@ import android.util.Log;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import zhuj.android.permission.easypermission.GrantResult;
-import zhuj.android.permission.easypermission.Permission;
+import zhuj.android.utils.permission.easypermission.GrantResult;
+import zhuj.android.utils.permission.easypermission.Permission;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,11 +1,13 @@
 include ':zutils'
 include ':zui'
 include ':app'
-include ':base'
 include ':http'
 include ':database'
+include ':web'
+include ':base'
 include ':libjava'
 include ':libannotation'
+include ':test'
 rootProject.name='android'
 
 

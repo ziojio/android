@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- style为单继承，parent方式优先级高于前缀继承，同时存在时，前缀的作用只作为名字，不继承前缀样式 -->
+
+    <style name="RootTheme" parent="Theme.MaterialComponents.DayNight">
+
+    </style>
+
+    <style name="BaseTheme" parent="RootTheme">
+
+    </style>
+
+    <style name="BaseDialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+
+    </style>
+
+    <!-- 自定义的属性值在 ZUI 开头的 Theme 里设置默认值 -->
+    <style name="ZUI" parent="BaseTheme">
+        <item name="android:textViewStyle">@style/ZUI.TextStyle</item>
+        <item name="android:editTextStyle">@style/ZUI.EditTextStyle</item>
+        <item name="android:buttonStyle">@style/ZUI.ButtonStyle</item>
+        <item name="materialButtonStyle">@style/ZUI.MaterialButtonStyle</item>
+
+        <!--  自定义的颜色属性  -->
+        <item name="zui_color_pressed">@color/zui_color_gray_10</item>
+        <!-- 警告，错误，成功 特殊颜色   -->
+        <item name="zui_color_waring">@color/zui_color_yellow_dark</item>
+        <item name="zui_color_error">@color/zui_color_red_light</item>
+        <item name="zui_color_successful">@color/zui_color_green</item>
+
+        <item name="zui_disabled_alpha">0.5</item>
+        <item name="zui_press_alpha">0.75</item>
+        <item name="zui_press_backgroundTintColor">#1A000000</item>
+
+        <item name="zui_color_background">#F3F3F3</item>
+
+        <!-- 会使部分activity内layout背景变黑色-->
+        <!--<item name="android:windowBackground">?attr/zui_color_background</item>-->
+    </style>
+
+    <style name="ZUI.NoActionBar" parent="ZUI">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ZUI.Dialog" parent="BaseDialog">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item> <!-- 在中间弹框、背后有遮罩的效果 -->
+
+        <item name="android:textViewStyle">@style/ZUI.TextStyle</item>
+        <item name="android:buttonStyle">@style/ZUI.ButtonStyle</item>
+        <item name="android:editTextStyle">@style/ZUI.EditTextStyle</item>
+        <item name="materialButtonStyle">@style/ZUI.MaterialButtonStyle</item>
+
+
+    </style>
+
+    <style name="ZUI.TextAppearance" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ZUI.TextStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAppearance">@style/ZUI.TextAppearance</item>
+    </style>
+
+    <style name="ZUI.EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="ZUI.ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="iconTint">@null</item>
+    </style>
+
+    <style name="ZUI.MaterialButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="iconTint">@null</item>
+    </style>
+
+    <style name="shape_rounded_percent50">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="shape_rounded_top__percent50">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">50%</item>
+        <item name="cornerSizeTopRight">50%</item>
+    </style>
+
+    <style name="shape_rounded_bottom_percent50">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+        <item name="cornerSizeBottomRight">50%</item>
+    </style>
+
+    <style name="shape_rounded_bottom_16dp">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="shape_rounded_16dp">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="shape_rounded_8dp">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="shape_cut_percent50">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

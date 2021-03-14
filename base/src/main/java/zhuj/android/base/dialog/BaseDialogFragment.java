@@ -1,62 +1,60 @@
 package zhuj.android.base.dialog;
 
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-public abstract class BaseDialogFragment extends IDialogFragment {
+public abstract class BaseDialogFragment extends  IDialogFragment {
+    private static final String WINDOW_WIDTH = "win_width";
+    private static final String WINDOW_HEIGHT = "win_height";
+    private static final String WINDOW_GRAVITY = "win_gravity";
+    private static final String WINDOW_GRAVITY_X = "win_gravity_x";
+    private static final String WINDOW_GRAVITY_Y = "win_gravity_y";
+    private static final String WINDOW_DIM_AMOUNT = "win_dim_amount";
+    private static final String WINDOW_CANCELABLE = "win_cancelable";
 
-    public static final String WINDOW_WIDTH = "w";
-    public static final String WINDOW_HEIGHT = "h";
-    public static final String WINDOW_GRAVITY = "g";
-    public static final String WINDOW_GRAVITY_X = "gx";
-    public static final String WINDOW_GRAVITY_Y = "gy";
+    protected int mWidth = 0;
+    protected int mHeight = 0;
+    protected int mGravity = 0;
+    protected int mGravityX = 0;
+    protected int mGravityY = 0;
+    protected float mDimAmount = -1;
+    protected boolean dialogCancelable = true;
 
-    protected int mWidth;
-    protected int mHeight;
-    protected int mGravity = Gravity.CENTER;
-    protected int mGravityX;
-    protected int mGravityY;
 
-    /**
-     * 不设置就是 0
-     *
-     * @param gravity
-     * @param gravity_x
-     * @param gravity_y
-     */
-    public void setGravity(int gravity, int gravity_x, int gravity_y) {
-        Bundle bundle = getArguments();
-        if (bundle == null) {
-            bundle = new Bundle();
-        }
+    public void setGravity(int gravity) {
+        Bundle bundle = getArgumentsNotNull();
         bundle.putInt(WINDOW_GRAVITY, gravity);
-        bundle.putInt(WINDOW_GRAVITY_X, gravity_x);
-        bundle.putInt(WINDOW_GRAVITY_Y, gravity_y);
-
-        mGravity = gravity;
-        mGravityX = gravity_x;
-        mGravityY = gravity_y;
+        setArguments(bundle);
     }
 
-    public void setLayoutParams(int gravity) {
-        setGravity(gravity, mGravityX, mGravityY);
+    public void setGravity(int gravity, int x, int y) {
+        Bundle bundle = getArgumentsNotNull();
+        bundle.putInt(WINDOW_GRAVITY, gravity);
+        bundle.putInt(WINDOW_GRAVITY_X, x);
+        bundle.putInt(WINDOW_GRAVITY, y);
+        setArguments(bundle);
     }
 
     public void setLayoutParams(int width, int height) {
-        Bundle bundle = getArguments();
-        if (bundle == null) {
-            bundle = new Bundle();
-        }
+        Bundle bundle = getArgumentsNotNull();
         bundle.putInt(WINDOW_WIDTH, width);
         bundle.putInt(WINDOW_HEIGHT, height);
+        setArguments(bundle);
+    }
 
-        mWidth = width;
-        mHeight = height;
+    public void setDimAmount(float dimAmount) {
+        Bundle bundle = getArgumentsNotNull();
+        bundle.putFloat(WINDOW_DIM_AMOUNT, dimAmount);
+        setArguments(bundle);
+    }
+
+    public void setDialogCancelable(boolean dialogCancelable) {
+        Bundle bundle = getArgumentsNotNull();
+        bundle.putBoolean(WINDOW_CANCELABLE, dialogCancelable);
+        setArguments(bundle);
     }
 
     @Override
@@ -64,62 +62,42 @@ public abstract class BaseDialogFragment extends IDialogFragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mWidth = bundle.getInt(WINDOW_WIDTH);
-            mHeight = bundle.getInt(WINDOW_HEIGHT);
-            mGravity = bundle.getInt(WINDOW_GRAVITY);
-            mGravityX = bundle.getInt(WINDOW_GRAVITY_X);
-            mGravityY = bundle.getInt(WINDOW_GRAVITY_Y);
+            mWidth = bundle.getInt(WINDOW_WIDTH, mWidth);
+            mHeight = bundle.getInt(WINDOW_HEIGHT, mHeight);
+            mGravity = bundle.getInt(WINDOW_GRAVITY, mGravity);
+            mGravityX = bundle.getInt(WINDOW_GRAVITY_X, mGravityX);
+            mGravityY = bundle.getInt(WINDOW_GRAVITY_Y, mGravityY);
+            mDimAmount = bundle.getFloat(WINDOW_DIM_AMOUNT, mDimAmount);
+            dialogCancelable = bundle.getBoolean(WINDOW_CANCELABLE, dialogCancelable);
         }
     }
 
     @Override
-    protected void initWindow() {
+    public void initWindow() {
+        setCancelable(dialogCancelable);
         Window window = requireDialog().getWindow();
         if (window != null) {
             WindowManager.LayoutParams params = window.getAttributes();
+            boolean isModified = false;
             if (mWidth != 0 && mHeight != 0) {
                 params.width = mWidth;
                 params.height = mHeight;
+                isModified = true;
             }
-
-            params.gravity = mGravity;
-            params.x = mGravityX;
-            params.y = mGravityY;
-            window.setAttributes(params);
-
+            if (mGravity != 0) {
+                params.gravity = mGravity;
+                params.x = mGravityX;
+                params.y = mGravityY;
+                isModified = true;
+            }
+            if (mDimAmount != -1) {
+                params.dimAmount = mDimAmount;
+                isModified = true;
+            }
+            if (isModified) {
+                window.setAttributes(params);
+            }
         }
     }
 
-    /**
-     * 给Activity 监控 Dialog 的 View Click事件
-     */
-    protected View.OnClickListener callbackListener;
-
-    public void setCallbackListener(View.OnClickListener callbackListener) {
-        this.callbackListener = callbackListener;
-    }
-
-    protected void addClickCallback(View... views) {
-        for (View view : views) {
-            view.setOnClickListener(callbackListener);
-        }
-    }
-
-    protected void addClickCallback(int... viewIds) {
-        for (int id : viewIds) {
-            findViewById(id).setOnClickListener(callbackListener);
-        }
-    }
-
-    protected void addClickListener(View.OnClickListener listener, View... views) {
-        for (View view : views) {
-            view.setOnClickListener(listener);
-        }
-    }
-
-    protected void addClickListener(View.OnClickListener listener, int... viewIds) {
-        for (int id : viewIds) {
-            findViewById(id).setOnClickListener(listener);
-        }
-    }
 }

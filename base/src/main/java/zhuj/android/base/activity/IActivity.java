@@ -7,37 +7,43 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import zhuj.android.helper.ViewHelper;
+import zhuj.android.utils.helper.ViewHelper;
 
 
-public abstract class IActivity extends AppCompatActivity {
-    protected final String TAG = getClass().getSimpleName();
-    private ViewHelper mViewHelper;
+public class IActivity extends AppCompatActivity {
+    private final String TAG = "IActivity";
+
+    protected ViewHelper mViewHelper;
+    protected IActivity mActivity = this;
+    private int layoutRes = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        parentInit();
+    }
+
+    public void parentInit() {
         if (getLayoutRes() > 0) {
             setContentView(getLayoutRes());
         }
     }
 
-    /**
-     * @return 布局 id
-     */
-    protected int getLayoutRes() {
-        return 0;
+    public int getLayoutRes() {
+        return layoutRes;
     }
 
-    protected void initToolbar(int toolbarId) {
+    public void setLayoutRes(int layoutRes) {
+        this.layoutRes = layoutRes;
+    }
+
+    public void setToolbar(int toolbarId) {
         if (toolbarId > 0) {
             Toolbar mToolbar = findViewById(toolbarId);
-            setSupportActionBar(mToolbar);
+            if (mToolbar != null) {
+                setSupportActionBar(mToolbar);
+            }
         }
-    }
-
-    public IActivity getActivity() {
-        return this;
     }
 
     public ViewHelper getViewHelper() {
@@ -47,7 +53,7 @@ public abstract class IActivity extends AppCompatActivity {
         return mViewHelper;
     }
 
-    protected void initViewHelper() {
+    public void initViewHelper() {
         ViewGroup vg = findViewById(android.R.id.content);
         if (vg == null || vg.getChildAt(0) == null) {
             throw new IllegalStateException("need pre initialize content view");

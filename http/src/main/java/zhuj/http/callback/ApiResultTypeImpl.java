@@ -1,6 +1,6 @@
 package zhuj.http.callback;
 
-import zhuj.lang.TypeUtils;
+import zhuj.java.lang.TypeUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

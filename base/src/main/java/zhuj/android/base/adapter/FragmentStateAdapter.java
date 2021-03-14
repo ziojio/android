@@ -7,24 +7,47 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * Fragment的适配器,详情参考{@link FragmentStatePagerAdapter}
- */
-public class FragmentStateAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
 
+public class FragmentStateAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
     private List<T> mFragmentList = new ArrayList<>();
 
     private List<String> mTitleList = new ArrayList<>();
+
+    public FragmentStateAdapter(@NonNull FragmentManager fm) {
+        super(fm);
+    }
+
+    public FragmentStateAdapter(@NonNull FragmentManager fm, T[] fragments) {
+        this(fm, Arrays.asList(fragments));
+    }
+
+    public FragmentStateAdapter(@NonNull FragmentManager fm, List<T> fragments) {
+        super(fm);
+        setFragments(fragments);
+    }
 
     public FragmentStateAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
-    public FragmentStateAdapter(@NonNull FragmentManager fm, List<T> fragments) {
-        super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public FragmentStateAdapter(@NonNull FragmentManager fm, int behavior, T[] fragments) {
+        this(fm, behavior, Arrays.asList(fragments));
+    }
+
+    public FragmentStateAdapter(@NonNull FragmentManager fm, int behavior, List<T> fragments) {
+        super(fm, behavior);
         setFragments(fragments);
+    }
+
+    public List<T> getFragmentList() {
+        return mFragmentList;
+    }
+
+    public List<String> getTitleList() {
+        return mTitleList;
     }
 
     public FragmentStateAdapter<T> setFragments(List<T> fragments) {
@@ -65,6 +88,15 @@ public class FragmentStateAdapter<T extends Fragment> extends FragmentStatePager
         return this;
     }
 
+    public void clear() {
+        if (mFragmentList != null) {
+            mFragmentList.clear();
+        }
+        if (mTitleList != null) {
+            mTitleList.clear();
+        }
+    }
+
     @NonNull
     @Override
     public T getItem(int position) {
@@ -73,7 +105,7 @@ public class FragmentStateAdapter<T extends Fragment> extends FragmentStatePager
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return mFragmentList == null ? 0 : mFragmentList.size();
     }
 
     @Nullable
@@ -82,11 +114,5 @@ public class FragmentStateAdapter<T extends Fragment> extends FragmentStatePager
         return mTitleList.get(position);
     }
 
-    public List<T> getFragmentList() {
-        return mFragmentList;
-    }
 
-    public List<String> getTitleList() {
-        return mTitleList;
-    }
 }

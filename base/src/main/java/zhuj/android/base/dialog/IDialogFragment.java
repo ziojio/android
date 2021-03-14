@@ -13,33 +13,37 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import zhuj.android.base.R;
+import zhuj.android.utils.helper.ViewHelper;
+
 
 public abstract class IDialogFragment extends DialogFragment {
     protected final String TAG = getClass().getSimpleName();
 
     protected DialogInterface.OnCancelListener onCancelListener;
     protected DialogInterface.OnDismissListener onDismissListener;
+    protected ViewHelper mViewHelper;
+
 
     public IDialogFragment() {
-        setStyle(STYLE_NO_TITLE, R.style.ZUI_Dialog);
+        setStyle(STYLE_NO_TITLE, R.style.AppDialog);
     }
 
     /**
      * 自己创建 Dialog 时, return 0, 并且 Override onCreateDialog
      */
-    protected abstract int layoutId();
+    public abstract int getLayoutRes();
 
-    protected abstract void initView();
+    public abstract void initView();
 
-    /**
-     *
-     */
-    protected abstract void initWindow();
+    public void initWindow() {
+    }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return layoutId() != 0 ? inflater.inflate(layoutId(), container, false) : super.onCreateView(inflater, container, savedInstanceState);
+    protected Bundle getArgumentsNotNull() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            return bundle;
+        }
+        return new Bundle();
     }
 
     /**
@@ -53,12 +57,31 @@ public abstract class IDialogFragment extends DialogFragment {
         return super.onCreateDialog(savedInstanceState);
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return getLayoutRes() != 0 ? inflater.inflate(getLayoutRes(), container, false) : super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
         initWindow();
     }
+
+    public ViewHelper getViewHelper() {
+        if (mViewHelper == null) {
+            mViewHelper = new ViewHelper(requireView());
+        }
+        return mViewHelper;
+    }
+
 
     protected <T extends View> T findViewById(int id) {
         return requireView().findViewById(id);
@@ -91,4 +114,5 @@ public abstract class IDialogFragment extends DialogFragment {
             onDismissListener.onDismiss(dialog);
         }
     }
+
 }

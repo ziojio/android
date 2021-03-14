@@ -10,9 +10,9 @@ import zhuj.android.base.activity.BaseActivity;
 import zhuj.android.base.service.BaseService;
 import zhuj.android.app.ui.activity.TestActivity;
 import zhuj.android.app.ui.activity.ViewActivity;
-import zhuj.android.app.ui.activity.WebViewActivity;
-import zhuj.android.helper.ClickHelper;
-import zhuj.thread.WorkExecutor;
+import zhuj.android.web.activity.WebViewActivity;
+import zhuj.android.utils.helper.ClickHelper;
+import zhuj.java.thread.WorkExecutor;
 
 public class MainActivity extends BaseActivity {
 
@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
     private TextView showText;
 
     @Override
-    protected int getLayoutRes() {
+    public int getLayoutRes() {
         return R.layout.activity_main;
     }
 
@@ -35,6 +35,12 @@ public class MainActivity extends BaseActivity {
                 this::onClick,
                 R.id.button_sql, R.id.button_test, R.id.button_webview,
                 R.id.button_view, R.id.button_button, R.id.button_do);
+    }
+
+    @Override
+    public void parentInit() {
+        super.parentInit();
+        setToolbar(R.id.toolbar);
     }
 
     public void onClick(View v) {

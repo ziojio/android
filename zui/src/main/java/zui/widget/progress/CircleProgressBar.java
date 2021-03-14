@@ -13,7 +13,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.Nullable;
 
-import zui.R;
+import zhuj.android.zui.R;
 
 
 public class CircleProgressBar extends View {

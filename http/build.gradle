@@ -1,7 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
     defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -12,11 +21,15 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-
-    api deps.squareup.okhttp3
+    implementation project(path: ':libjava')
+    api "com.squareup.okhttp3:okhttp:3.14.9"
 
     implementation deps.androidx.annotation
     implementation deps.google.gson
@@ -24,5 +37,4 @@ dependencies {
     implementation deps.squareup.retrofit2
     implementation deps.squareup.converterGson
 
-    implementation project(path: ':libjava')
 }
