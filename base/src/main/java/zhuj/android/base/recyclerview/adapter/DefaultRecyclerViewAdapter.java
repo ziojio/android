@@ -1,5 +1,6 @@
 package zhuj.android.base.recyclerview.adapter;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
@@ -12,17 +13,14 @@ import zhuj.android.utils.Views;
 
 public abstract class DefaultRecyclerViewAdapter<T> extends BaseAdapter<T, DefaultViewHolder> {
 
-    public DefaultRecyclerViewAdapter() {
-    }
-
-    public DefaultRecyclerViewAdapter(@LayoutRes int defLayout) {
-        addViewType(0, defLayout);
-    }
-
-    protected OnItemClickListener<T> onItemClickListener;
+    private OnItemClickListener<T> onItemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public OnItemClickListener<T> getOnItemClickListener() {
+        return onItemClickListener;
     }
 
     @NonNull
@@ -33,10 +31,10 @@ public abstract class DefaultRecyclerViewAdapter<T> extends BaseAdapter<T, Defau
 
     @Override
     public void onBindViewHolder(@NonNull DefaultViewHolder holder, int position) {
-        T t = data.get(position);
+        T t = getData().get(position);
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(holder, t, position));
-            Views.setSubViewClickable(holder.itemView, false);
+            setSubViewClickable(holder.itemView, false);
         } else {
             holder.itemView.setOnClickListener(null);
         }
@@ -45,4 +43,36 @@ public abstract class DefaultRecyclerViewAdapter<T> extends BaseAdapter<T, Defau
 
     public abstract void onBind(DefaultViewHolder holder, int position, T data);
 
+
+    private void setSubViewClickable(View view, boolean enable) {
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = group.getChildAt(i);
+                if (v instanceof ViewGroup) {
+                    setViewClickable(v, enable);
+                } else {
+                    v.setClickable(enable);
+                }
+            }
+        }
+    }
+
+    public static void setViewClickable(View view, boolean enable) {
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = group.getChildAt(i);
+                if (v instanceof ViewGroup) {
+                    setViewClickable(v, enable);
+                } else {
+                    v.setClickable(enable);
+                }
+            }
+        } else {
+            view.setClickable(enable);
+        }
+    }
 }

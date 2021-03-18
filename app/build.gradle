@@ -1,5 +1,24 @@
 apply plugin: 'com.android.application'
 
+ext {
+    config = [
+            compileSdkVersion: 30,
+            buildToolsVersion: '30.0.2',
+            applicationId    : 'zhuj.android.app',
+            minSdkVersion    : 26,
+            targetSdkVersion : 30,
+            versionCode      : 1,
+            versionName      : '1.0.0',
+            multiDexEnabled  : true,
+    ]
+    signConfigs = [
+            "storeFile"    : "abc",
+            "storePassword": "123456",
+            "keyAlias"     : "abc",
+            "keyPassword"  : "123456"
+    ]
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -67,19 +86,24 @@ android {
 }
 
 dependencies {
-    implementation deps.androidx.appcompat
-    implementation deps.viewlayout.constraintlayout
-    implementation deps.viewlayout.recyclerview
-    implementation deps.viewlayout.viewpager2
+    implementation "com.qmuiteam:qmui:2.0.0-alpha10"
+    implementation "com.google.android.material:material:1.2.1"
 
-    implementation deps.logger
+    implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    implementation "com.orhanobut:logger:2.2.0"
 
     implementation project(path: ':base')
     implementation project(path: ':zutils')
+    implementation project(path: ':libjava')
     implementation project(path: ':zui')
     implementation project(path: ':web')
     implementation project(path: ':database')
     implementation project(path: ':http')
+    implementation project(path: ':test')
 
 }
 

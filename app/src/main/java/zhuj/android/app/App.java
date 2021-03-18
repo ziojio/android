@@ -2,7 +2,6 @@ package zhuj.android.app;
 
 import android.app.Application;
 
-
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
@@ -12,14 +11,15 @@ import zhuj.android.database.room.AndroidDatabase;
 import zhuj.android.utils.Androids;
 
 public class App extends Application {
-    private static App INSTANCE;
 
-    private volatile AndroidDatabase roomDB;
+    private static App APP;
+
+    private static AndroidDatabase roomDB;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        INSTANCE = this;
+        APP = this;
         Androids.initialize(this);
         Androids.debug(true);
 
@@ -31,6 +31,10 @@ public class App extends Application {
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
         roomDB = AndroidDatabase.getInstance(this);
+    }
+
+    public static App app() {
+        return APP;
     }
 
     public AndroidDatabase db() {

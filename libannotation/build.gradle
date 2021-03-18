@@ -3,13 +3,15 @@ plugins {
 }
 
 dependencies {
-    implementation deps.google.autoservice.annotations
-    annotationProcessor deps.google.autoservice.processor
 
-    implementation deps.squareup.javapoet
+    implementation 'com.google.auto.service:auto-service:1.0-rc7'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
+    // annotationProcessor 'com.google.auto.service:auto-service-annotations:1.0-rc7'
 
-    implementation deps.incap.runtime
-    annotationProcessor deps.incap.processor
+    implementation 'com.squareup:javapoet:1.13.0'
+
+    implementation "net.ltgt.gradle.incap:incap:0.3"
+    annotationProcessor "net.ltgt.gradle.incap:incap-processor:0.3"
 }
 
 java {

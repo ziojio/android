@@ -1,4 +1,4 @@
-package zhuj.android.test.viewmodel;
+package zhuj.android.test.base.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

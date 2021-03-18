@@ -1,4 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="zhuj.android.test">
+    package="zhuj.android.test"
+    >
 
+    <application android:theme="@style/TestAppTheme">
+
+        <activity android:name=".TestDataBindingActivity" />
+        <activity android:name=".TestViewModelActivity" />
+
+    </application>
 </manifest>

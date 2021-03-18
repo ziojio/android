@@ -4,7 +4,6 @@ import com.google.auto.service.AutoService;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
-import zhuj.code.annotation.ImplClass;
 
 import net.ltgt.gradle.incap.IncrementalAnnotationProcessor;
 import net.ltgt.gradle.incap.IncrementalAnnotationProcessorType;
@@ -30,6 +29,8 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
+
+import zhuj.code.annotation.ImplClass;
 
 @AutoService(Processor.class)
 @IncrementalAnnotationProcessor(IncrementalAnnotationProcessorType.ISOLATING)

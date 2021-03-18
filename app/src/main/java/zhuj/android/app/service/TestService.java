@@ -1,4 +1,4 @@
-package zhuj.android.app.ui;
+package zhuj.android.app.service;
 
 import android.app.Service;
 import android.content.Intent;

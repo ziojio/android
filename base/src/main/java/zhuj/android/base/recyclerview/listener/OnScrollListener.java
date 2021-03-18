@@ -37,7 +37,6 @@ public abstract class OnScrollListener extends RecyclerView.OnScrollListener {
      * @param dy           The amount of vertical scroll.
      */
     public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof LinearLayoutManager) {
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;

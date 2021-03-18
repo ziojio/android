@@ -1,29 +1,33 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        compose_version = '1.0.0-beta01'
+        kotlin_version = "1.4.31"
+    }
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
 allprojects {
-    apply from: rootDir.path + "/deps.gradle"
     repositories {
-        addRepos(repositories)
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url "https://jitpack.io" }
         google()
-        jcenter()
+        mavenCentral()
     }
-//    gradle.projectsEvaluated {
-//        tasks.withType(JavaCompile) {
-//            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-//        }
-//    }
 }
 
 rootProject.buildDir = "../${rootProject.name}.build"
@@ -31,29 +35,6 @@ rootProject.buildDir = "../${rootProject.name}.build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 
-    String pluginId = "app" == project.name ? "com.android.application" : "com.android.library"
-    // application，library 的通用处理
-    pluginManager.withPlugin(pluginId) {
-        // 在 module build.gradle or project.afterEvaluate 可以被覆写
-        apply from: rootDir.path + "/config.gradle"
-
-        android {
-            compileSdkVersion config.compileSdkVersion
-            buildToolsVersion config.buildToolsVersion
-            compileOptions {
-                sourceCompatibility JavaVersion.VERSION_1_8
-                targetCompatibility JavaVersion.VERSION_1_8
-            }
-            defaultConfig {
-                minSdkVersion config.minSdkVersion
-                targetSdkVersion config.targetSdkVersion
-            }
-            dependencies {
-                implementation 'androidx.appcompat:appcompat:1.2.0'
-                implementation 'com.google.android.material:material:1.2.1'
-            }
-        }
-    }
 }
 
 task clean(type: Delete) {

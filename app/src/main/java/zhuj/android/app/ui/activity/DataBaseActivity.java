@@ -1,7 +1,5 @@
 package zhuj.android.app.ui.activity;
 
-import androidx.annotation.NonNull;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -13,17 +11,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import zhuj.android.app.R;
-import zhuj.android.database.room.AndroidDatabase;
-import zhuj.android.database.room.entity.User;
-import zhuj.android.database.sqlitehelper.AppDatabase;
-import zhuj.android.base.activity.BaseActivity;
-import zhuj.android.utils.log.Logger;
-import zhuj.java.thread.WorkExecutor;
-
+import androidx.annotation.NonNull;
 
 import java.util.List;
 import java.util.Random;
+
+import zhuj.android.app.R;
+import zhuj.android.base.activity.BaseActivity;
+import zhuj.android.database.room.AndroidDatabase;
+import zhuj.android.database.room.entity.User;
+import zhuj.android.database.sqlitehelper.AppDatabase;
+import zhuj.android.utils.log.Logger;
+import zhuj.java.thread.WorkExecutor;
 
 public class DataBaseActivity extends BaseActivity {
 
@@ -88,7 +87,7 @@ public class DataBaseActivity extends BaseActivity {
             workExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    List<User> users =  AndroidDatabase.getInstance(getActivity()).userDao().getAllUser();
+                    List<User> users = AndroidDatabase.getInstance(getActivity()).userDao().getAllUser();
                     for (User user : users) {
                         Message message = Message.obtain();
                         message.obj = user;

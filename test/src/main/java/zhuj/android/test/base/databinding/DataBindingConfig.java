@@ -1,4 +1,4 @@
-package zhuj.android.test.databinding;
+package zhuj.android.test.base.databinding;
 
 import android.util.SparseArray;
 

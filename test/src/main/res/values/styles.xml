@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="TestAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#ff5252</item>
+        <item name="colorSecondary">#00c652</item>
+        <item name="colorAccent">#ff5252</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#fafafa</item>
+        <item name="colorSecondaryVariant">#5efa81</item>
+        <item name="android:colorPressedHighlight">#ff867f</item>
+        <item name="android:colorPrimaryDark">#c50e29</item>
+
+        <!--        <item name="android:windowTranslucentStatus">true</item>   &lt;!&ndash; true: 窗口内容扩展到状态栏背景显示 &ndash;&gt;-->
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+</resources>

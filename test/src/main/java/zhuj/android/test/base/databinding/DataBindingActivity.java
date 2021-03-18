@@ -1,4 +1,4 @@
-package zhuj.android.test.databinding;
+package zhuj.android.test.base.databinding;
 
 import android.app.Activity;
 import android.app.Application;
@@ -16,7 +16,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import zhuj.android.test.viewmodel.ViewModelApplication;
+import zhuj.android.test.base.viewmodel.ViewModelApplication;
 
 
 /**

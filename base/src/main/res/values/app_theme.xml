@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="FullScreen" parent="AppTheme">
+    <style name="FullScreen" parent="BaseTheme">
         <item name="statusBarBackground">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
@@ -11,7 +11,7 @@
 
     </style>
 
-    <style name="AppTheme" parent="ZUI.NoActionBar">
+    <style name="BaseTheme" parent="ZUI.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#ff5252</item>
         <item name="colorSecondary">#00c652</item>
@@ -23,7 +23,7 @@
         <item name="android:colorPrimaryDark">#c50e29</item>
     </style>
 
-    <style name="AppTheme.Transparent" parent="AppTheme">
+    <style name="AppTheme.Transparent" parent="BaseTheme">
         <item name="android:windowBackground">@color/zui_color_transparent</item>
     </style>
 

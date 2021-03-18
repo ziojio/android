@@ -29,7 +29,9 @@ android {
 }
 
 dependencies {
+
+    implementation "com.google.android.material:material:1.2.1"
     implementation "com.qmuiteam:qmui:2.0.0-alpha10"
-    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.20'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.20'
 
 }

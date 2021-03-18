@@ -1,4 +1,4 @@
-package zhuj.android.test.viewmodel;
+package zhuj.android.test.base.viewmodel;
 
 import android.app.Activity;
 import android.app.Application;

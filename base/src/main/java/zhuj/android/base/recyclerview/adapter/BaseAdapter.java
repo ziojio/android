@@ -3,21 +3,18 @@ package zhuj.android.base.recyclerview.adapter;
 import android.util.SparseIntArray;
 
 import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import zhuj.android.base.recyclerview.listener.OnItemClickListener;
-
 
 public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
-    private RecyclerView mRecyclerView;
 
-    protected ArrayList<T> data = new ArrayList<>();
-    protected SparseIntArray layouts = new SparseIntArray();
+    private final ArrayList<T> data = new ArrayList<>();
+    // 存储 itemType 对应的 layout id
+    private final SparseIntArray layouts = new SparseIntArray();
 
     /**
      * @param viewType 0 代表默认的单布局
@@ -31,20 +28,15 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
         return layouts.get(viewType);
     }
 
-    protected OnItemClickListener<T> onItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
     @Override
     public int getItemCount() {
         return data.size();
     }
 
     public void setData(Collection<T> data) {
-        this.data = data != null && data.size() > 0 ? new ArrayList<>(data) : new ArrayList<>();
-        super.notifyDataSetChanged();
+        clear();
+        addAll(data);
+        notifyDataSetChanged();
     }
 
     public List<T> getData() {
@@ -53,7 +45,7 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
 
     public void clear() {
         this.data.clear();
-        super.notifyDataSetChanged();
+        super.notifyItemRangeRemoved(0, this.data.size());
     }
 
     public void add(T item) {
@@ -70,13 +62,4 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
         super.notifyItemRangeInserted(idx, items.size());
     }
 
-    @Override
-    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-        mRecyclerView = recyclerView;
-    }
-
-    public RecyclerView getRecyclerView() {
-        return mRecyclerView;
-    }
 }

@@ -24,17 +24,10 @@ public abstract class FlexboxRecyclerViewAdapter<T> extends DefaultRecyclerViewA
     public void onBindViewHolder(@NonNull DefaultViewHolder holder, int position) {
         if (position >= getData().size()) {
             holder.itemView.setVisibility(View.INVISIBLE);
-            return;
-        }
-        holder.itemView.setVisibility(View.VISIBLE);
-        T t = data.get(position);
-        if (onItemClickListener != null) {
-            holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(holder, t, position));
-            Views.setSubViewClickable(holder.itemView, false);
         } else {
-            holder.itemView.setOnClickListener(null);
+            holder.itemView.setVisibility(View.VISIBLE);
+            super.onBindViewHolder(holder, position);
         }
-        onBind(holder, position, t);
     }
 
     @Override
@@ -47,37 +40,5 @@ public abstract class FlexboxRecyclerViewAdapter<T> extends DefaultRecyclerViewA
         return size + column - i;
     }
 
-
-    private void setSubViewClickable(View view, boolean enable) {
-        if (view instanceof ViewGroup) {
-            ViewGroup group = (ViewGroup) view;
-            int count = group.getChildCount();
-            for (int i = 0; i < count; i++) {
-                View v = group.getChildAt(i);
-                if (v instanceof ViewGroup) {
-                    setViewClickable(v, enable);
-                } else {
-                    v.setClickable(enable);
-                }
-            }
-        }
-    }
-
-    public static void setViewClickable(View view, boolean enable) {
-        if (view instanceof ViewGroup) {
-            ViewGroup group = (ViewGroup) view;
-            int count = group.getChildCount();
-            for (int i = 0; i < count; i++) {
-                View v = group.getChildAt(i);
-                if (v instanceof ViewGroup) {
-                    setViewClickable(v, enable);
-                } else {
-                    v.setClickable(enable);
-                }
-            }
-        } else {
-            view.setClickable(enable);
-        }
-    }
 
 }
