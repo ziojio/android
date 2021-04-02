@@ -28,7 +28,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.widget.NestedScrollView;
 
@@ -373,28 +372,4 @@ public class Drawables {
         return layerDrawable;
     }
 
-    /////////////// VectorDrawable /////////////////////
-    @Nullable
-    public static Drawable getVectorDrawable(Context context, @DrawableRes int resVector) {
-        try {
-            return AppCompatResources.getDrawable(context, resVector);
-        } catch (Exception e) {
-            Logger.d(TAG, "Error in getVectorDrawable. resVector=" + resVector + ", resName=" + context.getResources().getResourceName(resVector) + e.getMessage());
-            return null;
-        }
-    }
-
-    public static Bitmap vectorDrawableToBitmap(Context context, @DrawableRes int resVector) {
-        Drawable drawable = getVectorDrawable(context, resVector);
-        if (drawable != null) {
-            Bitmap b = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-            Canvas c = new Canvas(b);
-            drawable.setBounds(0, 0, c.getWidth(), c.getHeight());
-            drawable.draw(c);
-            return b;
-        }
-        return null;
-    }
-
-    /////////////// VectorDrawable /////////////////////
 }

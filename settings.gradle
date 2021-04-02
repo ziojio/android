@@ -9,11 +9,3 @@ include ':libjava'
 include ':libannotation'
 include ':test'
 rootProject.name='android'
-
-
-
-
-
-
-
-

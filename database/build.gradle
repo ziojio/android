@@ -1,4 +1,6 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
 
 android {
     compileSdkVersion 30
@@ -37,8 +39,8 @@ android {
 
 dependencies {
 
-    def room = "2.2.5"
-    api "androidx.room:room-runtime:$room"
-    annotationProcessor "androidx.room:room-compiler:$room"
-
+    def room_version = "2.3.0-rc01"
+    api "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
 }

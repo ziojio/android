@@ -10,10 +10,21 @@
     <color name="zui_color_text_black_666">#FF666666</color>
     <color name="zui_color_text_white">#FFFDFDFD</color>
     <color name="zui_color_background">#F3F3F3</color>
+
     <!-- 警告，错误，成功 特殊颜色   -->
     <color name="zui_color_waring">@color/zui_color_yellow_dark</color>
     <color name="zui_color_error">@color/zui_color_red_light</color>
     <color name="zui_color_successful">@color/zui_color_green</color>
+
+    // ios 类似的背景色
+    <color name="zui_dark_gray_1">#e0111111</color>
+    <color name="zui_dark_gray_2">#cc222222</color>
+    <color name="zui_dark_gray_3">#cc333333</color>
+
+    <color name="zui_white_gray_1">#fafafa</color>
+    <color name="zui_white_gray_2">#f0f0f0</color>
+    <color name="zui_white_gray_3">#e0e0e0</color>
+    <color name="zui_white_gray_4">#d0d0d0</color>
 
     <!--不透明-->
     <!--100% FF-->
@@ -70,52 +81,6 @@
     <color name="zui_color_white_alpha_85">#D9FFFFFF</color>
     <color name="zui_color_white_alpha_90">#E6FFFFFF</color>
     <color name="zui_color_white_alpha_95">#F2FFFFFF</color>
-
-    <color name="zui_color_red_alpha_5"> #0DFF0000</color>
-    <color name="zui_color_red_alpha_10">#1AFF0000</color>
-    <color name="zui_color_red_alpha_15">#26FF0000</color>
-    <color name="zui_color_red_alpha_20">#33FF0000</color>
-    <color name="zui_color_red_alpha_25">#40FF0000</color>
-    <color name="zui_color_red_alpha_30">#4DFF0000</color>
-    <color name="zui_color_red_alpha_35">#59FF0000</color>
-    <color name="zui_color_red_alpha_50">#80FF0000</color>
-    <color name="zui_color_red_alpha_60">#99FF0000</color>
-    <color name="zui_color_red_alpha_75">#C0FF0000</color>
-    <color name="zui_color_red_alpha_80">#CCFF0000</color>
-    <color name="zui_color_red_alpha_85">#D9FF0000</color>
-    <color name="zui_color_red_alpha_90">#E6FF0000</color>
-    <color name="zui_color_red_alpha_95">#F2FF0000</color>
-
-    <color name="zui_color_green_alpha_5"> #0D00FF00</color>
-    <color name="zui_color_green_alpha_10">#1A00FF00</color>
-    <color name="zui_color_green_alpha_15">#2600FF00</color>
-    <color name="zui_color_green_alpha_20">#3300FF00</color>
-    <color name="zui_color_green_alpha_25">#4000FF00</color>
-    <color name="zui_color_green_alpha_30">#4D00FF00</color>
-    <color name="zui_color_green_alpha_35">#5900FF00</color>
-    <color name="zui_color_green_alpha_50">#8000FF00</color>
-    <color name="zui_color_green_alpha_60">#9900FF00</color>
-    <color name="zui_color_green_alpha_75">#C000FF00</color>
-    <color name="zui_color_green_alpha_80">#CC00FF00</color>
-    <color name="zui_color_green_alpha_85">#D900FF00</color>
-    <color name="zui_color_green_alpha_90">#E600FF00</color>
-    <color name="zui_color_green_alpha_95">#F200FF00</color>
-
-    <color name="zui_color_blue_alpha_5"> #0D0000FF</color>
-    <color name="zui_color_blue_alpha_10">#1A0000FF</color>
-    <color name="zui_color_blue_alpha_15">#260000FF</color>
-    <color name="zui_color_blue_alpha_20">#330000FF</color>
-    <color name="zui_color_blue_alpha_25">#400000FF</color>
-    <color name="zui_color_blue_alpha_30">#4D0000FF</color>
-    <color name="zui_color_blue_alpha_35">#590000FF</color>
-    <color name="zui_color_blue_alpha_50">#800000FF</color>
-    <color name="zui_color_blue_alpha_60">#990000FF</color>
-    <color name="zui_color_blue_alpha_75">#C00000FF</color>
-    <color name="zui_color_blue_alpha_80">#CC0000FF</color>
-    <color name="zui_color_blue_alpha_85">#D90000FF</color>
-    <color name="zui_color_blue_alpha_90">#E60000FF</color>
-    <color name="zui_color_blue_alpha_95">#F20000FF</color>
-
 
     <color name="zui_color_gray_32">#000000</color>
     <color name="zui_color_gray_31">#080808</color>

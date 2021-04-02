@@ -18,30 +18,48 @@ import zhuj.android.base.R;
  */
 public class SimpleProgressDialog extends BaseDialogFragment {
     private int orientation = LinearLayout.HORIZONTAL;
-    private int iconSize = 0;
-    private int textSize = 0;
-    private LinearLayout linearLayout;
-    private GifImageView imageView;
-    private TextView textView;
+    private String message;
+    private int iconSize;
+    private int textSize;
+    private int textMaxWidth;
+    private int iconTextPadding = 20;
 
     public SimpleProgressDialog() {
     }
 
     public void setOrientation(int orientation) {
-        Bundle bundle = getArgumentsNotNull();
+        Bundle bundle = getArguments() != null ? getArguments() : new Bundle();
         bundle.putInt("orientation", orientation);
         setArguments(bundle);
     }
 
     public void setIconSize(int iconSize) {
-        Bundle bundle = getArgumentsNotNull();
+        Bundle bundle = getArguments() != null ? getArguments() : new Bundle();
         bundle.putInt("iconSize", iconSize);
         setArguments(bundle);
     }
 
+    public void setMessage(String message) {
+        Bundle bundle = getArguments() != null ? getArguments() : new Bundle();
+        bundle.putString("message", message);
+        setArguments(bundle);
+    }
+
     public void setTextSize(int textSize) {
-        Bundle bundle = getArgumentsNotNull();
+        Bundle bundle = getArguments() != null ? getArguments() : new Bundle();
         bundle.putInt("textSize", textSize);
+        setArguments(bundle);
+    }
+
+    public void setTextMaxWidth(int textMaxWidth) {
+        Bundle bundle = getArguments() != null ? getArguments() : new Bundle();
+        bundle.putInt("textMaxWidth", textMaxWidth);
+        setArguments(bundle);
+    }
+
+    public void setIconTextPadding(int iconTextPadding) {
+        Bundle bundle = getArguments() != null ? getArguments() : new Bundle();
+        bundle.putInt("iconTextPadding", iconTextPadding);
         setArguments(bundle);
     }
 
@@ -52,20 +70,27 @@ public class SimpleProgressDialog extends BaseDialogFragment {
 
     @Override
     public void initView() {
-        linearLayout = findViewById(R.id.linearlayout);
-        imageView = findViewById(R.id.image_icon);
-        textView = findViewById(R.id.text_message);
-        linearLayout.setOrientation(orientation);
+        LinearLayout linearLayout = findViewById(R.id.linearlayout);
+        GifImageView imageView = findViewById(R.id.image_icon);
+        TextView textView = findViewById(R.id.text_message);
         if (iconSize > 0) {
             setViewLayoutParams(imageView, iconSize, iconSize);
         }
         if (textSize > 0) {
             textView.setTextSize(textSize);
         }
+        if (textMaxWidth > 0) {
+            textView.setMaxWidth(textMaxWidth);
+        }
+        textView.setText(message);
+
+        if (orientation != LinearLayout.HORIZONTAL) {
+            linearLayout.setOrientation(orientation);
+        }
         if (orientation == LinearLayout.HORIZONTAL) {
-            setViewMargin(textView, 20, 0, 0, 0);
+            setViewMargin(textView, iconTextPadding, 0, 0, 0);
         } else if (orientation == LinearLayout.VERTICAL) {
-            setViewMargin(textView, 0, 20, 0, 0);
+            setViewMargin(textView, 0, iconTextPadding, 0, 0);
         }
     }
 
@@ -99,6 +124,9 @@ public class SimpleProgressDialog extends BaseDialogFragment {
             orientation = bundle.getInt("orientation", orientation);
             textSize = bundle.getInt("textSize", textSize);
             iconSize = bundle.getInt("iconSize", iconSize);
+            textMaxWidth = bundle.getInt("textMaxWidth", textMaxWidth);
+            iconTextPadding = bundle.getInt("iconTextPadding", iconTextPadding);
+            message = bundle.getString("message");
         }
     }
 

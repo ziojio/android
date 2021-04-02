@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class ScreenUtils {
@@ -161,21 +160,6 @@ public class ScreenUtils {
         );
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.TRANSPARENT);
-    }
-
-    /**
-     * Let toolbar to extend to status bar.
-     *
-     * @notice this method have to be used after setContentView.
-     */
-    public static void setToolbarPaddingTop(Toolbar toolbar) {
-        // Set the padding to match the Status Bar height
-        toolbar.setPadding(0, getStatusBarHeight(toolbar.getContext()), 0, 0);
-    }
-
-    public static void setToolbarPaddingTop(Toolbar toolbar, int paddingTop) {
-        // Set the padding to match the Status Bar height
-        toolbar.setPadding(0, paddingTop, 0, 0);
     }
 
     /**
