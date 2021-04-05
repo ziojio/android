@@ -1,4 +1,4 @@
-package zui.widget;
+package zhuj.android.utils.util;
 
 
 import android.annotation.TargetApi;
@@ -24,11 +24,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.SnackbarContentLayout;
-import zhuj.android.zui.R;
-import zhuj.android.zui.util.Displays;
-import zhuj.android.zui.util.ZDebug;
+
 
 import java.lang.ref.WeakReference;
+
+import zhuj.android.utils.Displays;
+import zhuj.android.utils.R;
+import zhuj.android.utils.log.ZDebug;
 
 
 /**

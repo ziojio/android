@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 
 import zhuj.android.base.R;
-import zui.widget.TriangleView;
+import zui.widget.view.TriangleView;
 
 public class BackgroundPopupWindow extends BasePopupWindow {
     public static final int TOP = 0;

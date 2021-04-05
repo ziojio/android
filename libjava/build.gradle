@@ -22,8 +22,8 @@ dependencies {
     // implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
 
     implementation 'com.squareup.okio:okio:2.9.0'
-
     implementation "com.google.code.gson:gson:2.8.6"
+
     implementation 'com.google.guava:guava:30.0-jre'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
 }

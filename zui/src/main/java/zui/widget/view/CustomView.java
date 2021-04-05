@@ -1,4 +1,4 @@
-package zui.widget;
+package zui.widget.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

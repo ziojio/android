@@ -28,14 +28,6 @@
     <attr name="zui_cornerRadius_bottomLeft" format="dimension" />
     <attr name="zui_cornerRadius_bottomRight" format="dimension" />
 
-    <attr name="zui_drawableSize" format="dimension" />
-    <attr name="zui_drawableWidth" format="dimension" />
-    <attr name="zui_drawableHeight" format="dimension" />
-    <attr name="zui_drawablePaddingStart" format="dimension" />
-    <attr name="zui_drawablePaddingTop" format="dimension" />
-    <attr name="zui_drawablePaddingEnd" format="dimension" />
-    <attr name="zui_drawablePaddingBottom" format="dimension" />
-
     <attr name="zui_disabled_alpha" format="float" />
 
     <attr name="zui_press_alpha" format="float" />

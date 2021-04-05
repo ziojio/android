@@ -106,18 +106,6 @@ public class Views {
         }
     }
 
-    @IntDef({ViewDirection.START, ViewDirection.TOP, ViewDirection.END, ViewDirection.BOTTOM,
-            ViewDirection.LEFT, ViewDirection.RIGHT})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface ViewDirection {
-        int START = 0;
-        int TOP = 1;
-        int END = 2;
-        int BOTTOM = 3;
-        int LEFT = 4;
-        int RIGHT = 5;
-    }
-
     public static void setPressEffectAlpha(View view, float toAlpha, int duration) {
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override

@@ -8,81 +8,60 @@ import java.io.StringWriter;
 import zhuj.android.zui.BuildConfig;
 
 
-/**
- * 同于Android中类的调试
- */
-public class ZDebug {
+public class ZDebugView {
     private static final String TAG = "ZDebugView";
     private static final boolean DEBUG = BuildConfig.DEBUG;
     private static final int STACK_ELEMENT_INDEX = 2;
 
-    public static void debug(String tag, String msg, Object... args) {
+    public static void debug(String tag, String msg) {
         if (DEBUG) {
             if (tag == null) {
                 tag = TAG;
-            }
-            if (args != null && args.length > 0) {
-                msg = String.format(msg, args);
             }
             Log.d(tag, getStackElementMethodFileLine(getStackElement(STACK_ELEMENT_INDEX)) + msg);
         }
     }
 
-    public static void debug(boolean debug, String tag, String msg, Object... args) {
+    public static void debug(boolean debug, String tag, String msg) {
         if (debug) {
             if (tag == null) {
                 tag = TAG;
-            }
-            if (args != null && args.length > 0) {
-                msg = String.format(msg, args);
             }
             Log.d(tag, getStackElementMethodFileLine(getStackElement(STACK_ELEMENT_INDEX)) + msg);
         }
     }
 
-    public static void warn(String tag, String msg, Object... args) {
+    public static void warn(String tag, String msg) {
         if (DEBUG) {
             if (tag == null) {
                 tag = TAG;
-            }
-            if (args != null && args.length > 0) {
-                msg = String.format(msg, args);
             }
             Log.w(tag, getStackElementMethodFileLine(getStackElement(STACK_ELEMENT_INDEX)) + msg);
         }
     }
 
-    public static void warn(boolean debug, String tag, String msg, Object... args) {
+    public static void warn(boolean debug, String tag, String msg) {
         if (debug) {
             if (tag == null) {
                 tag = TAG;
             }
-            if (args != null && args.length > 0) {
-                msg = String.format(msg, args);
-            }
             Log.w(tag, getStackElementMethodFileLine(getStackElement(STACK_ELEMENT_INDEX)) + msg);
         }
     }
 
-    public static void error(String tag, String msg, Object... args) {
+    public static void error(String tag, String msg) {
         if (DEBUG) {
             if (tag == null) {
                 tag = TAG;
-            }
-            if (args != null && args.length > 0) {
-                msg = String.format(msg, args);
             }
             Log.e(tag, getStackElementMethodFileLine(getStackElement(STACK_ELEMENT_INDEX)) + msg);
         }
     }
 
-    public static void error(boolean debug, String tag, String msg, Object... args) {
+    public static void error(boolean debug, String tag, String msg) {
         if (debug) {
             if (tag == null) {
                 tag = TAG;
-            }
-            if (args != null && args.length > 0) {
-                msg = String.format(msg, args);
             }
             Log.e(tag, getStackElementMethodFileLine(getStackElement(STACK_ELEMENT_INDEX)) + msg);
         }

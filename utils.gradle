@@ -8,7 +8,7 @@ static def getAppName(android) {
     if (appName == null) {
         appName = "app"
     }
-    return appName.substring(appName.lastIndexOf(".") + 1);
+    return appName.substring(appName.lastIndexOf(".") + 1)
 }
 
 ext.getAppName = this.&getAppName

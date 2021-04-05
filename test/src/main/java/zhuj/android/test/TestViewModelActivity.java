@@ -31,6 +31,6 @@ public class TestViewModelActivity extends ViewModelActivity {
     }
 
     private void doing() {
-        materialButton.setText("hello world!~");
+        materialButton.setText("hello ");
     }
 }

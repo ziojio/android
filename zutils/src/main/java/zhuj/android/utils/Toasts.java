@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Toasts {
-    private static Toast showingToast = null;
 
     private Toasts() {
     }

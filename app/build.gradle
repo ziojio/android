@@ -2,32 +2,12 @@ plugins {
     id 'com.android.application'
 }
 
-ext {
-    config = [
-            compileSdkVersion: 30,
-            buildToolsVersion: '30.0.2',
-            applicationId    : 'zhuj.android.app',
-            minSdkVersion    : 26,
-            targetSdkVersion : 30,
-            versionCode      : 1,
-            versionName      : '1.0.0',
-            multiDexEnabled  : true,
-    ]
-    signConfigs = [
-            "storeFile"    : "abc",
-            "storePassword": "123456",
-            "keyAlias"     : "abc",
-            "keyPassword"  : "123456"
-    ]
-}
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId config.applicationId
-
+        applicationId 'zhuj.android.app'
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -48,6 +28,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('../appsign.jks')
+            storePassword "zhuj.appsign"
+            keyAlias "appsign"
+            keyPassword "zhuj.appsign"
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -66,14 +55,12 @@ android {
             applicationIdSuffix ".dev"
             manifestPlaceholders = [PROJECT_NAME: "@string/app_name_dev",]
             buildConfigField 'String', 'API_URL', '"https://dev.android.com"'
-            buildConfigField 'String', 'APP_KEY', '"123456"'
         }
         prod {
             dimension "mode"
             applicationIdSuffix ".prod"
             manifestPlaceholders = [PROJECT_NAME: "@string/app_name",]
             buildConfigField 'String', 'API_URL', '"https://prod.android.com"'
-            buildConfigField 'String', 'APP_KEY', '"123456"'
         }
     }
 
@@ -88,19 +75,19 @@ android {
 }
 
 dependencies {
-    // Android
-    implementation "com.google.android.material:material:${versions.material}"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.activity:activity:$activity_version"
+    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "androidx.viewpager2:viewpager2:$viewpager2_version"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
-
 
     implementation "com.qmuiteam:qmui:2.0.0-alpha10"
     implementation "com.orhanobut:logger:2.2.0"
 
     implementation project(path: ':base')
-    implementation project(path: ':zutils')
-    implementation project(path: ':zui')
     implementation project(path: ':web')
     implementation project(path: ':database')
     implementation project(path: ':http')

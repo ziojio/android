@@ -19,8 +19,6 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
 /**
  * @author cginechen
  * @date 2016-08-11
